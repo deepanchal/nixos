@@ -41,13 +41,6 @@
     };
   };
 
-  # Fonts
-  fonts.packages = with pkgs; [
-    jetbrains-mono
-    fira-code-nerdfont
-    nerd-font-patcher
-  ];
-
   environment.systemPackages = with pkgs; [
     numix-icon-theme-circle
     colloid-icon-theme
