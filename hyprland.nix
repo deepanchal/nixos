@@ -1,6 +1,10 @@
 { pkgs, ... }:
 
 {
+  imports = [
+    ./waybar
+  ];
+
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
