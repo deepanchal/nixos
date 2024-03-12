@@ -1,13 +1,59 @@
+# Setup format: https://github.com/vimjoyer/flake-starter-config
+# Setup inspirations:
+# - https://github.com/vimjoyer/flake-starter-config
+# - https://github.com/sioodmy/dotfiles
+# - https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles
+# - https://github.com/fufexan/dotfiles
 {
   description = "NixOS Configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:nixos/nixos-hardware";
+    xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
     # rust-overlay.url = "github:oxalica/rust-overlay";
+    
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
 
-    # Home Manager
     home-manager = {
       url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland = {
+      url = "github:hyprwm/Hyprland/";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hypridle = {
+      url = "github:hyprwm/hypridle";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+    hyprcontrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprpicker = {
+      url = "github:hyprwm/hyprpicker";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprpaper = {
+      url = "github:hyprwm/hyprpaper";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -23,53 +69,10 @@
       };
     in
     {
-      nixosConfigurations.zephyrus = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.zephyrion = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs system; };
         modules = [
-          ./configuration.nix
-          ./hardware-configuration.nix
-          ./asus.nix
-          ./battery.nix
-          ./nvidia.nix
-          ./fingerprint-scanner.nix
-          # ./yubikey.nix
-          ./sound.nix
-          # ./usb.nix
-          ./time.nix
-          # ./swap.nix
-          ./bootloader.nix
-          ./nix-settings.nix
-          ./nixpkgs.nix
-          ./gc.nix
-          ./auto-upgrade.nix
-          # ./linux-kernel.nix
-          ./screen.nix
-          ./display-manager.nix
-          ./theme.nix
-          ./internationalization.nix
-          ./fonts.nix
-          # ./security-services.nix
-          ./services.nix
-          # ./printing.nix
-          ./gnome.nix
-          ./hyprland.nix
-          ./environment-variables.nix
-          ./bluetooth.nix
-          ./networking.nix
-          # ./mac-randomize.nix
-          # ./open-ssh.nix
-          ./firewall.nix
-          # ./dns.nix
-          # ./vpn.nix
-          ./users.nix
-          ./virtualization.nix
-          ./programming-languages.nix
-          # ./lsp.nix
-          # ./rust.nix
-          # ./wasm.nix
-          # ./info-fetchers.nix
-          ./utils.nix
-          ./terminal-utils.nix
+          ./hosts/zephyrion/configuration.nix
         ];
       };
     };
