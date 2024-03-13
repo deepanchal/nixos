@@ -2,6 +2,14 @@
   programs.alacritty = {
     enable = true;
     settings = {
+      # Note: Alacritty's setting key for importing files is 'import' not 'imports'
+      import = [
+        (pkgs.fetchurl {
+          url = "https://raw.githubusercontent.com/catppuccin/alacritty/832787d6cc0796c9f0c2b03926f4a83ce4d4519b/catppuccin-macchiato.toml";
+          hash = "sha256-m0Y8OBD9Pgjw9ARwjeD8a+JIQRDboVVCywQS8/ZBAcc=";
+        })
+      ];
+    
       window = {
         decorations = "none";
         dynamic_padding = true;
@@ -19,54 +27,36 @@
 
       scrolling.history = 20000;
 
-      # font = {
-      #   normal.family = "JetBrains Mono";
-      #   bold.family = "JetBrains Mono";
-      #   italic.family = "JetBrains Mono";
-      #   size = 10;
+      font = {
+        size = 10;
+        normal = {
+          # family = "FiraCode Nerd Font";
+          family = "JetBrains Mono";
+        };
+      };
+
+      # cursor = {
+      #   style = {
+      #     shape = "Block";
+      #   };
       # };
 
-      font = {
-        size = 9;
-        normal = {
-          family = "FiraCode Nerd Font";
-        };
-        # built_in_box_drawing = true;
-      };
-
-      cursor = {
-        style = {
-          shape = "Block";
-        };
-      };
-
-      mouse = {
-        hide_when_typing = true;
-      };
+      # mouse = {
+      #   hide_when_typing = true;
+      # };
       
-      keyboard.bindings = [
-        { key = "L"; mods = "Control|Shift"; action = "ClearHistory"; }
-        { key = "Q"; mods = "Control|Shift"; action = "Quit"; }
-        { key = "Z"; mods = "Control|Shift"; action = "ToggleFullscreen"; }
-        { key = "Equals"; mods = "Control"; action = "ResetFontSize"; }
-        { key = "NumpadAdd"; mods = "Control|Shift"; action = "IncreaseFontSize"; }
-        { key = "NumpadSubtract"; mods = "Control"; action = "DecreaseFontSize"; }
-        { key = "V"; mods = "Control|Shift"; action = "Paste"; }
-        { key = "C"; mods = "Control|Shift"; action = "Copy"; }
-        { key = "Return"; mods = "Shift"; chars = "\e[13;2u"; }
-        { key = "Return"; mods = "Control"; chars = "\e[13;5u"; }
-      ];
-
-      colors = {
-        draw_bold_text_with_bright_colors = true;
-      };
-
-      imports = [
-        (pkgs.fetchurl {
-          url = "https://raw.githubusercontent.com/catppuccin/alacritty/3c808cbb4f9c87be43ba5241bc57373c793d2f17/catppuccin-macchiato.yml";
-          hash = "sha256-+m8FyPStdh1A1xMVBOkHpfcaFPcyVL99tIxHuDZ2zXI=";
-        })
-      ];
+      # keyboard.bindings = [
+      #   { key = "L"; mods = "Control|Shift"; action = "ClearHistory"; }
+      #   { key = "Q"; mods = "Control|Shift"; action = "Quit"; }
+      #   { key = "Z"; mods = "Control|Shift"; action = "ToggleFullscreen"; }
+      #   { key = "Equals"; mods = "Control"; action = "ResetFontSize"; }
+      #   { key = "NumpadAdd"; mods = "Control|Shift"; action = "IncreaseFontSize"; }
+      #   { key = "NumpadSubtract"; mods = "Control"; action = "DecreaseFontSize"; }
+      #   { key = "V"; mods = "Control|Shift"; action = "Paste"; }
+      #   { key = "C"; mods = "Control|Shift"; action = "Copy"; }
+      #   { key = "Return"; mods = "Shift"; chars = "\e[13;2u"; }
+      #   { key = "Return"; mods = "Control"; chars = "\e[13;5u"; }
+      # ];
     };
   };
 }
