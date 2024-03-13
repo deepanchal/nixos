@@ -7,6 +7,8 @@
   environment.variables.XCURSOR_SIZE = "24";
   console = {
     earlySetup = true;
+    font = "${pkgs.jetbrains-mono}/share/fonts/truetype/JetBrainsMono-Regular.ttf";
+    packages = [ pkgs.jetbrains-mono ];
     colors = [
       "24273a"
       "ed8796"
@@ -29,7 +31,7 @@
 
   # Override packages
   nixpkgs.config.packageOverrides = pkgs: {
-    colloid-icon-theme = pkgs.colloid-icon-theme.override { colorVariants = ["teal"]; };
+    colloid-icon-theme = pkgs.colloid-icon-theme.override { colorVariants = [ "teal" ]; };
     catppuccin-gtk = pkgs.catppuccin-gtk.override {
       accents = [ "teal" ]; # You can specify multiple accents here to output multiple themes 
       size = "standard";
