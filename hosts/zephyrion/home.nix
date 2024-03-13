@@ -2,8 +2,7 @@
 
 {
   imports = [
-    ../../modules/home-manager/tofi
-    ../../modules/home-manager/waybar
+    ../../modules/home-manager
   ];
   
   # Home Manager needs a bit of information about you and the paths it should
