@@ -37,7 +37,7 @@ in
       settings = {
         scan_timeout = 2;
         command_timeout = 2000; # nixpkgs makes starship implode with lower values
-        add_newline = true;
+        add_newline = false;
         line_break.disabled = false;
 
         format = "${elemsConcatted}\n$character";
