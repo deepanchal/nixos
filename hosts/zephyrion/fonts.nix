@@ -6,23 +6,23 @@
       material-icons
       material-design-icons
       roboto
-      # work-sans
-      # comic-neue
-      # source-sans
-      # twemoji-color-font
-      # comfortaa
-      # inter
-      # lato
-      # lexend
-      # jost
-      # dejavu_fonts
+      work-sans
+      comic-neue
+      source-sans
+      twemoji-color-font
+      comfortaa
+      inter
+      lato
+      lexend
+      jost
+      dejavu_fonts
       iosevka-bin
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
       jetbrains-mono
       fira-code-nerdfont
-      (nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
+      (nerdfonts.override { fonts = [ "Iosevka" "FiraCode" "JetBrainsMono" ]; })
     ];
 
     enableDefaultPackages = false;
