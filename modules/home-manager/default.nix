@@ -4,6 +4,7 @@
     ./hyprland
     ./waybar
     ./tofi
+    ./rofi
     ./terminal
   ];
 }
