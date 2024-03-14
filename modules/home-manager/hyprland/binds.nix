@@ -79,6 +79,7 @@ in
         "${mainMod}, P, pseudo,"
         "${modshift}, G, changegroupactive," # switch within the active group
         "${modshift}, SPACE, togglefloating," # toggle floating for the focused window
+        "${mainMod}, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
 
         "${modshift}, M, exec, playerctl play-pause"
         "${modshift}, N, exec, playerctl next"

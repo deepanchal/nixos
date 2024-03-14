@@ -28,6 +28,10 @@ in
         # set cursor for HL itself
         # "hyprctl setcursor ${pointer.name} ${toString pointer.size}"
 
+        # "wl-paste --type text --watch cliphist store" # Stores only text data
+        # "wl-paste --type image --watch cliphist store" # Stores only text data
+        "wl-paste --watch cliphist store"
+
         # "waybar"
         "[workspace 1 silent] alacritty"
         "[workspace 2 silent] firefox"
