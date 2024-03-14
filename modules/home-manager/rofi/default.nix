@@ -4,7 +4,27 @@
   xdg.configFile."rofi/config.rasi".text = with config.colorScheme.colors; ''
     /*****----- Configuration -----*****/
     configuration {
-        show-icons:                 true;
+        modes: [ combi, calc, "clipboard:greenclip print", filebrowser, window, ssh ];
+        combi-modes: [ drun, run, "clipboard:greenclip print" ];
+        icon-theme: "Oranchelo";
+        show-icons: true;
+        terminal: "alacritty";
+        drun-display-format: "{icon} {name}";
+        location: 0;
+        disable-history: false;
+        hide-scrollbar: true;
+        display-combi: "   Search";
+        display-calc: " 󰪚  Calc";
+        display-drun: "   Apps";
+        display-run: "   Run";
+        display-window: "   Windows";
+        display-Network: " 󰤨  Network";
+        display-filebrowser: "   Files";
+        display-clipboard: "   Clip";
+        display-ssh: "   SSH";
+        sidebar-mode: true;
+    
+        /** 
         display-drun:               " ";
         display-run:                 " ";
         display-filebrowser:         " ";
@@ -12,7 +32,26 @@
         drun-display-format:        "{name}";
         window-format:              "{w}{c}";
         display-emoji: "🔎 ";
+        **/
     }
+
+    /**
+    window {
+        height: 40%;
+        width: 40%;
+        border: 3px;
+        border-color: @border-col;
+        background-color: @bg-col;
+    }
+
+    listview {
+        border: 0px 0px 0px;
+        padding: 6px 0px 0px;
+        margin: 10px 0px 0px 20px;
+        columns: 1;
+        background-color: @bg-col;
+    }
+    **/
 
     /*****----- Global Properties -----*****/
     * {
@@ -333,7 +372,10 @@
     }
   '';
 
-  home.packages = with pkgs; [ rofi-wayland ];
+  home.packages = with pkgs; [
+    rofi-wayland
+    rofi-calc
+  ];
 
   programs.rofi = {
     enable = true;
