@@ -11,6 +11,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
+    nix-colors.url = "github:misterio77/nix-colors";
     # rust-overlay.url = "github:oxalica/rust-overlay";
     
     flake-parts = {

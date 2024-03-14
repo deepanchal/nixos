@@ -1,10 +1,13 @@
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 {
   imports = [
+    inputs.nix-colors.homeManagerModules.default
     ../../modules/home-manager
   ];
-  
+
+  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-macchiato;
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "deep";
@@ -77,4 +80,3 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
-
