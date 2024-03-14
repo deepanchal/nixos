@@ -30,7 +30,7 @@
     mantle = "292c3c";
     crust = "232634";
 
-    accent = pink;
+    accent = teal;
   };
 
   wallpaper = ./wallpaper.png;
