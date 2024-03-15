@@ -96,7 +96,7 @@ in
         ",Print,exec, grim - | wl-copy"
         "${modshift},O,exec,wl-ocr"
 
-        "${mainMod},Period,exec, tofi-emoji"
+        # "${mainMod},Period,exec, tofi-emoji"
 
         "${modshift},L,exec,hyprlock"
 

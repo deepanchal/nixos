@@ -375,6 +375,7 @@
   home.packages = with pkgs; [
     rofi-wayland
     rofi-calc
+    rofi-emoji
   ];
 
   programs.rofi = {
