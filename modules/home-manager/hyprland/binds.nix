@@ -35,6 +35,7 @@ in
         "${mainMod}, E, exec, thunar"
 
         "${mainMod}, MINUS, killactive"
+        "${modshift}, Q, killactive,"
         "${mainMod}, P, pseudo"
 
         # "${mainMod},H,movefocus,l"
