@@ -159,7 +159,7 @@ in
       };
 
       binds = {
-        workspace_back_and_forth = true;
+        # workspace_back_and_forth = true;
       };
 
       misc = {
