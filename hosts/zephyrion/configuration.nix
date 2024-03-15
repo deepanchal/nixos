@@ -28,7 +28,7 @@
     ./theme.nix
     ./internationalization.nix
     ./fonts.nix
-    # ./security-services.nix
+    ./security-services.nix
     ./services.nix
     # ./printing.nix
     ./gnome.nix
