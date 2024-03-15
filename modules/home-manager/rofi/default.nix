@@ -4,8 +4,8 @@
   xdg.configFile."rofi/config.rasi".text = with config.colorScheme.colors; ''
     /*****----- Configuration -----*****/
     configuration {
-        modes: [ combi, calc, "clipboard:greenclip print", filebrowser, window, ssh ];
-        combi-modes: [ drun, run, "clipboard:greenclip print" ];
+        modes: [ combi, filebrowser, window, ssh ];
+        combi-modes: [ drun, run ];
         icon-theme: "Oranchelo";
         show-icons: true;
         terminal: "alacritty";
@@ -14,7 +14,6 @@
         disable-history: false;
         hide-scrollbar: true;
         display-combi: "   Search";
-        display-calc: " 󰪚  Calc";
         display-drun: "   Apps";
         display-run: "   Run";
         display-window: "   Windows";
@@ -29,6 +28,7 @@
         display-run:                 " ";
         display-filebrowser:         " ";
         display-window:              " ";
+        display-calc: " 󰪚  Calc";
         drun-display-format:        "{name}";
         window-format:              "{w}{c}";
         display-emoji: "🔎 ";
