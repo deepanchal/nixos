@@ -3,7 +3,7 @@
     ./shell
     ./hyprland
     ./waybar
-    ./tofi
+    # ./tofi
     ./rofi
     ./terminal
   ];

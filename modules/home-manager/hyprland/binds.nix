@@ -26,7 +26,7 @@ in
   wayland.windowManager.hyprland.settings = {
     bind =
       [
-        "${mainMod}, SPACE, exec, run-as-service $(tofi-drun)"
+        # "${mainMod}, SPACE, exec, run-as-service $(tofi-drun)"
         "${altMod}, SPACE, exec, run-as-service $(rofi -show drun)"
         "${mainMod}, RETURN, exec, alacritty"
         "${modshift}, RETURN, exec, wezterm"
