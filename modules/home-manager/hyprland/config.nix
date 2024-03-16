@@ -40,6 +40,7 @@ in
 
       env = [
         "XCURSOR_SIZE,24"
+        "XCURSOR_THEME"
         # "XDG_CURRENT_DESKTOP,GNOME"
         # "XDG_SESSION_DESKTOP,gnome"
       ];

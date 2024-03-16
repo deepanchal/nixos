@@ -1,7 +1,7 @@
 { pkgs, config, ... }: {
   # xdg.configFile."rofi/config.rasi".source = ./config.rasi;
 
-  xdg.configFile."rofi/config.rasi".text = with config.colorScheme.colors; ''
+  xdg.configFile."rofi/config.rasi".text = with config.colorScheme.palette; ''
     /*****----- Configuration -----*****/
     configuration {
         modes: [ combi, filebrowser, window, ssh ];

@@ -18,11 +18,12 @@
           brightness = 0.7,
         },
         font_size = 12;
-        font = wezterm.font_with_fallback {
-          'JetBrains Mono',
-          'FiraCode Nerd Font',
-          'Noto Color Emoji',
-        },
+        font = wezterm.font 'JetBrains Mono',
+        -- font = wezterm.font_with_fallback {
+        --   'JetBrains Mono',
+        --   'FiraCode Nerd Font',
+        --   'Noto Color Emoji',
+        -- },
         -- enable_scroll_bar = true,
         background = {
           {
