@@ -48,7 +48,6 @@
     # ./rust.nix
     # ./wasm.nix
     # ./info-fetchers.nix
-    ./bin
     ./utils.nix
     ./terminal-utils.nix
   ];
