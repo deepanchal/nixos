@@ -9,11 +9,20 @@
       return {
         color_scheme = 'Catppuccin Macchiato',
         enable_tab_bar = false,
+        -- See:
+        -- https://www.reddit.com/r/archlinux/comments/18rf5t1/psa_on_hyprland_wezterm_will_not_start_anymore/?rdt=54570
+        -- https://github.com/wez/wezterm/issues/4483
+        enable_wayland = false,
         inactive_pane_hsb = {
           saturation = 0.9,
           brightness = 0.7,
         },
-        font_size = 10;
+        font_size = 12;
+        font = wezterm.font_with_fallback {
+          'JetBrains Mono',
+          'FiraCode Nerd Font',
+          'Noto Color Emoji',
+        },
         -- enable_scroll_bar = true,
         background = {
           {
