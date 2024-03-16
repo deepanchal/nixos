@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, pkgs ... }:
 let
   mainMod = "SUPER";
   altMod = "ALT";
@@ -113,10 +113,14 @@ in
       ",XF86AudioRaiseVolume, exec, volumectl -u up"
       ",XF86AudioLowerVolume, exec, volumectl -u down"
       ",XF86AudioMute, exec, volumectl toggle-mute"
-      ",XF86AudioMicMute, exec, volumectl -m toggle-mute"
-      # ",XF86AudioMicMute, exec, micmute"
+      # ",XF86AudioMicMute, exec, volumectl -m toggle-mute"
+      ",XF86AudioMicMute, exec, micmute"
       ",XF86MonBrightnessUp, exec, lightctl up"
       ",XF86MonBrightnessDown, exec, lightctl down"
+
+      ",XF86Launch1, exec, ${pkgs.asusctl}/bin/rog-control-center"
+      ",XF86Launch3, exec, ${pkgs.asusctl}/bin/asusctl led-mode -n"
+      ",XF86Launch4, exec, ${pkgs.asusctl}/bin/asusctl profile -n"
 
       "SUPERALT, SEMICOLON, resizeactive, 80 0"
       "SUPERALT, J, resizeactive, -80 0"
