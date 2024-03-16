@@ -5,7 +5,15 @@
   users.users.deep = {
     isNormalUser = true;
     description = "Deep Panchal";
-    extraGroups = [ "networkmanager" "input" "wheel" "video" "audio" ];
+    extraGroups = [
+      "networkmanager"
+      "input"
+      "wheel"
+      "video"
+      "audio"
+      "libvirtd"
+      "docker"
+    ];
     shell = pkgs.fish;
     packages = with pkgs; [
       firefox
@@ -16,7 +24,7 @@
       slack
     ];
   };
-  
+
   # Change runtime directory size
   # services.logind.extraConfig = "RuntimeDirectorySize=8G";
 }
