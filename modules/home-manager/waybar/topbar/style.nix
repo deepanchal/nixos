@@ -2,10 +2,12 @@
 let
   colors = config.colorScheme.palette;
   custom = {
-    font = "JetBrainsMono Nerd Font";
+    font = "JetBrainsMono Nerd Font, Material Design Icons";
     font_size = "15px";
     font_weight = "bold";
     text_color = colors.base05;
+    active_color = colors.base0C;
+    inactive_color = colors.base05;
     secondary_accent = colors.base0C;
     tertiary_accent = colors.base0E;
     background = colors.base00;
@@ -14,7 +16,6 @@ let
 in
 {
   programs.waybar.style = ''
-
     * {
         border: none;
         border-radius: 0px;
@@ -27,14 +28,12 @@ in
     }
 
     window#waybar {
-        border-radius: 15px;
-        background: #${colors.base00};
+        border-radius: 8px;
+        background: #${custom.background};
     }
 
     #workspaces {
-        font-size: 18px;
-        padding-left: 15px;
-        
+        font-size: 14px;
     }
     #workspaces button {
         color: #${custom.text_color};
@@ -42,57 +41,60 @@ in
         padding-right: 6px;
     }
     #workspaces button.empty {
-        color: #${colors.base03};
+        color: #${custom.inactive_color};
     }
     #workspaces button.active {
-        color: #${colors.base0D};
+        color: #${custom.active_color};
     }
 
-    #tray, #pulseaudio, #network, #cpu, #memory, #disk, #clock {
+    #custom-search,
+    #custom-power,
+    #custom-todo,
+    #custom-lock,
+    #custom-weather,
+    #custom-btc,
+    #custom-eth,
+    #battery,
+    #backlight,
+    #volume,
+    #tray,
+    #pulseaudio,
+    #network,
+    #cpu,
+    #memory,
+    #disk,
+    #clock {
         font-size: ${custom.font_size};
         color: #${custom.text_color};
-    }
-
-    #cpu {
-        padding-left: 15px;
-        padding-right: 9px;
-        margin-left: 7px;
-    }
-    #memory {
-        padding-left: 9px;
-        padding-right: 9px;
-    }
-    #disk {
-        padding-left: 9px;
-        padding-right: 15px;
-    }
-
-    #tray {
-        padding: 0 20px;
-        margin-left: 7px;
-    }
-
-    #pulseaudio {
-        padding-left: 15px;
-        padding-right: 9px;
-        margin-left: 7px;
-    }
-    #network {
-        padding-left: 9px;
-        padding-right: 15px;
+        margin: 0px 8px 0px 8px;
     }
     
-    #clock {
-        padding-left: 9px;
-        padding-right: 15px;
+    #custom-power {
+        padding-right: 6px;
+    }
+    
+    #backlight {
+      padding-right: 2px;
+      color: #e5c890;
+    }
+    #battery {
+      color: #a6d189;
+    }
+  
+    #battery.warning {
+      color: #ef9f76;
+    }
+  
+    #battery.critical:not(.charging) {
+      color: #e78284;
     }
 
     #custom-launcher {
         font-size: 20px;
-        color: #${colors.base07};
+        color: #${custom.text_color};
         font-weight: ${custom.font_weight};
         padding-left: 10px;
-        padding-right: 15px;
+        padding-right: 18px;
     }
   '';
 }
