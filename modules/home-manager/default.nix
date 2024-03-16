@@ -10,5 +10,6 @@
     ./terminal
     ./zellij
     ./yazi
+    ./swaylock
   ];
 }
