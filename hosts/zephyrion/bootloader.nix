@@ -1,19 +1,37 @@
-{ pkgs,  ... }:
+{ pkgs, ... }:
 
 {
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.timeout = 5;
-  boot.initrd.enable = true;
-  boot.initrd.systemd.enable = true;
-  boot.plymouth = {
-    enable = true;
-    font = "${pkgs.jetbrains-mono}/share/fonts/truetype/JetBrainsMono-Regular.ttf";
-    themePackages = [ pkgs.catppuccin-plymouth ];
-    theme = "catppuccin-macchiato";
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      timeout = 5;
+    };
+    # blacklistedKernelModules = [ "nouveau" ];
+    kernelParams = [
+      "quiet"
+      "udev.log_level=3"
+      "nvidia_drm.fbdev=1"
+      "nvidia_drm.modeset=1"
+    ];
+    # consoleLogLevel = 0;
+    initrd = {
+      enable = true;
+      verbose = true;
+      consoleLogLevel = 0;
+      systemd.enable = true;
+    };
+    # grub = {
+    #   enable = true;
+    #   device = "nodev";
+    #   useOSProber = true;
+    # };
+    plymouth = {
+      enable = true;
+      font = "${pkgs.jetbrains-mono}/share/fonts/truetype/JetBrainsMono-Regular.ttf";
+      themePackages = [ pkgs.catppuccin-plymouth ];
+      theme = "catppuccin-macchiato";
+    };
   };
-  #boot.loader.grub.enable = true;
-  #boot.loader.grub.device = "nodev";
-  #boot.loader.grub.useOSProber = true;
 }
