@@ -51,5 +51,5 @@
     accent = teal;
   };
 
-  wallpaper = ./wallpaper.png;
+  wallpaper = ./wallpapers/Rainnight.jpg;
 }
