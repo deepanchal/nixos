@@ -31,6 +31,7 @@
     grex
     delta
     nushell
+    tailspin
     zellij
     zoxide
     starship

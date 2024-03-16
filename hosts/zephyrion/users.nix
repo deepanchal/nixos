@@ -14,7 +14,7 @@
       "libvirtd"
       "docker"
     ];
-    shell = pkgs.fish;
+    shell = pkgs.nushell;
     packages = with pkgs; [
       firefox
       brave
