@@ -33,7 +33,7 @@ in
         "wl-paste --watch cliphist store"
 
         # "waybar"
-        "[workspace 1 silent] alacritty"
+        "[workspace 1 silent] wezterm"
         "[workspace 2 silent] firefox"
         "[workspace 3 silent] wezterm"
       ];
