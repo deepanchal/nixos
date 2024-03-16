@@ -9,7 +9,7 @@
     inputs.home-manager.nixosModules.home-manager
     ./hardware-configuration.nix
     ./asus.nix
-    ./battery.nix
+    # ./battery.nix # No longer needed bc of asusctl
     ./nvidia.nix
     ./fingerprint-scanner.nix
     # ./yubikey.nix
