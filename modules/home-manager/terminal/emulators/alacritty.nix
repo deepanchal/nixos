@@ -5,7 +5,7 @@
       # Note: Alacritty's setting key for importing files is 'import' not 'imports'
       import = [
         (pkgs.fetchurl {
-          url = "https://raw.githubusercontent.com/catppuccin/alacritty/832787d6cc0796c9f0c2b03926f4a83ce4d4519b/catppuccin-macchiato.toml";
+          url = "https://raw.githubusercontent.com/catppuccin/alacritty/832787d6cc0796c9f0c2b03926f4a83ce4d4519b/catppuccin-mocha.toml";
           hash = "sha256-m0Y8OBD9Pgjw9ARwjeD8a+JIQRDboVVCywQS8/ZBAcc=";
         })
       ];

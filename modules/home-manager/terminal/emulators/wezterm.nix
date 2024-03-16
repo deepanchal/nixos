@@ -7,7 +7,7 @@
       local act = wezterm.action
 
       return {
-        color_scheme = 'Catppuccin Macchiato',
+        color_scheme = 'Catppuccin Mocha',
         enable_tab_bar = false,
         -- See:
         -- https://www.reddit.com/r/archlinux/comments/18rf5t1/psa_on_hyprland_wezterm_will_not_start_anymore/?rdt=54570
