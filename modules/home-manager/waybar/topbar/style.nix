@@ -54,6 +54,7 @@ in
     #custom-weather,
     #custom-btc,
     #custom-eth,
+    #bluetooth,
     #battery,
     #backlight,
     #volume,
