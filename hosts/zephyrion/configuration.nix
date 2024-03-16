@@ -48,6 +48,7 @@
     # ./rust.nix
     # ./wasm.nix
     # ./info-fetchers.nix
+    ./bin
     ./utils.nix
     ./terminal-utils.nix
   ];
@@ -63,6 +64,10 @@
       };
     };
   };
+
+  # ================================================================ #
+  # =                         DO NOT TOUCH                         = #
+  # ================================================================ # 
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
