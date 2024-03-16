@@ -1,4 +1,4 @@
-{ config, lib, pkgs ... }:
+{ config, lib, pkgs, ... }:
 let
   mainMod = "SUPER";
   altMod = "ALT";
