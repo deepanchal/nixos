@@ -6,5 +6,7 @@
     # ./tofi
     ./rofi
     ./terminal
+    ./zellij
+    ./yazi
   ];
 }
