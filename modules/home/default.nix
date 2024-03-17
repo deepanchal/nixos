@@ -13,6 +13,5 @@
     ./swaylock
     ./lazygit
     ./ripgrep
-    ./btop
   ];
 }

@@ -1,14 +1,13 @@
 { pkgs, lib, inputs, ... }:
 let
   btop-theme-dir = ".config/btop/themes";
-  btop-catppuccin = inputs.btop-catppuccin;
+  catppuccin-mocha = builtins.readFile (pkgs.fetchurl {
+    url = "https://raw.githubusercontent.com/catppuccin/btop/main/themes/catppuccin_mocha.theme";
+    hash = "sha256-TeaxAadm04h4c55aXYUdzHtFc7pb12e0wQmCjSymuug=";
+  });
 in
 {
-  # btop themes
-  home.file."${btop-theme-dir}/catppuccin-latte.theme".text = builtins.readFile "${btop-catppuccin}/themes/catppuccin_latte.theme";
-  home.file."${btop-theme-dir}/catppuccin-frappe.theme".text = builtins.readFile "${btop-catppuccin}/themes/catppuccin_frappe.theme";
-  home.file."${btop-theme-dir}/catppuccin-macchiato.theme".text = builtins.readFile "${btop-catppuccin}/themes/catppuccin_macchiato.theme";
-  home.file."${btop-theme-dir}/catppuccin-mocha.theme".text = builtins.readFile "${btop-catppuccin}/themes/catppuccin_mocha.theme";
+  home.file."${btop-theme-dir}/catppuccin-mocha.theme".text = catppuccin-mocha;
 
   programs.btop = {
     enable = true;
@@ -265,3 +264,4 @@ in
     };
   };
 }
+

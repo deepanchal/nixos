@@ -57,11 +57,6 @@
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    btop-catppuccin = {
-      url = "github:catppuccin/btop";
-      flake = false;
-    }; 
   };
 
   outputs = { self, nixpkgs, ... } @ inputs:
