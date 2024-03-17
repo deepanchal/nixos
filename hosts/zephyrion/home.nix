@@ -74,7 +74,8 @@
   #  /etc/profiles/per-user/deep/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "nvim";
+    BROWSER = "firefox";
   };
 
   # Let Home Manager install and manage itself.
