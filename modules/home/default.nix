@@ -11,6 +11,5 @@
     ./zellij
     ./yazi
     ./swaylock
-    ./lazygit
   ];
 }
