@@ -12,6 +12,5 @@
     ./yazi
     ./swaylock
     ./lazygit
-    ./ripgrep
   ];
 }
