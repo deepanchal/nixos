@@ -4,7 +4,6 @@
   environment.systemPackages = with pkgs; [
     # upx
     git
-    lazygit
     gh
     glab
     license-generator
@@ -16,27 +15,18 @@
 
     brave
     google-chrome
-    alacritty
     
-    eza
-    bat
     fd
     procs
     just
     sd
     du-dust
-    ripgrep
     tokei
     hyperfine
     grex
     delta
     nushell
-    zellij
-    zoxide
-    starship
     helix
-    tealdeer
-    eww # top bar
     # mcfly # terminal history
     # skim #fzf better alternative in rust
     # macchina #neofetch alternative in rust
@@ -48,13 +38,10 @@
     nix-index
     pciutils
     lshw
-    btop
-    dunst # For notification
     hyprpaper
     hyprpicker
     hyprkeys
     wl-clipboard
-    rofi-wayland
 
     # For nvidia
     vulkan-loader
