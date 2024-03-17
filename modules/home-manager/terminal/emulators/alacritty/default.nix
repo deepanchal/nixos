@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.alacritty = {
     enable = true;
     settings = {
@@ -9,7 +10,7 @@
           hash = "sha256-nmVaYJUavF0u3P0Qj9rL+pzcI9YQOTGPyTvi+zNVPhg=";
         })
       ];
-    
+
       window = {
         decorations = "none";
         dynamic_padding = true;
@@ -44,7 +45,7 @@
       # mouse = {
       #   hide_when_typing = true;
       # };
-      
+
       # keyboard.bindings = [
       #   { key = "L"; mods = "Control|Shift"; action = "ClearHistory"; }
       #   { key = "Q"; mods = "Control|Shift"; action = "Quit"; }
@@ -60,3 +61,4 @@
     };
   };
 }
+
