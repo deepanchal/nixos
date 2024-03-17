@@ -3,7 +3,7 @@
 {
   imports = [
     inputs.nix-colors.homeManagerModules.default
-    ../../modules/home-manager
+    ../../modules/home
   ];
 
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;

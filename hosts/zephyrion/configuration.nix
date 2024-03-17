@@ -59,7 +59,7 @@
         imports = [
           ./home.nix
         ];
-        _module.args.theme = import ../../modules/home-manager/theme;
+        _module.args.theme = import ../../modules/home/theme;
       };
     };
   };
