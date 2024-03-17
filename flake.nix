@@ -57,6 +57,11 @@
       url = "github:cachix/pre-commit-hooks.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    btop-catppuccin = {
+      url = "github:catppuccin/btop";
+      flake = false;
+    }; 
   };
 
   outputs = { self, nixpkgs, ... } @ inputs:
@@ -71,7 +76,7 @@
     in
     {
       nixosConfigurations.zephyrion = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs system; };
+        specialArgs = { inherit pkgs inputs system; };
         modules = [
           ./hosts/zephyrion/configuration.nix
         ];
