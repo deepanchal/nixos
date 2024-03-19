@@ -25,7 +25,7 @@
     # ./linux-kernel.nix
     ./screen.nix
     ./display-manager.nix
-    ./theme.nix
+    # ./theme.nix
     ./internationalization.nix
     ./fonts.nix
     ./security-services.nix
