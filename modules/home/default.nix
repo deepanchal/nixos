@@ -11,5 +11,6 @@
     ./zellij
     ./yazi
     ./swaylock
+    ./gtk
   ];
 }
