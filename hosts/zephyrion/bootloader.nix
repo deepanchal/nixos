@@ -10,12 +10,12 @@
     };
     # blacklistedKernelModules = [ "nouveau" ];
     kernelParams = [
-      # "quiet"
-      # "udev.log_level=3"
+      "quiet"
+      "udev.log_level=3"
       "nvidia_drm.fbdev=1"
       "nvidia_drm.modeset=1"
     ];
-    # consoleLogLevel = 0;
+    consoleLogLevel = 0;
     initrd = {
       enable = true;
       verbose = true;
