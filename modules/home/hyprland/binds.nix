@@ -23,6 +23,11 @@ let
   modshift = "${mainMod}${shiftMod}";
   ctrlAlt = "${ctrlMod}${altMod}";
 
+  leftKey = "H";
+  rightKey = "L";
+  upKey = "K";
+  downKey = "J";
+
   # binds $mod + [shift +] {1..10} to [move to] workspace {1..10} (stolen from fufie)
   workspaces = builtins.concatLists (builtins.genList
     (
@@ -57,11 +62,6 @@ in
         "${modshift}, Q, killactive,"
         "${mainMod}, P, pseudo"
 
-        # "${mainMod},H,movefocus,l"
-        # "${mainMod},L,movefocus,r"
-        # "${mainMod},K,movefocus,u"
-        # "${mainMod},J,movefocus,d"
-
         # # will switch to a submap called resize
         # bind=$mainMod,R,submap,resize
         #
@@ -83,15 +83,15 @@ in
         "${mainMod}, S, togglespecialworkspace, magic"
         "${modshift}, S, movetoworkspace, special:magic"
 
-        "${mainMod}, J, movefocus, l"
-        "${mainMod}, K, movefocus, d"
-        "${mainMod}, L, movefocus, u"
-        "${mainMod}, SEMICOLON, movefocus, r"
+        "${mainMod}, ${leftKey}, movefocus, l"
+        "${mainMod}, ${downKey}, movefocus, d"
+        "${mainMod}, ${upKey}, movefocus, u"
+        "${mainMod}, ${rightKey}, movefocus, r"
 
-        "${modshift}, J, movewindow, l"
-        "${modshift}, K, movewindow, d"
-        "${modshift}, L, movewindow, u"
-        "${modshift}, SEMICOLON, movewindow, r"
+        "${modshift}, ${leftKey}, movewindow, l"
+        "${modshift}, ${downKey}, movewindow, d"
+        "${modshift}, ${upKey}, movewindow, u"
+        "${modshift}, ${rightKey}, movewindow, r"
 
         "${mainMod}, M, exec, hyprctl keyword $kw $(($(hyprctl getoption $kw -j | jaq -r '.int') ^ 1))" # toggle no_gaps_when_only
         "${mainMod}, T, togglegroup," # group focused window
@@ -140,8 +140,8 @@ in
       ",XF86Launch3, exec, ${asusctl} led-mode -n"
       ",XF86Launch4, exec, ${asusctl} profile -n"
 
-      "SUPERALT, SEMICOLON, resizeactive, 80 0"
-      "SUPERALT, J, resizeactive, -80 0"
+      "SUPERALT, ${rightKey}, resizeactive, 80 0"
+      "SUPERALT, ${leftKey}, resizeactive, -80 0"
     ];
     # binds that are locked, a.k.a will activate even while an input inhibitor is active
     bindl = [

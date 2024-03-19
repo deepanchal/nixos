@@ -36,7 +36,7 @@
       "float,class:udiskie"
       "float, title:(Media viewer)"
 
-      "workspace special silent,class:^(pavucontrol)$"
+      # "workspace special silent,class:^(pavucontrol)$"
 
       "opaque, class:^(imv)$"
       "opaque, class:^(mpv)$"
