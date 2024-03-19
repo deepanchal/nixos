@@ -13,14 +13,14 @@ return {
 
   window_background_opacity = 0.85,
   window_padding = {
-    top = "0cell",
-    right = "0cell",
-    bottom = "0cell",
-    left = "0cell",
+    top = 0,
+    right = 0,
+    bottom = 0,
+    left = 0,
   },
 
   font_size = 11;
-  font = wezterm.font 'JetBrains Mono',
+  font = wezterm.font 'JetBrains Mono Nerd Font',
   -- font = wezterm.font_with_fallback {
   --   'JetBrains Mono',
   --   'FiraCode Nerd Font',

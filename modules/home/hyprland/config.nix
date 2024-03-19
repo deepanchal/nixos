@@ -1,4 +1,4 @@
-{ config, theme, lib, ... }:
+{ config, theme, pkgs, lib, ... }:
 let
   primaryMonitor = "DP-1"; # external monitor
   secondaryMonitor = "eDP-1"; # laptop screen
@@ -31,6 +31,8 @@ in
         # "wl-paste --type text --watch cliphist store" # Stores only text data
         # "wl-paste --type image --watch cliphist store" # Stores only text data
         "wl-paste --watch cliphist store"
+
+        "${pkgs.asusctl}/bin/rog-control-center"
 
         # "waybar"
         "[workspace 1 silent] wezterm"

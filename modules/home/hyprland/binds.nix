@@ -1,8 +1,27 @@
 { config, lib, pkgs, ... }:
 let
+  rofi = "${pkgs.rofi}/bin/rofi";
+  swayosd = "${pkgs.swayosd}/bin/swayosd-client";
+  swaylock = "${pkgs.swaylock}/bin/swaylock";
+  cliphist = "${pkgs.cliphist}/bin/cliphist";
+  wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
+  wl-paste= "${pkgs.wl-clipboard}/bin/wl-paste";
+  wezterm = "${pkgs.wezterm}/bin/wezterm";
+  alacritty = "${pkgs.alacritty}/bin/alacritty";
+  asusctl = "${pkgs.asusctl}/bin/asusctl";
+  rog-control-center = "${pkgs.asusctl}/bin/rog-control-center";
+  firefox = "${pkgs.firefox}/bin/firefox";
+  brave = "${pkgs.brave}/bin/brave";
+  thunar = "thunar";
+  playerctl = "${pkgs.playerctl}/bin/playerctl";
+  hyprlock = "${pkgs.hyprlock}/bin/hyprlock";
+
   mainMod = "SUPER";
   altMod = "ALT";
-  modshift = "${mainMod}SHIFT";
+  ctrlMod = "CTRL";
+  shiftMod = "SHIFT";
+  modshift = "${mainMod}${shiftMod}";
+  ctrlAlt = "${ctrlMod}${altMod}";
 
   # binds $mod + [shift +] {1..10} to [move to] workspace {1..10} (stolen from fufie)
   workspaces = builtins.concatLists (builtins.genList
@@ -27,12 +46,12 @@ in
     bind =
       [
         # "${mainMod}, SPACE, exec, run-as-service $(tofi-drun)"
-        "${altMod}, SPACE, exec, run-as-service $(rofi -show drun)"
-        "${mainMod}, RETURN, exec, wezterm"
-        "${modshift}, RETURN, exec, alacritty"
-        "${mainMod}, B, exec, firefox"
-        # "${modshift}, B, exec, brave"
-        "${mainMod}, E, exec, thunar"
+        "${altMod}, SPACE, exec, run-as-service $(${rofi} -show drun)"
+        "${mainMod}, RETURN, exec, ${wezterm}"
+        "${modshift}, RETURN, exec, ${alacritty}"
+        "${mainMod}, B, exec, ${firefox}"
+        # "${modshift}, B, exec, ${brave}"
+        "${mainMod}, E, exec, ${thunar}"
 
         "${mainMod}, MINUS, killactive"
         "${modshift}, Q, killactive,"
@@ -80,11 +99,11 @@ in
         "${mainMod}, P, pseudo,"
         "${modshift}, G, changegroupactive," # switch within the active group
         "${modshift}, SPACE, togglefloating," # toggle floating for the focused window
-        "${mainMod}, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy"
+        "${mainMod}, V, exec, ${cliphist} list | ${rofi} -dmenu | ${cliphist} decode | ${wl-copy}"
 
-        "${modshift}, M, exec, playerctl play-pause"
-        "${modshift}, N, exec, playerctl next"
-        "${modshift}, B, exec, playerctl previous"
+        "${modshift}, M, exec, ${playerctl} play-pause"
+        "${modshift}, N, exec, ${playerctl} next"
+        "${modshift}, B, exec, ${playerctl} previous"
 
         # workspace controls
         "${modshift}, right, movetoworkspace, +1" # move focused window to the next ws
@@ -93,14 +112,13 @@ in
         "${mainMod}, mouse_up, workspace, e-1" # move to the previous ws
 
         "${mainMod},Print,exec, pauseshot"
-        ",Print,exec, grim - | wl-copy"
-        "${modshift},O,exec,wl-ocr"
+        ",Print,exec, grim - | ${wl-copy}"
 
         # "${mainMod},Period,exec, tofi-emoji"
 
-        "${modshift},L,exec,hyprlock"
+        "${ctrlAlt},L,exec,${hyprlock}"
 
-        ",XF86Bluetooth, exec, bcn"
+        # ",XF86Bluetooth, exec, bcn"
       ]
       ++ workspaces;
 
@@ -110,17 +128,17 @@ in
     ];
 
     binde = [
-      ",XF86AudioRaiseVolume, exec, volumectl -u up"
-      ",XF86AudioLowerVolume, exec, volumectl -u down"
-      ",XF86AudioMute, exec, volumectl toggle-mute"
-      # ",XF86AudioMicMute, exec, volumectl -m toggle-mute"
-      ",XF86AudioMicMute, exec, micmute"
-      ",XF86MonBrightnessUp, exec, lightctl up"
-      ",XF86MonBrightnessDown, exec, lightctl down"
+      ",XF86AudioRaiseVolume, exec, ${swayosd} --output-volume 5"
+      ",XF86AudioLowerVolume, exec, ${swayosd} --output-volume -5"
+      ",XF86AudioMute, exec, ${swayosd} --output-volume mute-toggle"
+      ",XF86AudioMicMute, exec, ${swayosd} --input-volume mute-toggle"
+      ",XF86MonBrightnessUp, exec, ${swayosd} --brightness 10"
+      ",XF86MonBrightnessDown, exec, ${swayosd} --brightness -10"
+      ",Caps_Lock, exec, ${swayosd} --caps-lock"
 
-      ",XF86Launch1, exec, ${pkgs.asusctl}/bin/rog-control-center"
-      ",XF86Launch3, exec, ${pkgs.asusctl}/bin/asusctl led-mode -n"
-      ",XF86Launch4, exec, ${pkgs.asusctl}/bin/asusctl profile -n"
+      ",XF86Launch1, exec, ${rog-control-center}"
+      ",XF86Launch3, exec, ${asusctl} led-mode -n"
+      ",XF86Launch4, exec, ${asusctl} profile -n"
 
       "SUPERALT, SEMICOLON, resizeactive, 80 0"
       "SUPERALT, J, resizeactive, -80 0"
@@ -128,9 +146,9 @@ in
     # binds that are locked, a.k.a will activate even while an input inhibitor is active
     bindl = [
       # media controls
-      ", XF86AudioPlay, exec, playerctl play-pause"
-      ", XF86AudioPrev, exec, playerctl previous"
-      ", XF86AudioNext, exec, playerctl next"
+      ", XF86AudioPlay, exec, ${playerctl} play-pause"
+      ", XF86AudioPrev, exec, ${playerctl} previous"
+      ", XF86AudioNext, exec, ${playerctl} next"
     ];
   };
 }
