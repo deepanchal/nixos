@@ -49,6 +49,7 @@ in
 
     #custom-search,
     #custom-power,
+    #custom-notification,
     #custom-todo,
     #custom-lock,
     #custom-weather,
