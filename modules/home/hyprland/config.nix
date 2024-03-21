@@ -25,8 +25,9 @@ in
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
       exec-once = [
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+
         # set cursor for HL itself
-        # "hyprctl setcursor ${pointer.name} ${toString pointer.size}"
+        "hyprctl setcursor ${pointer.name} ${toString pointer.size}"
 
         # "wl-paste --type text --watch cliphist store" # Stores only text data
         # "wl-paste --type image --watch cliphist store" # Stores only text data
@@ -41,8 +42,6 @@ in
       ];
 
       env = [
-        "XCURSOR_SIZE,24"
-        "XCURSOR_THEME,Catppuccin-Mocha-Teal"
         # "XDG_CURRENT_DESKTOP,GNOME"
         # "XDG_SESSION_DESKTOP,gnome"
       ];

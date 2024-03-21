@@ -58,7 +58,6 @@ in
         # "${modshift}, B, exec, ${brave}"
         "${mainMod}, E, exec, ${thunar}"
 
-        "${mainMod}, MINUS, killactive"
         "${modshift}, Q, killactive,"
         "${mainMod}, P, pseudo"
 
@@ -80,8 +79,8 @@ in
         # # will reset the submap, meaning end the current one and return to the global one
         # submap=reset
 
-        "${mainMod}, S, togglespecialworkspace, magic"
-        "${modshift}, S, movetoworkspace, special:magic"
+        "${mainMod}, MINUS, togglespecialworkspace, magic"
+        "${modshift}, MINUS, movetoworkspace, special:magic"
 
         "${mainMod}, ${leftKey}, movefocus, l"
         "${mainMod}, ${downKey}, movefocus, d"
