@@ -4,7 +4,8 @@
     ./hyprland
     # ./eww # Not working yet
     ./waybar
-    ./dunst
+    # ./dunst
+    ./swaync
     # ./tofi
     ./rofi
     ./terminal
