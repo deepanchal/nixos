@@ -13,8 +13,11 @@
     };
 
     iconTheme = {
-      package = pkgs.catppuccin-papirus-folders;
-      name = "Papirus";
+      package = pkgs.catppuccin-papirus-folders.override {
+        accent = "teal";
+        flavor = "mocha";
+      };
+      name = "Papirus-Dark";
     };
     font = {
       name = "Lexend";
