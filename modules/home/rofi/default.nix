@@ -55,7 +55,7 @@
 
     /*****----- Global Properties -----*****/
     * {
-        active-background: #${base0B};
+        active-background: #${base0C};
         active-foreground: @foreground;
         normal-background: @background;
         normal-foreground: @foreground;
@@ -71,7 +71,7 @@
 
         selected-active-background: #${base08};
         selected-active-foreground: @foreground;
-        selected-normal-background: #${base0B};
+        selected-normal-background: #${base0C};
         selected-normal-foreground: @foreground;
         selected-urgent-background: #${base0A};
         selected-urgent-foreground: @foreground;
