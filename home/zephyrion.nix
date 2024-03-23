@@ -27,7 +27,7 @@ in
   # colorscheme = lib.mkDefault colorSchemes.catppuccin-macchiato;
   colorscheme = lib.mkDefault colorSchemes.catppuccin-mocha;
   specialisation = {
-    light.configuration.colorscheme = colorSchemes.catppuccin-frappe;
+    light.configuration.colorscheme = colorSchemes.catppuccin-latte;
   };
 
   # The home.packages option allows you to install Nix packages into your
