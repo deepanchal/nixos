@@ -1,4 +1,4 @@
-{ pkgs, config, theme, ... }:
+{ pkgs, config, ... }:
 {
   home.packages = [
     pkgs.zoxide

@@ -1,5 +1,6 @@
-{ pkgs, lib, inputs, theme, ... }:
+{ pkgs, lib, inputs, ... }:
 with lib; let
+  wallpaper = ../theme/wallpapers/Rainnight.jpg;
   mkService = lib.recursiveUpdate {
     Unit.PartOf = [ "graphical-session.target" ];
     Unit.After = [ "graphical-session.target" ];
@@ -84,7 +85,7 @@ in
     swaybg = mkService {
       Unit.Description = "Wallpaper chooser";
       Service = {
-        ExecStart = "${lib.getExe pkgs.swaybg} -i ${theme.wallpaper}";
+        ExecStart = "${lib.getExe pkgs.swaybg} -i ${wallpaper}";
         Restart = "always";
       };
     };

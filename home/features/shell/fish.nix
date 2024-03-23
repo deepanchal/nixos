@@ -1,4 +1,4 @@
-{ pkgs, lib, theme, ... }:
+{ pkgs, lib, ... }:
 {
   programs.fish = {
     enable = true;

@@ -6,7 +6,10 @@
 
 {
   imports = [
-    inputs.home-manager.nixosModules.home-manager
+    inputs.nixos-hardware.nixosModules.common-cpu-amd
+    inputs.nixos-hardware.nixosModules.common-gpu-amd
+    inputs.nixos-hardware.nixosModules.common-pc-ssd
+
     ./hardware-configuration.nix
     ./asus.nix
     # ./battery.nix # No longer needed bc of asusctl
@@ -51,18 +54,6 @@
     ./utils.nix
     ./terminal-utils.nix
   ];
-
-  home-manager = {
-    extraSpecialArgs = { inherit inputs; };
-    users = {
-      deep = {
-        imports = [
-          ./home.nix
-        ];
-        _module.args.theme = import ../../modules/home/theme;
-      };
-    };
-  };
 
   # ================================================================ #
   # =                         DO NOT TOUCH                         = #
