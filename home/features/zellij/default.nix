@@ -35,7 +35,7 @@
         };
 
         themes = {
-          "currentTheme" = with config.colorScheme.palette; {
+          "${config.colorscheme.slug}" = with config.colorscheme.palette; {
             bg = "#${base04}";
             fg = "#${base05}";
             red = "#${base08}";
@@ -50,7 +50,7 @@
           };
         };
 
-        theme = "currentTheme";
+        theme = "${config.colorscheme.slug}";
       };
     };
   };
