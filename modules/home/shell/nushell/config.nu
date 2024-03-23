@@ -1,12 +1,10 @@
 source ~/.cache/starship/init.nu
 
 alias zj = zellij
-alias zjd = zellij --layout ../.config/zellij/snowflake.kdl
 alias lg = lazygit
-alias ld = lazydocker
-alias ls = eza -l --icons --color always
-alias la = eza -1 -alughHo --git --icons --color always
-alias calc = eva
+# alias ls = eza -l --icons --color always
+alias ll = eza -l --icons --color always
+alias la = eza -alughHo --git --icons --color always
 alias c = clear
 alias f = yazi
 alias cat = bat --pager=never --plain
@@ -14,13 +12,6 @@ alias rm = rm -i
 alias cp = cp -i
 alias mv = mv -i
 alias grep = rg
-alias dl = yt-dlp -P ~/Videos/downloaded
-alias dlad = yt-dlp -x --audio-format mp3 --embed-thumbnail
-alias dlcd = yt-dlp
-alias up = rpaste -s "https://i.flake.sh/" -e 1day
-alias shorten = rpaste -s "https://i.flake.sh/" -e 1day -u
-alias send = croc --relay "100.104.42.96:9009" send
-alias receive = croc --relay "100.104.42.96:9009"
 alias ps = procs
 alias tail = tspin
 
