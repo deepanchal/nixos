@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  browser = [ "firefox" ];
+  browser = [ "firefox.desktop" ];
 
   associations = {
     "text/html" = browser;
