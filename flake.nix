@@ -108,6 +108,12 @@
           modules = [ ./home/zephyrion.nix ];
           extraSpecialArgs = { inherit inputs outputs; };
         };
+
+        "deep@manjarog" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home manager requires 'pkgs' instance
+          modules = [ ./home/manjarog.nix ];
+          extraSpecialArgs = { inherit inputs outputs; };
+        };
       };
     };
 }
