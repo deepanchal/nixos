@@ -1,26 +1,34 @@
-{ inputs, config, pkgs, ... }:
-
+# This is your home-manager configuration file
+# Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
+{ inputs, outputs, lib, config, pkgs, ... }:
+let
+  inherit (inputs.nix-colors) colorSchemes;
+in
 {
+  # You can import other home-manager modules here
   imports = [
-    inputs.nix-colors.homeManagerModules.default
-    ../../modules/home
+    # If you want to use modules your own flake exports (from modules/home-manager):
+    # outputs.homeManagerModules.example
+    ./global
+    ./features/shell
+    ./features/hyprland
+    # ./features ./eww # Not working yet
+    ./features/waybar
+    # ./features ./dunst
+    ./features/swaync
+    ./features/rofi
+    ./features/terminal
+    ./features/zellij
+    ./features/yazi
+    ./features/swaylock
+    ./features/gtk
   ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
-
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = "deep";
-  home.homeDirectory = "/home/deep";
-
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "23.11"; # Please read the comment before changing.
+  # colorscheme = lib.mkDefault colorSchemes.catppuccin-macchiato;
+  colorscheme = lib.mkDefault colorSchemes.catppuccin-mocha;
+  specialisation = {
+    light.configuration.colorscheme = colorSchemes.catppuccin-frappe;
+  };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -78,12 +86,33 @@
     BROWSER = "firefox";
   };
 
-  # Nicely reload system units when changing configs
-  systemd.user.startServices = "sd-switch";
+  nixpkgs = {
+    # You can add overlays here
+    overlays = [
+      # Add overlays your own flake exports (from overlays and pkgs dir):
+      outputs.overlays.additions
+      outputs.overlays.modifications
+      outputs.overlays.unstable-packages
 
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+      # You can also add overlays exported from other flakes:
+      # neovim-nightly-overlay.overlays.default
 
-  services.blueman-applet.enable = true;
-  services.swayosd.enable = true;
+      # Or define it inline, for example:
+      # (final: prev: {
+      #   hi = final.hello.overrideAttrs (oldAttrs: {
+      #     patches = [ ./change-hello-to-hi.patch ];
+      #   });
+      # })
+    ];
+  };
+
+  programs = {
+    home-manager.enable = true;
+    git.enable = true;
+  };
+
+  services = {
+    blueman-applet.enable = true;
+    swayosd.enable = true;
+  };
 }

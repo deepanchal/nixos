@@ -1,4 +1,4 @@
-{ config, theme, pkgs, lib, ... }:
+{ config, pkgs, lib, ... }:
 let
   primaryMonitor = "DP-1"; # external monitor
   secondaryMonitor = "eDP-1"; # laptop screen
@@ -8,7 +8,7 @@ let
   rog-control-center = "${pkgs.asusctl}/bin/rog-control-center";
 in
 {
-  wayland.windowManager.hyprland = with theme.colors; {
+  wayland.windowManager.hyprland = {
     settings = {
       # See https://wiki.hyprland.org/Configuring/Monitors/
       monitor = [
@@ -77,8 +77,8 @@ in
         border_size = 2;
 
         # active border color
-        "col.active_border" = "rgb(${accent})";
-        "col.inactive_border" = "rgb(${surface0})";
+        "col.active_border" = "rgb(${config.colorScheme.palette.base0C})";
+        "col.inactive_border" = "rgb(${config.colorScheme.palette.base02})";
 
         # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
         apply_sens_to_raw = 0;
