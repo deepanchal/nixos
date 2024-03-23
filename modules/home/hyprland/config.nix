@@ -3,6 +3,9 @@ let
   primaryMonitor = "DP-1"; # external monitor
   secondaryMonitor = "eDP-1"; # laptop screen
   pointer = config.home.pointerCursor;
+
+  wl-paste = "${pkgs.cliphist}/bin/wl-paste";
+  rog-control-center = "${pkgs.asusctl}/bin/rog-control-center";
 in
 {
   wayland.windowManager.hyprland = with theme.colors; {
@@ -29,16 +32,16 @@ in
         # set cursor for HL itself
         "hyprctl setcursor ${pointer.name} ${toString pointer.size}"
 
-        # "wl-paste --type text --watch cliphist store" # Stores only text data
-        # "wl-paste --type image --watch cliphist store" # Stores only text data
-        "wl-paste --watch cliphist store"
+        "${wl-paste} --type text --watch cliphist store" # Stores only text data
+        "${wl-paste} --type image --watch cliphist store" # Stores only text data
+        # "wl-paste --watch cliphist store"
 
-        "${pkgs.asusctl}/bin/rog-control-center"
+        "${rog-control-center}"
 
         # "waybar"
-        "[workspace 1 silent] wezterm"
-        "[workspace 2 silent] firefox"
-        "[workspace 3 silent] wezterm"
+        "[workspace 1 silent] ${lib.getExe pkgs.wezterm}"
+        "[workspace 2 silent] ${lib.getExe pkgs.firefox}"
+        "[workspace 3 silent] ${lib.getExe pkgs.alacritty}"
       ];
 
       env = [
@@ -197,6 +200,8 @@ in
         "7, name:misc3, monitor:${secondaryMonitor}"
         "8, name:misc4, monitor:${secondaryMonitor}"
         # Workspaces 9 and 10 are not explicitly assigned to allow them to appear on the active monitor
+
+        "special:scratchpad, on-created-empty:${lib.getExe pkgs.wezterm}"
       ];
     };
   };

@@ -27,6 +27,7 @@ in
       hyprpicker
       wl-clip-persist
       wl-clipboard
+      wdisplays
       pngquant
       cliphist
       (
