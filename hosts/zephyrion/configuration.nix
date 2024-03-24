@@ -7,6 +7,7 @@
 {
   imports = [
     inputs.nixos-hardware.nixosModules.common-cpu-amd
+    inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
     inputs.nixos-hardware.nixosModules.common-gpu-amd
     inputs.nixos-hardware.nixosModules.common-pc-ssd
 
@@ -173,6 +174,7 @@
     NIXOS_OZONE_WL = "1";
     GDK_BACKEND = "wayland,x11";
     MOZ_ENABLE_WAYLAND = "1";
+    MOZ_DRM_DEVICE = "/dev/dri/renderD129"; # see (Section 4.2.3): https://wiki.archlinux.org/title/Firefox#Hardware_video_acceleration 
     WLR_BACKEND = "vulkan";
     WLR_RENDERER = "vulkan";
     XDG_SESSION_TYPE = "wayland";
