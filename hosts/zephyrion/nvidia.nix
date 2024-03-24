@@ -1,12 +1,18 @@
-{ config, pkgs, ... }:
+{ inputs, config, pkgs, ... }:
 
 {
+  imports = [
+    # This import disables nvidia gpu. This runs only intel/amdgpu igpus and nvidia dgpus do not drain power.
+    # inputs.nixos-hardware.nixosModules.common-gpu-nvidia-disable
+  ];
+
   # Enable OpenGL
   hardware.opengl = {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
     extraPackages = with pkgs; [
+      vaapiVdpau
       nvidia-vaapi-driver
     ];
   };
@@ -55,7 +61,13 @@
 
     # Hardware acceleration on NVIDIA GPUs
     # (https://wiki.archlinux.org/title/Hardware_video_acceleration)
-    LIBVA_DRIVER_NAME = "nvidia";
+    #
+    # Refs:
+    # - https://discourse.nixos.org/t/hardware-acceleration-on-chromium-with-nvidia/36246
+    # - https://github.com/elFarto/nvidia-vaapi-driver/issues/160
+    # - https://github.com/elFarto/nvidia-vaapi-driver/issues/272
+    # LIBVA_DRIVER_NAME = "radeonsi";
+    # LIBVA_DRIVER_NAME = "nvidia";
 
     # (https://wiki.archlinux.org/title/Wayland#Requirements)
     # WARN: crashes me hyprland
@@ -75,22 +87,24 @@
     # Controls if G-Sync capable monitors should use Variable Refresh Rate (VRR)
     # See Nvidia Documentation for details.
     # (https://download.nvidia.com/XFree86/Linux-32bit-ARM/375.26/README/openglenvvariables.html)
-    # __GL_GSYNC_ALLOWED = "1";
+    __GL_GSYNC_ALLOWED = "1";
 
     # Controls if Adaptive Sync should be used. Recommended to set as “0” to avoid
     # having problems on some games.
-    # __GL_VRR_ALLOWED = "1";
+    __GL_VRR_ALLOWED = "1";
 
     # use legacy DRM interface instead of atomic mode setting. Might fix flickering
     # issues
-    # WLR_DRM_NO_ATOMIC = "1";
+    WLR_DRM_NO_ATOMIC = "1";
 
-    # __VK_LAYER_NV_optimus = "NVIDIA_only";
-    # NVD_BACKEND = "direct";
+    __VK_LAYER_NV_optimus = "NVIDIA_only";
+    NVD_BACKEND = "direct";
     #####################################
   };
 
   environment.systemPackages = with pkgs; [
+    vdpauinfo
+    libva-utils
     vulkan-loader
     vulkan-validation-layers
     vulkan-tools
