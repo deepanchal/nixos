@@ -13,6 +13,7 @@ in
     ./features/shell/nushell
     ./features/shell/fish.nix
     ./features/shell/starship.nix
+    ./features/shell/atuin.nix
     # ./features/rofi
     # ./features/terminal
     # ./features/terminal/emulators/wezterm
