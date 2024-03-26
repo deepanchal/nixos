@@ -10,9 +10,19 @@ in
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
     ./global
-    ./features/shell
+    ./features/shell/nushell
+    ./features/shell/fish.nix
+    ./features/shell/starship.nix
     # ./features/rofi
-    ./features/terminal
+    # ./features/terminal
+    # ./features/terminal/emulators/wezterm
+    # ./features/terminal/emulators/alacritty
+    # ./features/terminal/emulators/kitty
+    ./features/terminal/programs/btop.nix
+    ./features/terminal/programs/bat.nix
+    ./features/terminal/programs/ripgrep.nix
+    ./features/terminal/programs/tailspin.nix
+    ./features/terminal/programs/zoxide.nix
     ./features/zellij
     ./features/yazi
   ];
@@ -74,10 +84,10 @@ in
   #
   #  /etc/profiles/per-user/deep/etc/profile.d/hm-session-vars.sh
   #
-  home.sessionVariables = {
-    EDITOR = "nvim";
-    BROWSER = "firefox";
-  };
+  # home.sessionVariables = {
+  #   EDITOR = "nvim";
+  #   BROWSER = "firefox";
+  # };
 
   nixpkgs = {
     # You can add overlays here
