@@ -9,7 +9,7 @@
         layout_dir = "${./layouts}";
 
         # clipboard provider
-        copy_command = "wl-copy";
+        # copy_command = "wl-copy";
 
         auto_layouts = true;
 
