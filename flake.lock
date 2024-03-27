@@ -128,6 +128,27 @@
         "type": "github"
       }
     },
+    "hy3": {
+      "inputs": {
+        "hyprland": [
+          "hyprland"
+        ]
+      },
+      "locked": {
+        "lastModified": 1711093939,
+        "narHash": "sha256-Fj61K0FQ+9uDTKmMVn4aJdZ2b5vqxd2N2RKCrax7KZk=",
+        "owner": "outfoxxed",
+        "repo": "hy3",
+        "rev": "7abc6f72a94b95a1e43059cab5171dd003737cb8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "outfoxxed",
+        "ref": "hl0.37.1",
+        "repo": "hy3",
+        "type": "github"
+      }
+    },
     "hyprcontrib": {
       "inputs": {
         "nixpkgs": [
@@ -209,15 +230,16 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1710189206,
-        "narHash": "sha256-BKD+JrinQN3V0Xf8Ft/P770shnUpxNRVjGKB0YU1OoI=",
+        "lastModified": 1710600709,
+        "narHash": "sha256-W+34KhCnqscRXN/IkvuJMiVx0Fa64RcYn8H4sZjzceI=",
         "owner": "hyprwm",
         "repo": "Hyprland",
-        "rev": "a065b481f32f4297596a9cd9c538794fd4669b1a",
+        "rev": "c5e28ebcfe00a510922779b2c568cfa52a317445",
         "type": "github"
       },
       "original": {
         "owner": "hyprwm",
+        "ref": "v0.37.1",
         "repo": "Hyprland",
         "type": "github"
       }
@@ -627,6 +649,7 @@
         "astronvim": "astronvim",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
+        "hy3": "hy3",
         "hyprcontrib": "hyprcontrib",
         "hypridle": "hypridle",
         "hyprland": "hyprland",
