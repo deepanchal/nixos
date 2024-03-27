@@ -186,6 +186,7 @@
   ##################################################
   environment.systemPackages = with pkgs; [
     # upx
+    busybox # Tiny versions of common UNIX utilities in a single small executable
     git
     gh
     glab
