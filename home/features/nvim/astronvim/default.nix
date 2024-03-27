@@ -75,8 +75,8 @@ in
 
       # CLOUDNATIVE
       nodePackages.dockerfile-language-server-nodejs
-      terraform
-      terraform-ls
+      # terraform
+      # terraform-ls
       hadolint # Dockerfile linter
 
       # OTHERS
