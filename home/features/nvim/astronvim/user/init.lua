@@ -73,11 +73,6 @@ return {
     local unmap = vim.api.nvim_del_keymap
     local map = vim.keymap.set
 
-    -- Set transparent background
-    -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-    -- vim.api.nvim_set_hl(0, "NotifyBackground", { bg = "none" })
-
     -- Set key bindings
     vim.keymap.set("n", "<C-s>", ":w!<CR>")
     -- write w/o autocmds (mainly to prevent null-ls from autoformatting)

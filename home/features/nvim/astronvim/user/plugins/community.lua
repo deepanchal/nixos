@@ -9,6 +9,9 @@ return {
   { import = "astrocommunity.colorscheme.github-nvim-theme" },
   { import = "astrocommunity.colorscheme.tokyonight-nvim" },
 
+  -- Color
+  { import = "astrocommunity.color.transparent-nvim" },
+
   -- Motion
   { import = "astrocommunity.motion.mini-surround" },
   { import = "astrocommunity.motion.harpoon" },
@@ -30,7 +33,8 @@ return {
   { import = "astrocommunity.pack.tailwindcss" },
   { import = "astrocommunity.pack.prisma" },
   { import = "astrocommunity.pack.typescript" },
-  { import = "astrocommunity.pack.python" },
+  { import = "astrocommunity.pack.nix" },
+  { import = "astrocommunity.pack.python-ruff" },
   { import = "astrocommunity.pack.rust" },
 
   -- Lsp

@@ -8,7 +8,7 @@ return {
       -- add more things to the ensure_installed table protecting against community packs modifying it
       -- See: https://github.com/williamboman/mason-lspconfig.nvim#available-lsp-servers
       opts.ensure_installed = require("astronvim.utils").list_insert_unique(opts.ensure_installed, {
-        "angularls",                       -- angular
+        -- "angularls",                       -- angular
         "ansiblels",                       -- ansible
         "bashls",                          -- bash
         "clangd",                          -- c & c++
@@ -25,13 +25,14 @@ return {
         "tsserver",                        -- typescript / javascript
         "lua_ls",                          -- lua
         "marksman",                        -- markdown
-        "pyright",                         -- python
         "rust_analyzer",                   -- rust
         "sqlls",                           -- sql
         "taplo",                           -- toml
         "tailwindcss",                     -- tailwindcss
         "volar",                           -- vue
         "yamlls",                          -- yaml
+        -- "ruff",                            -- python linter & formatter 
+        -- "ruff-lsp",                        -- python linter & formatter 
       })
 
       opts.automatic_installation = true

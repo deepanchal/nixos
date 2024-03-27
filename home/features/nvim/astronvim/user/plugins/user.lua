@@ -191,7 +191,17 @@ return {
     "jackMort/ChatGPT.nvim",
     event = "VeryLazy",
     -- commit = "d4aa4d9",
-    config = function() require("chatgpt").setup() end,
+    config = function()
+      require("chatgpt").setup {
+        openai_params = {
+          model = "gpt-4-turbo-preview",
+          max_tokens = 4096,
+        },
+        openai_edit_params = {
+          model = "gpt-4-turbo-preview",
+        },
+      }
+    end,
     dependencies = {
       "MunifTanjim/nui.nvim",
       "nvim-lua/plenary.nvim",

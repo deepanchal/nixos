@@ -25,8 +25,8 @@ return {
 
     ["<C-d>"] = { "<C-d>zz", desc = "PgDown Centered" },
     ["<C-u>"] = { "<C-u>zz", desc = "PgUp Centered" },
-    n = { "nzzzv", desc = "Next highlighted centered" },
-    N = { "Nzzzv", desc = "Prev highlighted centered" },
+    -- n = { "nzzzv", desc = "Next highlighted centered" },
+    -- N = { "Nzzzv", desc = "Prev highlighted centered" },
     J = { "mzJ`z", desc = "Join Line w/ cursor at start" },
     L = {
       function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end,
