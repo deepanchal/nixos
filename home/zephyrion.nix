@@ -18,6 +18,7 @@ in
     ./features/swaync
     ./features/rofi
     ./features/terminal
+    ./features/nvim
     ./features/zellij
     ./features/yazi
     ./features/swaylock
