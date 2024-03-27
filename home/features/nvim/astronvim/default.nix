@@ -1,6 +1,6 @@
 { pkgs, inputs, ... }:
 let
-  astronvim = inputs.astronvim
+  astronvim = inputs.astronvim;
 in
 {
   xdg.configFile = {
@@ -40,8 +40,6 @@ in
 
       # NIX
       nil
-      rnix-lsp
-      # nixd
       statix # Lints and suggestions for the nix programming language
       deadnix # Find and remove unused code in .nix source files
       alejandra # Nix Code Formatter
