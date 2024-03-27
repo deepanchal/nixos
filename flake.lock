@@ -1,5 +1,22 @@
 {
   "nodes": {
+    "astronvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1710957235,
+        "narHash": "sha256-69DBcOpjDZBMOQGz8obMBFpEBeoSWuXZ4CNAK2GqI+M=",
+        "owner": "AstroNvim",
+        "repo": "AstroNvim",
+        "rev": "0da3fa834137597f13e53196c8c6f7e1425601ea",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AstroNvim",
+        "ref": "v3.45.3",
+        "repo": "AstroNvim",
+        "type": "github"
+      }
+    },
     "base16-schemes": {
       "flake": false,
       "locked": {
@@ -607,6 +624,7 @@
     },
     "root": {
       "inputs": {
+        "astronvim": "astronvim",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "hyprcontrib": "hyprcontrib",
