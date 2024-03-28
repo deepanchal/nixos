@@ -1,5 +1,7 @@
 { config, pkgs, lib, ... }:
 let
+  colors = config.colorscheme.palette;
+
   primaryMonitor = "DP-1"; # external monitor
   secondaryMonitor = "eDP-1"; # laptop screen
   pointer = config.home.pointerCursor;
@@ -69,6 +71,9 @@ in
       };
 
       general = {
+        # https://github.com/outfoxxed/hy3?tab=readme-ov-file#configuration
+        layout = "hy3"; # i3 / sway like layout for hyprland. 
+
         # gaps
         gaps_in = 4;
         gaps_out = 4;
@@ -77,8 +82,8 @@ in
         border_size = 2;
 
         # active border color
-        "col.active_border" = "rgb(${config.colorScheme.palette.base0C})";
-        "col.inactive_border" = "rgb(${config.colorScheme.palette.base02})";
+        "col.active_border" = "rgb(${colors.base0C})";
+        "col.inactive_border" = "rgb(${colors.base02})";
 
         # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
         apply_sens_to_raw = 0;
@@ -186,6 +191,33 @@ in
 
       xwayland = {
         force_zero_scaling = true;
+      };
+
+      plugin = {
+        hy3 = {
+          tabs = {
+            height = 14;
+            padding = 4;
+            from_top = false;
+            rounding = 4;
+            render_text = true;
+            text_font = "JetBrainsMono Nerd Font";
+            "col.active" = "0xff${colors.base0C}";
+            "col.urgent" = "0xff${colors.base09}";
+            "col.inactive" = "0xff${colors.base02}";
+            "col.text.active" = "0xff${colors.base00}";
+            "col.text.urgent" = "0xff${colors.base00}";
+            "col.text.inactive" = "0xff${colors.base05}";
+          };
+          autotile = {
+            enable = true;
+            trigger_width = 800;
+            trigger_height = 500;
+          };
+          no_gaps_when_only = true;
+          node_collapse_policy = 1;
+          tab_first_window = false;
+        };
       };
 
       "$kw" = "dwindle:no_gaps_when_only";

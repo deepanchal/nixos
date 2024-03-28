@@ -41,7 +41,7 @@ let
       in
       [
         "${mainMod}, ${ws}, workspace, ${toString (x + 1)}"
-        "${mainMod} SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+        "${mainMod} SHIFT, ${ws}, hy3:movetoworkspace, ${toString (x + 1)}"
       ]
     )
     10);
@@ -54,11 +54,11 @@ in
         "${altMod}, SPACE, exec, run-as-service $(${rofi} -show drun)"
         "${mainMod}, RETURN, exec, ${wezterm}"
         "${modshift}, RETURN, exec, ${alacritty}"
-        "${mainMod}, B, exec, ${firefox}"
+        # "${mainMod}, B, exec, ${firefox}"
         # "${modshift}, B, exec, ${brave}"
         "${mainMod}, E, exec, ${thunar}"
 
-        "${modshift}, Q, killactive,"
+        "${modshift}, Q, hy3:killactive,"
         "${mainMod}, P, pseudo"
 
         # # will switch to a submap called resize
@@ -82,31 +82,35 @@ in
         "${mainMod}, MINUS, togglespecialworkspace, magic"
         "${modshift}, MINUS, movetoworkspace, special:magic"
 
-        "${mainMod}, ${leftKey}, movefocus, l"
-        "${mainMod}, ${downKey}, movefocus, d"
-        "${mainMod}, ${upKey}, movefocus, u"
-        "${mainMod}, ${rightKey}, movefocus, r"
+        "${mainMod}, ${leftKey}, hy3:movefocus, l"
+        "${mainMod}, ${downKey}, hy3:movefocus, d"
+        "${mainMod}, ${upKey}, hy3:movefocus, u"
+        "${mainMod}, ${rightKey}, hy3:movefocus, r"
 
-        "${modshift}, ${leftKey}, movewindow, l"
-        "${modshift}, ${downKey}, movewindow, d"
-        "${modshift}, ${upKey}, movewindow, u"
-        "${modshift}, ${rightKey}, movewindow, r"
+        "${modshift}, ${leftKey}, hy3:movewindow, l"
+        "${modshift}, ${downKey}, hy3:movewindow, d"
+        "${modshift}, ${upKey}, hy3:movewindow, u"
+        "${modshift}, ${rightKey}, hy3:movewindow, r"
 
         "${mainMod}, M, exec, hyprctl keyword $kw $(($(hyprctl getoption $kw -j | jaq -r '.int') ^ 1))" # toggle no_gaps_when_only
-        "${mainMod}, T, togglegroup," # group focused window
+        # "${mainMod}, W, togglegroup," # group focused window
+        "${mainMod}, W, hy3:makegroup, tab, force_empheral"
+        "${mainMod}, V, hy3:makegroup, v, force_empheral"
+        "${mainMod}, B, hy3:makegroup, h, force_empheral"
+        
         "${mainMod}, F, fullscreen," # fullscreen focused window
         "${mainMod}, P, pseudo,"
-        "${modshift}, G, changegroupactive," # switch within the active group
+        # "${modshift}, G, hy3:changegroupactive," # switch within the active group
         "${modshift}, SPACE, togglefloating," # toggle floating for the focused window
-        "${mainMod}, V, exec, ${cliphist} list | ${rofi} -dmenu | ${cliphist} decode | ${wl-copy}"
+        "${altMod}, C, exec, ${cliphist} list | ${rofi} -dmenu | ${cliphist} decode | ${wl-copy}"
 
         "${modshift}, M, exec, ${playerctl} play-pause"
         "${modshift}, N, exec, ${playerctl} next"
         "${modshift}, B, exec, ${playerctl} previous"
 
         # workspace controls
-        "${modshift}, right, movetoworkspace, +1" # move focused window to the next ws
-        "${modshift}, left, movetoworkspace, -1" # move focused window to the previous ws
+        "${modshift}, right, hy3:movetoworkspace, +1" # move focused window to the next ws
+        "${modshift}, left, hy3:movetoworkspace, -1" # move focused window to the previous ws
         "${mainMod}, mouse_down, workspace, e+1" # move to the next ws
         "${mainMod}, mouse_up, workspace, e-1" # move to the previous ws
 

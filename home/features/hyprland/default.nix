@@ -1,4 +1,4 @@
-{ pkgs, lib, inputs, ... }:
+{ pkgs, lib, inputs, config, ... }:
 with lib; let
   wallpaper = ../theme/wallpapers/Rainnight.jpg;
   mkService = lib.recursiveUpdate {
