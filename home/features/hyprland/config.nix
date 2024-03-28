@@ -214,7 +214,7 @@ in
             trigger_width = 800;
             trigger_height = 500;
           };
-          no_gaps_when_only = true;
+          no_gaps_when_only = false;
           node_collapse_policy = 1;
           tab_first_window = false;
         };
