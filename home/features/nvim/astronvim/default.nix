@@ -1,8 +1,10 @@
-{ pkgs, inputs, ... }:
-let
-  astronvim = inputs.astronvim;
-in
 {
+  pkgs,
+  inputs,
+  ...
+}: let
+  astronvim = inputs.astronvim;
+in {
   xdg.configFile = {
     # Base AstroNvim's config
     "nvim".source = astronvim;
@@ -11,7 +13,7 @@ in
     # https://github.com/AstroNvim/AstroNvim/blob/v3.45.3/lua/astronvim/bootstrap.lua#L15-L16
     "astronvim/lua/user".source = ./user;
   };
-  
+
   home = {
     packages = with pkgs; [
       # C/C++
@@ -24,7 +26,7 @@ in
       lldb
 
       # PYTHON
-	    python3
+      python3
       nodePackages.pyright # python language server
       python311Packages.black # python formatter
       python311Packages.ruff-lsp
@@ -101,4 +103,3 @@ in
     ];
   };
 }
-

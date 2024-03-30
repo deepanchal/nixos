@@ -1,5 +1,4 @@
-{ lib, ... }:
-{
+{lib, ...}: {
   i18n = {
     defaultLocale = lib.mkDefault "en_US.UTF-8";
     extraLocaleSettings = {
@@ -17,7 +16,7 @@
       "en_US.UTF-8/UTF-8"
     ];
   };
-  
+
   services.xserver = {
     xkb = {
       layout = lib.mkDefault "us";

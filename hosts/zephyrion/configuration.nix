@@ -1,10 +1,11 @@
 # Edit trueconfiguration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ inputs, pkgs, ... }:
-
 {
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.nixos-hardware.nixosModules.common-cpu-amd
     inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
@@ -53,7 +54,7 @@
     plymouth = {
       enable = true;
       font = "${pkgs.jetbrains-mono}/share/fonts/truetype/JetBrainsMono-Regular.ttf";
-      themePackages = [ pkgs.catppuccin-plymouth ];
+      themePackages = [pkgs.catppuccin-plymouth];
       theme = "catppuccin-macchiato";
     };
     tmp = {
@@ -95,7 +96,7 @@
   # NIX SETTINGS
   ##################################################
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = ["nix-command" "flakes"];
   };
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.packageOverrides = pkgs: {
@@ -125,8 +126,8 @@
   ##################################################
   # NIX AUTO UPGRADE
   ##################################################
-  # Scheduled auto upgrade system (this is only for system upgrades, 
-  # if you want to upgrade cargo\npm\pip global packages, docker containers or different part of the system 
+  # Scheduled auto upgrade system (this is only for system upgrades,
+  # if you want to upgrade cargo\npm\pip global packages, docker containers or different part of the system
   # or get really full system upgrade, use `topgrade` CLI utility manually instead.
   # I recommend running `topgrade` once a week or at least once a month)
   ##################################################
@@ -134,7 +135,7 @@
     enable = true;
     operation = "switch"; # If you don't want to apply updates immediately, only after rebooting, use `boot` option in this case
     flake = "/etc/nixos";
-    flags = [ "--update-input" "nixpkgs" "--update-input" "rust-overlay" "--commit-lock-file" ];
+    flags = ["--update-input" "nixpkgs" "--update-input" "rust-overlay" "--commit-lock-file"];
     dates = "weekly";
     # channel = "https://nixos.org/channels/nixos-unstable";
   };
@@ -177,7 +178,7 @@
     NIXOS_OZONE_WL = "1";
     GDK_BACKEND = "wayland,x11";
     MOZ_ENABLE_WAYLAND = "1";
-    MOZ_DRM_DEVICE = "/dev/dri/renderD129"; # see (Section 4.2.3): https://wiki.archlinux.org/title/Firefox#Hardware_video_acceleration 
+    MOZ_DRM_DEVICE = "/dev/dri/renderD129"; # see (Section 4.2.3): https://wiki.archlinux.org/title/Firefox#Hardware_video_acceleration
     WLR_BACKEND = "vulkan";
     WLR_RENDERER = "vulkan";
     XDG_SESSION_TYPE = "wayland";
@@ -261,7 +262,7 @@
     gcc
     libgcc
     go
-    (python311Full.withPackages (ps: with ps; [ pygobject3 gobject-introspection pyqt6-sip ]))
+    (python311Full.withPackages (ps: with ps; [pygobject3 gobject-introspection pyqt6-sip]))
     nodePackages_latest.nodejs
     # bun
     lua
@@ -271,7 +272,7 @@
 
   # ================================================================ #
   # =                         DO NOT TOUCH                         = #
-  # ================================================================ # 
+  # ================================================================ #
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

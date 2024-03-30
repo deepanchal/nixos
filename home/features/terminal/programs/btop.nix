@@ -1,12 +1,15 @@
-{ pkgs, lib, inputs, ... }:
-let
+{
+  pkgs,
+  lib,
+  inputs,
+  ...
+}: let
   btop-theme-dir = ".config/btop/themes";
   catppuccin-mocha = builtins.readFile (pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/catppuccin/btop/main/themes/catppuccin_mocha.theme";
     hash = "sha256-TeaxAadm04h4c55aXYUdzHtFc7pb12e0wQmCjSymuug=";
   });
-in
-{
+in {
   home.file."${btop-theme-dir}/catppuccin-mocha.theme".text = catppuccin-mocha;
 
   programs.btop = {
@@ -264,4 +267,3 @@ in
     };
   };
 }
-

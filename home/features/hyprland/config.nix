@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ... }:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   colors = config.colorscheme.palette;
 
   primaryMonitor = "DP-1"; # external monitor
@@ -8,8 +12,7 @@ let
 
   wl-paste = "${pkgs.cliphist}/bin/wl-paste";
   rog-control-center = "${pkgs.asusctl}/bin/rog-control-center";
-in
-{
+in {
   wayland.windowManager.hyprland = {
     settings = {
       # See https://wiki.hyprland.org/Configuring/Monitors/
@@ -72,7 +75,7 @@ in
 
       general = {
         # https://github.com/outfoxxed/hy3?tab=readme-ov-file#configuration
-        layout = "hy3"; # i3 / sway like layout for hyprland. 
+        layout = "hy3"; # i3 / sway like layout for hyprland.
 
         # gaps
         gaps_in = 4;

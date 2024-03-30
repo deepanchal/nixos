@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   imports = [
     ./nushell
     ./fish.nix
@@ -8,4 +7,3 @@
     ./xdg.nix
   ];
 }
-

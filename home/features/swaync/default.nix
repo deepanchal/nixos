@@ -1,8 +1,6 @@
-{ pkgs, ... }:
-let
+{pkgs, ...}: let
   swayncPkg = pkgs.swaynotificationcenter;
-in
-{
+in {
   home.packages = [
     swayncPkg
   ];
@@ -11,8 +9,8 @@ in
   systemd.user.services.swaync = {
     Unit = {
       Description = "Swaync notification daemon";
-      PartOf = [ "graphical-session.target" ];
-      After = [ "graphical-session.target" ];
+      PartOf = ["graphical-session.target"];
+      After = ["graphical-session.target"];
     };
 
     Service = {
@@ -21,7 +19,7 @@ in
       Restart = "always";
     };
 
-    Install = { WantedBy = [ "graphical-session.target" ]; };
+    Install = {WantedBy = ["graphical-session.target"];};
   };
 
   xdg.configFile."swaync/config.json".source = pkgs.writeText "swaync/config.json" ''

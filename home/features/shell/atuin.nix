@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{config, ...}: {
   programs.atuin = {
     enable = true;
     enableBashIntegration = config.programs.bash.enable;
@@ -12,4 +11,3 @@
     };
   };
 }
-

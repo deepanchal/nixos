@@ -1,6 +1,9 @@
-{ inputs, config, pkgs, ... }:
-
 {
+  inputs,
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     # This import disables nvidia gpu. This runs only intel/amdgpu igpus and nvidia dgpus do not drain power.
     # inputs.nixos-hardware.nixosModules.common-gpu-nvidia-disable
@@ -17,7 +20,7 @@
     ];
   };
 
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
     # Modesetting is required.
@@ -54,7 +57,7 @@
     #####################################
     # NVIDIA Specific Vars
     #
-    # Refs: 
+    # Refs:
     # - https://github.com/Gl00ria/dotfiles/blob/main/dot_hyprland/.config/hypr/source/00_env.conf
     # - https://www.reddit.com/r/hyprland/comments/17tfwfo/comment/k8xdz7g/
     #####################################

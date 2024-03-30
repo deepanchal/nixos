@@ -1,11 +1,15 @@
-{ config, lib, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   rofi = "${pkgs.rofi}/bin/rofi";
   swayosd = "${pkgs.swayosd}/bin/swayosd-client";
   swaylock = "${pkgs.swaylock}/bin/swaylock";
   cliphist = "${pkgs.cliphist}/bin/cliphist";
   wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
-  wl-paste= "${pkgs.wl-clipboard}/bin/wl-paste";
+  wl-paste = "${pkgs.wl-clipboard}/bin/wl-paste";
   wezterm = "${pkgs.wezterm}/bin/wezterm";
   alacritty = "${pkgs.alacritty}/bin/alacritty";
   asusctl = "${pkgs.asusctl}/bin/asusctl";
@@ -31,22 +35,18 @@ let
   # binds $mod + [shift +] {1..10} to [move to] workspace {1..10} (stolen from fufie)
   workspaces = builtins.concatLists (builtins.genList
     (
-      x:
-      let
-        ws =
-          let
-            c = (x + 1) / 10;
-          in
+      x: let
+        ws = let
+          c = (x + 1) / 10;
+        in
           builtins.toString (x + 1 - (c * 10));
-      in
-      [
+      in [
         "${mainMod}, ${ws}, workspace, ${toString (x + 1)}"
         "${mainMod} SHIFT, ${ws}, hy3:movetoworkspace, ${toString (x + 1)}"
       ]
     )
     10);
-in
-{
+in {
   wayland.windowManager.hyprland.settings = {
     bind =
       [
@@ -74,7 +74,7 @@ in
         # binde=,SEMICOLON,resizeactive,10 0
         #
         # # use reset to go back to the global submap
-        # bind=,escape,submap,reset 
+        # bind=,escape,submap,reset
         #
         # # will reset the submap, meaning end the current one and return to the global one
         # submap=reset
@@ -97,7 +97,7 @@ in
         "${mainMod}, W, hy3:makegroup, tab, force_empheral"
         "${mainMod}, V, hy3:makegroup, v, force_empheral"
         "${mainMod}, B, hy3:makegroup, h, force_empheral"
-        
+
         "${mainMod}, F, fullscreen," # fullscreen focused window
         "${mainMod}, P, pseudo,"
         # "${modshift}, G, hy3:changegroupactive," # switch within the active group

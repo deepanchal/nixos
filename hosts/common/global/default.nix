@@ -1,5 +1,8 @@
-{ inputs, outputs, ... }:
 {
+  inputs,
+  outputs,
+  ...
+}: {
   imports = [
     ./locale.nix
     ./fish.nix

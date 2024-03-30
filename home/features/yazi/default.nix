@@ -1,11 +1,15 @@
-{ config, pkgs, ... }: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   # imports = [
   #   ./theme/icons.nix
   #   ./theme/manager.nix
   #   ./theme/status.nix
   # ];
 
-  home.packages = [ pkgs.exiftool ];
+  home.packages = [pkgs.exiftool];
 
   programs.yazi = {
     enable = true;
@@ -17,7 +21,7 @@
 
     settings = {
       manager = {
-        layout = [ 1 4 3 ];
+        layout = [1 4 3];
         sort_by = "alphabetical";
         sort_sensitive = true;
         sort_reverse = false;

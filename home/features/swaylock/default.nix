@@ -1,8 +1,11 @@
-{ config, pkgs, lib, ... }:
-let
-  colors = config.colorScheme.palette;
-in
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
+  colors = config.colorScheme.palette;
+in {
   programs.swaylock = {
     enable = true;
     package = with pkgs; swaylock-effects;

@@ -1,8 +1,6 @@
-{ config, ... }:
-let
+{config, ...}: let
   colors = config.colorScheme.palette;
-in
-{
+in {
   services.dunst = {
     enable = true;
     # iconTheme = {
@@ -63,7 +61,7 @@ in
         mouse_right_click = "close_current";
       };
 
-      fullscreen_delay_everything = { fullscreen = "delay"; };
+      fullscreen_delay_everything = {fullscreen = "delay";};
 
       urgency_low = {
         timeout = 3;

@@ -1,5 +1,4 @@
-{ config, ... }:
-let
+{config, ...}: let
   colors = config.colorScheme.palette;
   custom = {
     font = "JetBrainsMono Nerd Font, Material Design Icons";
@@ -13,8 +12,7 @@ let
     background = colors.base00;
     opacity = "0.98";
   };
-in
-{
+in {
   programs.waybar.style = ''
     * {
         border: none;
@@ -70,11 +68,11 @@ in
         color: #${custom.text_color};
         margin: 0px 8px 0px 8px;
     }
-    
+
     #custom-power {
         padding-right: 6px;
     }
-    
+
     #backlight {
       padding-right: 2px;
       color: #e5c890;
@@ -82,11 +80,11 @@ in
     #battery {
       color: #a6d189;
     }
-  
+
     #battery.warning {
       color: #ef9f76;
     }
-  
+
     #battery.critical:not(.charging) {
       color: #e78284;
     }

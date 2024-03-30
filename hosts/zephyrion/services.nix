@@ -1,6 +1,8 @@
-{ pkgs, lib, ... }:
-
 {
+  pkgs,
+  lib,
+  ...
+}: {
   # Systemd services setup
   systemd.packages = with pkgs; [
     auto-cpufreq
@@ -26,7 +28,7 @@
       "gammastep" = {
         isAllowed = true;
         isSystem = false;
-        users = [ "1000" ]; # FIXME: set your user id (to get user id use command 'id -u "your_user_name"')
+        users = ["1000"]; # FIXME: set your user id (to get user id use command 'id -u "your_user_name"')
       };
     };
   };
@@ -81,7 +83,7 @@
   #   ];
   # };
   # services.fail2ban.enable = true;
-  security.pam.services.swaylock = { };
+  security.pam.services.swaylock = {};
   security.polkit.enable = true;
   # programs.browserpass.enable = true;
   # services.clamav = {
@@ -92,7 +94,7 @@
   # };
   # programs.firejail = {
   #   enable = true;
-  #   wrappedBinaries = { 
+  #   wrappedBinaries = {
   #     mpv = {
   #       executable = "${lib.getBin pkgs.mpv}/bin/mpv";
   #       profile = "${pkgs.firejail}/etc/firejail/mpv.profile";

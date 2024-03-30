@@ -1,10 +1,15 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
-{ inputs, outputs, lib, config, pkgs, ... }:
-let
-  inherit (inputs.nix-colors) colorSchemes;
-in
 {
+  inputs,
+  outputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: let
+  inherit (inputs.nix-colors) colorSchemes;
+in {
   # You can import other home-manager modules here
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
@@ -119,4 +124,3 @@ in
     blueman-applet.enable = true;
   };
 }
-

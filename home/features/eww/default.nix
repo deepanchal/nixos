@@ -1,11 +1,16 @@
-{ inputs, lib, config, pkgs, ... }:
 {
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [
     # eww-wayland
     eww
     pamixer
     brightnessctl
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    (nerdfonts.override {fonts = ["JetBrainsMono"];})
   ];
 
   # programs.eww = {

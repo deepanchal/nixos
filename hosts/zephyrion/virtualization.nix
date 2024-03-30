@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   # Enable Containerd
   virtualisation.containerd.enable = true;
 
@@ -10,7 +8,7 @@
     enable = true;
     setSocketVariable = true;
   };
-  users.extraGroups.docker.members = [ "deep" ];
+  users.extraGroups.docker.members = ["deep"];
 
   # Enable Podman
   # virtualisation = {

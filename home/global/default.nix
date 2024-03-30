@@ -1,14 +1,21 @@
-{ inputs, lib, pkgs, config, outputs, ... }:
-let
-  inherit (inputs.nix-colors) colorSchemes;
-in
 {
-  imports = [
-    # inputs.impermanence.nixosModules.home-manager.impermanence
-    inputs.nix-colors.homeManagerModule
-    # ../features/cli
-    # ../features/nvim
-  ] ++ (builtins.attrValues outputs.homeManagerModules);
+  inputs,
+  lib,
+  pkgs,
+  config,
+  outputs,
+  ...
+}: let
+  inherit (inputs.nix-colors) colorSchemes;
+in {
+  imports =
+    [
+      # inputs.impermanence.nixosModules.home-manager.impermanence
+      inputs.nix-colors.homeManagerModule
+      # ../features/cli
+      # ../features/nvim
+    ]
+    ++ (builtins.attrValues outputs.homeManagerModules);
 
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;
@@ -24,7 +31,7 @@ in
   nix = {
     package = lib.mkDefault pkgs.nix;
     settings = {
-      experimental-features = [ "nix-command" "flakes" "repl-flake" ];
+      experimental-features = ["nix-command" "flakes" "repl-flake"];
       warn-dirty = false;
     };
   };
@@ -69,7 +76,7 @@ in
       BROWSER = "firefox";
       EDITOR = "nvim";
     };
-    sessionPath = [ "$HOME/.local/bin" ];
+    sessionPath = ["$HOME/.local/bin"];
   };
 
   colorscheme = lib.mkOverride 1499 colorSchemes.dracula;
@@ -96,50 +103,48 @@ in
     ".colorscheme.json".text = builtins.toJSON config.colorscheme;
   };
 
-  home.packages =
-    let
-      specialisation = pkgs.writeShellScriptBin "specialisation" ''
-        profiles="$HOME/.local/state/nix/profiles"
-        current="$profiles/home-manager"
-        base="$profiles/home-manager-base"
+  home.packages = let
+    specialisation = pkgs.writeShellScriptBin "specialisation" ''
+      profiles="$HOME/.local/state/nix/profiles"
+      current="$profiles/home-manager"
+      base="$profiles/home-manager-base"
 
-        # If current contains specialisations, link it as base
-        if [ -d "$current/specialisation" ]; then
-          echo >&2 "Using current profile as base"
-          ln -sfT "$(readlink "$current")" "$base"
-        # Check that $base contains specialisations before proceeding
-        elif [ -d "$base/specialisation" ]; then
-          echo >&2 "Using previously linked base profile"
-        else
-          echo >&2 "No suitable base config found. Try 'home-manager switch' again."
-          exit 1
-        fi
+      # If current contains specialisations, link it as base
+      if [ -d "$current/specialisation" ]; then
+        echo >&2 "Using current profile as base"
+        ln -sfT "$(readlink "$current")" "$base"
+      # Check that $base contains specialisations before proceeding
+      elif [ -d "$base/specialisation" ]; then
+        echo >&2 "Using previously linked base profile"
+      else
+        echo >&2 "No suitable base config found. Try 'home-manager switch' again."
+        exit 1
+      fi
 
-        if [ "$1" = "list" ] || [ "$1" = "-l" ] || [ "$1" = "--list" ]; then
-          find "$base/specialisation" -type l -printf "%f\n"
-          exit 0
-        fi
+      if [ "$1" = "list" ] || [ "$1" = "-l" ] || [ "$1" = "--list" ]; then
+        find "$base/specialisation" -type l -printf "%f\n"
+        exit 0
+      fi
 
-        echo >&2 "Switching to ''${1:-base} specialisation"
-        if [ -n "$1" ]; then
-          "$base/specialisation/$1/activate"
+      echo >&2 "Switching to ''${1:-base} specialisation"
+      if [ -n "$1" ]; then
+        "$base/specialisation/$1/activate"
+      else
+        "$base/activate"
+      fi
+    '';
+    toggle-theme = pkgs.writeShellScriptBin "toggle-theme" ''
+      if [ -n "$1" ]; then
+        theme="$1"
+      else
+        current="$(${lib.getExe pkgs.jq} -re '.kind' "$HOME/.colorscheme.json")"
+        if [ "$current" = "light" ]; then
+          theme="dark"
         else
-          "$base/activate"
+          theme="light"
         fi
-      '';
-      toggle-theme = pkgs.writeShellScriptBin "toggle-theme" ''
-        if [ -n "$1" ]; then
-          theme="$1"
-        else
-          current="$(${lib.getExe pkgs.jq} -re '.kind' "$HOME/.colorscheme.json")"
-          if [ "$current" = "light" ]; then
-            theme="dark"
-          else
-            theme="light"
-          fi
-        fi
-        ${lib.getExe specialisation} "$theme"
-      '';
-    in
-    [ specialisation toggle-theme ];
+      fi
+      ${lib.getExe specialisation} "$theme"
+    '';
+  in [specialisation toggle-theme];
 }

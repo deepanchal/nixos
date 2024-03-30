@@ -1,4 +1,8 @@
-{ pkgs, config, ... }: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   # xdg.configFile."rofi/config.rasi".source = ./config.rasi;
 
   xdg.configFile."rofi/config.rasi".text = with config.colorScheme.palette; ''
@@ -22,8 +26,8 @@
         display-clipboard: "   Clip";
         display-ssh: "   SSH";
         sidebar-mode: true;
-    
-        /** 
+
+        /**
         display-drun:               " ";
         display-run:                 " ";
         display-filebrowser:         " ";

@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   ##########################################
   # DESKTOP ENVIRONMENT
   ##########################################
@@ -76,7 +74,7 @@
     # greetd.gtkgreet
     # greetd.regreet
   ];
-  
+
   ##########################################
   # FONTS
   ##########################################
@@ -101,7 +99,7 @@
       noto-fonts-emoji
       jetbrains-mono
       fira-code-nerdfont
-      (nerdfonts.override { fonts = [ "FiraCode" "Iosevka" "JetBrainsMono" ]; })
+      (nerdfonts.override {fonts = ["FiraCode" "Iosevka" "JetBrainsMono"];})
     ];
 
     enableDefaultPackages = false;
