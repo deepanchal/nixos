@@ -56,6 +56,9 @@
       themePackages = [ pkgs.catppuccin-plymouth ];
       theme = "catppuccin-macchiato";
     };
+    tmp = {
+      cleanOnBoot = true;
+    };
   };
 
   ##################################################
