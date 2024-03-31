@@ -32,6 +32,31 @@
       };
     };
   };
+  # Only works when using acpi-cpufreq instead of amd_pstate
+  systemd.services.noturbo = {
+    enable = true;
+    wantedBy = ["multi-user.target"];
+    path = [
+      pkgs.coreutils
+      pkgs.util-linux
+    ];
+    serviceConfig = {
+      User = "root";
+      Group = "root";
+    };
+    script = ''
+      logger -t noturbo "Disabling CPU boost..."
+      echo 0 > /sys/devices/system/cpu/cpufreq/boost
+      BOOST_STATUS=$(cat /sys/devices/system/cpu/cpufreq/boost)
+      if [ "$BOOST_STATUS" -eq 0 ]; then
+        logger -t noturbo "Successfully disabled CPU boost."
+        echo "CPU boost successfully disabled. Current status -> $BOOST_STATUS"
+      else
+        logger -t noturbo "Failed to disable CPU boost."
+        echo "Failed to disable CPU boost. Current status -> $BOOST_STATUS"
+      fi
+    '';
+  };
   # Not needed bc of asusctl
   # services.auto-cpufreq = {
   #   enable = true;
