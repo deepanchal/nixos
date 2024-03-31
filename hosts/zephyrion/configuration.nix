@@ -35,10 +35,13 @@
     };
     # blacklistedKernelModules = [ "nouveau" ];
     kernelParams = [
+      # Quiet boot flags
       "quiet"
       "udev.log_level=3"
-      "nvidia_drm.fbdev=1"
-      "nvidia_drm.modeset=1"
+
+      # Nvidia flags are not needed
+      # "nvidia_drm.fbdev=1"
+      # "nvidia_drm.modeset=1"
     ];
     consoleLogLevel = 0;
     initrd = {
