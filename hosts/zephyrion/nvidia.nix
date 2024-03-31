@@ -5,6 +5,8 @@
   ...
 }: {
   imports = [
+    inputs.nixos-hardware.nixosModules.common-gpu-nvidia # with prime
+    # inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
     # This import disables nvidia gpu. This runs only intel/amdgpu igpus and nvidia dgpus do not drain power.
     # inputs.nixos-hardware.nixosModules.common-gpu-nvidia-disable
   ];
@@ -85,7 +87,8 @@
 
     # TIP: Advantage is all the apps will be running on nvidia
     # WARN: crashes whatever window's opened after "hibernate"
-    # __NV_PRIME_RENDER_OFFLOAD = "1";
+    __NV_PRIME_RENDER_OFFLOAD = "1";
+    __NV_PRIME_RENDER_OFFLOAD_PROVIDER = "NVIDIA-G0";
 
     # Controls if G-Sync capable monitors should use Variable Refresh Rate (VRR)
     # See Nvidia Documentation for details.
@@ -107,6 +110,7 @@
 
   environment.systemPackages = with pkgs; [
     vdpauinfo
+    glxinfo
     libva-utils
     vulkan-loader
     vulkan-validation-layers
