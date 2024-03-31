@@ -4,9 +4,9 @@
   ...
 }: {
   # Systemd services setup
-  systemd.packages = with pkgs; [
-    auto-cpufreq
-  ];
+  # systemd.packages = with pkgs; [
+  #   auto-cpufreq
+  # ];
 
   # Enable Services
   programs.direnv.enable = true;
@@ -32,19 +32,21 @@
       };
     };
   };
-  services.auto-cpufreq = {
-    enable = true;
-    settings = {
-      battery = {
-        governor = "powersave";
-        turbo = "never";
-      };
-      charger = {
-        governor = "performance";
-        turbo = "auto"; # always | auto | never
-      };
-    };
-  };
+  # Not needed bc of asusctl
+  # services.auto-cpufreq = {
+  #   enable = true;
+  #   settings = {
+  #     battery = {
+  #       governor = "powersave";
+  #       turbo = "never";
+  #     };
+  #     charger = {
+  #       # See: https://wiki.archlinux.org/title/CPU_frequency_scaling
+  #       governor = "powersave"; # performance | powersave
+  #       turbo = "never"; # always | auto | never
+  #     };
+  #   };
+  # };
   # services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
   # Enable CUPS to print documents.
