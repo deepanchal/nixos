@@ -48,6 +48,8 @@
       enable = true;
       verbose = true;
       systemd.enable = true;
+      # Enable AMD iGPU early in the boot process
+      kernelModules = ["amdgpu"];
     };
     # grub = {
     #   enable = true;
@@ -135,7 +137,7 @@
   # I recommend running `topgrade` once a week or at least once a month)
   ##################################################
   system.autoUpgrade = {
-    enable = true;
+    enable = false;
     operation = "switch"; # If you don't want to apply updates immediately, only after rebooting, use `boot` option in this case
     flake = "/etc/nixos";
     flags = ["--update-input" "nixpkgs" "--update-input" "rust-overlay" "--commit-lock-file"];
@@ -192,8 +194,21 @@
   # SYSTEM PACKAGES
   ##################################################
   environment.systemPackages = with pkgs; [
-    # upx
+    # Networking
+    curl
+    iw
+    wget
+
+    # Hardware tools
+    acpi
+    brightnessctl
+    lshw
+    pciutils
     busybox # Tiny versions of common UNIX utilities in a single small executable
+    pamixer
+    pavucontrol
+
+    # upx
     git
     gh
     glab
@@ -221,11 +236,7 @@
     # xh #send http requests
 
     alejandra
-    nvtop
-    wget
     nix-index
-    pciutils
-    lshw
 
     progress
     noti
