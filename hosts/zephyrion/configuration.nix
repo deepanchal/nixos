@@ -8,7 +8,7 @@
 }: {
   imports = [
     inputs.nixos-hardware.nixosModules.common-cpu-amd
-    inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
+    # inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
     inputs.nixos-hardware.nixosModules.common-gpu-amd
     inputs.nixos-hardware.nixosModules.common-pc-ssd
 
@@ -42,6 +42,13 @@
       # Nvidia flags are not needed
       # "nvidia_drm.fbdev=1"
       # "nvidia_drm.modeset=1"
+
+      # Disable amd_pstate to use acpi-cpufreq driver instead of amd_pstate_epp
+      "amd_pstate=disable"
+
+      # For maybe disabling cpu boost
+      # See: https://bbs.archlinux.org/viewtopic.php?id=291561
+      # "amd_pstate=passive"
     ];
     consoleLogLevel = 0;
     initrd = {
@@ -207,6 +214,9 @@
     busybox # Tiny versions of common UNIX utilities in a single small executable
     pamixer
     pavucontrol
+    linuxKernel.packages.linux_zen.cpupower
+    cpupower-gui
+    cpufrequtils
 
     # upx
     git
