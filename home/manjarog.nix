@@ -19,6 +19,7 @@ in {
     ./features/shell/fish.nix
     ./features/shell/starship.nix
     ./features/shell/atuin.nix
+    ./features/nvim
     # ./features/rofi
     # ./features/terminal
     # ./features/terminal/emulators/wezterm
