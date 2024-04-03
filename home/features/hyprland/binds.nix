@@ -82,10 +82,17 @@ in {
         "${mainMod}, MINUS, togglespecialworkspace, magic"
         "${modshift}, MINUS, movetoworkspace, special:magic"
 
-        "${mainMod}, ${leftKey}, hy3:movefocus, l"
-        "${mainMod}, ${downKey}, hy3:movefocus, d"
-        "${mainMod}, ${upKey}, hy3:movefocus, u"
-        "${mainMod}, ${rightKey}, hy3:movefocus, r"
+        # Not fully working with hy3 -> https://github.com/outfoxxed/hy3/issues/2
+        # "${mainMod}, ${leftKey}, hy3:movefocus, l"
+        # "${mainMod}, ${downKey}, hy3:movefocus, d"
+        # "${mainMod}, ${upKey}, hy3:movefocus, u"
+        # "${mainMod}, ${rightKey}, hy3:movefocus, r"
+
+        # Using workaround script
+        "${mainMod}, ${leftKey}, exec, hy3-movefocus l"
+        "${mainMod}, ${downKey}, exec, hy3-movefocus d"
+        "${mainMod}, ${upKey}, exec, hy3-movefocus u"
+        "${mainMod}, ${rightKey}, exec, hy3-movefocus r"
 
         "${modshift}, ${leftKey}, hy3:movewindow, l"
         "${modshift}, ${downKey}, hy3:movewindow, d"
