@@ -3,12 +3,13 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   inputs,
+  config,
   pkgs,
   ...
 }: {
   imports = [
     inputs.nixos-hardware.nixosModules.common-cpu-amd
-    # inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
+    inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
     inputs.nixos-hardware.nixosModules.common-gpu-amd
     inputs.nixos-hardware.nixosModules.common-pc-ssd
 
@@ -44,7 +45,7 @@
       # "nvidia_drm.modeset=1"
 
       # Disable amd_pstate to use acpi-cpufreq driver instead of amd_pstate_epp
-      "amd_pstate=disable"
+      # "amd_pstate=disable"
 
       # For maybe disabling cpu boost
       # See: https://bbs.archlinux.org/viewtopic.php?id=291561
@@ -215,7 +216,7 @@
     pamixer
     pavucontrol
     linuxKernel.packages.linux_zen.cpupower
-    cpupower-gui
+    # cpupower-gui
     cpufrequtils
 
     # upx
@@ -252,7 +253,7 @@
     noti
     rewrk
     wrk2
-    nvtop
+    nvtopPackages.full
     monolith
     aria
     ouch

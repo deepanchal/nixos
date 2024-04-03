@@ -2,7 +2,10 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  MHz = x: x * 1000;
+  inherit (lib) mkDefault;
+in {
   # Systemd services setup
   # systemd.packages = with pkgs; [
   #   auto-cpufreq
@@ -57,17 +60,20 @@
       fi
     '';
   };
-  # Not needed bc of asusctl
   # services.auto-cpufreq = {
   #   enable = true;
   #   settings = {
   #     battery = {
   #       governor = "powersave";
+  #       scaling_min_freq = mkDefault (MHz 1800);
+  #       scaling_max_freq = mkDefault (MHz 3600);
   #       turbo = "never";
   #     };
   #     charger = {
   #       # See: https://wiki.archlinux.org/title/CPU_frequency_scaling
-  #       governor = "powersave"; # performance | powersave
+  #       governor = "performance"; # performance | powersave
+  #       scaling_min_freq = mkDefault (MHz 1800);
+  #       scaling_max_freq = mkDefault (MHz 3600);
   #       turbo = "never"; # always | auto | never
   #     };
   #   };

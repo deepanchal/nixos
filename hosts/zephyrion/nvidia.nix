@@ -112,8 +112,8 @@
     vdpauinfo
     glxinfo
     libva-utils
-    vulkan-loader
-    vulkan-validation-layers
-    vulkan-tools
+    # vulkan-loader
+    # vulkan-validation-layers
+    # vulkan-tools
   ];
 }
