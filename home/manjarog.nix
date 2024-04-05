@@ -27,6 +27,7 @@ in {
     ./features/terminal/programs/btop.nix
     ./features/terminal/programs/bat.nix
     ./features/terminal/programs/ripgrep.nix
+    ./features/terminal/programs/lazygit.nix
     ./features/terminal/programs/tailspin.nix
     ./features/terminal/programs/zoxide.nix
     ./features/zellij
