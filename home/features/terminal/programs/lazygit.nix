@@ -1,4 +1,11 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: let
+  colors = config.colorscheme.palette;
+  accent = config.theme.accent;
+in {
   programs.lazygit = {
     enable = true;
     settings = {
@@ -6,16 +13,18 @@
         showIcons = true;
         # catppuccin mocha theme: https://github.com/catppuccin/lazygit/blob/main/themes/mocha/green.yml
         theme = {
-          lightTheme = false;
-          activeBorderColor = ["#a6e3a1" "bold"];
+          activeBorderColor = ["#${accent}" "bold"];
           inactiveBorderColor = ["#a6adc8"];
-          optionsTextColor = ["#89b4fa"];
-          selectedLineBgColor = ["#313244"];
-          cherryPickedCommitBgColor = ["#45475a"];
-          cherryPickedCommitFgColor = ["#a6e3a1"];
-          unstagedChangesColor = ["#f38ba8"];
-          defaultFgColor = ["#cdd6f4"];
-          searchingActiveBorderColor = ["#f9e2af"];
+          optionsTextColor = ["#${colors.base0D}"];
+          selectedLineBgColor = ["#${colors.base02}"];
+          cherryPickedCommitBgColor = ["#${colors.base03}"];
+          cherryPickedCommitFgColor = ["#${accent}"];
+          unstagedChangesColor = ["#${colors.base08}"];
+          defaultFgColor = ["#${colors.base05}"];
+          searchingActiveBorderColor = ["#${colors.base0A}"];
+        };
+        authorColors = {
+          "*" = "#${colors.base07}";
         };
       };
       customCommands = [
@@ -65,13 +74,15 @@
         }
       ];
       git = {
+        commit = {
+          signOff = true;
+        };
         paging = {
           colorArg = "always";
+          # pager = "diff-so-fancy";
           pager = "delta --dark --paging=never --tabs 2";
         };
-        git = {
-          branchLogCmd = "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --oneline {{branchName}} --";
-        };
+        branchLogCmd = "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --oneline {{branchName}} --";
       };
     };
   };
