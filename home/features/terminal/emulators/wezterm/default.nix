@@ -87,6 +87,7 @@ in {
 
           enable_tab_bar = false,
           enable_scroll_bar = false,
+          audible_bell = "Disabled",
 
           -- See:
           -- https://www.reddit.com/r/archlinux/comments/18rf5t1/psa_on_hyprland_wezterm_will_not_start_anymore/?rdt=54570
