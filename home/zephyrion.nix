@@ -61,8 +61,20 @@ in {
     theme = {
       name = "Catppuccin-Mocha";
       flavor = "Mocha";
-      accentName = "Teal";
-      accent = colorSchemes.catppuccin-mocha.palette.base0C;
+      # accentName = "Peach";
+      # accent = colorSchemes.catppuccin-mocha.palette.base09;
+      accentName = "Blue";
+      accent = colorSchemes.catppuccin-mocha.palette.base0D;
+      # accentName = "Flamingo";
+      # accent = colorSchemes.catppuccin-mocha.palette.base0F;
+      # accentName = "Rosewater";
+      # accent = colorSchemes.catppuccin-mocha.palette.base06;
+      # accentName = "Lavender";
+      # accent = colorSchemes.catppuccin-mocha.palette.base07;
+      # accentName = "Mauve";
+      # accent = colorSchemes.catppuccin-mocha.palette.base0E;
+      # accentName = "Teal";
+      # accent = colorSchemes.catppuccin-mocha.palette.base0C;
     };
     specialisation = {
       light.configuration.colorscheme = colorSchemes.catppuccin-latte;

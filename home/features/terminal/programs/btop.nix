@@ -1,16 +1,16 @@
 {
   pkgs,
   lib,
+  config,
   inputs,
   ...
 }: let
   btop-theme-dir = ".config/btop/themes";
-  catppuccin-mocha = builtins.readFile (pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/catppuccin/btop/main/themes/catppuccin_mocha.theme";
-    hash = "sha256-TeaxAadm04h4c55aXYUdzHtFc7pb12e0wQmCjSymuug=";
-  });
+  themeName = lib.toLower config.theme.name;
+  flavor = lib.toLower config.theme.flavor;
+  catppuccin-btop = inputs.catppuccin-btop;
 in {
-  home.file."${btop-theme-dir}/catppuccin-mocha.theme".text = catppuccin-mocha;
+  home.file."${btop-theme-dir}/${themeName}.theme".source = "${catppuccin-btop}/themes/catppuccin_${flavor}.theme";
 
   programs.btop = {
     enable = true;
@@ -20,7 +20,7 @@ in {
 
       #* Name of a btop++/bpytop/bashtop formatted ".theme" file, "Default" and "TTY" for builtin themes.
       #* Themes should be placed in "../share/btop/themes" relative to binary or "$HOME/.config/btop/themes"
-      color_theme = "catppuccin-mocha";
+      color_theme = "${themeName}";
 
       #* If the theme set background should be shown, set to False if you want terminal background transparency.
       theme_background = false;

@@ -5,6 +5,7 @@
   ...
 }: let
   colors = config.colorscheme.palette;
+  accent = config.theme.accent;
 
   primaryMonitor = "DP-1"; # external monitor
   secondaryMonitor = "eDP-1"; # laptop screen
@@ -85,7 +86,7 @@ in {
         border_size = 2;
 
         # active border color
-        "col.active_border" = "rgb(${colors.base0C})";
+        "col.active_border" = "rgb(${accent})";
         "col.inactive_border" = "rgb(${colors.base02})";
 
         # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
@@ -205,7 +206,7 @@ in {
             rounding = 4;
             render_text = true;
             text_font = "JetBrainsMono Nerd Font";
-            "col.active" = "0xff${colors.base0C}";
+            "col.active" = "0xff${accent}";
             "col.urgent" = "0xff${colors.base09}";
             "col.inactive" = "0xff${colors.base02}";
             "col.text.active" = "0xff${colors.base00}";

@@ -1,13 +1,19 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  config,
+  inputs,
+  ...
+}: let
+  flavor = lib.toLower config.theme.name;
+  catppuccin-alacritty = inputs.catppuccin-alacritty;
+in {
   programs.alacritty = {
     enable = true;
     settings = {
       # Note: Alacritty's setting key for importing files is 'import' not 'imports'
       import = [
-        (pkgs.fetchurl {
-          url = "https://raw.githubusercontent.com/catppuccin/alacritty/832787d6cc0796c9f0c2b03926f4a83ce4d4519b/catppuccin-mocha.toml";
-          hash = "sha256-nmVaYJUavF0u3P0Qj9rL+pzcI9YQOTGPyTvi+zNVPhg=";
-        })
+        "${catppuccin-alacritty}/${flavor}.toml"
       ];
 
       window = {
@@ -31,7 +37,7 @@
         size = 10;
         normal = {
           # family = "FiraCode Nerd Font";
-          family = "JetBrains Mono";
+          family = "JetBrains Mono Nerd Font";
         };
       };
 

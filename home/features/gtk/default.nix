@@ -2,17 +2,20 @@
   lib,
   pkgs,
   config,
+  inputs,
   ...
 }: let
+  themeName = config.theme.name;
   flavor = config.theme.flavor;
   accentName = config.theme.accentName;
   flavorLower = lib.toLower flavor;
   accentNameLower = lib.toLower accentName;
+  catppuccin-kvantum = inputs.catppuccin-kvantum;
 in {
   gtk = {
     enable = true;
     theme = {
-      name = "Catppuccin-Mocha-Compact-${accentName}-Dark";
+      name = "${themeName}-Compact-${accentName}-Dark";
       package = pkgs.catppuccin-gtk.override {
         accents = [accentNameLower];
         tweaks = ["rimless"];
@@ -73,7 +76,7 @@ in {
     enable = true;
     platformTheme = "qtct";
     style = {
-      name = "Catppuccin-Mocha-Dark";
+      name = "${themeName}-Dark";
       package = pkgs.catppuccin-kde.override {
         flavour = [flavorLower];
         accents = [accentNameLower];
@@ -81,14 +84,8 @@ in {
     };
   };
   xdg.configFile = {
-    "Kvantum/catppuccin/catppuccin.kvconfig".source = builtins.fetchurl {
-      url = "https://raw.githubusercontent.com/catppuccin/Kvantum/main/src/Catppuccin-Mocha-${accentName}/Catppuccin-Mocha-${accentName}.kvconfig";
-      sha256 = "sha256:1kzlb0vgy22dh5jhbba6pmaf7jxx7ab18g4ns2r6nxw2l3i4sdjq";
-    };
-    "Kvantum/catppuccin/catppuccin.svg".source = builtins.fetchurl {
-      url = "https://raw.githubusercontent.com/catppuccin/Kvantum/main/src/Catppuccin-Mocha-${accentName}/Catppuccin-Mocha-${accentName}.svg";
-      sha256 = "sha256:1fny82l3m9334f64qlxz4s7l6dqgqiahsk2pj9srfwv8cql1jmv1";
-    };
+    "Kvantum/catppuccin/catppuccin.kvconfig".source = "${catppuccin-kvantum}/src/${themeName}-${accentName}/${themeName}-${accentName}.kvconfig";
+    "Kvantum/catppuccin/catppuccin.svg".source = "${catppuccin-kvantum}/src/${themeName}-${accentName}/${themeName}-${accentName}.svg";
     "Kvantum/kvantum.kvconfig".text = ''
       [General]
       theme=catppuccin

@@ -1,13 +1,14 @@
 {config, ...}: let
   colors = config.colorScheme.palette;
+  accent = config.theme.accent;
   custom = {
     font = "JetBrainsMono Nerd Font, Material Design Icons";
     font_size = "15px";
     font_weight = "bold";
     text_color = colors.base05;
-    active_color = colors.base0C;
+    active_color = accent;
     inactive_color = colors.base05;
-    secondary_accent = colors.base0C;
+    secondary_accent = accent;
     tertiary_accent = colors.base0E;
     background = colors.base00;
     opacity = "0.98";

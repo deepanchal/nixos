@@ -1,25 +1,30 @@
-{pkgs, ...}: let
-  catppuccin = builtins.readFile (pkgs.fetchurl {
-    url = "https://raw.githubusercontent.com/catppuccin/bat/main/Catppuccin-mocha.tmTheme";
-    hash = "sha256-qMQNJGZImmjrqzy7IiEkY5IhvPAMZpq0W6skLLsng/w=";
-  });
+{
+  pkgs,
+  config,
+  inputs,
+  lib,
+  ...
+}: let
+  bat-theme-dir = ".config/bat/themes";
+  catppuccin-bat = inputs.catppuccin-bat;
+  themeName = lib.toLower config.theme.name;
+  flavor = config.theme.flavor;
 in {
+  # home.file."${bat-theme-dir}/${themeName}.tmTheme".source = "${catppuccin-bat}/themes/Catppuccin\ ${flavor}.tmTheme";
+
+  xdg.configFile = {
+    catppuccin-bat = {
+      source = "${inputs.catppuccin-bat}/themes";
+      target = "bat/themes";
+      recursive = true;
+    };
+  };
   programs.bat = {
     enable = true;
-    themes = {
-      Catppuccin-mocha = {
-        src = pkgs.fetchFromGitHub {
-          owner = "catppuccin";
-          repo = "bat";
-          rev = "ba4d16880d63e656acced2b7d4e034e4a93f74b1";
-          sha256 = "sha256-6WVKQErGdaqb++oaXnY3i6/GuH2FhTgK0v4TN4Y0Wbw=";
-        };
-        file = "Catppuccin-mocha.tmTheme";
-      };
-    };
     config = {
-      theme = "Catppuccin-mocha";
+      theme = "Catppuccin ${flavor}";
       pager = "less -FR"; # frfr
     };
+    extraPackages = with pkgs.bat-extras; [batman];
   };
 }
