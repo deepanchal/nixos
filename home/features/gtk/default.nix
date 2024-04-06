@@ -1,20 +1,30 @@
-{pkgs, ...}: {
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: let
+  flavor = config.theme.flavor;
+  accentName = config.theme.accentName;
+  flavorLower = lib.toLower flavor;
+  accentNameLower = lib.toLower accentName;
+in {
   gtk = {
     enable = true;
     theme = {
-      name = "Catppuccin-Mocha-Compact-Teal-Dark";
+      name = "Catppuccin-Mocha-Compact-${accentName}-Dark";
       package = pkgs.catppuccin-gtk.override {
-        accents = ["teal"];
+        accents = [accentNameLower];
         tweaks = ["rimless"];
         size = "compact";
-        variant = "mocha";
+        variant = flavorLower;
       };
     };
 
     iconTheme = {
       package = pkgs.catppuccin-papirus-folders.override {
-        accent = "teal";
-        flavor = "mocha";
+        accent = accentNameLower;
+        flavor = flavorLower;
       };
       name = "Papirus-Dark";
     };
@@ -65,18 +75,18 @@
     style = {
       name = "Catppuccin-Mocha-Dark";
       package = pkgs.catppuccin-kde.override {
-        flavour = ["mocha"];
-        accents = ["teal"];
+        flavour = [flavorLower];
+        accents = [accentNameLower];
       };
     };
   };
   xdg.configFile = {
     "Kvantum/catppuccin/catppuccin.kvconfig".source = builtins.fetchurl {
-      url = "https://raw.githubusercontent.com/catppuccin/Kvantum/main/src/Catppuccin-Mocha-Teal/Catppuccin-Mocha-Teal.kvconfig";
+      url = "https://raw.githubusercontent.com/catppuccin/Kvantum/main/src/Catppuccin-Mocha-${accentName}/Catppuccin-Mocha-${accentName}.kvconfig";
       sha256 = "sha256:1kzlb0vgy22dh5jhbba6pmaf7jxx7ab18g4ns2r6nxw2l3i4sdjq";
     };
     "Kvantum/catppuccin/catppuccin.svg".source = builtins.fetchurl {
-      url = "https://raw.githubusercontent.com/catppuccin/Kvantum/main/src/Catppuccin-Mocha-Teal/Catppuccin-Mocha-Teal.svg";
+      url = "https://raw.githubusercontent.com/catppuccin/Kvantum/main/src/Catppuccin-Mocha-${accentName}/Catppuccin-Mocha-${accentName}.svg";
       sha256 = "sha256:1fny82l3m9334f64qlxz4s7l6dqgqiahsk2pj9srfwv8cql1jmv1";
     };
     "Kvantum/kvantum.kvconfig".text = ''
