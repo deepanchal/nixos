@@ -92,7 +92,7 @@
         "libvirtd"
         "docker"
       ];
-      shell = pkgs.nushell;
+      shell = pkgs.zsh;
       packages = with pkgs; [
         neovim
         firefox
