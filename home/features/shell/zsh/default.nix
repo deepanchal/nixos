@@ -4,7 +4,17 @@
   lib,
   inputs,
   ...
-}: {
+}: let
+  isWayland = config.wayland.windowManager.hyprland.enable;
+  copy-cmd =
+    if isWayland
+    then "wl-copy"
+    else "xclip -selection clipboard";
+  paste-cmd =
+    if isWayland
+    then "wl-paste"
+    else "xclip -selection clipboard -o";
+in {
   config = {
     programs.zsh = {
       enable = true;
@@ -64,6 +74,11 @@
         ];
 
         extraConfig = ''
+          # Uncomment the following line if you want to disable marking untracked files
+          # under VCS as dirty. This makes repository status check for large repositories
+          # much, much faster.
+          DISABLE_UNTRACKED_FILES_DIRTY="true"
+
           # Key bind for zsh-autosuggestions
           bindkey '^ ' autosuggest-accept
 
@@ -97,6 +112,73 @@
         ignoreDups = true;
         ignoreSpace = true;
         ignorePatterns = ["rm *" "pkill *" "kill *" "killall *"];
+      };
+
+      shellAliases = {
+        # Replacements
+        ls = "eza -l --icons --color always";
+        ll = "eza -l --icons --color always";
+        la = "eza -alughHo --git --icons --color always";
+        cat = "bat --pager=never --plain";
+        grep = "rg";
+        ps = "procs";
+        tail = "tspin";
+
+        # Other apps
+        zj = "zellij";
+
+        # IP Aliases
+        myip = "ip addr | grep -m 1 -o '192.*.*.*' | cut -d '/' -f 1";
+        wanip = "curl -s -X GET https://checkip.amazonaws.com";
+
+        # Copy / Paste
+        pbcopy = "${copy-cmd}";
+        pbpaste = "${paste-cmd}";
+
+        # Devops
+        mk = "minikube";
+        kctx = "kubectx";
+        kctl = "kubectl";
+        kspy = "kubespy";
+        kevents = "k get events --sort-by=.metadata.creationTimestamp";
+
+        # Nix specific aliases
+        cleanup = "sudo nix-collect-garbage --delete-older-than 3d && nix-collect-garbage -d";
+        bloat = "nix path-info -Sh /run/current-system";
+        curgen = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
+        gc-check = "nix-store --gc --print-roots | egrep -v \"^(/nix/var|/run/\w+-system|\{memory|/proc)\"";
+        repair = "nix-store --verify --check-contents --repair";
+        run = "nix run";
+        search = "nix search";
+        shell = "nix shell";
+        build = "nix build $@ --builders \"\"";
+
+        # Git
+        lg = "lazygit";
+        g = "git";
+        gls = "git --no-pager log --no-merges --reverse --pretty=format:'- %s (%h)' -n 100 && echo";
+        gcmsgn = "git commit --no-verify --message";
+        glscommits = "git log --no-merges --count HEAD ^$(git_main_branch) --reverse --pretty=format:%s | sed 's/^/- /'";
+
+        # Other
+        c = "clear";
+        f = "yazi";
+        rm = "rm -i";
+        cp = "cp -i";
+        mv = "mv -i";
+        sysinfo = "inxi -Fxxxz";
+        errors = "journalctl -b -p err | less";
+
+        wg-on = "wg-quick up wg1";
+        wg-off = "wg-quick down wg1";
+
+        pj = "projen";
+        min = "mise install";
+      };
+
+      shellGlobalAliases = {
+        CP = "| ${copy-cmd}";
+        JQ = "| jq";
       };
 
       plugins = [
