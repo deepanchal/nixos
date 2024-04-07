@@ -96,10 +96,10 @@ in {
 
           window_background_opacity = 0.85,
           window_padding = {
-            top = 0,
-            right = 0,
-            bottom = 0,
-            left = 0,
+            top = 2,
+            right = 2,
+            bottom = 2,
+            left = 2,
           },
 
           font_size = 11.0;
