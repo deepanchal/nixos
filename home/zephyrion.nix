@@ -28,6 +28,8 @@ in {
     ./features/yazi
     ./features/swaylock
     ./features/gtk
+    ./features/mise
+    ./features/tmux
   ];
 
   colorscheme = lib.mkDefault colorSchemes.catppuccin-mocha;
