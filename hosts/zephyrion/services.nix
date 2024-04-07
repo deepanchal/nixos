@@ -37,7 +37,7 @@ in {
   };
   # Only works when using acpi-cpufreq instead of amd_pstate
   systemd.services.noturbo = {
-    enable = true;
+    enable = false;
     wantedBy = ["multi-user.target"];
     path = [
       pkgs.coreutils
