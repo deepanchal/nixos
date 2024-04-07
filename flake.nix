@@ -65,6 +65,23 @@
       flake = false;
     };
 
+    zsh-fast-syntax-highlighting = {
+      url = "github:zdharma-continuum/fast-syntax-highlighting";
+      flake = false;
+    };
+    zsh-fzf-tab = {
+      url = "github:Aloxaf/fzf-tab";
+      flake = false;
+    };
+    zsh-omz-plugin-pnpm = {
+      url = "github:ntnyq/omz-plugin-pnpm";
+      flake = false;
+    };
+    zsh-powerlevel10k = {
+      url = "github:romkatv/powerlevel10k";
+      flake = false;
+    };
+
     catppuccin-kvantum = {
       url = "github:catppuccin/Kvantum";
       flake = false;

@@ -737,7 +737,11 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
         "pre-commit-hooks": "pre-commit-hooks",
-        "xdg-portal-hyprland": "xdg-portal-hyprland"
+        "xdg-portal-hyprland": "xdg-portal-hyprland",
+        "zsh-fast-syntax-highlighting": "zsh-fast-syntax-highlighting",
+        "zsh-fzf-tab": "zsh-fzf-tab",
+        "zsh-omz-plugin-pnpm": "zsh-omz-plugin-pnpm",
+        "zsh-powerlevel10k": "zsh-powerlevel10k"
       }
     },
     "systems": {
@@ -960,6 +964,70 @@
       "original": {
         "owner": "hyprwm",
         "repo": "xdg-desktop-portal-hyprland",
+        "type": "github"
+      }
+    },
+    "zsh-fast-syntax-highlighting": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1688591419,
+        "narHash": "sha256-RVX9ZSzjBW3LpFs2W86lKI6vtcvDWP6EPxzeTcRZua4=",
+        "owner": "zdharma-continuum",
+        "repo": "fast-syntax-highlighting",
+        "rev": "cf318e06a9b7c9f2219d78f41b46fa6e06011fd9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zdharma-continuum",
+        "repo": "fast-syntax-highlighting",
+        "type": "github"
+      }
+    },
+    "zsh-fzf-tab": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1710254683,
+        "narHash": "sha256-0/YOL1/G2SWncbLNaclSYUz7VyfWu+OB8TYJYm4NYkM=",
+        "owner": "Aloxaf",
+        "repo": "fzf-tab",
+        "rev": "bf3ef5588af6d3bf7cc60f2ad2c1c95bca216241",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Aloxaf",
+        "repo": "fzf-tab",
+        "type": "github"
+      }
+    },
+    "zsh-omz-plugin-pnpm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1710264570,
+        "narHash": "sha256-EtfcwfsIvik0jDF2o1h2kl7O8WJqZr3o7H9qYj0zIyo=",
+        "owner": "ntnyq",
+        "repo": "omz-plugin-pnpm",
+        "rev": "12ef6e2b5839b78732c00290002b81b03bd68c57",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ntnyq",
+        "repo": "omz-plugin-pnpm",
+        "type": "github"
+      }
+    },
+    "zsh-powerlevel10k": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1712343261,
+        "narHash": "sha256-iXpnOpStDttlNeJ3OPQ/WskPpj3uzNrwPhkP3eA8fNc=",
+        "owner": "romkatv",
+        "repo": "powerlevel10k",
+        "rev": "aeff1153d405ebc9f60d4a8cb7afce5451c07358",
+        "type": "github"
+      },
+      "original": {
+        "owner": "romkatv",
+        "repo": "powerlevel10k",
         "type": "github"
       }
     }
