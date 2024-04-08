@@ -143,6 +143,9 @@ return {
           desc = "Yank & delete highlighted",
         },
       },
+      i = {
+        ["jk"] = { "<C-\\><C-n>", desc = "Terminal normal mode" },
+      },
       t = {
         -- setting a mapping to false will disable it
         -- ["<esc>"] = false,

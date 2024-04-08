@@ -82,4 +82,59 @@ return {
       )
     end,
   },
+
+  {
+    -- override nvim-cmp plugin
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-emoji", -- add cmp source as dependency of cmp
+    },
+    -- override the options table that is used in the `require("cmp").setup()` call
+    opts = function(_, opts)
+      -- opts parameter is the default options table
+      -- the function is lazy loaded so cmp is able to be required
+      local cmp = require "cmp"
+      -- modify the sources part of the options table
+      opts.sources = cmp.config.sources {
+        { name = "nvim_lsp", priority = 1000 },
+        { name = "luasnip", priority = 750 },
+        { name = "buffer", priority = 500 },
+        { name = "path", priority = 250 },
+        { name = "emoji", priority = 700 }, -- for emoji auto completion in nvim. Trigger by typing `:`
+      }
+      -- return the new table to be used
+      return opts
+    end,
+  },
+
+  { "junegunn/vim-easy-align", lazy = false },
+  { "tpope/vim-surround", lazy = false },
+
+  {
+    "jackMort/ChatGPT.nvim",
+    cmd = { "ChatGPT", "ChatGPTActAs", "ChatGPTEditWithInstructions", "ChatGPTRun" },
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    opts = {},
+    config = function()
+      require("chatgpt").setup {
+        openai_params = {
+          model = "gpt-4-turbo-preview",
+          max_tokens = 4096,
+        },
+        openai_edit_params = {
+          model = "gpt-4-turbo-preview",
+        },
+      }
+    end,
+  },
+
+  {
+    "IndianBoy42/tree-sitter-just", -- for casey/just
+    event = "BufEnter *justfile,*Justfile",
+    config = function() require("tree-sitter-just").setup {} end,
+  },
 }

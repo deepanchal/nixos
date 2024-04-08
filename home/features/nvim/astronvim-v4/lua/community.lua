@@ -44,5 +44,9 @@ return {
   { import = "astrocommunity.pack.rust" },
 
   -- Lsp
+  { import = "astrocommunity.lsp.lsp-signature-nvim" },
   { import = "astrocommunity.lsp.lsp-inlayhints-nvim" },
+
+  -- Other
+  -- { import = "astrocommunity.lsp.lsp-inlayhints-nvim" },
 }
