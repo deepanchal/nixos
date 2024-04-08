@@ -11,6 +11,7 @@ in {
     settings = {
       gui = {
         showIcons = true;
+        nerdFontsVersion = "3";
         # catppuccin mocha theme: https://github.com/catppuccin/lazygit/blob/main/themes/mocha/green.yml
         theme = {
           activeBorderColor = ["#${accent}" "bold"];
