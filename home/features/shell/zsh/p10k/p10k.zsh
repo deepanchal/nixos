@@ -51,7 +51,8 @@
     background_jobs         # presence of background jobs
     direnv                  # direnv status (https://direnv.net/)
     # asdf                    # asdf version manager (https://github.com/asdf-vm/asdf)
-    rtx                     # rtx version manager (https://github.com/jdxcode/rtx)
+    # rtx                     # rtx version manager (https://github.com/jdxcode/rtx)
+    mise                    # mise version manager (https://github.com/jdx/mise)
     virtualenv              # python virtual environment (https://docs.python.org/3/library/venv.html)
     anaconda                # conda environment (https://conda.io/)
     pyenv                   # python environment (https://github.com/pyenv/pyenv)
