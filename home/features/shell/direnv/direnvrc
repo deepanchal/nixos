@@ -1,0 +1,226 @@
+#!/usr/bin/env bash
+
+shopt -s gnu_errfmt
+shopt -s nullglob
+shopt -s extglob
+
+# source "$(asdf direnv hook asdf)"
+
+# support for dir scoped functions and aliases
+# see: https://github.com/direnv/direnv/issues/73
+
+# see: https://github.com/direnv/direnv/issues/73#issuecomment-152284914
+# example export_function my_func
+# export_function() {
+#   local name=$1
+#   local alias_dir=$PWD/.direnv/aliases
+#   mkdir -p "$alias_dir"
+#   PATH_add "$alias_dir"
+#   local target="$alias_dir/$name"
+#   if declare -f "$name" >/dev/null; then
+#     echo "#!$SHELL" > "$target"
+#     declare -f "$name" >> "$target" 2>/dev/null
+#     # Notice that we add shell variables to the function trigger.
+#     echo "$name \$*" >> "$target"
+#     chmod +x "$target"
+#   fi
+# }
+export_function() {
+	local name=$1
+  local sh="${2:-$SHELL}"
+	local alias_dir=$PWD/.direnv/aliases
+	mkdir -p "$alias_dir"
+	PATH_add "$alias_dir"
+	local target="$alias_dir/$name"
+	if declare -f "$name" >/dev/null; then
+		#echo "#!$SHELL" >"$target"
+    echo "#!/usr/bin/env $(basename "$sh")" > "$target"
+		declare -f "$name" >> "$target" 2>/dev/null
+		# Notice that we add shell variables to the function trigger.
+		echo "$name \$*" >>"$target"
+		chmod +x "$target"
+	fi
+}
+
+# see: https://github.com/direnv/direnv/issues/73#issuecomment-174295790
+# Example: export_alias zz "ls -la"
+export_alias() {
+  local name=$1
+  shift
+  local alias_dir=$PWD/.direnv/aliases
+  local target="$alias_dir/$name"
+  mkdir -p "$alias_dir"
+  PATH_add "$alias_dir"
+  echo "#!/usr/bin/env bash -e" > "$target"
+  echo "$@" >> "$target"
+  chmod +x "$target"
+}
+
+############################################################################
+# Helpful functions
+############################################################################
+
+# Use NVM
+use_nvm() {
+	local node_version=$1
+
+	nvm_sh=~/.nvm/nvm.sh
+	if [[ -e $nvm_sh ]]; then
+		source "$nvm_sh"
+		nvm use "$node_version"
+	fi
+}
+
+# Use Pyenv
+use_pyenv() {
+	local py_version=$1
+
+	py_sh=/home/bradenmars/.pyenv/bin/pyenv
+	if [[ -e $py_sh ]]; then
+		eval "$($py_sh init -)"
+		eval "$($py_sh virtualenv-init -)"
+		pyenv shell $py_version
+	fi
+}
+
+# Use Minikube Profile
+#use_minikube() {
+#unset MINIKUBE_PROFILE
+#local minikube_profile=$1
+
+#if [ -n "$(which minikube)" ]; then
+#MINIKUBE_PROFILE="$minikube_profile"
+#export MINIKUBE_PROFILE
+#minikube profile "$minikube_profile"
+#fi
+#}
+
+# Use Minikube Profile
+use_minikube() {
+	unset MINIKUBE_PROFILE
+	local minikube_profile=$1
+
+	if [ -n "$(which minikube)" ]; then
+		MINIKUBE_PROFILE="$minikube_profile"
+		export MINIKUBE_PROFILE
+		minikube profile "$minikube_profile"
+	fi
+}
+
+# Use kube context + config
+use_kube() {
+	local kube_context="$1"
+	local kube_configfile="${2:-}"
+	local kube_configpath
+	KUBECONFIG="${KUBECONFIG:-}"
+
+	# Handle passing config name.
+	if [[ -n "${kube_configfile}" ]]; then
+		unset KUBECONFIG
+		kube_configpath=$(find_up "$kube_configfile")
+		log_status "Resolved kubeconfig path: ${kube_configpath}"
+		if [[ -z "${kube_configpath}" ]]; then
+			log_error "Failed to find and set kubeconfig: ${kube_configfile}"
+		else
+			log_status "Setting kubeconfig: ${kube_configpath}"
+			KUBECONFIG="$kube_configpath"
+			export KUBECONFIG
+		fi
+	fi
+
+	# Handle passing context.
+	if has kubectx; then
+		unset KUBECONTEXT
+		if [[ -n "${KUBECONFIG}" ]]; then
+			KUBECONTEXT="$kube_context"
+			kubectx "$KUBECONTEXT"
+			export KUBECONTEXT
+		else
+			log_error "No active kube config file to set context for!"
+		fi
+	fi
+}
+
+use_sops() {
+	local path=${1:-$PWD/secrets.yaml}
+	eval "$(sops -d --output-type dotenv "$path" | direnv dotenv bash /dev/stdin)"
+	watch_file "$path"
+}
+
+get_hash() {
+	md5sum "$1" -z | awk '{print $1}'
+}
+
+use_sync_tools() {
+	source_tools="$1"
+	target="$2"
+	if [[ ! "$(get_hash ${source_tools})" == "$(get_hash ${target})" ]]; then
+		printf "Updating project tools file...\n"
+		cp -f "$source_tools" "$target"
+	fi
+}
+
+layout_poetry() {
+	if [[ ! -f pyproject.toml ]]; then
+		log_error 'No pyproject.toml found. Use `poetry new` or `poetry init` to create one first.'
+		return 2
+	fi
+
+	local VENV=$(poetry env list --full-path | cut -d' ' -f1)
+	if [[ -z $VENV || ! -d $VENV/bin ]]; then
+		log_error 'No poetry virtual environment found. Use `poetry install` to create one first.'
+		return 2
+	fi
+
+	declare -a path_array
+	IFS=: read -ra path_array <<<"${PATH}"
+
+	for path in "${path_array[@]}"; do
+		if [[ "${path}" == *"python"* ]]; then
+			log_status "removing ${path} from path."
+			PATH_rm "${path}"
+		fi
+	done
+
+	export VIRTUAL_ENV=$VENV
+	export POETRY_ACTIVE=1
+	PATH_add "$VENV/bin"
+}
+
+layout_ipython() {
+	if has ipython; then
+		base_profile="${1:-default}"
+		base_path="${HOME}/.ipython/profile_${base_profile}"
+		[ ! -e "${base_path}" ] && (
+			log_error "No base profile found at: ${base_path}"
+			exit 2
+		)
+		_direnv_root=$(dirname "$(find_up .envrc)")
+		ipython_dir="${_direnv_root}/.direnv/ipython"
+		profile_dir="${ipython_dir}/profile_default"
+		[ ! -e "${profile_dir}" ] && (
+			mkdir -p "${profile_dir}"
+			cp -r "${base_path}/." "${profile_dir}/"
+		)
+		export IPYTHONDIR="${ipython_dir}"
+	else
+		log_error "Could not find 'ipython' on path!"
+	fi
+}
+
+### Global common setup
+# executed for all .envrc files
+
+#
+# Direnv bin dir
+# ==============
+#
+_direnv_root=$(dirname "$(find_up .envrc)")
+DIRENV_TMP_DIR="${_direnv_root}/.direnv"
+DIRENV_BIN_DIR="${DIRENV_TMP_DIR}/bin"
+[ ! -e "${DIRENV_BIN_DIR}" ] && mkdir -p "${DIRENV_BIN_DIR}"
+export PATH="${DIRENV_BIN_DIR}:${PATH}"
+
+# make direnv silent by default
+#export DIRENV_LOG_FORMAT=""
+
