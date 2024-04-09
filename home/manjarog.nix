@@ -16,6 +16,8 @@ in {
     ./global
     ./features/shell/nushell
     ./features/shell/fish.nix
+    ./features/shell/zsh
+    ./features/shell/direnv
     ./features/shell/starship.nix
     ./features/shell/atuin.nix
     ./features/nvim
