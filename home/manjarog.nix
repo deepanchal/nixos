@@ -32,6 +32,7 @@ in {
     ./features/terminal/programs/lazygit.nix
     ./features/terminal/programs/tailspin.nix
     ./features/terminal/programs/zoxide.nix
+    ./features/terminal/programs/git-cliff.nix
     ./features/zellij
     ./features/yazi
   ];
