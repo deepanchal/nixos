@@ -16,6 +16,35 @@
     else "xclip -selection clipboard -o";
 in {
   config = {
+    home.packages = [
+      (pkgs.writeShellScriptBin "glsc" ''
+        if [[ "$1" == "--help" ]]; then
+          echo "Usage: glsc <total_commits> <author_name>"
+          echo "Example: glsc 200 \"John Doe\""
+          echo "Prints a list of git commits grouped by date in reverse order, optionally filtered by author."
+          exit 0
+        fi
+        previous_date=""
+        num_commits=''${1:-100}
+        author=''${2:-""}
+        git_command="git --no-pager log --no-merges --reverse --pretty=format:'%ad%n- %s (%h)' --date=format:'%Y-%m-%d' -n $num_commits"
+        if [[ -n "$author" ]]; then
+          git_command+=" --author=\"$author\""
+        fi
+        eval $git_command | while IFS= read -r line
+        do
+          if [[ $line != -* ]]; then
+            if [[ $line != $previous_date ]]; then
+              echo -e "\n\033[1;34m$line\033[0m\n"  # Print date in blue
+              previous_date=$line
+            fi
+          else
+            echo -e "\033[0;32m$line\033[0m"  # Print commit message in green
+          fi
+        done
+      '')
+    ];
+
     programs.zsh = {
       enable = true;
       dotDir = ".config/zsh";
@@ -87,6 +116,20 @@ in {
           # See: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker
           zstyle ':completion:*:*:docker:*' option-stacking yes
           zstyle ':completion:*:*:docker-*:*' option-stacking yes
+
+          # Start ssh-agent with keychain
+          # keychain id_ed25519 --agents ssh --quiet
+          eval $(keychain --eval --quiet id_ed25519 ~/.ssh/id_ed25519)
+
+          # Hook mise (asdf rust clone) to shell
+          eval "$(/usr/bin/mise activate zsh)"
+
+          # A shortcut for mise managed direnv.
+          # mise exec direnv@latest -- direnv
+          direnv() { mise exec direnv@latest -- direnv "$@"; }
+
+          # Load secret env vars
+          [ -f ~/scripts/load-secret-env-vars.sh ] && source ~/scripts/load-secret-env-vars.sh
         '';
       };
 
@@ -95,6 +138,20 @@ in {
         if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
           source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
         fi
+      '';
+
+      envExtra = ''
+        # Android Env
+        #export ANDROID_SDK_ROOT=/opt/android-sdk
+        export ANDROID_SDK_ROOT=$HOME/Android/Sdk
+        export ANDROID_HOME=$HOME/Android/Sdk
+        export PATH=$PATH:~/.android/avd
+        export PATH=$PATH:$ANDROID_HOME/emulator
+        export PATH=$PATH:$ANDROID_HOME/tools
+        export PATH=$PATH:$ANDROID_HOME/tools/bin
+        export PATH=$PATH:$ANDROID_HOME/platform-tools
+        export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+        export ANDROID_NDK=$ANDROID_HOME/ndk-bundle
       '';
 
       history = {
