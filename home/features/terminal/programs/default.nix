@@ -7,5 +7,6 @@
     ./lazygit.nix
     ./zoxide.nix
     ./teeldeer.nix
+    ./git-cliff.nix
   ];
 }
