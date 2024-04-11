@@ -198,6 +198,8 @@ in {
         kctl = "kubectl";
         kspy = "kubespy";
         kevents = "k get events --sort-by=.metadata.creationTimestamp";
+        docker_clean_images = "docker rmi $(docker images -a --filter=dangling=true -q)";
+        docker_clean_ps = "docker rm $(docker ps --filter=status=exited --filter=status=created -q)";
 
         # Nix specific aliases
         cleanup = "sudo nix-collect-garbage --delete-older-than 3d && nix-collect-garbage -d";
