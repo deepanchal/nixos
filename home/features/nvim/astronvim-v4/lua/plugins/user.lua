@@ -131,10 +131,4 @@ return {
       }
     end,
   },
-
-  {
-    "IndianBoy42/tree-sitter-just", -- for casey/just
-    event = "BufEnter *justfile,*Justfile",
-    config = function() require("tree-sitter-just").setup {} end,
-  },
 }
