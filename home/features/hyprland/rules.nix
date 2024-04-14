@@ -98,11 +98,11 @@
       # "workspace 3, class:^(kitty)$"
 
       # Messaging
-      "workspace 5 silent, class:^(Slack)$"
-      "workspace 5 silent, class:^(org.telegram.desktop)$"
-      "workspace 5 silent, class:^(discord)$"
-      "workspace 5 silent, class:^(zoom)$"
-      "workspace 5 silent, class:^(teams-for-linux)$"
+      # "workspace 5 silent, class:^(Slack)$"
+      # "workspace 5 silent, class:^(org.telegram.desktop)$"
+      # "workspace 5 silent, class:^(discord)$"
+      # "workspace 5 silent, class:^(zoom)$"
+      # "workspace 5 silent, class:^(teams-for-linux)$"
 
       # "workspace special silent,class:^(pavucontrol)$"
     ];
