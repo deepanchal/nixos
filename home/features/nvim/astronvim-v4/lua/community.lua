@@ -60,5 +60,6 @@ return {
   { import = "astrocommunity.lsp.garbage-day-nvim" },
 
   -- Other
+  -- { import = "astrocommunity.editing-support.conform-nvim" },
   { import = "astrocommunity.editing-support.refactoring-nvim" },
 }
