@@ -8,5 +8,6 @@
     ./zoxide.nix
     ./teeldeer.nix
     ./git-cliff.nix
+    ./keychain.nix
   ];
 }
