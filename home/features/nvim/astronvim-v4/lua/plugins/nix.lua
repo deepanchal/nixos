@@ -31,13 +31,13 @@ return {
     optional = true,
     opts = function(_, opts)
       local nls = require "null-ls"
-      if type(opts.sources) == "table" then
-        vim.list_extend(opts.sources, {
-          nls.builtins.code_actions.statix,
-          nls.builtins.formatting.alejandra,
-          nls.builtins.diagnostics.deadnix,
-        })
-      end
+      -- safely extend the list
+      opts.sources = opts.sources or {}
+      vim.list_extend(opts.sources, {
+        nls.builtins.code_actions.statix,
+        nls.builtins.formatting.alejandra,
+        nls.builtins.diagnostics.deadnix,
+      })
     end,
   },
   {
