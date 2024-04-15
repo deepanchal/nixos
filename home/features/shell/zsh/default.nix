@@ -119,10 +119,10 @@ in {
 
           # Start ssh-agent with keychain
           # keychain id_ed25519 --agents ssh --quiet
-          eval $(keychain --eval --quiet id_ed25519 ~/.ssh/id_ed25519)
+          eval $(${pkgs.keychain} --eval --quiet id_ed25519 ~/.ssh/id_ed25519)
 
           # Hook mise (asdf rust clone) to shell
-          eval "$(/usr/bin/mise activate zsh)"
+          eval "$(mise activate zsh)"
 
           # A shortcut for mise managed direnv.
           # mise exec direnv@latest -- direnv
