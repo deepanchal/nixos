@@ -43,7 +43,8 @@ return {
   { import = "astrocommunity.pack.tailwindcss" },
   -- { import = "astrocommunity.pack.prisma" },
   { import = "astrocommunity.pack.typescript" },
-  { import = "astrocommunity.pack.nix" },
+  -- Disabled bc it uses archived rnix lsp
+  -- { import = "astrocommunity.pack.nix" },
   { import = "astrocommunity.pack.python-ruff" },
   { import = "astrocommunity.pack.rust" },
   -- { import = "astrocommunity.pack.just" },
