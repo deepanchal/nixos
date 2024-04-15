@@ -107,17 +107,11 @@ return {
     end,
   },
 
-  { "junegunn/vim-easy-align", lazy = false },
-  { "tpope/vim-surround", lazy = false },
-
+  ---------------------------------------
+  -- Astrocommunity overrides
+  ---------------------------------------
   {
     "jackMort/ChatGPT.nvim",
-    cmd = { "ChatGPT", "ChatGPTActAs", "ChatGPTEditWithInstructions", "ChatGPTRun" },
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-    },
     opts = {},
     config = function()
       require("chatgpt").setup {

@@ -20,7 +20,7 @@ return {
   { import = "astrocommunity.color.transparent-nvim" },
 
   -- Motion
-  { import = "astrocommunity.motion.mini-surround" },
+  { import = "astrocommunity.motion.nvim-surround" },
   -- { import = "astrocommunity.motion.harpoon" },
 
   -- Git
@@ -56,11 +56,13 @@ return {
   -- Lsp
   { import = "astrocommunity.lsp.lsp-signature-nvim" },
   { import = "astrocommunity.lsp.lsp-lens-nvim" },
-  { import = "astrocommunity.lsp.lsp-inlayhints-nvim" },
+  { import = "astrocommunity.lsp.lsp-inlayhints-nvim" }, -- archived -> TODO: replace with native nvim inlay hints in future version
   -- { import = "astrocommunity.lsp.nvim-lint" },
   { import = "astrocommunity.lsp.garbage-day-nvim" },
 
   -- Other
+  { import = "astrocommunity.syntax.vim-easy-align" },
   -- { import = "astrocommunity.editing-support.conform-nvim" },
   { import = "astrocommunity.editing-support.refactoring-nvim" },
+  { import = "astrocommunity.editing-support.chatgpt-nvim" },
 }
