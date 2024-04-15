@@ -60,25 +60,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    astronvim = {
-      url = "github:AstroNvim/AstroNvim/v3.45.3";
-      flake = false;
-    };
-
-    zsh-fast-syntax-highlighting = {
-      url = "github:zdharma-continuum/fast-syntax-highlighting";
-      flake = false;
-    };
-    zsh-fzf-tab = {
-      url = "github:Aloxaf/fzf-tab";
-      flake = false;
-    };
     zsh-omz-plugin-pnpm = {
       url = "github:ntnyq/omz-plugin-pnpm";
-      flake = false;
-    };
-    zsh-powerlevel10k = {
-      url = "github:romkatv/powerlevel10k";
       flake = false;
     };
 
@@ -97,11 +80,6 @@
     catppuccin-alacritty = {
       url = "github:catppuccin/alacritty";
       flake = false;
-    };
-
-    pre-commit-hooks = {
-      url = "github:cachix/pre-commit-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
