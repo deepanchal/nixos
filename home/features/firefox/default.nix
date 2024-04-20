@@ -155,9 +155,10 @@
           "browser.startup.page" = 3; # restore previous session
 
           # ui changes
+          "browser.fullscreen.autohide" = false; # dont hide tabs in fullscreen mode
           "browser.aboutConfig.showWarning" = false; # disable warning about about:config
-          "browser.compactmode.show" = true; # disable compact mode
-          "browser.uidensity" = 1;
+          "browser.compactmode.show" = false;
+          "browser.uidensity" = 0;
           "general.autoScroll" = true; # enable autoscroll
           "general.smoothScroll" = true;
           "browser.tabs.firefox-view" = false; # enable firefox view
@@ -175,7 +176,7 @@
           "browser.protections_panel.infoMessage.seen" = true; # disable tracking protection info
 
           # let me close and open tabs without confirmation
-          "browser.tabs.closeWindowWithLastTab" = false; # don't close window when last tab is closed
+          "browser.tabs.closeWindowWithLastTab" = true; # don't close window when last tab is closed
           "browser.tabs.loadBookmarksInTabs" = true; # open bookmarks in new tab
           "browser.tabs.loadDivertedInBackground" = false; # open new tab in background
           "browser.tabs.loadInBackground" = true; # open new tab in background
