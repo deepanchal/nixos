@@ -605,6 +605,21 @@
         "type": "github"
       }
     },
+    "nur": {
+      "locked": {
+        "lastModified": 1713638122,
+        "narHash": "sha256-cOXl7NPEaSVszzp493hjdHUZm/sHwF8/Elxf5ykv2OI=",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "6e4abe6333c4bff2b4521f7e5fdaf1c11af655e4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "NUR",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "catppuccin-alacritty": "catppuccin-alacritty",
@@ -624,6 +639,7 @@
         "nix-colors": "nix-colors",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
+        "nur": "nur",
         "xdg-portal-hyprland": "xdg-portal-hyprland",
         "zsh-omz-plugin-pnpm": "zsh-omz-plugin-pnpm"
       }

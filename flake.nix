@@ -9,6 +9,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nur.url = "github:nix-community/NUR";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
     nix-colors.url = "github:misterio77/nix-colors";
@@ -135,11 +136,17 @@
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
       # Any one of these commands should work
-      # home-manager switch --flake ~/nixos/.#deep@zephyrion --show-trace 
+      # home-manager switch --flake ~/nixos/.#deep@zephyrion --show-trace
       # nh home switch ~/nixos -c deep@zephyrion
       # nh home switch
       "deep@zephyrion" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home manager requires 'pkgs' instance
+        # pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home manager requires 'pkgs' instance
+        pkgs = import nixpkgs {
+          # config.allowBroken = true;
+          # config.allowUnfree = true; # resistance is futile
+          system = "x86_64-linux";
+          overlays = [inputs.nur.overlay];
+        };
         modules = [./home/zephyrion.nix];
         extraSpecialArgs = {inherit inputs outputs;};
       };
