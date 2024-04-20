@@ -121,6 +121,10 @@
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
+      # Any one of these commands should work
+      # sudo nixos-rebuild switch --flake ~/nixos/#zephyrion
+      # nh os switch ~/nixos -H zephyrion
+      # nh os switch
       zephyrion = nixpkgs.lib.nixosSystem {
         modules = [./hosts/zephyrion];
         specialArgs = {inherit inputs outputs;};
@@ -130,6 +134,10 @@
     # Standalone home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
+      # Any one of these commands should work
+      # home-manager switch --flake ~/nixos/.#deep@zephyrion --show-trace 
+      # nh home switch ~/nixos -c deep@zephyrion
+      # nh home switch
       "deep@zephyrion" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home manager requires 'pkgs' instance
         modules = [./home/zephyrion.nix];
