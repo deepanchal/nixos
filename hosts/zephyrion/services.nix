@@ -79,6 +79,12 @@ in {
   #   };
   # };
   # services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 3";
+    flake = "/home/deep/nixos";
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
