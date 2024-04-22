@@ -47,6 +47,7 @@ return {
   -- { import = "astrocommunity.pack.nix" },
   { import = "astrocommunity.pack.python-ruff" },
   { import = "astrocommunity.pack.rust" },
+  { import = "astrocommunity.pack.go" },
   -- { import = "astrocommunity.pack.just" },
   -- { import = "astrocommunity.pack.ansible" },
   -- { import = "astrocommunity.pack.dart" },
