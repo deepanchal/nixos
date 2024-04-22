@@ -33,6 +33,7 @@ in {
     ./features/terminal/programs/tailspin.nix
     ./features/terminal/programs/zoxide.nix
     ./features/terminal/programs/git-cliff.nix
+    ./features/terminal/programs/keychain.nix
     ./features/zellij
     ./features/yazi
   ];
