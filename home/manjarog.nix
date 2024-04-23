@@ -34,8 +34,8 @@ in {
     ./features/terminal/programs/zoxide.nix
     ./features/terminal/programs/git-cliff.nix
     ./features/terminal/programs/keychain.nix
+    ./features/terminal/programs/yazi.nix
     ./features/zellij
-    ./features/yazi
   ];
 
   colorscheme = lib.mkDefault colorSchemes.catppuccin-mocha;

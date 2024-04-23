@@ -82,6 +82,10 @@
       url = "github:catppuccin/alacritty";
       flake = false;
     };
+    catppuccin-yazi = {
+      url = "github:catppuccin/yazi";
+      flake = false;
+    };
   };
 
   outputs = {

@@ -9,5 +9,6 @@
     ./teeldeer.nix
     ./git-cliff.nix
     ./keychain.nix
+    ./yazi.nix
   ];
 }
