@@ -86,7 +86,7 @@ in {
           "ripgrep" # ripgrep autocompletions
           "rust" # rust autocompletions
           "rsync" # rsync aliases
-          "rtx" # rtx (asdf clone) completions
+          "mise" # mise (asdf clone) completions
           "systemd" # systemd aliases
           "systemadmin" # aliases/functions to make system admin's life easier
           "taskwarrior" # taskwarrior autocompletions
