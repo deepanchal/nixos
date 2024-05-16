@@ -148,6 +148,7 @@ in {
         export PATH=$PATH:$ANDROID_HOME/platform-tools
         export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
         export ANDROID_NDK=$ANDROID_HOME/ndk-bundle
+        export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
       '';
 
       history = {
