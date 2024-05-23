@@ -93,7 +93,7 @@ in {
           # "timewarrior" # timewarrior completions/aliases (custom: https://github.com/svenXY/timewarrior)
           "tmux" # tmux completions/aliases
           "urltools" # urlencode and urldecode strings
-          "yarn" # yarn completions/aliases
+          # "yarn" # yarn completions/aliases
           "zoxide" # initializes zoxide (smart cd with 'z')
           # "zsh-autosuggestions" # zsh auto suggestions
           "zsh-interactive-cd" # interactive tab completion for cd
