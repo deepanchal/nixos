@@ -1,5 +1,6 @@
 {config, ...}: let
   colors = config.colorScheme.palette;
+  accent = config.theme.accent;
 in {
   services.dunst = {
     enable = true;
@@ -12,18 +13,18 @@ in {
       global = {
         follow = "mouse";
         width = 320;
-        height = 280;
+        height = 200;
         origin = "top-right";
         alignment = "left";
         vertical_alignment = "center";
         ellipsize = "middle";
-        offset = "17x17";
+        offset = "10x32";
         padding = 4;
         horizontal_padding = 15;
         text_icon_padding = 15;
         icon_position = "left";
-        min_icon_size = 16;
-        max_icon_size = 24;
+        min_icon_size = 24;
+        max_icon_size = 48;
         progress_bar = true;
         progress_bar_height = 8;
         progress_bar_frame_width = 1;
@@ -31,7 +32,7 @@ in {
         progress_bar_max_width = 300;
         separator_height = 2;
         frame_width = 2;
-        frame_color = "#${colors.base0E}";
+        frame_color = "#${accent}";
         separator_color = "frame";
         corner_radius = 8;
         transparency = 0;
@@ -42,7 +43,7 @@ in {
         history_length = 20;
         show_age_threshold = 60;
         markup = "full";
-        font = "JetBrainsMono 12";
+        font = "JetBrainsMono 10";
         word_wrap = "yes";
         sort = "yes";
         shrink = "no";
