@@ -21,6 +21,7 @@ in {
     ./features/shell/starship.nix
     ./features/shell/atuin.nix
     ./features/nvim
+    ./features/dunst
     # ./features/rofi
     # ./features/terminal
     # ./features/terminal/emulators/wezterm
