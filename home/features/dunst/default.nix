@@ -15,35 +15,35 @@ in {
         width = 320;
         height = 200;
         origin = "top-right";
-        alignment = "left";
+        alignment = "center";
         vertical_alignment = "center";
         ellipsize = "middle";
         offset = "10x32";
-        padding = 4;
-        horizontal_padding = 15;
-        text_icon_padding = 15;
+        padding = 8;
+        horizontal_padding = 20;
+        text_icon_padding = 20;
         icon_position = "left";
-        min_icon_size = 24;
-        max_icon_size = 48;
+        min_icon_size = 40;
+        max_icon_size = 64;
         progress_bar = true;
-        progress_bar_height = 8;
-        progress_bar_frame_width = 1;
+        progress_bar_height = 10;
+        progress_bar_frame_width = 2;
         progress_bar_min_width = 150;
         progress_bar_max_width = 300;
-        separator_height = 2;
+        separator_height = 1;
         frame_width = 2;
         frame_color = "#${accent}";
         separator_color = "frame";
-        corner_radius = 8;
+        corner_radius = 12;
         transparency = 0;
-        gap_size = 8;
+        gap_size = 10;
         line_height = 0;
         notification_limit = 3;
         idle_threshold = 120;
         history_length = 20;
         show_age_threshold = 60;
         markup = "full";
-        font = "JetBrainsMono 10";
+        font = "JetBrainsMonoNerdFont 10";
         word_wrap = "yes";
         sort = "yes";
         shrink = "no";
@@ -65,21 +65,21 @@ in {
       fullscreen_delay_everything = {fullscreen = "delay";};
 
       urgency_low = {
-        timeout = 3;
+        timeout = 5; # Adjusted for a more uniform experience
         background = "#${colors.base02}";
         foreground = "#${colors.base05}";
         highlight = "#${colors.base0C}";
       };
 
       urgency_normal = {
-        timeout = 7;
+        timeout = 10; # Standardized timeout for normal urgency
         background = "#${colors.base02}";
         foreground = "#${colors.base05}";
         highlight = "#${colors.base0C}";
       };
 
       urgency_critical = {
-        timeout = 0;
+        timeout = 0; # Keeping critical notifications until dismissed
         background = "#${colors.base02}";
         foreground = "#${colors.base05}";
         highlight = "#${colors.base08}";
