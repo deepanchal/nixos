@@ -25,7 +25,6 @@ in {
     ./features/terminal
     ./features/nvim
     ./features/zellij
-    ./features/yazi
     ./features/swaylock
     ./features/gtk
     ./features/mise
