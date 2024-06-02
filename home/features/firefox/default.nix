@@ -24,6 +24,7 @@
           decentraleyes
           vimium
           refined-github
+          github-file-icons
           switchyomega
           # vue-js-devtools
         ];
