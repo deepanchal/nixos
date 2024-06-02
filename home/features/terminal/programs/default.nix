@@ -10,5 +10,6 @@
     ./git-cliff.nix
     ./keychain.nix
     ./yazi.nix
+    ./misc.nix
   ];
 }
