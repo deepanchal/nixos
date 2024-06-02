@@ -105,7 +105,7 @@ in {
   # };
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Enable Security Services
   # users.users.root.hashedPassword = "!";
