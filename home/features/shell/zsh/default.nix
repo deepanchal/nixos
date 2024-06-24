@@ -222,6 +222,7 @@ in {
         rm = "rm -i";
         cp = "cp -i";
         mv = "mv -i";
+        dallow = "direnv allow";
         sysinfo = "inxi -Fxxxz";
         errors = "journalctl -b -p err | less";
 
