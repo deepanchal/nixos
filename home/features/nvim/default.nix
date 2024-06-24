@@ -32,13 +32,13 @@
   home = {
     packages = with pkgs; [
       # C/C++
-      cmake
-      cmake-language-server
-      gnumake
-      checkmake
-      gcc # c/c++ compiler, required by nvim-treesitter!
-      llvmPackages.clang-unwrapped # c/c++ tools with clang-tools such as clangd
-      lldb
+      # cmake
+      # cmake-language-server
+      # gnumake
+      # checkmake
+      # gcc # c/c++ compiler, required by nvim-treesitter!
+      # llvmPackages.clang-unwrapped # c/c++ tools with clang-tools such as clangd
+      # lldb
 
       # PYTHON
       python3
