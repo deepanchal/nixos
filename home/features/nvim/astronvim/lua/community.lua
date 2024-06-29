@@ -57,7 +57,7 @@ return {
   -- Lsp
   { import = "astrocommunity.lsp.lsp-signature-nvim" },
   { import = "astrocommunity.lsp.lsp-lens-nvim" },
-  { import = "astrocommunity.lsp.lsp-inlayhints-nvim" }, -- archived -> TODO: replace with native nvim inlay hints in future version
+  -- { import = "astrocommunity.lsp.lsp-inlayhints-nvim" }, -- archived -> TODO: replace with native nvim inlay hints in future version
   -- { import = "astrocommunity.lsp.nvim-lint" },
   { import = "astrocommunity.lsp.garbage-day-nvim" },
 
