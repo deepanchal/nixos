@@ -33,6 +33,16 @@ in {
         # cache_dir = "${config.xdg.cacheHome}/yazi";
       };
     };
+    keymap = {
+      manager.append_keymap = [
+        {
+          on = ["d"];
+          run = [
+            "escape --visual"
+            '' shell --confirm 'trashy put "$@"' ''
+          ];
+        }
+      ];
+    };
   };
 }
-
