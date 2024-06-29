@@ -42,7 +42,8 @@
 
       # PYTHON
       python3
-      nodePackages.pyright # python language server
+      pyright
+      # nodePackages.pyright # python language server
       python311Packages.black # python formatter
       python311Packages.ruff-lsp
 
