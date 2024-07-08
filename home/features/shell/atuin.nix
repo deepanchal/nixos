@@ -47,6 +47,10 @@
       # sync_frequency = "10m"
       sync_frequency = "20m";
 
+      sync = {
+        records = true;
+      };
+
       ## which search mode to use
       ## possible values: prefix, fulltext, fuzzy, skim
       # search_mode = "fuzzy"
