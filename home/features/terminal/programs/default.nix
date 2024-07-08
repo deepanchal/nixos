@@ -7,6 +7,8 @@
     ./lazygit.nix
     ./zoxide.nix
     ./teeldeer.nix
+    ./git.nix
+    ./gh.nix
     ./git-cliff.nix
     ./keychain.nix
     ./yazi.nix
