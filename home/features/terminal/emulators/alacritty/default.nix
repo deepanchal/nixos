@@ -37,7 +37,8 @@ in {
         size = 10;
         normal = {
           # family = "FiraCode Nerd Font";
-          family = "JetBrains Mono Nerd Font";
+          family = "JetBrainsMono Nerd Font";
+          style = "Regular";
         };
       };
 
@@ -51,18 +52,38 @@ in {
       #   hide_when_typing = true;
       # };
 
-      # keyboard.bindings = [
-      #   { key = "L"; mods = "Control|Shift"; action = "ClearHistory"; }
-      #   { key = "Q"; mods = "Control|Shift"; action = "Quit"; }
-      #   { key = "Z"; mods = "Control|Shift"; action = "ToggleFullscreen"; }
-      #   { key = "Equals"; mods = "Control"; action = "ResetFontSize"; }
-      #   { key = "NumpadAdd"; mods = "Control|Shift"; action = "IncreaseFontSize"; }
-      #   { key = "NumpadSubtract"; mods = "Control"; action = "DecreaseFontSize"; }
-      #   { key = "V"; mods = "Control|Shift"; action = "Paste"; }
-      #   { key = "C"; mods = "Control|Shift"; action = "Copy"; }
-      #   { key = "Return"; mods = "Shift"; chars = "\e[13;2u"; }
-      #   { key = "Return"; mods = "Control"; chars = "\e[13;5u"; }
-      # ];
+      keyboard.bindings = [
+        {
+          key = "N";
+          mods = "Control|Shift";
+          action = "SpawnNewInstance";
+        }
+        {
+          key = "0";
+          mods = "Control";
+          action = "ResetFontSize";
+        }
+        {
+          key = "NumpadAdd";
+          mods = "Control|Shift";
+          action = "IncreaseFontSize";
+        }
+        {
+          key = "NumpadSubtract";
+          mods = "Control|Shift";
+          action = "DecreaseFontSize";
+        }
+        # {
+        #   key = "Return";
+        #   mods = "Shift";
+        #   chars = "\e[13;2u";
+        # }
+        # {
+        #   key = "Return";
+        #   mods = "Control";
+        #   chars = "\e[13;5u";
+        # }
+      ];
     };
   };
 }
