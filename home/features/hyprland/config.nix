@@ -164,7 +164,6 @@ in {
 
       # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
       master = {
-        new_is_master = true;
       };
 
       gestures = {
