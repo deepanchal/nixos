@@ -43,9 +43,8 @@
       # PYTHON
       python3
       pyright
-      # nodePackages.pyright # python language server
-      python311Packages.black # python formatter
-      python311Packages.ruff-lsp
+      ruff-lsp
+      black
 
       # RUST
       rust-analyzer
