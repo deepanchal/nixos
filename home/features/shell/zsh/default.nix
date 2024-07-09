@@ -218,7 +218,6 @@ in {
 
         # Other
         c = "clear";
-        f = "yazi";
         rm = "rm -i";
         cp = "cp -i";
         mv = "mv -i";

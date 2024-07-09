@@ -6,7 +6,6 @@ alias lg = lazygit
 alias ll = eza -l --icons --color always
 alias la = eza -alughHo --git --icons --color always
 alias c = clear
-alias f = yazi
 alias cat = bat --pager=never --plain
 alias rm = rm -i
 alias cp = cp -i

@@ -9,7 +9,24 @@
   catppuccin-bat = inputs.catppuccin-bat;
   flavor = config.theme.flavor;
 in {
-  home.packages = [pkgs.exiftool];
+  home.packages = [
+    pkgs.exiftool
+    # https://yazi-rs.github.io/docs/quick-start#shell-wrapper
+    (pkgs.writeShellScriptBin "f" ''
+      set -ue -o pipefail
+
+      function f() {
+	      local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	      yazi "$@" --cwd-file="$tmp"
+	      if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		      cd -- "$cwd"
+	      fi
+	      rm -f -- "$tmp"
+      }
+
+      f "$@"
+    '')
+  ];
   xdg.configFile."yazi/Catppuccin-${lib.toLower flavor}.tmTheme".source = "${catppuccin-bat}/themes/Catppuccin ${flavor}.tmTheme";
 
   programs.yazi = {
@@ -39,7 +56,7 @@ in {
           on = ["d"];
           run = [
             "escape --visual"
-            '' shell --confirm 'trashy put "$@"' ''
+            ''shell --confirm 'trashy put "$@"' ''
           ];
         }
       ];
