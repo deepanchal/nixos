@@ -81,7 +81,7 @@ in {
       # want to update the value, then make sure to first check the Home Manager
       # release notes.
       # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-      stateVersion = "23.11"; # Please read the comment before changing.
+      stateVersion = "24.11"; # Please read the comment before changing.
 
       # Home Manager can also manage your environment variables through
       # 'home.sessionVariables'. If you don't want to manage your shell through Home
