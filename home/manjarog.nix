@@ -24,8 +24,8 @@ in {
     ./features/dunst
     # ./features/rofi
     # ./features/terminal
-    # ./features/terminal/emulators/wezterm
-    # ./features/terminal/emulators/alacritty
+    ./features/terminal/emulators/wezterm
+    ./features/terminal/emulators/alacritty
     # ./features/terminal/emulators/kitty
     ./features/terminal/programs/btop.nix
     ./features/terminal/programs/bat.nix
@@ -129,6 +129,8 @@ in {
   programs = {
     home-manager.enable = true;
     git.enable = true;
+    alacritty.package = lib.mkForce pkgs.hello;
+    wezterm.package = lib.mkForce pkgs.hello;
   };
 
   services = {

@@ -94,6 +94,9 @@ in {
           -- https://github.com/wez/wezterm/issues/4483
           enable_wayland = false,
 
+          -- See: https://github.com/wez/wezterm/issues/2927
+          -- front_end = "WebGpu",
+
           window_background_opacity = 0.85,
           window_padding = {
             top = 2,
