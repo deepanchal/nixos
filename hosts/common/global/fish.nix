@@ -1,6 +1,6 @@
 {
   programs.fish = {
-    enable = true;
+    enable = false;
     vendor = {
       completions.enable = true;
       config.enable = true;

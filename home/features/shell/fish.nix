@@ -4,7 +4,7 @@
   ...
 }: {
   programs.fish = {
-    enable = true;
+    enable = false;
     # interactiveShellInit = ''
     #   eval "$(${lib.getExe pkgs.starship} init fish)"
     # '';
