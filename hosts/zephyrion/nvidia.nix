@@ -72,7 +72,11 @@
     # - https://github.com/elFarto/nvidia-vaapi-driver/issues/160
     # - https://github.com/elFarto/nvidia-vaapi-driver/issues/272
     # LIBVA_DRIVER_NAME = "radeonsi";
-    # LIBVA_DRIVER_NAME = "nvidia";
+    LIBVA_DRIVER_NAME = "nvidia";
+
+    # Firefox
+    # See: https://github.com/elFarto/nvidia-vaapi-driver?tab=readme-ov-file#firefox
+    MOZ_DISABLE_RDD_SANDBOX = "1";
 
     # (https://wiki.archlinux.org/title/Wayland#Requirements)
     # WARN: crashes me hyprland

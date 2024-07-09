@@ -186,13 +186,21 @@
           "browser.tabs.warnOnOpen" = false; # don't warn when opening multiple tabs
           "browser.tabs.warnOnQuit" = false; # don't warn when closing multiple tabs
 
+          # nvidia / video acceleration
+          # See: https://github.com/elFarto/nvidia-vaapi-driver?tab=readme-ov-file#firefox
+          "media.ffmpeg.vaapi.enabled" = true; # enable hardware acceleration
+          "media.rdd-ffmpeg.enabled" = true;
+          # "media.av1.enabled" = false;
+          "gfx.x11-egl.force-enabled" = true;
+          "widget.dmabuf.force-enabled" = true;
+
           # other
           "devtools.cache.disabled" = true; # disable caching in devtools
           "devtools.toolbox.host" = "right"; # move devtools to right
           # "browser.ssb.enabled" = true; # enable site specific browser
           "media.autoplay.default" = 0; # enable autoplay on open
-          "media.ffmpeg.vaapi.enabled" = true; # enable hardware acceleration
-          "media.rdd-vpx.enabled" = true; # enable hardware acceleration
+          # "media.ffmpeg.vaapi.enabled" = true; # enable hardware acceleration
+          # "media.rdd-vpx.enabled" = true; # enable hardware acceleration
 
           # # override fonts (Set tracking protection to custom without "Suspected fingerprinters")
           # "font.minimum-size.x-western" = 13;
