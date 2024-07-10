@@ -208,6 +208,7 @@
     curl
     iw
     wget
+    gparted
 
     # Hardware tools
     acpi
