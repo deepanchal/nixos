@@ -198,6 +198,9 @@
     WLR_RENDERER = "vulkan";
     XDG_SESSION_TYPE = "wayland";
     SDL_VIDEODRIVER = "wayland";
+
+    # Other
+    XDG_RUNTIME_DIR = "/run/user/$UID"; # See: https://discourse.nixos.org/t/login-keyring-did-not-get-unlocked-hyprland/40869/10
   };
 
   ##################################################
