@@ -1,9 +1,11 @@
 # Format disk with this command:
-# sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ~/nixos/hosts/zephyrion/disk-config.nix 
+# sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ~/nixos/hosts/zephyrion/disk-config.nix
 # Ref: https://github.com/nix-community/disko/blob/master/docs/reference.md
 {lib, ...}: let
+  user = "deep";
   disk = "/dev/disk/by-id/ata-SanDisk_SSD_PLUS_240GB_191386466003";
-  brtfsMountOptions = ["defaults" "compress=zstd" "noatime" "discard=async" "commit=120"];
+  btrfsMountOptions = ["defaults" "noatime" "compress=zstd" "autodefrag" "ssd" "discard=async" "space_cache=v2"];
+  tmpfsMountOptions = ["defaults" "noatime" "size=3072M" "x-gvfs-show" "mode=1777"];
 in {
   disko.devices = {
     disk = {
@@ -40,49 +42,69 @@ in {
                   fi
                 '';
                 subvolumes = {
+                  "" = {
+                    mountpoint = "/mnt/defvol";
+                    mountOptions = btrfsMountOptions;
+                  };
                   "@" = {
                     mountpoint = "/";
-                    mountOptions = brtfsMountOptions;
+                    mountOptions = btrfsMountOptions;
                   };
                   "@snapshots" = {
                     mountpoint = "/.snapshots";
-                    mountOptions = brtfsMountOptions;
+                    mountOptions = btrfsMountOptions;
                   };
                   "@home_root" = {
                     mountpoint = "/root";
-                    mountOptions = brtfsMountOptions;
+                    mountOptions = btrfsMountOptions;
                   };
                   "@home" = {
                     mountpoint = "/home";
-                    mountOptions = brtfsMountOptions;
+                    mountOptions = btrfsMountOptions;
+                  };
+                  "@projects" = {
+                    mountpoint = "/home/${user}/projects";
+                    mountOptions = btrfsMountOptions;
+                  };
+                  "@user_cache" = {
+                    mountpoint = "/home/${user}/.cache";
+                    mountOptions = btrfsMountOptions;
+                  };
+                  "@user_config" = {
+                    mountpoint = "/home/${user}/.config";
+                    mountOptions = btrfsMountOptions;
                   };
                   "@srv" = {
                     mountpoint = "/srv";
-                    mountOptions = brtfsMountOptions;
+                    mountOptions = btrfsMountOptions;
                   };
                   "@opt" = {
                     mountpoint = "/opt";
-                    mountOptions = brtfsMountOptions;
+                    mountOptions = btrfsMountOptions;
                   };
                   "@nix" = {
                     mountpoint = "/nix";
-                    mountOptions = brtfsMountOptions;
+                    mountOptions = btrfsMountOptions;
                   };
                   "@var_log" = {
                     mountpoint = "/var/log";
-                    mountOptions = brtfsMountOptions;
+                    mountOptions = btrfsMountOptions;
                   };
                   "@var_cache" = {
                     mountpoint = "/var/cache";
-                    mountOptions = brtfsMountOptions;
+                    mountOptions = btrfsMountOptions;
                   };
                   "@var_tmp" = {
                     mountpoint = "/var/tmp";
-                    mountOptions = brtfsMountOptions;
+                    mountOptions = btrfsMountOptions;
                   };
                   "@var_libvirt" = {
                     mountpoint = "/var/lib/libvirt";
-                    mountOptions = brtfsMountOptions;
+                    mountOptions = btrfsMountOptions;
+                  };
+                  "@docker" = {
+                    mountpoint = "/var/lib/docker";
+                    mountOptions = ["defaults"];
                   };
                 };
               };
@@ -91,5 +113,10 @@ in {
         };
       };
     };
+  };
+  fileSystems."/tmp/ramdisk" = {
+    device = "tmpfs";
+    fsType = "tmpfs";
+    mountOptions = tmpfsMountOptions;
   };
 }
