@@ -86,7 +86,7 @@
       material-icons
       material-design-icons
       roboto
-      # open-sans
+      open-sans
       # work-sans
       # comic-neue
       # source-sans
@@ -96,7 +96,7 @@
       lato
       # lexend
       # jost
-      # dejavu_fonts
+      dejavu_fonts
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
