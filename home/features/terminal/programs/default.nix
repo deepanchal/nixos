@@ -9,6 +9,7 @@
     ./teeldeer.nix
     ./git.nix
     ./gh.nix
+    ./fd.nix
     ./git-cliff.nix
     ./keychain.nix
     ./yazi.nix
