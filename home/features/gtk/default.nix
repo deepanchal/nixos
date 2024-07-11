@@ -32,7 +32,7 @@ in {
       name = "Papirus-Dark";
     };
     font = {
-      name = "Lexend";
+      name = "Noto Sans";
       size = 11;
     };
     gtk3.extraConfig = {

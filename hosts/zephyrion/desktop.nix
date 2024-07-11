@@ -8,23 +8,24 @@
   security.pam.services.gdm.enableGnomeKeyring = true;
 
   # Gnome Exclude Packages
-  # environment.gnome.excludePackages = (with pkgs; [
-  #   gnome-tour
-  # ]) ++ (with pkgs.gnome; [
-  #       gnome-terminal
-  #       gedit # text editor
-  #       epiphany # web browser
-  #       geary # email reader
-  #       tali # poker game
-  #       iagno # go game
-  #       hitori # sudoku game
-  #       atomix # puzzle game
-  # ]);
+  environment.gnome.excludePackages =
+    (with pkgs; [
+      gnome-tour
+      gedit # text editor
+    ])
+    ++ (with pkgs.gnome; [
+      # gnome.gnome-terminal
+      epiphany # web browser
+      geary # email reader
+      tali # poker game
+      iagno # go game
+      hitori # sudoku game
+      atomix # puzzle game
+    ]);
 
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
-    # enableNvidiaPatches = true; # No longer needed
   };
 
   xdg.portal = {
@@ -85,26 +86,24 @@
       material-icons
       material-design-icons
       roboto
-      work-sans
-      comic-neue
-      source-sans
-      twemoji-color-font
-      comfortaa
-      inter
+      # open-sans
+      # work-sans
+      # comic-neue
+      # source-sans
+      # twemoji-color-font
+      # comfortaa
+      # inter
       lato
-      lexend
-      jost
-      dejavu_fonts
-      iosevka-bin
+      # lexend
+      # jost
+      # dejavu_fonts
       noto-fonts
       noto-fonts-cjk
       noto-fonts-emoji
-      jetbrains-mono
-      fira-code-nerdfont
-      (nerdfonts.override {fonts = ["FiraCode" "Iosevka" "JetBrainsMono"];})
+      (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
     ];
 
-    enableDefaultPackages = false;
+    # enableDefaultPackages = false;
 
     # this fixes emoji stuff
     # fontconfig = {
