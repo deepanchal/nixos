@@ -121,8 +121,9 @@ in {
         "${mainMod}, mouse_down, workspace, e+1" # move to the next ws
         "${mainMod}, mouse_up, workspace, e-1" # move to the previous ws
 
-        "${mainMod},Print,exec, pauseshot"
-        ",Print,exec, grim - | ${wl-copy}"
+        # "${mainMod},Print,exec, pauseshot"
+        # ",Print,exec, grim - | ${wl-copy}"
+        "${mainMod},S, exec, XDG_CURRENT_DESKTOP=GNOME XDG_SESSION_DESKTOP=gnome flameshot gui"
 
         # "${mainMod},Period,exec, tofi-emoji"
 

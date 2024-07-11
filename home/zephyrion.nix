@@ -27,6 +27,7 @@ in {
     ./features/zellij
     ./features/swaylock
     ./features/gtk
+    ./features/flameshot
     ./features/mise
     ./features/tmux
     ./features/firefox

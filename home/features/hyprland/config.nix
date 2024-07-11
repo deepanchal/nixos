@@ -7,7 +7,8 @@
   colors = config.colorscheme.palette;
   accent = config.theme.accent;
 
-  primaryMonitor = "DP-1"; # external monitor
+  # primaryMonitor = "DP-1"; # external monitor w/ usb-c
+  primaryMonitor = "HDMI-A-1"; # external monitor w/ hdmi
   secondaryMonitor = "eDP-1"; # laptop screen
   pointer = config.home.pointerCursor;
 
@@ -27,7 +28,8 @@ in {
         # "${secondaryMonitor},2560x1440@165,0x1440,1"
 
         # With Scaling of 1.25
-        "${primaryMonitor},2560x1440@165,0x0,1.25"
+        # "${primaryMonitor},2560x1440@165,0x0,1.25"
+        "${primaryMonitor},2560x1440@143.85,0x0,1.25"
         "${secondaryMonitor},2560x1440@165,0x1152,1.25"
       ];
 
