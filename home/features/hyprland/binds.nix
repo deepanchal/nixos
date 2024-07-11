@@ -52,7 +52,7 @@ in {
       [
         # "${mainMod}, SPACE, exec, run-as-service $(tofi-drun)"
         "${altMod}, SPACE, exec, run-as-service $(${rofi} -show drun)"
-        "${mainMod}, RETURN, exec, ${alacritty}"
+        "${mainMod}, RETURN, exec, alacritty msg create-window || alacritty"
         "${modshift}, RETURN, exec, ${wezterm}"
         # "${mainMod}, B, exec, ${firefox}"
         # "${modshift}, B, exec, ${brave}"
