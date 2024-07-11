@@ -71,7 +71,7 @@
     # - https://discourse.nixos.org/t/hardware-acceleration-on-chromium-with-nvidia/36246
     # - https://github.com/elFarto/nvidia-vaapi-driver/issues/160
     # - https://github.com/elFarto/nvidia-vaapi-driver/issues/272
-    LIBVA_DRIVER_NAME = "radeonsi";
+    # LIBVA_DRIVER_NAME = "radeonsi";
     # LIBVA_DRIVER_NAME = "nvidia";
 
     # Firefox
