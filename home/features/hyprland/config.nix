@@ -98,6 +98,11 @@ in {
         allow_tearing = false;
       };
 
+      # See: https://wiki.hyprland.org/Nvidia/#environment-variables
+      cursor = {
+        no_hardware_cursors = true;
+      };
+
       decoration = {
         rounding = 8;
         blur = {

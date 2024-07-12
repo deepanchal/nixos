@@ -87,7 +87,7 @@
 
     # set to 1 to use software cursors instead of hardware cursors
     # (https://wiki.hyprland.org/hyprland-wiki/pages/Nvidia/)
-    WLR_NO_HARDWARE_CURSORS = "1";
+    # WLR_NO_HARDWARE_CURSORS = "1";
 
     # TIP: Advantage is all the apps will be running on nvidia
     # WARN: crashes whatever window's opened after "hibernate"
