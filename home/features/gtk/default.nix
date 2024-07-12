@@ -12,6 +12,14 @@
   accentNameLower = lib.toLower accentName;
   catppuccin-kvantum = inputs.catppuccin-kvantum;
 in {
+  dconf = {
+    settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+      };
+    };
+  };
+
   gtk = {
     enable = true;
     theme = {
@@ -42,7 +50,9 @@ in {
       gtk-xft-rgba = "rgb";
       gtk-application-prefer-dark-theme = 1;
     };
-    gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = 1;
+    };
     gtk2.extraConfig = ''
       gtk-xft-antialias=1
       gtk-xft-hinting=1
