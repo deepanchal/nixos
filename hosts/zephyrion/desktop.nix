@@ -1,9 +1,11 @@
 {
+  lib,
   pkgs,
   inputs,
   ...
 }: let
-  tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+  tuigreet = "${lib.getExe pkgs.greetd.tuigreet}";
+  tuigreet-theme = "border=blue;container=black;time=magenta;prompt=green;action=blue;button=yellow;text=cyan";
   hyprland-session = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/share/wayland-sessions";
 in {
   ##########################################
@@ -53,8 +55,7 @@ in {
     enable = true;
     settings = {
       default_session = {
-        # command = "${tuigreet} --theme border=blue;text=cyan;prompt=green;time=red;action=magenta;button=yellow;container=black;input=red --time --remember --remember-session --sessions ${hyprland-session}";
-        command = "${tuigreet} --time --remember --remember-session --cmd Hyprland";
+        command = "${tuigreet} --remember --remember-session --time --theme ${tuigreet-theme} --cmd Hyprland";
         user = "greeter";
       };
     };
