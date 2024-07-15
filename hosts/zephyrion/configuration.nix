@@ -194,8 +194,8 @@
     GDK_BACKEND = "wayland,x11";
     MOZ_ENABLE_WAYLAND = "1";
     # MOZ_DRM_DEVICE = "/dev/dri/renderD129"; # see (Section 4.2.3): https://wiki.archlinux.org/title/Firefox#Hardware_video_acceleration
-    WLR_BACKEND = "vulkan";
-    WLR_RENDERER = "vulkan";
+    # WLR_BACKEND = "vulkan";
+    # WLR_RENDERER = "vulkan";
     XDG_SESSION_TYPE = "wayland";
     SDL_VIDEODRIVER = "wayland";
 
