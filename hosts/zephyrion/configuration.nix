@@ -6,7 +6,9 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  colors = inputs.nix-colors.colorSchemes.catppuccin-mocha.palette;
+in {
   imports = [
     inputs.nixos-hardware.nixosModules.common-cpu-amd
     inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
@@ -76,8 +78,25 @@
   };
   console = {
     earlySetup = true;
-    # font = "${pkgs.terminus_font}/share/consolefonts/ter-124n.psf.gz";
-    font = "${pkgs.terminus_font}/share/consolefonts/ter-u32n.psf.gz";
+    font = "${pkgs.terminus_font}/share/consolefonts/ter-124n.psf.gz";
+    colors = [
+      colors.base00 # black
+      colors.base08 # red
+      colors.base0B # green
+      colors.base0A # yellow
+      colors.base0D # blue
+      colors.base0E # magenta
+      colors.base0C # cyan
+      colors.base05 # white
+      colors.base04 # bright black aka gray
+      colors.base08 # bright red
+      colors.base0B # bright green
+      colors.base0A # bright yellow
+      colors.base0D # bright blue
+      colors.base07 # bright magenta
+      colors.base0C # bright cyan
+      colors.base0E # bright white
+    ];
     packages = with pkgs; [terminus_font];
     keyMap = "us";
   };
