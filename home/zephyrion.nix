@@ -139,5 +139,6 @@ in {
   services = {
     blueman-applet.enable = true;
     swayosd.enable = true;
+    gnome-keyring.enable = true;
   };
 }

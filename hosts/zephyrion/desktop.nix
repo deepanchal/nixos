@@ -14,7 +14,8 @@ in {
   services.xserver.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
   services.gnome.gnome-keyring.enable = true;
-  security.pam.services.gdm.enableGnomeKeyring = true;
+  # security.pam.services.gdm.enableGnomeKeyring = true;
+  security.pam.services.greetd.enableGnomeKeyring = true;
 
   # Gnome Exclude Packages
   environment.gnome.excludePackages =
