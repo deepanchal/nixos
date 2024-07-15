@@ -11,16 +11,18 @@ in {
     disk = {
       disk1 = {
         type = "disk";
-        name = "asdf";
         device = disk;
         content = {
           type = "gpt";
           partitions = {
+            MBR = {
+              type = "EF02"; # for grub MBR
+              size = "1M";
+              priority = 1; # Needs to be first partition
+            };
             ESP = {
-              priority = 1;
               name = "ESP";
-              start = "2M";
-              size = "512M";
+              size = "500M";
               type = "EF00";
               content = {
                 type = "filesystem";
@@ -117,6 +119,6 @@ in {
   fileSystems."/tmp/ramdisk" = {
     device = "tmpfs";
     fsType = "tmpfs";
-    mountOptions = tmpfsMountOptions;
+    options = tmpfsMountOptions;
   };
 }
