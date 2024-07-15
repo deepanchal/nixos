@@ -1,4 +1,11 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: let
+  tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+  hyprland-session = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/share/wayland-sessions";
+in {
   ##########################################
   # DESKTOP ENVIRONMENT
   ##########################################
@@ -41,42 +48,32 @@
   ##########################################
   # DISPLAY MANAGER
   ##########################################
-  services.xserver.displayManager.gdm.enable = true;
-  # services.greetd = {
-  #   enable = true;
-  #   settings = {
-  #     # default_session = {
-  #     #   command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --time-format '%I:%M %p | %a • %h | %F' --cmd Hyprland";
-  #     #   user = "greeter";
-  #     # };
-  #     default_session = {
-  #       command = "${pkgs.cage}/bin/cage -s ${pkgs.greetd.gtkgreet}/bin/gtkgreet";
-  #       user = "greeter";
-  #     };
-  #   };
+  # services.xserver.displayManager.gdm.enable = true;
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        # command = "${tuigreet} --theme border=blue;text=cyan;prompt=green;time=red;action=magenta;button=yellow;container=black;input=red --time --remember --remember-session --sessions ${hyprland-session}";
+        command = "${tuigreet} --time --remember --remember-session --cmd Hyprland";
+        user = "greeter";
+      };
+    };
+  };
+
+  # this is a life saver.
+  # literally no documentation about this anywhere.
+  # might be good to write about this...
+  # https://www.reddit.com/r/NixOS/comments/u0cdpi/tuigreet_with_xmonad_how/
+  # systemd.services.greetd.serviceConfig = {
+  #   Type = "idle";
+  #   StandardInput = "tty";
+  #   StandardOutput = "tty";
+  #   StandardError = "journal"; # Without this errors will spam on screen
+  #   # Without these bootlogs will spam on screen
+  #   TTYReset = true;
+  #   TTYVHangup = true;
+  #   TTYVTDisallocate = true;
   # };
-  # services.greetd.enable = true;
-  # programs.regreet = {
-  #   enable = true;
-  #   package = pkgs.greetd.regreet;
-  #   settings = {
-  #     cageArgs = [
-  #       "-s"
-  #       "-m"
-  #       "last"
-  #     ];
-  #     commands = {
-  #       reboot = [ "systemctl" "reboot" ];
-  #       poweroff = [ "systemctl" "poweroff" ];
-  #     };
-  #   };
-  # };
-  environment.systemPackages = with pkgs; [
-    # cage
-    # greetd.tuigreet
-    # greetd.gtkgreet
-    # greetd.regreet
-  ];
 
   ##########################################
   # FONTS
