@@ -103,6 +103,13 @@ in {
         no_hardware_cursors = true;
       };
 
+      debug = {
+        # overlay = true;
+        disable_logs = false;
+        disable_time = false;
+        enable_stdout_logs = true;
+      };
+
       decoration = {
         rounding = 8;
         blur = {
