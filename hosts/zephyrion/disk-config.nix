@@ -9,7 +9,7 @@
 in {
   disko.devices = {
     disk = {
-      disk1 = {
+      main = {
         type = "disk";
         device = disk;
         content = {
@@ -30,6 +30,7 @@ in {
                 mountpoint = "/boot";
                 mountOptions = [
                   "defaults"
+                  "umask=0077"
                 ];
               };
             };
