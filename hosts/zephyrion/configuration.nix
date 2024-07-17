@@ -213,6 +213,7 @@ in {
   ##################################################
   # BLUETOOTH
   ##################################################
+  hardware.enableAllFirmware = true; # See: https://discourse.nixos.org/t/bluetooth-troubles/38940/16
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
