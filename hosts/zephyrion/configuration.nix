@@ -32,8 +32,16 @@ in {
   ##################################################
   boot = {
     loader = {
-      systemd-boot.enable = true;
+      # systemd-boot
+      # systemd-boot.enable = true;
+      # efi.canTouchEfiVariables = true;
+
+      # grub
+      grub.enable = true;
+      grub.efiSupport = true;
+      grub.device = "nodev";
       efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/boot/efi";
       timeout = 5;
     };
     # blacklistedKernelModules = [ "nouveau" ];
