@@ -3,42 +3,9 @@
   pkgs,
   ...
 }: let
-  inherit (config) colorscheme;
-  inherit (colorscheme) colors;
 in {
   programs.wezterm = {
     enable = true;
-    # colorSchemes = {
-    #   "${colorscheme.slug}" = {
-    #     foreground = "#${colors.base05}";
-    #     background = "#${colors.base00}";
-    #
-    #     ansi = [
-    #       "#${colors.base08}"
-    #       "#${colors.base09}"
-    #       "#${colors.base0A}"
-    #       "#${colors.base0B}"
-    #       "#${colors.base0C}"
-    #       "#${colors.base0D}"
-    #       "#${colors.base0E}"
-    #       "#${colors.base0F}"
-    #     ];
-    #     brights = [
-    #       "#${colors.base00}"
-    #       "#${colors.base01}"
-    #       "#${colors.base02}"
-    #       "#${colors.base03}"
-    #       "#${colors.base04}"
-    #       "#${colors.base05}"
-    #       "#${colors.base06}"
-    #       "#${colors.base07}"
-    #     ];
-    #     cursor_fg = "#${colors.base00}";
-    #     cursor_bg = "#${colors.base05}";
-    #     selection_fg = "#${colors.base00}";
-    #     selection_bg = "#${colors.base05}";
-    #   };
-    # };
     extraConfig =
       /*
       lua
@@ -78,8 +45,6 @@ in {
         end)
 
         return {
-          color_scheme = "${colorscheme.slug}",
-
           -- window_close_confirmation = "NeverPrompt",
           -- set_environment_variables = {
           --   TERM = 'wezterm',
@@ -97,7 +62,6 @@ in {
           -- See: https://github.com/wez/wezterm/issues/2927
           -- front_end = "WebGpu",
 
-          window_background_opacity = 0.85,
           window_padding = {
             top = 2,
             right = 2,
@@ -105,8 +69,6 @@ in {
             left = 2,
           },
 
-          font_size = 11.0;
-          font = wezterm.font 'JetBrains Mono Nerd Font',
           -- font = wezterm.font_with_fallback {
           --   'JetBrains Mono',
           --   'FiraCode Nerd Font',

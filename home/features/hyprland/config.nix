@@ -4,9 +4,6 @@
   lib,
   ...
 }: let
-  colors = config.colorscheme.palette;
-  accent = config.theme.accent;
-
   # primaryMonitor = "DP-1"; # external monitor w/ usb-c
   primaryMonitor = "HDMI-A-1"; # external monitor w/ hdmi
   secondaryMonitor = "eDP-1"; # laptop screen
@@ -87,10 +84,6 @@ in {
         # border thiccness
         border_size = 2;
 
-        # active border color
-        "col.active_border" = "rgb(${accent})";
-        "col.inactive_border" = "rgb(${colors.base02})";
-
         # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
         apply_sens_to_raw = 0;
 
@@ -127,7 +120,6 @@ in {
         drop_shadow = true;
         shadow_range = 20;
         shadow_render_power = 5;
-        "col.shadow" = "rgba(292c3cee)";
       };
 
       # Some default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
@@ -219,12 +211,6 @@ in {
             rounding = 4;
             render_text = true;
             text_font = "JetBrainsMono Nerd Font";
-            "col.active" = "0xff${accent}";
-            "col.urgent" = "0xff${colors.base09}";
-            "col.inactive" = "0xff${colors.base02}";
-            "col.text.active" = "0xff${colors.base00}";
-            "col.text.urgent" = "0xff${colors.base00}";
-            "col.text.inactive" = "0xff${colors.base05}";
           };
           autotile = {
             enable = true;

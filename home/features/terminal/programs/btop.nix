@@ -4,14 +4,7 @@
   config,
   inputs,
   ...
-}: let
-  btop-theme-dir = ".config/btop/themes";
-  themeName = lib.toLower config.theme.name;
-  flavor = lib.toLower config.theme.flavor;
-  catppuccin-btop = inputs.catppuccin-btop;
-in {
-  home.file."${btop-theme-dir}/${themeName}.theme".source = "${catppuccin-btop}/themes/catppuccin_${flavor}.theme";
-
+}: {
   programs.btop = {
     enable = true;
 
@@ -20,7 +13,6 @@ in {
 
       #* Name of a btop++/bpytop/bashtop formatted ".theme" file, "Default" and "TTY" for builtin themes.
       #* Themes should be placed in "../share/btop/themes" relative to binary or "$HOME/.config/btop/themes"
-      color_theme = "${themeName}";
 
       #* If the theme set background should be shown, set to False if you want terminal background transparency.
       theme_background = false;

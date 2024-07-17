@@ -6,14 +6,13 @@
   config,
   pkgs,
   ...
-}: let
-  colors = inputs.nix-colors.colorSchemes.catppuccin-mocha.palette;
-in {
+}: {
   imports = [
     inputs.nixos-hardware.nixosModules.common-cpu-amd
     inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
     inputs.nixos-hardware.nixosModules.common-gpu-amd
     inputs.nixos-hardware.nixosModules.common-pc-ssd
+    inputs.stylix.nixosModules.stylix
 
     ./hardware-configuration.nix
 
@@ -25,6 +24,7 @@ in {
     ./desktop.nix
     ./services.nix
     ./virtualization.nix
+    ./stylix.nix
   ];
 
   ##################################################
@@ -32,8 +32,16 @@ in {
   ##################################################
   boot = {
     loader = {
-      systemd-boot.enable = true;
+      # systemd-boot
+      # systemd-boot.enable = true;
+      # efi.canTouchEfiVariables = true;
+      # grub
+      grub.enable = true;
+      grub.efiSupport = true;
+      grub.device = "nodev";
       efi.canTouchEfiVariables = true;
+      efi.efiSysMountPoint = "/boot/efi";
+
       timeout = 5;
     };
     # blacklistedKernelModules = [ "nouveau" ];
@@ -68,35 +76,15 @@ in {
     # };
     plymouth = {
       enable = true;
-      font = "${pkgs.jetbrains-mono}/share/fonts/truetype/JetBrainsMono-Regular.ttf";
-      themePackages = [(pkgs.catppuccin-plymouth.override {variant = "mocha";})];
-      theme = "catppuccin-mocha";
     };
     tmp = {
       cleanOnBoot = true;
     };
+    kernelPackages = pkgs.linuxKernel.packages.linux_6_8;
   };
   console = {
     earlySetup = true;
     font = "${pkgs.terminus_font}/share/consolefonts/ter-124n.psf.gz";
-    colors = [
-      colors.base00 # black
-      colors.base08 # red
-      colors.base0B # green
-      colors.base0A # yellow
-      colors.base0D # blue
-      colors.base0E # magenta
-      colors.base0C # cyan
-      colors.base05 # white
-      colors.base04 # bright black aka gray
-      colors.base08 # bright red
-      colors.base0B # bright green
-      colors.base0A # bright yellow
-      colors.base0D # bright blue
-      colors.base07 # bright magenta
-      colors.base0C # bright cyan
-      colors.base0E # bright white
-    ];
     packages = with pkgs; [terminus_font];
     keyMap = "us";
   };

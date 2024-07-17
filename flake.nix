@@ -13,6 +13,7 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
     xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
     nix-colors.url = "github:misterio77/nix-colors";
+    stylix.url = "github:danth/stylix";
     # rust-overlay.url = "github:oxalica/rust-overlay";
 
     flake-parts = {

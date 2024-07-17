@@ -1,14 +1,6 @@
-{config, ...}: let
-  colors = config.colorScheme.palette;
-  accent = config.theme.accent;
-in {
+{config, ...}: {
   services.dunst = {
     enable = true;
-    # iconTheme = {
-    #   package = config.gtk.iconTheme.package;
-    #   name = "Papirus-Dark";
-    # };
-
     settings = {
       global = {
         follow = "mouse";
@@ -32,7 +24,6 @@ in {
         progress_bar_max_width = 300;
         separator_height = 1;
         frame_width = 2;
-        frame_color = "#${accent}";
         separator_color = "frame";
         corner_radius = 12;
         transparency = 0;
@@ -63,27 +54,6 @@ in {
       };
 
       fullscreen_delay_everything = {fullscreen = "delay";};
-
-      urgency_low = {
-        timeout = 5; # Adjusted for a more uniform experience
-        background = "#${colors.base02}";
-        foreground = "#${colors.base05}";
-        highlight = "#${colors.base0C}";
-      };
-
-      urgency_normal = {
-        timeout = 10; # Standardized timeout for normal urgency
-        background = "#${colors.base02}";
-        foreground = "#${colors.base05}";
-        highlight = "#${colors.base0C}";
-      };
-
-      urgency_critical = {
-        timeout = 0; # Keeping critical notifications until dismissed
-        background = "#${colors.base02}";
-        foreground = "#${colors.base05}";
-        highlight = "#${colors.base08}";
-      };
     };
   };
 }

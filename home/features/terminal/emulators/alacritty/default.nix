@@ -5,17 +5,10 @@
   inputs,
   ...
 }: let
-  flavor = lib.toLower config.theme.name;
-  catppuccin-alacritty = inputs.catppuccin-alacritty;
 in {
   programs.alacritty = {
     enable = true;
     settings = {
-      # Note: Alacritty's setting key for importing files is 'import' not 'imports'
-      import = [
-        "${catppuccin-alacritty}/${flavor}.toml"
-      ];
-
       window = {
         decorations = "none";
         dynamic_padding = true;
@@ -28,19 +21,9 @@ in {
           y = 0;
         };
         startup_mode = "Maximized";
-        opacity = 0.9;
       };
 
       scrolling.history = 20000;
-
-      font = {
-        size = 10;
-        normal = {
-          # family = "FiraCode Nerd Font";
-          family = "JetBrainsMono Nerd Font";
-          style = "Regular";
-        };
-      };
 
       # cursor = {
       #   style = {

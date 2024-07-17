@@ -31,6 +31,9 @@ in {
     ./features/mise
     ./features/tmux
     ./features/firefox
+
+    inputs.stylix.homeManagerModules.stylix
+    ../hosts/zephyrion/stylix.nix
   ];
 
   colorscheme = lib.mkDefault colorSchemes.catppuccin-mocha;
@@ -140,5 +143,8 @@ in {
     blueman-applet.enable = true;
     swayosd.enable = true;
     gnome-keyring.enable = true;
+  };
+
+  stylix = {
   };
 }

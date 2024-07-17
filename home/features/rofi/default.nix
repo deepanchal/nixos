@@ -2,12 +2,10 @@
   pkgs,
   config,
   ...
-}: let
-  accent = config.theme.accent;
-in {
+}: {
   # xdg.configFile."rofi/config.rasi".source = ./config.rasi;
 
-  xdg.configFile."rofi/config.rasi".text = with config.colorScheme.palette; ''
+  xdg.configFile."rofi/config.rasi".text = ''
     /*****----- Configuration -----*****/
     configuration {
         modes: [ combi, filebrowser, window, ssh ];
@@ -61,11 +59,9 @@ in {
 
     /*****----- Global Properties -----*****/
     * {
-        active-background: #${accent};
         active-foreground: @foreground;
         normal-background: @background;
         normal-foreground: @foreground;
-        urgent-background: #${base08};
         urgent-foreground: @foreground;
 
         alternate-active-background: @background;
@@ -75,16 +71,11 @@ in {
         alternate-urgent-background: @background;
         alternate-urgent-foreground: @foreground;
 
-        selected-active-background: #${base08};
         selected-active-foreground: @foreground;
-        selected-normal-background: #${accent};
         selected-normal-foreground: @foreground;
-        selected-urgent-background: #${base0A};
         selected-urgent-foreground: @foreground;
 
         background-color: @background;
-        background: #${base00};
-        foreground: #${base06};
         border-color: @background;
         spacing: 2;
     }

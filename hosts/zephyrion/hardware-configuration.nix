@@ -23,7 +23,7 @@
     options = ["subvol=@"];
   };
 
-  fileSystems."/boot" = {
+  fileSystems."/boot/efi" = {
     device = "/dev/disk/by-uuid/4589-628D";
     fsType = "vfat";
   };
