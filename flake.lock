@@ -16,6 +16,21 @@
         "type": "github"
       }
     },
+    "catppuccin": {
+      "locked": {
+        "lastModified": 1720472194,
+        "narHash": "sha256-CYscFEts6tyvosc1T29nxhzIYJAj/1CCEkV3ZMzSN/c=",
+        "owner": "catppuccin",
+        "repo": "nix",
+        "rev": "d75d5803852fb0833767dc969a4581ac13204e22",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "nix",
+        "type": "github"
+      }
+    },
     "catppuccin-alacritty": {
       "flake": false,
       "locked": {
@@ -742,6 +757,7 @@
     },
     "root": {
       "inputs": {
+        "catppuccin": "catppuccin",
         "catppuccin-alacritty": "catppuccin-alacritty",
         "catppuccin-bat": "catppuccin-bat",
         "catppuccin-btop": "catppuccin-btop",

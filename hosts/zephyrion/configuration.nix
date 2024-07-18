@@ -6,9 +6,7 @@
   config,
   pkgs,
   ...
-}: let
-  colors = inputs.nix-colors.colorSchemes.catppuccin-mocha.palette;
-in {
+}: {
   imports = [
     inputs.nixos-hardware.nixosModules.common-cpu-amd
     inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
@@ -25,6 +23,7 @@ in {
     ./desktop.nix
     ./services.nix
     ./virtualization.nix
+    ./theme.nix
   ];
 
   ##################################################
@@ -77,8 +76,6 @@ in {
     plymouth = {
       enable = true;
       font = "${pkgs.jetbrains-mono}/share/fonts/truetype/JetBrainsMono-Regular.ttf";
-      themePackages = [(pkgs.catppuccin-plymouth.override {variant = "mocha";})];
-      theme = "catppuccin-mocha";
     };
     tmp = {
       cleanOnBoot = true;
@@ -87,24 +84,6 @@ in {
   console = {
     earlySetup = true;
     font = "${pkgs.terminus_font}/share/consolefonts/ter-124n.psf.gz";
-    colors = [
-      colors.base00 # black
-      colors.base08 # red
-      colors.base0B # green
-      colors.base0A # yellow
-      colors.base0D # blue
-      colors.base0E # magenta
-      colors.base0C # cyan
-      colors.base05 # white
-      colors.base04 # bright black aka gray
-      colors.base08 # bright red
-      colors.base0B # bright green
-      colors.base0A # bright yellow
-      colors.base0D # bright blue
-      colors.base07 # bright magenta
-      colors.base0C # bright cyan
-      colors.base0E # bright white
-    ];
     packages = with pkgs; [terminus_font];
     keyMap = "us";
   };
