@@ -22,7 +22,5 @@
       # colors
       background_opacity = "0.9";
     };
-
-    theme = "Catppuccin-Mocha";
   };
 }

@@ -65,27 +65,6 @@
       url = "github:ntnyq/omz-plugin-pnpm";
       flake = false;
     };
-
-    catppuccin-kvantum = {
-      url = "github:catppuccin/Kvantum";
-      flake = false;
-    };
-    catppuccin-bat = {
-      url = "github:catppuccin/bat";
-      flake = false;
-    };
-    catppuccin-btop = {
-      url = "github:catppuccin/btop";
-      flake = false;
-    };
-    catppuccin-alacritty = {
-      url = "github:catppuccin/alacritty";
-      flake = false;
-    };
-    catppuccin-yazi = {
-      url = "github:catppuccin/yazi";
-      flake = false;
-    };
   };
 
   outputs = {

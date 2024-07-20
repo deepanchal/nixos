@@ -12,6 +12,8 @@
 in {
   # You can import other home-manager modules here
   imports = [
+    inputs.catppuccin.homeManagerModules.catppuccin
+
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
     ./global
@@ -67,7 +69,7 @@ in {
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
-    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "JetBrainsMono" ]; })
+    (pkgs.nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
@@ -140,5 +142,21 @@ in {
     blueman-applet.enable = true;
     swayosd.enable = true;
     gnome-keyring.enable = true;
+  };
+
+  catppuccin = let
+    # Type: one of “latte”, “frappe”, “macchiato”, “mocha”
+    flavor = "mocha";
+    # Type: one of “blue”, “flamingo”, “green”, “lavender”, “maroon”, “mauve”, “peach”, “pink”, “red”, “rosewater”, “sapphire”, “sky”, “teal”, “yellow”
+    accent = "blue";
+  in {
+    # enable for all programs
+    enable = true;
+    flavor = flavor;
+    accent = accent;
+
+    pointerCursor = {
+      enable = false;
+    };
   };
 }

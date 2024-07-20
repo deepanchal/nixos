@@ -2,31 +2,13 @@
   pkgs,
   config,
   ...
-}: let
-  colors = config.colorscheme.palette;
-  accent = config.theme.accent;
-in {
+}: {
   programs.lazygit = {
     enable = true;
     settings = {
       gui = {
         showIcons = true;
         nerdFontsVersion = "3";
-        # catppuccin mocha theme: https://github.com/catppuccin/lazygit/blob/main/themes/mocha/green.yml
-        theme = {
-          activeBorderColor = ["#${accent}" "bold"];
-          inactiveBorderColor = ["#a6adc8"];
-          optionsTextColor = ["#${colors.base0D}"];
-          selectedLineBgColor = ["#${colors.base02}"];
-          cherryPickedCommitBgColor = ["#${colors.base03}"];
-          cherryPickedCommitFgColor = ["#${accent}"];
-          unstagedChangesColor = ["#${colors.base08}"];
-          defaultFgColor = ["#${colors.base05}"];
-          searchingActiveBorderColor = ["#${colors.base0A}"];
-        };
-        authorColors = {
-          "*" = "#${colors.base07}";
-        };
       };
       customCommands = [
         {

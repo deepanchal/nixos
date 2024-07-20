@@ -36,24 +36,6 @@
           strider.path = "strider";
           compact-bar.path = "compact-bar";
         };
-
-        themes = {
-          "${config.colorscheme.slug}" = with config.colorscheme.palette; {
-            bg = "#${base04}";
-            fg = "#${base05}";
-            red = "#${base08}";
-            green = "#${base0B}";
-            blue = "#${base0D}";
-            yellow = "#${base0A}";
-            magenta = "#${base0E}";
-            orange = "#${base09}";
-            cyan = "#${base0C}";
-            black = "#${base00}";
-            white = "#${base05}";
-          };
-        };
-
-        theme = "${config.colorscheme.slug}";
       };
     };
   };

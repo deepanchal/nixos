@@ -1,16 +1,8 @@
 {config, ...}: let
-  colors = config.colorScheme.palette;
-  accent = config.theme.accent;
   custom = {
     font = "JetBrainsMono Nerd Font, Material Design Icons";
     font_size = "15px";
     font_weight = "bold";
-    text_color = colors.base05;
-    active_color = accent;
-    inactive_color = colors.base05;
-    secondary_accent = accent;
-    tertiary_accent = colors.base0E;
-    background = colors.base00;
     opacity = "0.98";
   };
 in {
@@ -28,22 +20,18 @@ in {
 
     window#waybar {
         border-radius: 8px;
-        background: #${custom.background};
     }
 
     #workspaces {
         font-size: 14px;
     }
     #workspaces button {
-        color: #${custom.text_color};
         padding-left:  6px;
         padding-right: 6px;
     }
     #workspaces button.empty {
-        color: #${custom.inactive_color};
     }
     #workspaces button.active {
-        color: #${custom.active_color};
     }
 
     #custom-search,
@@ -66,7 +54,6 @@ in {
     #disk,
     #clock {
         font-size: ${custom.font_size};
-        color: #${custom.text_color};
         margin: 0px 8px 0px 8px;
     }
 
@@ -92,7 +79,6 @@ in {
 
     #custom-launcher {
         font-size: 20px;
-        color: #${custom.text_color};
         font-weight: ${custom.font_weight};
         padding-left: 10px;
         padding-right: 18px;
