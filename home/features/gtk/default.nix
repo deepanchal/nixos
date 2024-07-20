@@ -4,61 +4,21 @@
   config,
   inputs,
   ...
-}: let
-  themeName = config.theme.name;
-  flavor = config.theme.flavor;
-  accentName = config.theme.accentName;
-  flavorLower = lib.toLower flavor;
-  accentNameLower = lib.toLower accentName;
-  catppuccin-kvantum = inputs.catppuccin-kvantum;
-in {
-  dconf = {
-    settings = {
-      "org/gnome/desktop/interface" = {
-        color-scheme = "prefer-dark";
-      };
-    };
-  };
-
+}: {
   gtk = {
     enable = true;
-    theme = {
-      name = "${themeName}-Compact-${accentName}-Dark";
-      package = pkgs.catppuccin-gtk.override {
-        accents = [accentNameLower];
-        tweaks = ["rimless"];
-        size = "compact";
-        variant = flavorLower;
+    catppuccin = {
+      enable = true;
+      # Type: list of (one of “black”, “rimless”, “normal”)
+      tweaks = ["rimless"];
+      icon = {
+        enable = true;
       };
-    };
-
-    iconTheme = {
-      package = pkgs.catppuccin-papirus-folders.override {
-        accent = accentNameLower;
-        flavor = flavorLower;
-      };
-      name = "Papirus-Dark";
     };
     font = {
       name = "Noto Sans";
       size = 11;
     };
-    gtk3.extraConfig = {
-      gtk-xft-antialias = 1;
-      gtk-xft-hinting = 1;
-      gtk-xft-hintstyle = "hintslight";
-      gtk-xft-rgba = "rgb";
-      gtk-application-prefer-dark-theme = 1;
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-    gtk2.extraConfig = ''
-      gtk-xft-antialias=1
-      gtk-xft-hinting=1
-      gtk-xft-hintstyle="hintslight"
-      gtk-xft-rgba="rgb"
-    '';
   };
 
   home = {
@@ -84,24 +44,14 @@ in {
   };
   qt = {
     enable = true;
-    platformTheme = "qtct";
+    platformTheme = {
+      name = "kvantum";
+    };
     style = {
-      name = "${themeName}-Dark";
-      package = pkgs.catppuccin-kde.override {
-        flavour = [flavorLower];
-        accents = [accentNameLower];
+      name = "kvantum";
+      catppuccin = {
+        enable = true;
       };
     };
-  };
-  xdg.configFile = {
-    "Kvantum/catppuccin/catppuccin.kvconfig".source = "${catppuccin-kvantum}/src/${themeName}-${accentName}/${themeName}-${accentName}.kvconfig";
-    "Kvantum/catppuccin/catppuccin.svg".source = "${catppuccin-kvantum}/src/${themeName}-${accentName}/${themeName}-${accentName}.svg";
-    "Kvantum/kvantum.kvconfig".text = ''
-      [General]
-      theme=catppuccin
-
-      [Applications]
-      catppuccin=qt5ct, org.qbittorrent.qBittorrent, hyprland-share-picker
-    '';
   };
 }

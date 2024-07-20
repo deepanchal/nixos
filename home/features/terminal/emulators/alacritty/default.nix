@@ -4,18 +4,10 @@
   config,
   inputs,
   ...
-}: let
-  flavor = lib.toLower config.theme.name;
-  catppuccin-alacritty = inputs.catppuccin-alacritty;
-in {
+}: {
   programs.alacritty = {
     enable = true;
     settings = {
-      # Note: Alacritty's setting key for importing files is 'import' not 'imports'
-      import = [
-        "${catppuccin-alacritty}/${flavor}.toml"
-      ];
-
       window = {
         decorations = "none";
         dynamic_padding = true;

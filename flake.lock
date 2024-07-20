@@ -31,86 +31,6 @@
         "type": "github"
       }
     },
-    "catppuccin-alacritty": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1712663324,
-        "narHash": "sha256-Pi1Hicv3wPALGgqurdTzXEzJNx7vVh+8B9tlqhRpR2Y=",
-        "owner": "catppuccin",
-        "repo": "alacritty",
-        "rev": "94800165c13998b600a9da9d29c330de9f28618e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "alacritty",
-        "type": "github"
-      }
-    },
-    "catppuccin-bat": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1714038927,
-        "narHash": "sha256-Q5B4NDrfCIK3UAMs94vdXnR42k4AXCqZz6sRn8bzmf4=",
-        "owner": "catppuccin",
-        "repo": "bat",
-        "rev": "d714cc1d358ea51bfc02550dabab693f70cccea0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "bat",
-        "type": "github"
-      }
-    },
-    "catppuccin-btop": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1715687124,
-        "narHash": "sha256-UXeTypc15MhjgGUiCrDUZ40m32yH2o1N+rcrEgY6sME=",
-        "owner": "catppuccin",
-        "repo": "btop",
-        "rev": "21b8d5956a8b07fa52519e3267fb3a2d2e693d17",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "btop",
-        "type": "github"
-      }
-    },
-    "catppuccin-kvantum": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1718738958,
-        "narHash": "sha256-Ubj+dydyS36QotO7YAnZFnMANogscDwZ0ryIsQg0L48=",
-        "owner": "catppuccin",
-        "repo": "Kvantum",
-        "rev": "c8538166447e595d3ebcd508699a8fed2d24d75f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "Kvantum",
-        "type": "github"
-      }
-    },
-    "catppuccin-yazi": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1718591879,
-        "narHash": "sha256-a2X9WToZmctD1HZVqN9A512iPd+3dtjRloBEifgteF4=",
-        "owner": "catppuccin",
-        "repo": "yazi",
-        "rev": "9bfdccc2b78d7493fa5c5983bc176a0bc5fef164",
-        "type": "github"
-      },
-      "original": {
-        "owner": "catppuccin",
-        "repo": "yazi",
-        "type": "github"
-      }
-    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -758,11 +678,6 @@
     "root": {
       "inputs": {
         "catppuccin": "catppuccin",
-        "catppuccin-alacritty": "catppuccin-alacritty",
-        "catppuccin-bat": "catppuccin-bat",
-        "catppuccin-btop": "catppuccin-btop",
-        "catppuccin-kvantum": "catppuccin-kvantum",
-        "catppuccin-yazi": "catppuccin-yazi",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "hy3": "hy3",
