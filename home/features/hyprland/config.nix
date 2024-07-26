@@ -37,6 +37,10 @@ in {
       exec-once = [
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 
+        ## Fix anyrun
+        ## https://github.com/anyrun-org/anyrun/issues/153
+        "ln -s $XDG_RUNTIME_DIR/hypr /tmp/hypr"
+
         # set cursor for HL itself
         "hyprctl setcursor ${pointer.name} ${toString pointer.size}"
 
