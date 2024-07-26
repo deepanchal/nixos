@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  inputs,
   pkgs,
   ...
 }: let
@@ -51,7 +52,8 @@ in {
     bind =
       [
         # "${mainMod}, SPACE, exec, run-as-service $(tofi-drun)"
-        "${altMod}, SPACE, exec, run-as-service $(${rofi} -show drun)"
+        # "${altMod}, SPACE, exec, run-as-service $(${rofi} -show drun)"
+        "${altMod}, SPACE, exec, run-as-service $(anyrun)"
         "${mainMod}, RETURN, exec, alacritty msg create-window || alacritty"
         "${modshift}, RETURN, exec, ${wezterm}"
         # "${mainMod}, B, exec, ${firefox}"
@@ -110,6 +112,9 @@ in {
         # "${modshift}, G, hy3:changegroupactive," # switch within the active group
         "${modshift}, SPACE, togglefloating," # toggle floating for the focused window
         "${altMod}, C, exec, ${cliphist} list | ${rofi} -dmenu | ${cliphist} decode | ${wl-copy}"
+        # "${altMod}, C, exec, ${cliphist} list | anyrun --hide-plugin-info true --show-results-immediately true --plugins ${
+        #   inputs.anyrun.packages.${pkgs.system}.stdin
+        # }/lib/libstdin.so | ${cliphist} decode | ${wl-copy}"
 
         "${modshift}, M, exec, ${playerctl} play-pause"
         "${modshift}, N, exec, ${playerctl} next"

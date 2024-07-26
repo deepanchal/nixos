@@ -21,6 +21,7 @@ in {
     ./features/hyprland
     # ./features ./eww # Not working yet
     ./features/waybar
+    ./features/anyrun
     # ./features ./dunst
     ./features/swaync
     ./features/rofi
