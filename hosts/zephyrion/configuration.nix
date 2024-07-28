@@ -87,6 +87,7 @@
     packages = with pkgs; [terminus_font];
     keyMap = "us";
   };
+  boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_8;
 
   ##################################################
   # USER SETTINGS
