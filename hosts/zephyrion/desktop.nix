@@ -22,11 +22,11 @@ in {
     (with pkgs; [
       gnome-tour
       gedit # text editor
+      epiphany # web browser
+      geary # email reader
     ])
     ++ (with pkgs.gnome; [
       # gnome.gnome-terminal
-      epiphany # web browser
-      geary # email reader
       tali # poker game
       iagno # go game
       hitori # sudoku game
