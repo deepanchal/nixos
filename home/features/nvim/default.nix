@@ -94,21 +94,21 @@
       nodePackages.dockerfile-language-server-nodejs
       # terraform
       # terraform-ls
-      hadolint # Dockerfile linter
+      # hadolint # Dockerfile linter
 
       # OTHERS
       taplo # TOML language server / formatter / validator
       nodePackages.yaml-language-server
-      sqlfluff # SQL linter
+      # sqlfluff # SQL linter
       actionlint # GitHub Actions linter
-      buf # protoc plugin for linting and formatting
-      proselint # English prose linter
+      # buf # protoc plugin for linting and formatting
+      # proselint # English prose linter
 
       # MISC
       tree-sitter # common language parser/highlighter
       nodePackages.prettier # common code formatter
       marksman # language server for markdown
-      glow # markdown previewer
+      # glow # markdown previewer
 
       # OPTIONAL REQUIREMENTS:
       gdu # disk usage analyzer, required by AstroNvim
