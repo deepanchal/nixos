@@ -12,6 +12,7 @@
 in {
   # You can import other home-manager modules here
   imports = [
+    inputs.nur.hmModules.nur
     inputs.catppuccin.homeManagerModules.catppuccin
 
     # If you want to use modules your own flake exports (from modules/home-manager):
