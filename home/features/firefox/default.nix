@@ -11,7 +11,7 @@
         id = 0;
         isDefault = true;
         bookmarks = [];
-        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        extensions = with config.nur.repos.rycee.firefox-addons; [
           darkreader
           ublock-origin
           bitwarden

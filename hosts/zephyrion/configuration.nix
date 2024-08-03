@@ -13,6 +13,8 @@
     inputs.nixos-hardware.nixosModules.common-gpu-amd
     inputs.nixos-hardware.nixosModules.common-pc-ssd
 
+    inputs.nur.nixosModules.nur
+
     ./hardware-configuration.nix
 
     ../common/global
@@ -131,6 +133,11 @@
   nixpkgs = {
     config = {
       allowUnfree = true;
+      packageOverrides = pkgs: {
+        nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+          inherit pkgs;
+        };
+      };
     };
     overlays = [
       inputs.nur.overlay
