@@ -265,15 +265,15 @@
 
     fd
     procs
-    just
-    sd
+    # just
+    # sd
     du-dust
-    tokei
-    hyperfine
-    grex
+    # tokei
+    # hyperfine
+    # grex
     delta
-    nushell
-    helix
+    # nushell
+    # helix
     # mcfly # terminal history
     # skim #fzf better alternative in rust
     # macchina #neofetch alternative in rust
@@ -283,31 +283,31 @@
     nix-index
 
     progress
-    noti
-    rewrk
-    wrk2
+    # noti
+    # rewrk
+    # wrk2
     nvtopPackages.full
-    monolith
-    aria
-    ouch
-    duf
+    # monolith
+    # aria
+    # ouch
+    # duf
     jq
     trash-cli
-    fzf
-    mdcat
-    pandoc
-    lsd
-    gping
-    viu
-    tre-command
-    felix-fm
-    chafa
+    # fzf
+    # mdcat
+    # pandoc
+    # lsd
+    # gping
+    # viu
+    # tre-command
+    # felix-fm
+    # chafa
 
-    cmatrix
-    pipes-rs
-    rsclock
-    cava
-    figlet
+    # cmatrix
+    # pipes-rs
+    # rsclock
+    # cava
+    # figlet
 
     mpv # video player
     imv # image viewer
