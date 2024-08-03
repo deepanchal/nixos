@@ -107,10 +107,11 @@
     deep = {
       isNormalUser = true;
       description = "Deep Panchal";
+    initialPassword = "deep";
       extraGroups = [
         "networkmanager"
         "input"
-        "wheel"
+        "wheel" # Enable ‘sudo’ for the user.
         "video"
         "audio"
         "libvirtd"
