@@ -35,16 +35,16 @@
   boot = {
     loader = {
       # systemd-boot
-      # systemd-boot.enable = true;
-      # efi.canTouchEfiVariables = true;
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
 
       # grub
-      grub.enable = true;
-      grub.efiSupport = true;
-      grub.device = "nodev";
-      efi.canTouchEfiVariables = true;
-      efi.efiSysMountPoint = "/boot/efi";
-      timeout = 5;
+      # grub.enable = true;
+      # grub.efiSupport = true;
+      # grub.device = "nodev";
+      # efi.canTouchEfiVariables = true;
+      # efi.efiSysMountPoint = "/boot/efi";
+      # timeout = 5;
     };
     # blacklistedKernelModules = [ "nouveau" ];
     kernelParams = [
@@ -293,7 +293,7 @@
     # duf
     jq
     trash-cli
-    # fzf
+    fzf
     # mdcat
     # pandoc
     # lsd
