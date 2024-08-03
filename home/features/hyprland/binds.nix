@@ -148,7 +148,7 @@ in {
       ",XF86AudioLowerVolume, exec, ${swayosd} --output-volume -5"
       ",XF86AudioMute, exec, ${swayosd} --output-volume mute-toggle"
       ",XF86AudioMicMute, exec, ${swayosd} --input-volume mute-toggle"
-      ",XF86MonBrightnessUp, exec, ${swayosd} --brightness 10"
+      ",XF86MonBrightnessUp, exec, ${swayosd} --brightness +10"
       ",XF86MonBrightnessDown, exec, ${swayosd} --brightness -10"
       ",Caps_Lock, exec, ${swayosd} --caps-lock"
 
