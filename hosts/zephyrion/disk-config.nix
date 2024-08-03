@@ -1,26 +1,26 @@
 # Format disk with this command:
-# sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ~/nixos/hosts/zephyrion/disk-config.nix
+# sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko ./disk-config.nix --arg device '"/dev/disk/by-id/ata-SanDisk_SSD_PLUS_240GB_191386466003"'
 # Ref: https://github.com/nix-community/disko/blob/master/docs/reference.md
-{lib, ...}: let
-  user = "deep";
-  disk = "/dev/disk/by-id/ata-SanDisk_SSD_PLUS_240GB_191386466003";
-  btrfsMountOptions = ["defaults" "noatime" "compress=zstd" "autodefrag" "ssd" "discard=async" "space_cache=v2"];
-  tmpfsMountOptions = ["defaults" "noatime" "size=3072M" "x-gvfs-show" "mode=1777"];
-in {
+{
+  # This is being set in flake.nix
+  device ? throw "Set this to your disk device, e.g. /dev/sda or /dev/disk/by-id/ata-SanDisk_SSD_PLUS_240GB_191386466003",
+  ...
+}: {
   disko.devices = {
     disk = {
       main = {
         type = "disk";
-        device = disk;
+        device = device;
         content = {
           type = "gpt";
           partitions = {
-            MBR = {
+            boot = {
+              name = "boot";
               type = "EF02"; # for grub MBR
               size = "1M";
               priority = 1; # Needs to be first partition
             };
-            ESP = {
+            esp = {
               name = "ESP";
               size = "500M";
               type = "EF00";
@@ -34,80 +34,42 @@ in {
                 ];
               };
             };
-            MAIN = {
+            swap = {
+              size = "4G";
+              content = {
+                type = "swap";
+                resumeDevice = true;
+              };
+            };
+            root = {
               size = "100%";
               content = {
                 type = "btrfs";
                 extraArgs = ["-f" "-L NIXOS"];
-                postMountHook = ''
-                  if [ -d /mnt/var/lib/libvirt ]; then
-                  chattr +C /mnt/var/lib/libvirt
-                  fi
-                '';
                 subvolumes = {
-                  "" = {
-                    mountpoint = "/mnt/defvol";
-                    mountOptions = btrfsMountOptions;
+                  # mount the top-level subvolume at /btr_pool
+                  # it will be used by btrbk to create snapshots
+                  "/" = {
+                    mountpoint = "/btr_pool";
+                    # btrfs's top-level subvolume, internally has an id 5
+                    # we can access all other subvolumes from this subvolume.
+                    mountOptions = ["subvolid=5"];
                   };
                   "@" = {
                     mountpoint = "/";
-                    mountOptions = btrfsMountOptions;
-                  };
-                  "@snapshots" = {
-                    mountpoint = "/.snapshots";
-                    mountOptions = btrfsMountOptions;
-                  };
-                  "@home_root" = {
-                    mountpoint = "/root";
-                    mountOptions = btrfsMountOptions;
-                  };
-                  "@home" = {
-                    mountpoint = "/home";
-                    mountOptions = btrfsMountOptions;
-                  };
-                  "@projects" = {
-                    mountpoint = "/home/${user}/projects";
-                    mountOptions = btrfsMountOptions;
-                  };
-                  "@user_cache" = {
-                    mountpoint = "/home/${user}/.cache";
-                    mountOptions = btrfsMountOptions;
-                  };
-                  "@user_config" = {
-                    mountpoint = "/home/${user}/.config";
-                    mountOptions = btrfsMountOptions;
-                  };
-                  "@srv" = {
-                    mountpoint = "/srv";
-                    mountOptions = btrfsMountOptions;
-                  };
-                  "@opt" = {
-                    mountpoint = "/opt";
-                    mountOptions = btrfsMountOptions;
+                    mountOptions = ["compress=zstd" "noatime"];
                   };
                   "@nix" = {
                     mountpoint = "/nix";
-                    mountOptions = btrfsMountOptions;
+                    mountOptions = ["compress=zstd" "noatime"];
                   };
-                  "@var_log" = {
-                    mountpoint = "/var/log";
-                    mountOptions = btrfsMountOptions;
+                  "@persist" = {
+                    mountpoint = "/persist";
+                    mountOptions = ["compress=zstd" "noatime"];
                   };
-                  "@var_cache" = {
-                    mountpoint = "/var/cache";
-                    mountOptions = btrfsMountOptions;
-                  };
-                  "@var_tmp" = {
-                    mountpoint = "/var/tmp";
-                    mountOptions = btrfsMountOptions;
-                  };
-                  "@var_libvirt" = {
-                    mountpoint = "/var/lib/libvirt";
-                    mountOptions = btrfsMountOptions;
-                  };
-                  "@docker" = {
-                    mountpoint = "/var/lib/docker";
-                    mountOptions = ["defaults"];
+                  "@snapshots" = {
+                    mountpoint = "/snapshots";
+                    mountOptions = ["compress=zstd" "noatime"];
                   };
                 };
               };
@@ -116,10 +78,5 @@ in {
         };
       };
     };
-  };
-  fileSystems."/tmp/ramdisk" = {
-    device = "tmpfs";
-    fsType = "tmpfs";
-    options = tmpfsMountOptions;
   };
 }
