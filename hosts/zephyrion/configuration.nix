@@ -29,6 +29,7 @@
     ./services.nix
     ./virtualization.nix
     ./theme.nix
+    ./home.nix # Note: building home-manager along with nixos
   ];
 
   ##################################################
