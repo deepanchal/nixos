@@ -10,7 +10,6 @@
 in {
   imports =
     [
-      # inputs.impermanence.nixosModules.home-manager.impermanence
       inputs.nix-colors.homeManagerModule
       # ../features/cli
       # ../features/nvim
