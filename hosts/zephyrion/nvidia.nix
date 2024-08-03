@@ -7,8 +7,6 @@
   imports = [
     inputs.nixos-hardware.nixosModules.common-gpu-nvidia # with prime
     # inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
-    # This import disables nvidia gpu. This runs only intel/amdgpu igpus and nvidia dgpus do not drain power.
-    inputs.nixos-hardware.nixosModules.common-gpu-nvidia-disable
   ];
 
   # Enable OpenGL

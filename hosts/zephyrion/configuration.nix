@@ -18,8 +18,11 @@
     ../common/global
     ../common/optional/pipewire.nix
 
+    # This import disables nvidia gpu. This runs only intel/amdgpu igpus and nvidia dgpus do not drain power.
+    inputs.nixos-hardware.nixosModules.common-gpu-nvidia-disable
+    # ./nvidia.nix
+
     ./asus.nix
-    ./nvidia.nix
     ./desktop.nix
     ./services.nix
     ./virtualization.nix
