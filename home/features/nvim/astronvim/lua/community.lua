@@ -66,5 +66,5 @@ return {
   -- { import = "astrocommunity.editing-support.conform-nvim" },
   { import = "astrocommunity.editing-support.refactoring-nvim" },
   { import = "astrocommunity.editing-support.chatgpt-nvim" },
-  { import = "astrocommunity.media.vim-wakatime" },
+  -- { import = "astrocommunity.media.vim-wakatime" },
 }
