@@ -13,6 +13,9 @@
     inputs.nixos-hardware.nixosModules.common-gpu-amd
     inputs.nixos-hardware.nixosModules.common-pc-ssd
 
+    inputs.disko.nixosModules.default
+    (import ./disk-config.nix {device = "/dev/disk/by-id/ata-SanDisk_SSD_PLUS_240GB_191386466003";})
+
     inputs.nur.nixosModules.nur
 
     ./hardware-configuration.nix
@@ -30,6 +33,7 @@
     ./virtualization.nix
     ./theme.nix
     ./home.nix # Note: building home-manager along with nixos
+    ./impermanence.nix
   ];
 
   ##################################################
