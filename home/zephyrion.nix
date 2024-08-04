@@ -35,6 +35,7 @@ in {
     ./features/mise
     ./features/tmux
     ./features/firefox
+    ./features/thunar
   ];
 
   colorscheme = lib.mkDefault colorSchemes.catppuccin-mocha;
