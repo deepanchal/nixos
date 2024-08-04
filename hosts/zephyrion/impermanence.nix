@@ -79,9 +79,14 @@
       "/etc/nixos"
       "/var/log"
 
+      "/var/cache/tuigreet" # Persist tuigreet sessions
+
       # "/var/lib"
       "/var/lib/bluetooth"
       "/var/lib/nixos"
+      "/var/lib/docker"
+      "/var/lib/libvirt"
+      "/var/lib/alsa"
     ];
     files = [
       "/etc/machine-id"
@@ -102,6 +107,7 @@
         "Videos"
         "VirtualBox VMs"
         "projects"
+        ".keychain"
         ".rustup"
         ".mozilla"
         ".cache"
