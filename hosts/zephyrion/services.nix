@@ -23,6 +23,7 @@ in {
   ];
   services.mpd.enable = true;
   programs.thunar.enable = true;
+  programs.adb.enable = true;
   services.tumbler.enable = true;
   services.fwupd.enable = true;
   programs.light.enable = true;
