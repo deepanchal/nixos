@@ -27,7 +27,7 @@
       mount -o subvol=/ /dev/disk/by-label/NIXOS /btrfs_tmp
       if [[ -e /btrfs_tmp/@ ]]; then
           mkdir -p /btrfs_tmp/old_roots
-          timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/@)" "+%Y-%m-%-d_%H:%M:%S")
+          timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/@)" "+%Y%m%d_%H%M%S") # Using format YYYYMMDD_hhmmss (e.g. "20150825_153120")
           mv /btrfs_tmp/@ "/btrfs_tmp/old_roots/$timestamp"
           echo "impermanence: Old root subvolume moved to /btrfs_tmp/old_roots/$timestamp"
       fi
@@ -76,14 +76,20 @@
     hideMounts = true;
     directories = [
       "/etc/NetworkManager/system-connections"
-      "/etc/ssh"
       "/etc/nixos"
-      "/etc/nix/inputs"
       "/var/log"
-      "/var/lib"
+
+      # "/var/lib"
+      "/var/lib/bluetooth"
+      "/var/lib/nixos"
     ];
     files = [
       "/etc/machine-id"
+      "/etc/nix/tokens.conf"
+      "/etc/ssh/ssh_host_ed25519_key"
+      "/etc/ssh/ssh_host_ed25519_key.pub"
+      "/etc/ssh/ssh_host_rsa_key"
+      "/etc/ssh/ssh_host_rsa_key.pub"
     ];
 
     # # the following directories will be passed to /persist/home/$USER
@@ -95,12 +101,64 @@
         "Documents"
         "Videos"
         "VirtualBox VMs"
-        ".gnupg"
-        ".ssh"
+        "projects"
+        ".rustup"
+        ".mozilla"
+        ".cache"
+        ".config/gh"
+        {
+          directory = ".gnupg";
+          mode = "0700";
+        }
+        {
+          directory = ".ssh";
+          mode = "0700";
+        }
         ".local/share"
         ".local/state"
       ];
-      files = [];
+      files = [
+        # ".config/gh/hosts.yml"
+      ];
     };
   };
+
+  environment.systemPackages = [
+    # Script for moving dir to /persist to persist on next boot
+    (pkgs.writeShellScriptBin "persist" ''
+      dir="/persist/$(dirname $1)"
+      sudo mkdir -p $dir
+      sudo cp -rv $@ $dir
+    '')
+    # Script for showing the diff between the root and root-blank subvolumes.
+    # This shows the ephemeral files which will be deleted on boot.
+    (pkgs.writeShellScriptBin "fs-diff" ''
+      set -euo pipefail
+
+      sudo mkdir -p /mnt/fs-diff
+      sudo mount -o subvol=/ /dev/disk/by-label/NIXOS /mnt/fs-diff
+
+      OLD_TRANSID=$(sudo btrfs subvolume find-new /mnt/fs-diff/root-blank 9999999)
+      OLD_TRANSID=''${OLD_TRANSID#transid marker was}
+
+      sudo btrfs subvolume find-new "/mnt/fs-diff/@" "$OLD_TRANSID" |
+      sed '$d' |
+      cut -f17- -d' ' |
+      sort |
+      uniq |
+      while read path; do
+        path="/$path"
+        if [ -L "$path" ]; then
+          : # The path is a symbolic link, probably handled by NixOS already
+        elif [ -d "$path" ]; then
+          : # The path is a directory, ignore
+        else
+          echo "$path"
+        fi
+      done
+
+      sudo umount /mnt/fs-diff
+      sudo rmdir /mnt/fs-diff
+    '')
+  ];
 }
