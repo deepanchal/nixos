@@ -77,16 +77,18 @@
     directories = [
       "/etc/NetworkManager/system-connections"
       "/etc/nixos"
+      "/etc/wireguard"
+
       "/var/log"
-
       "/var/cache/tuigreet" # Persist tuigreet sessions
-
-      # "/var/lib"
+      "/var/db/sudo/lectured" # Remember lectured sudo users
       "/var/lib/bluetooth"
       "/var/lib/nixos"
       "/var/lib/docker"
       "/var/lib/libvirt"
       "/var/lib/alsa"
+      "/var/lib/upower"
+      "/var/lib/systemd"
     ];
     files = [
       "/etc/machine-id"
@@ -97,7 +99,7 @@
       "/etc/ssh/ssh_host_rsa_key.pub"
     ];
 
-    # # the following directories will be passed to /persist/home/$USER
+    # the following directories will be passed to /persist/home/$USER
     users.deep = {
       directories = [
         "Downloads"
@@ -107,11 +109,28 @@
         "Videos"
         "VirtualBox VMs"
         "projects"
+
+        "Android" # android sdk stuff
+        ".android" # adb keys
         ".keychain"
         ".rustup"
-        ".mozilla"
+        ".cargo"
+        ".npm"
+        ".minikube"
+        ".mozilla" # firefox
         ".cache"
+        ".wakatime"
+
         ".config/gh"
+        ".config/BraveSoftware"
+        ".config/Slack"
+        ".config/discord"
+        ".config/google-chrome"
+        ".config/spotify"
+
+        ".local/share"
+        ".local/state"
+
         {
           directory = ".gnupg";
           mode = "0700";
@@ -120,10 +139,19 @@
           directory = ".ssh";
           mode = "0700";
         }
-        ".local/share"
-        ".local/state"
+        {
+          directory = ".aws";
+          mode = "0700";
+        }
+        {
+          directory = ".secrets";
+          mode = "0700";
+        }
       ];
       files = [
+        ".bash_history"
+        ".wakatime.cfg"
+        ".config/pavucontrol.ini"
         # ".config/gh/hosts.yml"
       ];
     };
