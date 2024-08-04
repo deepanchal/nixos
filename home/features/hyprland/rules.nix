@@ -27,6 +27,8 @@
       "noshadow, floating:0" # only allow shadows for floating windows
       "float, class:Rofi"
       "stayfocused, class:Rofi"
+      "float, class:^(pavucontrol)$"
+      "float, class:^(.blueman-manager-wrapped)$"
       "float, class:feh"
       "float, class:wlogout"
       "float, class:file_progress"
