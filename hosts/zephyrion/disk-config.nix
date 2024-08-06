@@ -8,7 +8,7 @@
   # https://gist.github.com/hopeseekr/cd2058e71d01deca5bae9f4e5a555440
   # See postMountHook in disk-config.nix which creates a ext4 img for docker
   fileSystems."/var/lib/docker" = {
-    device = "/btr_pool/@dumps/docker-volume.img";
+    device = "/btr_pool/@docker/docker-volume.img";
     fsType = "ext4";
     options = ["loop"];
   };
@@ -62,10 +62,15 @@
                   echo "[postCreateHook] Taking blank root (@) snapshot..."
                   btrfs subvolume snapshot -r $MNTPOINT/@ $MNTPOINT/root-blank
 
+                  # Disable CopyOnWrite (CoW) on subvols
+                  echo "[postCreateHook] Disabling CoW on some subvols..."
+                  chattr -R +C $MNTPOINT/@dumps
+                  chattr -R +C $MNTPOINT/@docker
+
                   # Dedicated ext4 file system for docker to prevent btrfs corruption
                   # https://gist.github.com/hopeseekr/cd2058e71d01deca5bae9f4e5a555440
                   echo "[postCreateHook] Creating ext4 fs inside btrfs for docker..."
-                  pushd $MNTPOINT/@dumps
+                  pushd $MNTPOINT/@docker
                   touch docker-volume.img
                   chattr +C docker-volume.img
                   fallocate -l 30G docker-volume.img
@@ -102,6 +107,8 @@
                     mountpoint = "/snapshots";
                     mountOptions = ["compress=zstd" "noatime"];
                   };
+                  # Subvol to store docker ext4 img with CopyOnWrite (CoW) disabled
+                  "@docker" = {};
                   # Subvol to store all data dumps with CopyOnWrite (CoW) disabled
                   "@dumps" = {};
                 };
