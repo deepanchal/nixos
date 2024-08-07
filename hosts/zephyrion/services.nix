@@ -14,7 +14,13 @@ in {
   # Enable Services
   programs.direnv.enable = true;
   services.upower.enable = true;
-  services.libinput.enable = true;
+  services.libinput = {
+    enable = true;
+    mouse = {
+      accelProfile = "flat";
+      accelSpeed = "0";
+    };
+  };
   programs.dconf.enable = true;
   services.dbus.enable = true;
   services.dbus.packages = with pkgs; [
