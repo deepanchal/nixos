@@ -1,9 +1,3 @@
-# Setup format: https://github.com/vimjoyer/flake-starter-config
-# Setup inspirations:
-# - https://github.com/vimjoyer/flake-starter-config
-# - https://github.com/sioodmy/dotfiles
-# - https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles
-# - https://github.com/fufexan/dotfiles
 {
   description = "NixOS Configuration";
 
