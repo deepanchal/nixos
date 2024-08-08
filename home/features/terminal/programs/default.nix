@@ -6,7 +6,7 @@
     ./ripgrep.nix
     ./lazygit.nix
     ./zoxide.nix
-    ./teeldeer.nix
+    ./tealdeer.nix
     ./git.nix
     ./gh.nix
     ./fd.nix
