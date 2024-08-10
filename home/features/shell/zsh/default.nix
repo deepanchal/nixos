@@ -118,11 +118,11 @@ in {
           zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
           # Hook mise (asdf rust clone) to shell
-          eval "$(mise activate zsh)"
+          # eval "$(mise activate zsh)"
 
           # A shortcut for mise managed direnv.
           # mise exec direnv@latest -- direnv
-          direnv() { mise exec direnv@latest -- direnv "$@"; }
+          # direnv() { mise exec direnv@latest -- direnv "$@"; }
 
           # Load secret env vars
           [ -f ~/scripts/load-secret-env-vars.sh ] && source ~/scripts/load-secret-env-vars.sh

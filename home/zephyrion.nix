@@ -32,7 +32,7 @@ in {
     ./features/swaylock
     ./features/gtk
     ./features/flameshot
-    ./features/mise
+    # ./features/mise
     ./features/tmux
     ./features/firefox
     ./features/thunar
