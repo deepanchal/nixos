@@ -1,0 +1,253 @@
+"" Source your .vimrc
+" source ~/.vimrc
+
+" Enable Mouse
+set mouse=a
+
+" Line Numbers
+set number
+" Relative Line Numbers
+" set relativenumber
+
+" Highlight matching search patterns
+set hlsearch
+" Enable incremental search
+set incsearch
+" Include matching uppercase words with lowercase search term
+set ignorecase
+" Include only uppercase words with uppercase search term
+set smartcase
+
+" Set Leader
+let mapleader = " "
+
+" See Leader
+set showcmd
+
+" Quick Delete Line
+" nmap <leader>d dd
+
+" No Highlight Map
+map <C-h> :nohl<CR>
+
+" JK Remap
+inoremap jk <esc>
+inoremap <esc> <nop>
+inoremap <C-c> <nop>
+
+"" -- Suggested options --
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
+
+" Do incremental searching.
+set incsearch
+
+" Clipboard
+"set clipboard=cb
+"set clipboard-=ideaput
+set clipboard+=unnamed
+
+" IdeaVim Settings
+set ideajoin " Join Lines intelligently
+set multiple-cursors " Enabled multi cursor support
+set ideamarks " Sync marks and idea bookmarks
+
+" Plugins
+set which-key
+set timeoutlen=5000
+
+" Use Q for formatting the current paragraph (or visual selection)
+vmap Q gq
+nmap Q gqap
+
+" These create newlines like o and O but stay in normal mode
+nmap zj o<Esc>k
+nmap zk O<Esc>j
+
+" Refactorings
+vmap T :action Refactorings.QuickListPopupAction<CR>
+nmap <leader>rr :action RenameElement<CR>
+nmap <leader>rg :action Generate<CR>
+nmap <leader>rI :action OptimizeImports<CR>
+" Inspection
+nmap <leader>rc :action InspectCode<CR>
+" View Recent Files
+nmap <leader>a :action RecentChangedFiles<CR>
+
+" Search
+nmap <leader>/ :action Find<CR>
+nmap <leader>\ :action FindInPath<CR>
+
+" Moving lines
+nmap [e :action MoveLineUp<CR>
+nmap ]e :action MoveLineDown<CR>
+" Moving statements
+nmap [s :action MoveStatementUp<CR>
+nmap ]s :action MoveStatementDown<CR>
+
+" From https://towardsdatascience.com/the-essential-ideavim-remaps-291d4cd3971b
+nnoremap \e :e ~/.ideavimrc<CR>
+nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
+
+""" Distraction Free Mode
+nnoremap <c-z> :action ToggleDistractionFreeMode<CR>
+
+""" Terminal
+nnoremap <c-t> :action ActivateTerminalToolWindow<CR>
+nnoremap <leader>t :action Terminal.OpenInTerminal<CR>
+
+""" Navigation
+nnoremap <c-\> :action SplitVertically<CR>
+nnoremap <c--> :action SplitHorizontally<CR>
+nnoremap <c-=> :action Unsplit<CR>
+nnoremap <c-m> :action MoveEditorToOppositeTabGroup<CR>
+sethandler <c-j> a:vim
+sethandler <c-k> a:vim
+" nnoremap <c-h> <c-w>h
+" nnoremap <c-l> <c-w>l
+" nnoremap <c-j> <c-w>j
+" nnoremap <c-k> <c-w>k
+nnoremap <TAB> :action PreviousTab<CR>
+nnoremap <s-TAB> :action NextTab<CR>
+nnoremap <leader>en :action EditSourceInNewWindow<CR>
+nnoremap <leader>n :action NextWindow<CR>
+"""" Popup navigation
+"inoremap <C-j> :action EditorDown<CR>
+"inoremap <C-k> :action EditorUp<CR>
+"inoremap <expr> j ((pumvisible())?("\<C-n>"):("j"))
+"inoremap <expr> k ((pumvisible())?("\<C-p>"):("k"))
+"inoremap <expr> <down> ((pumvisible())?("\<C-n>"):("\<down>"))
+"inoremap <expr> <up> ((pumvisible())?("\<C-p>"):("\<up>"))
+
+""" Close buffer
+nnoremap <leader>c :action CloseContent<CR>
+nnoremap <leader>q :action CloseContent<CR>
+
+""" Editing source code
+vnoremap < <gv
+vnoremap > >gv
+
+""" Git
+nnoremap <leader>gh :action Vcs.RollbackChangedLines<CR>
+nnoremap <leader>gr :action Vcs.RollbackChangedLines<CR>
+
+" Move visual block
+"vnoremap J :m '>+1<CR>
+" xnoremap K :m '<-2<CR>
+"vnoremap K :m '<-2<CR>
+
+" Put search results in the middle of the screen
+nnoremap n nzz
+nnoremap N Nzz
+
+nnoremap [[ :action MethodUp<CR>
+nnoremap ]] :action MethodDown<CR>
+
+nnoremap zc :action CollapseRegion<CR>
+nnoremap zo :action ExpandRegion<CR>
+nnoremap <leader>zc :action CollapseAllRegions<CR>
+nnoremap <leader>zo :action ExpandAllRegions<CR>
+" nnoremap <c-r> :action RecentFiles<CR>
+nnoremap <leader>l :action RecentLocations<CR>
+" open recent projects
+nnoremap <leader>or :action $LRU<CR>
+nnoremap <leader>hs :action LocalHistory.ShowHistory<CR>
+
+nnoremap ge :action GotoNextError<CR>
+nnoremap gE :action GotoPreviousError<CR>
+
+""" Searching and Source Code Navigation
+nnoremap <c-a> :action GotoAction<CR>
+nnoremap <c-f> :action GotoFile<CR>
+
+nnoremap <leader>u :action FindUsages<CR>
+nnoremap <leader>s :action GotoRelated<CR>
+nnoremap <leader>h :action CallHierarchy<CR>
+nnoremap <leader>b :action ShowNavBar<CR>
+" nnoremap gc :action GotoClass<CR>
+" nnoremap gi :action GotoImplementation<CR>
+" nnoremap gd :action GotoDeclaration<CR>
+" nnoremap gp :action GotoSuperMethod<CR>
+" nnoremap gt :action GotoTest<CR>
+" nnoremap gb :action Back<CR>
+" nnoremap gf :action Forward<CR>
+
+""" Tool windows
+nnoremap <c-x> :action HideAllWindows<CR>
+
+""" Running and Debugging
+nnoremap ,r :action ContextRun<CR>
+nnoremap ,c :action RunClass<CR>
+nnoremap ,f :action ChooseRunConfiguration<CR>
+nnoremap ,t :action ActivateRunToolWindow<CR>
+nnoremap ,u :action Rerun<CR>
+
+nnoremap ,f :action RerunFailedTests<CR>
+
+nnoremap ,b :action ToggleLineBreakpoint<CR>
+nnoremap ,d :action ContextDebug<CR>
+nnoremap ,n :action ActivateDebugToolWindow<CR>
+
+" AstroNvim like mappings
+nmap <leader>w :action SaveAll<CR>
+nmap <leader>/ :action CommentByLineComment<CR>
+vmap <leader>/ :action CommentByLineComment<CR>
+nmap <leader>o :action ActivateProjectToolWindow<CR>
+nmap <leader>lf :action ReformatWithPrettierAction<CR>
+nmap <leader>lr :action RenameElement<CR>
+nmap <leader>ff :action GotoFile<CR>
+nmap <leader>fw :action FindInPath<CR>
+nnoremap H :action PreviousTab<CR>
+nnoremap L :action NextTab<CR>
+
+" Copy permalink
+vmap GC :action com.github.kawamataryo.copygitlink.CopyPermalink<CR>
+
+" Greatest remap EVER!! 
+" This remap while in visual mode
+" will delete what is currently highlighted and replace it 
+" with what is in the register BUT it will YANK (delete) it 
+" to a VOID register. Meaning I still have what I originally had
+" when I pasted. I don't loose the previous thing I YANKED!
+vnoremap <leader>p "_dP
+
+" Cool invert function from https://github.com/citizenmatt/dotfiles/blob/master/ideavimrc
+function! Invert(calledFromVisual)
+  let antonyms = ['true', 'false', 'after', 'before', 'start', 'end', 'left', 'right', 'first', 'last',
+                 \'True', 'False', 'After', 'Before', 'Start', 'End', 'Left', 'Right', 'First', 'Last']
+
+  if a:calledFromVisual
+    normal gv"wy
+  else
+    normal "wyiw
+  endif
+  let wordUnderCaret = @w
+
+  let eraseWord = a:calledFromVisual ? 'gvc' : 'ciw'
+  let count = 0
+  while (count < len(antonyms))
+    if (antonyms[count] ==# wordUnderCaret)
+      let antonym = (count % 2 ==? 0) ? antonyms[count + 1] : antonyms[count - 1]
+      execute 'normal ' .. eraseWord .. antonym
+      break
+    endif
+    let count += 1
+  endwhile
+endfunction
+
+nnoremap ! :call Invert(0)<CR>
+vnoremap ! :<C-u>call Invert(1)<CR>
+
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+"" Map \r to the Reformat Code action
+"map \r <Action>(ReformatCode)
+
+"" Map <leader>d to start debug
+"map <leader>d <Action>(Debug)
+
+"" Map \b to toggle the breakpoint on the current line
+"map \b <Action>(ToggleLineBreakpoint)
+
+
+" Find more examples here: https://jb.gg/share-ideavimrc
