@@ -65,6 +65,11 @@
           mods = "Control|Shift";
           action = "DecreaseFontSize";
         }
+        {
+          key = "X";
+          mods = "Control|Shift";
+          action = "ToggleViMode";
+        }
         # {
         #   key = "Return";
         #   mods = "Shift";
