@@ -116,6 +116,9 @@
         ".rustup"
         ".cargo"
         ".npm"
+        ".java"
+        ".gradle"
+        ".pub-cache"
         ".minikube"
         ".mozilla" # firefox
         ".cache"
@@ -123,6 +126,8 @@
 
         ".config/gh"
         ".config/BraveSoftware"
+        ".config/Google" # android studio
+        ".config/JetBrains"
         ".config/Slack"
         ".config/discord"
         ".config/google-chrome"
