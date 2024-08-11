@@ -55,7 +55,7 @@ in {
         # "${altMod}, SPACE, exec, run-as-service $(${rofi} -show drun)"
         "${altMod}, SPACE, exec, run-as-service $(anyrun)"
         "${mainMod}, RETURN, exec, alacritty msg create-window || alacritty"
-        "${modshift}, RETURN, exec, ${wezterm}"
+        # "${modshift}, RETURN, exec, ${wezterm}"
         # "${mainMod}, B, exec, ${firefox}"
         # "${modshift}, B, exec, ${brave}"
         "${mainMod}, E, exec, ${thunar}"

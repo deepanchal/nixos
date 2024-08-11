@@ -18,13 +18,13 @@
           multi-account-containers
           temporary-containers
           canvasblocker
-          noscript
-          privacy-badger
-          clearurls
-          decentraleyes
+          # noscript
+          # privacy-badger
+          # clearurls
+          # decentraleyes
           vimium
-          refined-github
-          github-file-icons
+          # refined-github
+          # github-file-icons
           switchyomega
           # vue-js-devtools
         ];
