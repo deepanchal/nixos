@@ -37,6 +37,7 @@ in {
     ./features/firefox
     ./features/thunar
     ./features/jetbrains
+    ./features/keybase
   ];
 
   # ***********************************

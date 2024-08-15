@@ -134,6 +134,8 @@
         ".config/discord"
         ".config/google-chrome"
         ".config/spotify"
+        ".config/Keybase"
+        ".config/keybase"
 
         ".local/share"
         ".local/state"
