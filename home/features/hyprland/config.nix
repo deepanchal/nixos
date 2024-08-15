@@ -79,6 +79,10 @@ in {
       env = [
         # "XDG_CURRENT_DESKTOP,GNOME"
         # "XDG_SESSION_DESKTOP,gnome"
+        "XCURSOR_THEME,Bibata-Modern-Classic"
+        "XCURSOR_SIZE,16"
+        "HYPRCURSOR_THEME,Bibata-Modern-Classic"
+        "HYPRCURSOR_SIZE,16"
       ];
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/

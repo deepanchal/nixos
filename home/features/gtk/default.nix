@@ -4,7 +4,9 @@
   config,
   inputs,
   ...
-}: {
+}: let
+  cursorThemeName = "Bibata-Modern-Classic";
+in {
   gtk = {
     enable = true;
     catppuccin = {
@@ -14,6 +16,10 @@
       icon = {
         enable = true;
       };
+    };
+    cursorTheme = {
+      name = cursorThemeName;
+      size = 16;
     };
     font = {
       name = "Noto Sans";
@@ -31,7 +37,7 @@
     ];
     pointerCursor = {
       package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Classic";
+      name = cursorThemeName;
       size = 16;
       gtk.enable = true;
       x11.enable = true;
