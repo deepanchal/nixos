@@ -1,10 +1,11 @@
-{ config, ... }: {
+{config, ...}: {
   programs.direnv = {
     enable = true;
+    nix-direnv.enable = true; # https://github.com/nix-community/nix-direnv
     enableBashIntegration = config.programs.bash.enable;
     enableZshIntegration = config.programs.zsh.enable;
     enableNushellIntegration = config.programs.nushell.enable;
-    config = { };
+    config = {};
     stdlib = builtins.readFile ./direnvrc;
   };
 

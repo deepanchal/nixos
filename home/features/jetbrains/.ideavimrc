@@ -46,7 +46,8 @@ set incsearch
 " Clipboard
 "set clipboard=cb
 "set clipboard-=ideaput
-set clipboard+=unnamed
+" set clipboard+=unnamed
+set clipboard+=unnamedplus " See https://stackoverflow.com/a/77897061
 
 " IdeaVim Settings
 set ideajoin " Join Lines intelligently
