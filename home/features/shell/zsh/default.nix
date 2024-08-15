@@ -95,7 +95,7 @@ in {
           "zoxide" # initializes zoxide (smart cd with 'z')
           # "zsh-autosuggestions" # zsh auto suggestions
           "zsh-interactive-cd" # interactive tab completion for cd
-          "zsh-navigation-tools" # set of zsh nav tools (n-history, n-cd, n-kill, n-list)
+          # "zsh-navigation-tools" # set of zsh nav tools (n-history, n-cd, n-kill, n-list)
           # "zsh-syntax-highlighting"       # zsh syntax highlighting !! must be last
           # "fast-syntax-highlighting" # https://github.com/zdharma-continuum/fast-syntax-highlighting
         ];
