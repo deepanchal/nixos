@@ -1,4 +1,11 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: let
+  colors = config.colorscheme.palette;
+  accent = config.theme.accent;
+in {
   imports = [
     ./style.nix
   ];
@@ -13,15 +20,16 @@
     settings.mainBar = {
       position = "top";
       layer = "top";
-      height = 30;
+      height = 24;
       # spacing = 8;
-      margin-top = 4;
-      margin-bottom = 0;
-      margin-left = 4;
-      margin-right = 4;
+      # margin-top = 4;
+      # margin-bottom = 0;
+      # margin-left = 4;
+      # margin-right = 4;
       modules-left = [
         "custom/launcher"
         "hyprland/workspaces"
+        # "hyprland/window"
       ];
       modules-center = [
         "clock"
@@ -41,37 +49,65 @@
         "custom/power"
       ];
       clock = {
-        format = " {:%H:%M}";
-        tooltip = "true";
-        tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-        format-alt = " {:%m/%d}";
+        # interval = 1;
+        format = "{:%a %d, %H:%M}";
+        tooltip-format = "<tt><small>{calendar}</small></tt>";
+        # format-alt = "{:%m/%d}";
+        format-alt = "{:%a, %d %B %Y - %H:%M:%S}";
+        calendar = {
+          mode = "year";
+          mode-mon-col = 3;
+          weeks-pos = "right";
+          on-scroll = 1;
+          format = {
+            months = "<span color='#${colors.base06}'><b>{}</b></span>";
+            days = "<span color='#${colors.base0F}'><b>{}</b></span>";
+            weeks = "<span color='#${colors.base0C}'><b>W{}</b></span>";
+            weekdays = "<span color='#${colors.base0A}'><b>{}</b></span>";
+            today = "<span color='#${colors.base08}'><b><u>{}</u></b></span>";
+          };
+          actions = {
+            on-click-right = "mode";
+            on-click-forward = "tz_up";
+            on-click-backward = "tz_down";
+            on-scroll-up = "shift_up";
+            on-scroll-down = "shift_down";
+          };
+        };
       };
       "hyprland/workspaces" = {
+        all-outputs = true;
         active-only = false;
         disable-scroll = true;
         format = "{icon}";
         on-click = "activate";
-        # show-special = true;
-        # format-icons = {
-        #   "1" = "󰈹";
-        #   "2" = "";
-        #   "3" = "󰘙";
-        #   "4" = "󰙯";
-        #   "5" = "";
-        #   "6" = "";
-        #   urgent = "";
-        #   default = "";
-        #   sort-by-number = true;
-        # };
+        show-special = true;
+        format-icons = {
+          # "1" = "󰈹";
+          # "2" = "";
+          # "3" = "󰘙";
+          # "4" = "󰙯";
+          # "5" = "";
+          # "6" = "";
+          # urgent = "";
+          urgent = "󱈸";
+          special = "󰣙"; # or 󰣙 | 󱐋 | 
+          # active = " ";
+          # default = " ";
+          # default = " ";
+          # sort-by-number = true;
+        };
         persistent-workspaces = {
-          "1" = ["DP-1"];
-          "2" = ["DP-1"];
-          "3" = ["DP-1"];
-          "4" = ["DP-1"];
-          "5" = ["eDP-1"];
-          "6" = ["eDP-1"];
-          "7" = ["eDP-1"];
-          "8" = ["eDP-1"];
+          "1" = [];
+          "2" = [];
+          "3" = [];
+          "4" = [];
+          "5" = [];
+          "6" = [];
+          "7" = [];
+          "8" = [];
+          "9" = [];
+          "10" = [];
         };
       };
       memory = {
@@ -98,7 +134,7 @@
         on-click = "XDG_CURRENT_DESKTOP=GNOME XDG_SESSION_DESKTOP=gnome gnome-control-center wifi";
       };
       tray = {
-        icon-size = 20;
+        # icon-size = 14;
         spacing = 8;
       };
       pulseaudio = {
