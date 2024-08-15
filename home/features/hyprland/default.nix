@@ -34,20 +34,9 @@ in {
     wl-clip-persist
     wl-clipboard
     wdisplays
+    wev
     pngquant
     cliphist
-    (
-      writeShellScriptBin
-      "pauseshot"
-      ''
-        ${hyprpicker}/bin/hyprpicker -r -z &
-        picker_proc=$!
-
-        ${grimblast}/bin/grimblast save area - | tee ~/Pictures/ss$(date +'screenshot-%F') | wl-copy
-
-        kill $picker_proc
-      ''
-    )
     (
       writeShellScriptBin "micmute"
       ''

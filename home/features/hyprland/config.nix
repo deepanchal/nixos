@@ -7,9 +7,35 @@
   colors = config.colorscheme.palette;
   accent = config.theme.accent;
 
-  # primaryMonitor = "DP-1"; # external monitor w/ usb-c
-  primaryMonitor = "HDMI-A-1"; # external monitor w/ hdmi
-  secondaryMonitor = "eDP-1"; # laptop screen
+  # TODO: Move this config to something like this https://github.com/vimjoyer/nixconf/blob/a54eaf9a66d503e665229994bebd5d8803ea5cc9/homeManagerModules/features/hyprland/monitors.nix
+  primaryMonitor = {
+    name = "HDMI-A-1"; # or "DP-1"; # external monitor w/ usb-c
+    width = 2560;
+    height = 1440;
+    x = 0;
+    y = 0;
+    refreshRate = 144.;
+    # NOTE: Using any other than 1, 1.066666, 1.25 scaleFactor shows
+    # Invalid scale passed to monitor _, failed to find a clean divisor. Suggested nearest scale: _
+    scaleFactor = 1.25;
+    # scaleFactor = 1.;
+    # scaleFactor = 1.066666;
+  };
+  secondaryMonitor = rec {
+    name = "eDP-1"; # laptop screen
+    width = 2560;
+    height = 1440;
+    x = 0;
+    # y = 1152;
+    # center monitor horizontally below primary monitor (not working)
+    # x = builtins.floor (primaryMonitor.width * primaryMonitor.scaleFactor - width * scaleFactor);
+    # stack below primary monitor
+    y = builtins.floor (primaryMonitor.height / primaryMonitor.scaleFactor);
+    refreshRate = 165.;
+    scaleFactor = 1.25;
+  };
+  pM = primaryMonitor;
+  sM = secondaryMonitor;
   pointer = config.home.pointerCursor;
 
   wl-paste = "${pkgs.cliphist}/bin/wl-paste";
@@ -23,14 +49,8 @@ in {
         # monitor=,preferred,auto,1.25
         ",highrr,auto,1"
 
-        # With default 1 scaling
-        # "${primaryMonitor},2560x1440@165,0x0,1"
-        # "${secondaryMonitor},2560x1440@165,0x1440,1"
-
-        # With Scaling of 1.25
-        # "${primaryMonitor},2560x1440@165,0x0,1.25"
-        "${primaryMonitor},2560x1440@143.85,0x0,1.25"
-        "${secondaryMonitor},2560x1440@165,0x1152,1.25"
+        "${pM.name},${toString pM.width}x${toString pM.height}@${toString pM.refreshRate},${toString pM.x}x${toString pM.y},${toString pM.scaleFactor}"
+        "${sM.name},${toString sM.width}x${toString sM.height}@${toString sM.refreshRate},${toString sM.x}x${toString sM.y},${toString sM.scaleFactor}"
       ];
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
@@ -51,7 +71,7 @@ in {
         "${rog-control-center}"
 
         # "waybar"
-        "[workspace 1 silent] ${lib.getExe pkgs.wezterm}"
+        # "[workspace 1 silent] ${lib.getExe pkgs.wezterm}"
         "[workspace 2 silent] ${lib.getExe pkgs.firefox}"
         "[workspace 3 silent] ${lib.getExe pkgs.alacritty}"
       ];
@@ -217,10 +237,10 @@ in {
       plugin = {
         hy3 = {
           tabs = {
-            height = 14;
-            padding = 4;
-            from_top = false;
-            rounding = 4;
+            height = 16;
+            padding = 2;
+            from_top = true;
+            rounding = 2;
             render_text = true;
             text_font = "JetBrainsMono Nerd Font";
             "col.active" = "0xff${accent}";
@@ -244,14 +264,14 @@ in {
       "$kw" = "dwindle:no_gaps_when_only";
 
       workspace = [
-        "1, name:coding, monitor:${primaryMonitor}"
-        "2, name:browsing, monitor:${primaryMonitor}"
-        "3, name:terminal, monitor:${primaryMonitor}"
-        "4, name:misc1, monitor:${primaryMonitor}"
-        "5, name:slack, monitor:${secondaryMonitor}"
-        "6, name:misc2, monitor:${secondaryMonitor}"
-        "7, name:misc3, monitor:${secondaryMonitor}"
-        "8, name:misc4, monitor:${secondaryMonitor}"
+        "1, name:coding, monitor:${pM.name}"
+        "2, name:browsing, monitor:${pM.name}"
+        "3, name:terminal, monitor:${pM.name}"
+        "4, name:misc1, monitor:${pM.name}"
+        "5, name:slack, monitor:${sM.name}"
+        "6, name:misc2, monitor:${sM.name}"
+        "7, name:misc3, monitor:${sM.name}"
+        "8, name:misc4, monitor:${sM.name}"
         # Workspaces 9 and 10 are not explicitly assigned to allow them to appear on the active monitor
 
         "special:scratchpad, on-created-empty:${lib.getExe pkgs.wezterm}"
