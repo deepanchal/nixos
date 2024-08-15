@@ -30,6 +30,7 @@ in {
         "custom/launcher"
         "hyprland/workspaces"
         # "hyprland/window"
+        "hyprland/submap"
       ];
       modules-center = [
         "clock"
@@ -109,6 +110,11 @@ in {
           "9" = [];
           "10" = [];
         };
+      };
+      "hyprland/submap" = {
+        format = "  {}";
+        max-length = 16;
+        tooltip = false;
       };
       memory = {
         format = "󰟜 {}%";

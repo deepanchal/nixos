@@ -54,6 +54,14 @@ in {
       padding-right: 1rem;
     }
 
+    #submap {
+      border-radius: 1rem;
+      background-color: #${accent};
+      color: #${colors.base02};
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
     tooltip {
       background: #${colors.base00};
       border: 1px solid #${accent};
