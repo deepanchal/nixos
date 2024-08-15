@@ -55,7 +55,7 @@ in {
         # "${altMod}, SPACE, exec, run-as-service $(${rofi} -show drun)"
         "${altMod}, SPACE, exec, run-as-service $(anyrun)"
         "${mainMod}, RETURN, exec, alacritty msg create-window || alacritty"
-        # "${modshift}, RETURN, exec, ${wezterm}"
+        "${modshift}, RETURN, exec, ${wezterm}"
         # "${mainMod}, B, exec, ${firefox}"
         # "${modshift}, B, exec, ${brave}"
         "${mainMod}, E, exec, ${thunar}"
@@ -103,13 +103,14 @@ in {
 
         "${mainMod}, M, exec, hyprctl keyword $kw $(($(hyprctl getoption $kw -j | jaq -r '.int') ^ 1))" # toggle no_gaps_when_only
         # "${mainMod}, W, togglegroup," # group focused window
-        "${mainMod}, W, hy3:makegroup, tab, force_empheral"
-        "${mainMod}, V, hy3:makegroup, v, force_empheral"
-        "${mainMod}, B, hy3:makegroup, h, force_empheral"
+        "${mainMod}, W, hy3:makegroup, tab"
+        "${mainMod}, V, hy3:makegroup, v"
+        "${mainMod}, B, hy3:makegroup, h"
 
         "${mainMod}, F, fullscreen," # fullscreen focused window
         "${mainMod}, P, pseudo,"
         # "${modshift}, G, hy3:changegroupactive," # switch within the active group
+        "${modshift}, R, exec, hyprctl reload && notify-send 'Reloaded hyprland'" # toggle floating for the focused window
         "${modshift}, SPACE, togglefloating," # toggle floating for the focused window
         "${altMod}, C, exec, ${cliphist} list | ${rofi} -dmenu | ${cliphist} decode | ${wl-copy}"
         # "${altMod}, C, exec, ${cliphist} list | anyrun --hide-plugin-info true --show-results-immediately true --plugins ${
@@ -126,9 +127,9 @@ in {
         "${mainMod}, mouse_down, workspace, e+1" # move to the next ws
         "${mainMod}, mouse_up, workspace, e-1" # move to the previous ws
 
-        # "${mainMod},Print,exec, pauseshot"
+        ",F6, exec, grimblast --notify save area - | tee ~/Pictures/ss_$(date +'%Y-%m-%d_%H-%M-%S.png') | ${wl-copy}"
         # ",Print,exec, grim - | ${wl-copy}"
-        "${mainMod},S, exec, XDG_CURRENT_DESKTOP=GNOME XDG_SESSION_DESKTOP=gnome flameshot gui"
+        # "${mainMod},S, exec, XDG_CURRENT_DESKTOP=GNOME XDG_SESSION_DESKTOP=gnome flameshot gui"
 
         # "${mainMod},Period,exec, tofi-emoji"
 
