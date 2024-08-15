@@ -55,7 +55,6 @@ in {
         enable = true;
         custom = "${config.xdg.configHome}/oh-my-zsh";
         plugins = [
-          "adb" # adb completions
           "archlinux" # archlinux completions / helpers
           "asdf" # asdf completions
           "aws" # aws completions
@@ -83,7 +82,6 @@ in {
           "poetry" # python poetry autocompletions
           # "projen" # projen autocompletions (custom: mkdir -p $ZSH_CUSTOM/plugins/projen && projen completion > $ZSH_CUSTOM/plugins/projen/_projen)
           "python" # python aliases
-          "ripgrep" # ripgrep autocompletions
           "rust" # rust autocompletions
           "rsync" # rsync aliases
           "mise" # mise (asdf clone) completions

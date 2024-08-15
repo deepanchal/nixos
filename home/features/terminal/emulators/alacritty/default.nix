@@ -70,6 +70,11 @@
           mods = "Control|Shift";
           action = "ToggleViMode";
         }
+        {
+          key = "Space";
+          mods = "Control|Shift";
+          action = "None";
+        }
         # {
         #   key = "Return";
         #   mods = "Shift";

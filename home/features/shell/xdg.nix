@@ -1,5 +1,6 @@
 {pkgs, ...}: let
-  browser = ["firefox.desktop"];
+  # browser = ["firefox.desktop"];
+  browser = ["brave-browser.desktop"];
 
   associations = {
     "text/html" = browser;

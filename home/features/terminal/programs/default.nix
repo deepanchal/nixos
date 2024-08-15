@@ -11,6 +11,7 @@
     ./gh.nix
     ./fd.nix
     ./git-cliff.nix
+    ./tailspin.nix
     ./keychain.nix
     ./yazi.nix
     ./misc.nix

@@ -2,13 +2,13 @@
   config,
   pkgs,
   ...
-}: {
+}: let 
+  colorscheme = config.colorscheme;
+in {
   programs.wezterm = {
     enable = true;
     extraConfig =
-      /*
-      lua
-      */
+      # lua
       ''
         local io = require 'io'
         local os = require 'os'
@@ -44,6 +44,7 @@
         end)
 
         return {
+          color_scheme = "${colorscheme.slug}",
           -- window_close_confirmation = "NeverPrompt",
           -- set_environment_variables = {
           --   TERM = 'wezterm',
