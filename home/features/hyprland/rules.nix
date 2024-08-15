@@ -27,8 +27,6 @@
       "noshadow, floating:0" # only allow shadows for floating windows
       "float, class:Rofi"
       "stayfocused, class:Rofi"
-      "float, class:^(pavucontrol)$"
-      "float, class:^(.blueman-manager-wrapped)$"
       "float, class:feh"
       "float, class:wlogout"
       "float, class:file_progress"
@@ -41,8 +39,15 @@
       "float, class:confirmreset"
       "float, class:^(wdisplays)$"
       "size 1100 600, class:^(wdisplays)$"
-      "float, class:^(blueman-manager)$"
+      # float blueman-manager
+      "float, class:^(.*blueman-.*)$"
+      "center, class:^(.*blueman-.*)$"
+      # float network-manager-editor
       "float, class:^(nm-connection-editor)$"
+      "center, class:^(nm-connection-editor)$"
+      # float pavucontrol
+      "float, class:^(pavucontrol)$"
+      "center, class:^(pavucontrol)$"
       # make Firefox PiP window floating and sticky
       "float, title:^(Picture-in-Picture)$"
       "pin, title:^(Picture-in-Picture)$"
@@ -55,6 +60,16 @@
       "rounding 0, xwayland:1, floating:1"
       "center, class:^(.*jetbrains.*)$, title:^(Confirm Exit|Open Project|win424|win201|splash)$"
       "size 640 400, class:^(.*jetbrains.*)$, title:^(splash)$"
+      # portal / polkit
+      "float, class:^(xdg-desktop-portal-gtk)$"
+      "center, class:^(xdg-desktop-portal-gtk)$"
+      "size 900 500, class:^(xdg-desktop-portal-gtk)$"
+      "dimaround, class:^(xdg-desktop-portal-gtk)$"
+      "dimaround, class:^(polkit-gnome-authentication-agent-1)$"
+      "float, class:^(polkit-gnome-authentication-agent-1)$"
+      # hyprland share picker
+      "float, title:^(MainPicker)$"
+      "center, title:^(MainPicker)$"
 
       ##########################################
       # OPAQUE
@@ -85,6 +100,7 @@
       ##########################################
       # throw sharing indicators away
       "workspace special silent, title:^(Firefox — Sharing Indicator)$"
+      "workspace special silent, title:^.*(Sharing Indicator)$"
       "workspace special silent, title:^(.*is sharing (your screen|a window)\.)$"
 
       # IDE

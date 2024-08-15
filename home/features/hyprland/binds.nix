@@ -168,4 +168,38 @@ in {
       ", XF86AudioNext, exec, ${playerctl} next"
     ];
   };
+  wayland.windowManager.hyprland.extraConfig = ''
+    # Resize Mode
+    bind = ${mainMod}, R, submap, resize
+    submap = resize
+    binde = , ${leftKey}, resizeactive, 40 0
+    binde = , ${rightKey}, resizeactive, -40 0
+    binde = , ${upKey}, resizeactive, 0 -40
+    binde = , ${downKey}, resizeactive, 0 40
+    bind = , escape, submap, reset
+    bind = , catchall, submap, reset # https://wiki.hyprland.org/Configuring/Binds/#catch-all
+    submap = reset
+
+    # Launch Mode
+    bind = ${mainMod}, o, submap, launch
+    submap = launch
+    bind = , F, exec, firefox
+    bind = , F, submap, reset
+
+    bind = , G, exec, google-chrome-stable
+    bind = , G, submap, reset
+
+    bind = , B, exec, brave
+    bind = , B, submap, reset
+
+    bind = , S, exec, slack
+    bind = , S, submap, reset
+
+    bind = , D, exec, thunar
+    bind = , D, submap, reset
+
+    bind = , escape, submap, reset
+    bind = , catchall, submap, reset # https://wiki.hyprland.org/Configuring/Binds/#catch-all
+    submap = reset
+  '';
 }
