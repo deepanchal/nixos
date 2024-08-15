@@ -109,6 +109,7 @@
         "Videos"
         "VirtualBox VMs"
         "projects"
+        "scripts"
 
         "Android" # android sdk stuff
         ".android" # adb keys
@@ -125,6 +126,7 @@
         ".wakatime"
 
         ".config/gh"
+        ".config/glab-cli"
         ".config/BraveSoftware"
         ".config/Google" # android studio
         ".config/JetBrains"
