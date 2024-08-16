@@ -135,6 +135,9 @@ in {
 
         "${ctrlAlt},L,exec,${hyprlock}"
 
+        # capture current hyprctl clients for debugging
+        "${mainMod}, Z, exec, hyprctl clients -j | jq > /tmp/hypr-clients.json && notify-send 'Saved current clients to /tmp/hypr-clients.json'"
+
         # ",XF86Bluetooth, exec, bcn"
       ]
       ++ workspaces;
