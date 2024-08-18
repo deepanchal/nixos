@@ -6,52 +6,30 @@
 }: let
   colors = config.colorscheme.palette;
   accent = config.theme.accent;
-
-  # TODO: Move this config to something like this https://github.com/vimjoyer/nixconf/blob/a54eaf9a66d503e665229994bebd5d8803ea5cc9/homeManagerModules/features/hyprland/monitors.nix
-  primaryMonitor = {
-    name = "HDMI-A-1"; # or "DP-1"; # external monitor w/ usb-c
-    width = 2560;
-    height = 1440;
-    x = 0;
-    y = 0;
-    refreshRate = 144.;
-    # NOTE: Using any other than 1, 1.066666, 1.25 scaleFactor shows
-    # Invalid scale passed to monitor _, failed to find a clean divisor. Suggested nearest scale: _
-    scaleFactor = 1.25;
-    # scaleFactor = 1.;
-    # scaleFactor = 1.066666;
-  };
-  secondaryMonitor = rec {
-    name = "eDP-1"; # laptop screen
-    width = 2560;
-    height = 1440;
-    x = 0;
-    # y = 1152;
-    # center monitor horizontally below primary monitor (not working)
-    # x = builtins.floor (primaryMonitor.width * primaryMonitor.scaleFactor - width * scaleFactor);
-    # stack below primary monitor
-    y = builtins.floor (primaryMonitor.height / primaryMonitor.scaleFactor);
-    refreshRate = 165.;
-    scaleFactor = 1.25;
-  };
-  pM = primaryMonitor;
-  sM = secondaryMonitor;
   pointer = config.home.pointerCursor;
-
-  wl-paste = "${pkgs.cliphist}/bin/wl-paste";
   rog-control-center = "${pkgs.asusctl}/bin/rog-control-center";
 in {
   wayland.windowManager.hyprland = {
     settings = {
       # See https://wiki.hyprland.org/Configuring/Monitors/
-      monitor = [
-        # monitor=name,resolution,position,scale
-        # monitor=,preferred,auto,1.25
-        ",highrr,auto,1"
-
-        "${pM.name},${toString pM.width}x${toString pM.height}@${toString pM.refreshRate},${toString pM.x}x${toString pM.y},${toString pM.scaleFactor}"
-        "${sM.name},${toString sM.width}x${toString sM.height}@${toString sM.refreshRate},${toString sM.x}x${toString sM.y},${toString sM.scaleFactor}"
-      ];
+      monitor =
+        [
+          # monitor=name,resolution,position,scale
+          # monitor=,preferred,auto,1.25
+          ",highrr,auto,1"
+        ]
+        ++ map (
+          monitor: let
+            resolution = "${toString monitor.width}x${toString monitor.height}";
+            refreshRate = "${toString monitor.refreshRate}";
+            position = "${toString monitor.x}x${toString monitor.y}";
+            scale = "${toString monitor.scaleFactor}";
+          in "${monitor.name},${
+            if monitor.enabled
+            then "${resolution}@${refreshRate},${position},${scale}"
+            else "disable"
+          }"
+        ) (config.monitors);
 
       # See https://wiki.hyprland.org/Configuring/Keywords/ for more
       exec-once = [
@@ -267,18 +245,31 @@ in {
 
       "$kw" = "dwindle:no_gaps_when_only";
 
-      workspace = [
-        "1, name:coding, monitor:${pM.name}"
-        "2, name:browsing, monitor:${pM.name}"
-        "3, name:terminal, monitor:${pM.name}"
-        "4, name:misc1, monitor:${pM.name}"
-        "5, name:slack, monitor:${sM.name}"
-        "6, name:misc2, monitor:${sM.name}"
-        "7, name:misc3, monitor:${sM.name}"
-        "8, name:misc4, monitor:${sM.name}"
+      workspace = let
+        primaryMonitor = lib.lists.findSingle (monitor: monitor.primary == true) null null config.monitors;
+        secondaryMonitor = lib.lists.findSingle (monitor: monitor.primary == false) null null config.monitors;
+        primary = "${
+          if primaryMonitor == null
+          then ""
+          else primaryMonitor.name
+        }";
+        secondary = "${
+          if secondaryMonitor == null
+          then ""
+          else secondaryMonitor.name
+        }";
+      in [
+        "1, name:coding, monitor:${primary}"
+        "2, name:browsing, monitor:${primary}"
+        "3, name:terminal, monitor:${primary}"
+        "4, name:misc1, monitor:${primary}"
+        "5, name:slack, monitor:${secondary}"
+        "6, name:misc2, monitor:${secondary}"
+        "7, name:misc3, monitor:${secondary}"
+        "8, name:misc4, monitor:${secondary}"
         # Workspaces 9 and 10 are not explicitly assigned to allow them to appear on the active monitor
 
-        "special:scratchpad, on-created-empty:${lib.getExe pkgs.wezterm}"
+        "special:scratchpad, on-created-empty:alacritty"
       ];
     };
   };

@@ -184,6 +184,40 @@ in {
     gnome-keyring.enable = true;
   };
 
+  # Defined in custom hm module -> monitors.nix
+  monitors = let
+    primaryMonitor = {
+      name = "HDMI-A-1"; # or "DP-1"; # external monitor w/ usb-c
+      enabled = true;
+      primary = true;
+      width = 2560;
+      height = 1440;
+      x = 0;
+      y = 0;
+      refreshRate = 143.85;
+      # NOTE: Using any other than 1, 1.066666, 1.25 scaleFactor shows
+      # Invalid scale passed to monitor _, failed to find a clean divisor. Suggested nearest scale: _
+      scaleFactor = 1.25;
+    };
+    secondaryMonitor = {
+      name = "eDP-1"; # laptop screen
+      enabled = true;
+      primary = false;
+      width = 2560;
+      height = 1440;
+      x = 0;
+      # center monitor horizontally below primary monitor (not working)
+      # x = builtins.floor (primaryMonitor.width * primaryMonitor.scaleFactor - width * scaleFactor);
+      # stack below primary monitor
+      y = builtins.floor (primaryMonitor.height / primaryMonitor.scaleFactor);
+      refreshRate = 165.0;
+      scaleFactor = 1.25;
+    };
+  in [
+    primaryMonitor
+    secondaryMonitor
+  ];
+
   catppuccin = let
     # Type: one of “latte”, “frappe”, “macchiato”, “mocha”
     flavor = "mocha";
