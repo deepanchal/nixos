@@ -74,6 +74,7 @@ in {
   # | Crust     |        | #11111b | rgb(17, 17, 27)    | hsl(240, 23%, 9%)  |
   # --------------------------------------------------------------------------
 
+  wallpaper = ./features/theme/wallpapers/mocha-surf-wave.png; # Comes from custom wallpaper hm-module
   colorscheme = lib.mkDefault colorSchemes.catppuccin-mocha;
   theme = {
     name = "Catppuccin-Mocha";
