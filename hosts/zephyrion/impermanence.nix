@@ -136,6 +136,7 @@
         ".config/spotify"
         ".config/Keybase"
         ".config/keybase"
+        ".config/obs-studio"
 
         ".local/share"
         ".local/state"
