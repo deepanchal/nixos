@@ -38,6 +38,7 @@ in {
     ./features/thunar
     ./features/jetbrains
     ./features/keybase
+    ./features/wlogout
   ];
 
   # ***********************************
