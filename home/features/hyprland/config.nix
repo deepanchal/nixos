@@ -24,9 +24,11 @@ in {
             refreshRate = "${toString monitor.refreshRate}";
             position = "${toString monitor.x}x${toString monitor.y}";
             scale = "${toString monitor.scaleFactor}";
+            # https://wiki.hyprland.org/Configuring/Monitors/#extra-args
+            extraArgs = "bitdepth,10"; # See: https://github.com/hyprwm/xdg-desktop-portal-hyprland/issues/172#issuecomment-2163262338
           in "${monitor.name},${
             if monitor.enabled
-            then "${resolution}@${refreshRate},${position},${scale}"
+            then "${resolution}@${refreshRate},${position},${scale},${extraArgs}" 
             else "disable"
           }"
         ) (config.monitors);
