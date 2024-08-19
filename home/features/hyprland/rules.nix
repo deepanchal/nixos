@@ -38,24 +38,30 @@
       "float, class:splash"
       "float, class:confirmreset"
       "float, class:^(wdisplays)$"
-      "size 1100 600, class:^(wdisplays)$"
+      "size 70% 70%, class:^(wdisplays)$"
       # float blueman-manager
       "float, class:^(.*blueman-.*)$"
       "center, class:^(.*blueman-.*)$"
+      "size 50% 60%, class:^(.*blueman-.*)$"
+      "dimaround, class:^(.*blueman-.*)$"
       # float network-manager-editor
       "float, class:^(nm-connection-editor)$"
       "center, class:^(nm-connection-editor)$"
       # float pavucontrol
-      "float, class:^(pavucontrol)$"
-      "center, class:^(pavucontrol)$"
+      "float, class:^(.*pavucontrol.*)$"
+      "center, class:^(.*pavucontrol.*)$"
+      "size 50% 60%, class:^(.*pavucontrol.*)$"
+      "dimaround, class:^(.*pavucontrol.*)$"
       # make Firefox PiP window floating and sticky
       "float, title:^(Picture-in-Picture)$"
       "pin, title:^(Picture-in-Picture)$"
       # thunar file operation progress
       "float, class:^(thunar)$,title:^(File Operation Progress)$"
-      "size 800 600, class:^(thunar)$,title:^(File Operation Progress)$"
-      "move 78% 6%, class:^(thunar)$,title:^(File Operation Progress)$"
+      "center, class:^(thunar)$,title:^(File Operation Progress)$"
       "pin, class:^(thunar)$,title:^(File Operation Progress)$"
+      "size 400 100, class:^(thunar)$,title:^(File Operation Progress)$"
+      "move 100%-w-25 5%, class:^(thunar)$,title:^(File Operation Progress)$"
+      "center, class:^(thunar)$,title:^(Attention|Error)$"
       # fix xwayland apps
       "rounding 0, xwayland:1, floating:1"
       "center, class:^(.*jetbrains.*)$, title:^(Confirm Exit|Open Project|splash)$"
@@ -74,13 +80,14 @@
       # portal / polkit
       "float, class:^(xdg-desktop-portal-gtk)$"
       "center, class:^(xdg-desktop-portal-gtk)$"
-      "size 900 500, class:^(xdg-desktop-portal-gtk)$"
+      "size 50% 50%, class:^(xdg-desktop-portal-gtk)$"
       "dimaround, class:^(xdg-desktop-portal-gtk)$"
       "dimaround, class:^(polkit-gnome-authentication-agent-1)$"
       "float, class:^(polkit-gnome-authentication-agent-1)$"
       # hyprland share picker
       "float, title:^(MainPicker)$"
       "center, title:^(MainPicker)$"
+      "size 50% 50%, class:^(MainPicker)$"
 
       ##########################################
       # OPAQUE
@@ -134,7 +141,7 @@
       # "workspace 5 silent, class:^(zoom)$"
       # "workspace 5 silent, class:^(teams-for-linux)$"
 
-      # "workspace special silent,class:^(pavucontrol)$"
+      # "workspace special silent,class:^(.*pavucontrol.*)$"
     ];
   };
 }
