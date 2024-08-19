@@ -12,6 +12,7 @@
   home.packages = [
     pkgs.android-studio
     pkgs.jetbrains.webstorm
+    pkgs.jetbrains.datagrip
     pkgs.jetbrains.pycharm-professional
   ];
 }
