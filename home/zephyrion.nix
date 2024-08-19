@@ -176,6 +176,7 @@ in {
 
   programs = {
     home-manager.enable = true;
+    obs-studio.enable = true;
   };
 
   services = {
