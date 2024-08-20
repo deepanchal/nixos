@@ -113,6 +113,7 @@
 
         "Android" # android sdk stuff
         ".android" # adb keys
+        "go"
         ".keychain"
         ".rustup"
         ".cargo"
@@ -162,6 +163,7 @@
         ".bash_history"
         ".wakatime.cfg"
         ".config/pavucontrol.ini"
+        ".config/gtk-3.0/bookmarks" # persist bookmarks in file-manager
         # ".config/gh/hosts.yml"
       ];
     };
