@@ -155,10 +155,10 @@
   ##################################################
   networking = {
     hostName = "zephyrion"; # Define your hostname.
-    enableIPv6 = false;
     # Pick only one of the below networking options.
     # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
     networkmanager.enable = true; # Easiest to use and most distros use this by default.
+    wireguard.enable = true;
 
     # Configure network proxy if necessary
     # proxy.default = "http://user:password@proxy:port/";
@@ -177,7 +177,6 @@
     #   192.168.0.79 beacon.local
     # '';
   };
-  programs.nm-applet.enable = true;
 
   ##################################################
   # BLUETOOTH

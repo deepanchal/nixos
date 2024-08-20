@@ -30,6 +30,8 @@ in {
   services.mpd.enable = true;
   programs.thunar.enable = true;
   programs.adb.enable = true;
+  programs.openvpn3.enable = true;
+  programs.nm-applet.enable = true;
   services.teamviewer.enable = true;
   services.tumbler.enable = true;
   services.fwupd.enable = true;
