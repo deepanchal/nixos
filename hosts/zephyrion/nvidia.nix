@@ -4,6 +4,8 @@
   pkgs,
   ...
 }: {
+  # NOTE: This module is not being used.
+  # I am disabling nvidia with nixos-hardware module in configuration.nix
   imports = [
     inputs.nixos-hardware.nixosModules.common-gpu-nvidia # with prime
     # inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
