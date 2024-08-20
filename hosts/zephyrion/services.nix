@@ -167,14 +167,14 @@ in {
     # wlsunset
     gammastep
     brightnessctl
-    at-spi2-atk
+    # at-spi2-atk
     qt6.qtwayland
-    psi-notify
-    poweralertd
-    swaylock-effects
+    # psi-notify
+    # poweralertd
+    # swaylock-effects
     swayidle
     playerctl
-    psmisc
+    psmisc # A package of small utilities that use the proc file-system.
     grim
     slurp
     imagemagick
@@ -184,20 +184,20 @@ in {
     wf-recorder
     wl-clipboard
     cliphist
-    clipboard-jh
+    # clipboard-jh
     xdg-utils
-    wtype
+    wtype # xdotool type for wayland
     wlrctl
     hyprpicker
-    pyprland
+    # pyprland
     waybar
     rofi-wayland
     dunst
-    avizo
+    # avizo
     wlogout
-    wpaperd
+    # wpaperd
     # swww
-    gifsicle
+    # gifsicle
 
     #   vulnix       #scan command: vulnix --system
     #   clamav       #scan command: sudo freshcalm; clamscan [options] [file/directory/-]
