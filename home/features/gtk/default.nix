@@ -23,7 +23,7 @@ in {
     };
     font = {
       name = "Noto Sans";
-      size = 11;
+      size = 12;
     };
   };
 

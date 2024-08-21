@@ -26,7 +26,7 @@
       scrolling.history = 20000;
 
       font = {
-        size = 10;
+        size = 12;
         normal = {
           # family = "FiraCode Nerd Font";
           family = "JetBrainsMono Nerd Font";

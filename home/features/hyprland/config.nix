@@ -28,7 +28,7 @@ in {
             extraArgs = "bitdepth,10"; # See: https://github.com/hyprwm/xdg-desktop-portal-hyprland/issues/172#issuecomment-2163262338
           in "${monitor.name},${
             if monitor.enabled
-            then "${resolution}@${refreshRate},${position},${scale},${extraArgs}" 
+            then "${resolution}@${refreshRate},${position},${scale},${extraArgs}"
             else "disable"
           }"
         ) (config.monitors);
@@ -221,11 +221,12 @@ in {
       plugin = {
         hy3 = {
           tabs = {
-            height = 16;
+            height = 20;
             padding = 2;
             from_top = true;
             rounding = 2;
             render_text = true;
+            text_height = 10;
             text_font = "JetBrainsMono Nerd Font";
             "col.active" = "0xff${accent}";
             "col.urgent" = "0xff${colors.base09}";
