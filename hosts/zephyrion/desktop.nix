@@ -6,7 +6,6 @@
 }: let
   tuigreet = "${lib.getExe pkgs.greetd.tuigreet}";
   tuigreet-theme = "border=blue;container=black;time=magenta;prompt=green;action=blue;button=yellow;text=cyan";
-  hyprland-session = "${inputs.hyprland.packages.${pkgs.system}.hyprland}/share/wayland-sessions";
 in {
   ##########################################
   # DESKTOP ENVIRONMENT

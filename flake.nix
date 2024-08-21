@@ -6,11 +6,9 @@
   nixConfig = {
     # substituers will be appended to the default substituters when fetching packages
     extra-substituters = [
-      "https://hyprland.cachix.org" # https://wiki.hyprland.org/Nix/Cachix/
       "https://anyrun.cachix.org"
     ];
     extra-trusted-public-keys = [
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
     ];
   };
@@ -19,7 +17,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    xdg-portal-hyprland.url = "github:hyprwm/xdg-desktop-portal-hyprland";
     nix-colors.url = "github:misterio77/nix-colors";
     catppuccin.url = "github:catppuccin/nix";
     # rust-overlay.url = "github:oxalica/rust-overlay";
@@ -39,20 +36,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1&ref=refs/tags/v0.41.2"; # where {version} is the hyprland release version
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hy3 = {
-      url = "github:outfoxxed/hy3?ref=hl0.41.2"; # where {version} is the hyprland release version
-      # url = "github:outfoxxed/hy3"; # to follow the development branch.
-      # (you may encounter issues if you dont do the same for hyprland)
-      inputs.hyprland.follows = "hyprland";
-    };
-    hyprcontrib = {
-      url = "github:hyprwm/contrib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     # anyrun - a wayland launcher
     anyrun = {
       url = "github:Kirottu/anyrun";
