@@ -181,7 +181,7 @@ in {
       };
       "custom/launcher" = {
         format = "";
-        on-click = "pkill rofi || ${pkgs.rofi}/bin/rofi -show combi";
+        on-click = "pkill anyrun || anyrun";
         tooltip = "false";
       };
       "custom/lock" = {

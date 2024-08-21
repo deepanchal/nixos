@@ -2,16 +2,26 @@
   pkgs,
   lib,
   inputs,
+  config,
   ...
-}: {
+}: let
+  pluginPkgs = inputs.anyrun.packages.${pkgs.system};
+in {
   imports = [
     inputs.anyrun.homeManagerModules.default
+  ];
+
+  # Originally from: https://github.com/timon-schelling/nixos-genesis/blob/39be9df126ba5e54c31ead9be11d1c1aaf021bbf/src/user/desktop/anyrun/home.nix#L69-L71
+  home.packages = [
+    (pkgs.writeShellScriptBin "anyrun-select" ''
+      anyrun --plugins "${pluginPkgs.stdin}/lib/libstdin.so" --hide-plugin-info true
+    '')
   ];
 
   programs.anyrun = {
     enable = true;
     config = {
-      plugins = with inputs.anyrun.packages.${pkgs.system}; [
+      plugins = with pluginPkgs; [
         # # An array of all the plugins you want, which either can be paths to the .so files, or their packages
         # inputs.anyrun.packages.${pkgs.system}.applications
         # ./some_plugin.so
@@ -53,10 +63,17 @@
     };
 
     extraConfigFiles = {
+      "stdin.ron".text =
+        # rust
+        ''
+          Config(
+            max_entries: 12,
+            allow_invalid: false,
+          )
+        '';
+      
       "applications.ron".text =
-        /*
-        rust
-        */
+        # rust
         ''
           Config(
             // Also show the Desktop Actions defined in the desktop files, e.g. "New Window" from LibreWolf
@@ -69,9 +86,7 @@
         '';
 
       "randr.ron".text =
-        /*
-        rust
-        */
+        # rust
         ''
           Config(
             prefix: ":ra",
@@ -80,9 +95,7 @@
         '';
 
       "shell.ron".text =
-        /*
-        rust
-        */
+        # rust
         ''
           Config(
               prefix: ">",
@@ -90,9 +103,7 @@
         '';
 
       "symbols.ron".text =
-        /*
-        rust
-        */
+        # rust
         ''
           Config(
             // The prefix that the search needs to begin with to yield symbol results
@@ -112,9 +123,7 @@
         '';
 
       "translate.ron".text =
-        /*
-        rust
-        */
+        # rust
         ''
           Config(
             prefix: ":tr",
@@ -124,9 +133,7 @@
         '';
 
       "websearch.ron".text =
-        /*
-        rust
-        */
+        # rust
         ''
           Config(
             prefix: ":q",
@@ -146,9 +153,7 @@
 
     # custom css for anyrun, based on catppuccin-mocha
     extraCss =
-      /*
-      css
-      */
+      # css
       ''
         #window,
         {
