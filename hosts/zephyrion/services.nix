@@ -130,7 +130,7 @@
     hyprpicker
     # pyprland
     waybar
-    rofi-wayland
+    # rofi-wayland
     dunst
     # avizo
     wlogout

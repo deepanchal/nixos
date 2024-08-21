@@ -25,7 +25,6 @@ in {
     ./features/anyrun
     # ./features ./dunst
     ./features/swaync
-    ./features/rofi
     ./features/terminal
     ./features/nvim
     ./features/zellij

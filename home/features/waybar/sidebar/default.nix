@@ -66,7 +66,7 @@ in {
         "custom/search" = {
           format = " ";
           tooltip = false;
-          on-click = "${pkgs.rofi}/bin/rofi -show combi";
+          on-click = "anyrun";
         };
 
         "custom/weather" = {
