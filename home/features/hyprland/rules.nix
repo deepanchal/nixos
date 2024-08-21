@@ -72,7 +72,6 @@
       # jetbrains
       # (tileClass "jetbrains-studio")
       "noborder, class:^(jetbrains-)(.*)$"
-      "windowdance,class:^(jetbrains-.*)$"
       "opacity 1 override 1 override,class:^(jetbrains-.*)$"
       "dimaround,class:^(jetbrains-.*)$,floating:1,title:^(?!win)"
       "center,class:^(jetbrains-.*)$,floating:1,title:^(?!win)"
