@@ -13,14 +13,11 @@ with lib; let
   };
 in {
   imports = [
-    inputs.hyprland.homeManagerModules.default
-
     ./config.nix
     ./binds.nix
     ./rules.nix
   ];
-  home.packages = with pkgs;
-  with inputs.hyprcontrib.packages.${pkgs.system}; [
+  home.packages = with pkgs; [
     libnotify
     wf-recorder
     brightnessctl
@@ -71,9 +68,8 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    # package = inputs.hyprland.packages.${pkgs.system}.default;
     plugins = [
-      inputs.hy3.packages.${pkgs.system}.hy3
+      pkgs.hyprlandPlugins.hy3
     ];
     systemd = {
       variables = ["--all"];
