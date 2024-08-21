@@ -71,7 +71,7 @@ in {
           },
 
           font_size = 11.0;
-          font = wezterm.font 'JetBrains Mono Nerd Font',
+          font = wezterm.font 'JetBrainsMono Nerd Font',
           -- font = wezterm.font_with_fallback {
           --   'JetBrains Mono',
           --   'FiraCode Nerd Font',

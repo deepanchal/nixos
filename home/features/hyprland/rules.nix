@@ -47,6 +47,9 @@
       # float network-manager-editor
       "float, class:^(nm-connection-editor)$"
       "center, class:^(nm-connection-editor)$"
+      # float bitwarden
+      "float, title:^(.*Bitwarden.*)$"
+      "center, title:^(.*Bitwarden.*)$"
       # float pavucontrol
       "float, class:^(.*pavucontrol.*)$"
       "center, class:^(.*pavucontrol.*)$"
@@ -124,6 +127,7 @@
       # IDE
       "workspace 1, class:^(Code)$"
       "workspace 1, class:^(jetbrains-studio)$" # android studio
+      "workspace 1, class:^(jetbrains-studio), title:^(Conflicts)$" # android studio
 
       # Browsing
       # "workspace 2, class:^(firefox)$"

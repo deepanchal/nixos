@@ -13,6 +13,8 @@ with lib; let
   };
 in {
   imports = [
+    inputs.hyprland.homeManagerModules.default
+
     ./config.nix
     ./binds.nix
     ./rules.nix
@@ -69,7 +71,7 @@ in {
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.default;
+    # package = inputs.hyprland.packages.${pkgs.system}.default;
     plugins = [
       inputs.hy3.packages.${pkgs.system}.hy3
     ];

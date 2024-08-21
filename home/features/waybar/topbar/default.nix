@@ -15,12 +15,12 @@ in {
     # style = import ./style.nix;
     systemd = {
       enable = true;
-      target = "hyprland-session.target";
+      target = "graphical-session.target";
     };
     settings.mainBar = {
       position = "top";
       layer = "top";
-      height = 24;
+      height = 30;
       # spacing = 8;
       # margin-top = 4;
       # margin-bottom = 0;
@@ -140,7 +140,7 @@ in {
         on-click = "XDG_CURRENT_DESKTOP=GNOME XDG_SESSION_DESKTOP=gnome gnome-control-center wifi";
       };
       tray = {
-        # icon-size = 14;
+        icon-size = 16;
         spacing = 8;
       };
       pulseaudio = {

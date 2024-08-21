@@ -6,7 +6,7 @@ in {
     # css
     ''
       * {
-        font-size: 12px;
+        font-size: 14px;
         font-family: JetBrainsMono Nerd Font, Material Design Icons;
         font-weight: bold;
         min-height: 0px;
@@ -20,7 +20,7 @@ in {
       #workspaces button {
         color: #${colors.base07};
         border-radius: 1rem;
-        padding: 0 4px;
+        padding: 2px 6px;
       }
       #workspaces button.active  {
         color: #${colors.base02};
@@ -100,7 +100,7 @@ in {
         padding-right: 8px;
       }
       #custom-launcher {
-        font-size: 14px;
+        font-size: 18px;
         padding-left: 8px;
       }
 
