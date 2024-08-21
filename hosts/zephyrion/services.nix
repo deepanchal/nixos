@@ -2,15 +2,7 @@
   pkgs,
   lib,
   ...
-}: let
-  MHz = x: x * 1000;
-  inherit (lib) mkDefault;
-in {
-  # Systemd services setup
-  # systemd.packages = with pkgs; [
-  #   auto-cpufreq
-  # ];
-
+}: {
   # Enable Services
   programs.direnv.enable = true;
   services.upower.enable = true;
@@ -33,63 +25,10 @@ in {
   programs.openvpn3.enable = true;
   programs.nm-applet.enable = true;
   services.teamviewer.enable = true;
+  services.locate.enable = true;
   services.tumbler.enable = true;
   services.fwupd.enable = true;
   programs.light.enable = true;
-  services.geoclue2 = {
-    enable = true;
-    appConfig = {
-      "gammastep" = {
-        isAllowed = true;
-        isSystem = false;
-        users = ["1000"]; # FIXME: set your user id (to get user id use command 'id -u "your_user_name"')
-      };
-    };
-  };
-  # Only works when using acpi-cpufreq instead of amd_pstate
-  systemd.services.noturbo = {
-    enable = false;
-    wantedBy = ["multi-user.target"];
-    path = [
-      pkgs.coreutils
-      pkgs.util-linux
-    ];
-    serviceConfig = {
-      User = "root";
-      Group = "root";
-    };
-    script = ''
-      logger -t noturbo "Disabling CPU boost..."
-      echo 0 > /sys/devices/system/cpu/cpufreq/boost
-      BOOST_STATUS=$(cat /sys/devices/system/cpu/cpufreq/boost)
-      if [ "$BOOST_STATUS" -eq 0 ]; then
-        logger -t noturbo "Successfully disabled CPU boost."
-        echo "CPU boost successfully disabled. Current status -> $BOOST_STATUS"
-      else
-        logger -t noturbo "Failed to disable CPU boost."
-        echo "Failed to disable CPU boost. Current status -> $BOOST_STATUS"
-      fi
-    '';
-  };
-  # services.auto-cpufreq = {
-  #   enable = true;
-  #   settings = {
-  #     battery = {
-  #       governor = "powersave";
-  #       scaling_min_freq = mkDefault (MHz 1800);
-  #       scaling_max_freq = mkDefault (MHz 3600);
-  #       turbo = "never";
-  #     };
-  #     charger = {
-  #       # See: https://wiki.archlinux.org/title/CPU_frequency_scaling
-  #       governor = "performance"; # performance | powersave
-  #       scaling_min_freq = mkDefault (MHz 1800);
-  #       scaling_max_freq = mkDefault (MHz 3600);
-  #       turbo = "never"; # always | auto | never
-  #     };
-  #   };
-  # };
-  # services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
   programs.nh = {
     enable = true;
     clean.enable = true;
