@@ -5,23 +5,30 @@
   config,
   ...
 }: let
-  pluginPkgs = inputs.anyrun.packages.${pkgs.system};
+  colors = config.colorscheme.palette;
+  accent = config.theme.accent;
+  anyrunPkgs = inputs.anyrun.packages.${pkgs.system};
 in {
   imports = [
     inputs.anyrun.homeManagerModules.default
   ];
 
-  # Originally from: https://github.com/timon-schelling/nixos-genesis/blob/39be9df126ba5e54c31ead9be11d1c1aaf021bbf/src/user/desktop/anyrun/home.nix#L69-L71
+  # Originally from:
+  # https://github.com/timon-schelling/nixos-genesis/blob/39be9df126ba5e54c31ead9be11d1c1aaf021bbf/src/user/desktop/anyrun/home.nix#L69-L71
+  # https://github.com/coesu/nix-config/blob/da2c17fe97c7350a6da0f0bdc473c2cdd37ae38e/home/desktop/scripts.nix#L9
   home.packages = [
-    (pkgs.writeShellScriptBin "anyrun-select" ''
-      anyrun --plugins "${pluginPkgs.stdin}/lib/libstdin.so" --hide-plugin-info true
+    (pkgs.writeShellScriptBin "anyrun-dmenu" ''
+      anyrun --plugins "${anyrunPkgs.stdin}/lib/libstdin.so" --hide-plugin-info true --show-results-immediately true
+    '')
+    (pkgs.writeShellScriptBin "anyrun-symbols" ''
+      anyrun --plugins ${anyrunPkgs.symbols}/lib/libsymbols.so --hide-plugin-info true --show-results-immediately true
     '')
   ];
 
   programs.anyrun = {
     enable = true;
     config = {
-      plugins = with pluginPkgs; [
+      plugins = with anyrunPkgs; [
         # # An array of all the plugins you want, which either can be paths to the .so files, or their packages
         # inputs.anyrun.packages.${pkgs.system}.applications
         # ./some_plugin.so
@@ -50,7 +57,7 @@ in {
       layer = "overlay";
 
       # Hide the plugin info panel
-      hidePluginInfo = false;
+      hidePluginInfo = true;
 
       # Close window when a click outside the main box is received
       closeOnClick = true;
@@ -71,7 +78,7 @@ in {
             allow_invalid: false,
           )
         '';
-      
+
       "applications.ron".text =
         # rust
         ''
@@ -113,8 +120,8 @@ in {
             symbols: {
               // "name": "text to be copied"
               "shrug": "¯\\_(ツ)_/¯",
-              "Tableflip": "(╯°□°)╯︵ ┻━┻",
-              "Unflip": "┬─┬ノ( º _ ºノ)",
+              "tableflip": "(╯°□°)╯︵ ┻━┻",
+              "unflip": "┬─┬ノ( º _ ºノ)",
             },
 
             // The number of entries to be displayed
@@ -152,12 +159,103 @@ in {
     };
 
     # custom css for anyrun, based on catppuccin-mocha
-    extraCss =
+    extraCss = let
+      primaryColor = "#${accent}";
+      secondaryColor = "#${colors.base0E}";
+      bgColor = "#${colors.base01}";
+      textColor = "#${colors.base05}";
+    in
       # css
       ''
-        #window,
-        {
-        	background: transparent;
+        /*
+         * Using catppuccin mocha theme with blue accent
+         * See:
+         *  - https://docs.gtk.org/gtk4/css-properties.html#non-css-colors
+         *  - https://docs.gtk.org/gtk3/css-overview.html#an-example-for-defining-colors
+         *
+         * To debug styling for nixos:
+         *  - Copy home manager files to /tmp/anyrun with `cp -rv --dereference ~/.config/anyrun /tmp`
+         *  - Edit files in /tmp/anyrun
+         *  - Run anyrun with `anyrun -c /tmp/anyrun`
+         */
+
+        /* GTK Vars */
+        @define-color bg-color ${bgColor};
+        @define-color fg-color ${textColor};
+        @define-color primary-color ${primaryColor};
+        @define-color secondary-color ${secondaryColor};
+        @define-color border-color @primary-color;
+        @define-color selected-bg-color @primary-color;
+        @define-color selected-fg-color @bg-color;
+
+        * {
+          all: unset;
+          font-family: JetBrainsMono Nerd Font;
+        }
+
+        #window {
+          background: transparent;
+        }
+
+        box#main {
+          border-radius: 16px;
+          background-color: @bg-color;
+          border: 0.5px solid alpha(@fg-color, 0.25);
+        }
+
+        entry#entry {
+          font-size: 1.25rem;
+          background: transparent;
+          box-shadow: none;
+          border: none;
+          border-radius: 16px;
+          padding: 16px 24px;
+          min-height: 40px;
+          caret-color: @primary-color;
+        }
+
+        list#main {
+          background-color: transparent;
+        }
+
+        #plugin {
+          background-color: transparent;
+          padding-bottom: 4px;
+        }
+
+        #match {
+          font-size: 1.1rem;
+          padding: 2px 4px;
+        }
+
+        #match:selected,
+        #match:hover {
+          background-color: @selected-bg-color;
+          color: @selected-fg-color;
+        }
+
+        #match:selected label#info,
+        #match:hover label#info {
+          color: @selected-fg-color;
+        }
+
+        #match:selected label#match-desc,
+        #match:hover label#match-desc {
+          color: alpha(@selected-fg-color, 0.9);
+        }
+
+        #match label#info {
+          color: transparent;
+          color: @fg-color;
+        }
+
+        label#match-desc {
+          font-size: 1rem;
+          color: @fg-color;
+        }
+
+        label#plugin {
+          font-size: 16px;
         }
       '';
   };
