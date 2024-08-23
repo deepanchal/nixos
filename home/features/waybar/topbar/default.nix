@@ -12,7 +12,6 @@ in {
 
   programs.waybar = {
     enable = true;
-    # style = import ./style.nix;
     systemd = {
       enable = true;
       target = "graphical-session.target";

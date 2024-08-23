@@ -98,7 +98,6 @@ in {
         "${modshift}, ${upKey}, hy3:movewindow, u"
         "${modshift}, ${rightKey}, hy3:movewindow, r"
 
-        "${mainMod}, M, exec, hyprctl keyword $kw $(($(hyprctl getoption $kw -j | jaq -r '.int') ^ 1))" # toggle no_gaps_when_only
         # "${mainMod}, W, togglegroup," # group focused window
         "${mainMod}, W, hy3:makegroup, tab"
         "${mainMod}, V, hy3:makegroup, v"
@@ -109,7 +108,8 @@ in {
         # "${modshift}, G, hy3:changegroupactive," # switch within the active group
         "${modshift}, R, exec, hyprctl reload && notify-send 'Reloaded hyprland'" # toggle floating for the focused window
         "${modshift}, SPACE, togglefloating," # toggle floating for the focused window
-        "${altMod}, C, exec, ${cliphist} list | anyrun-select | ${cliphist} decode | ${wl-copy}"
+        "${altMod}, C, exec, ${cliphist} list | anyrun-dmenu | ${cliphist} decode | ${wl-copy}"
+        "${mainMod}, PERIOD, exec, anyrun-symbols | ${wl-copy}" # not working atm, anyrun can't copy to clipboard
 
         "${modshift}, M, exec, ${playerctl} play-pause"
         "${modshift}, N, exec, ${playerctl} next"
