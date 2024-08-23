@@ -33,6 +33,8 @@ in {
     wl-clipboard
     wdisplays
     wev
+    # watershot # Simple wayland native screenshot tool in Rust
+    # ironbar # Wayland gtk bar in Rust
     pngquant
     cliphist
     (
