@@ -138,6 +138,7 @@
         ".config/Keybase"
         ".config/keybase"
         ".config/obs-studio"
+        ".config/teamviewer"
 
         ".local/share"
         ".local/state"
@@ -163,7 +164,6 @@
         ".bash_history"
         ".wakatime.cfg"
         ".config/pavucontrol.ini"
-        ".config/gtk-3.0/bookmarks" # persist bookmarks in file-manager
         # ".config/gh/hosts.yml"
       ];
     };
