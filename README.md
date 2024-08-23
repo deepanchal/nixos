@@ -2,6 +2,12 @@
 
 Work in progress nixos config.
 
+## Screenshots
+
+![screenshot1](.github/assets/ss1.png)
+![screenshot2](.github/assets/ss2.png)
+![screenshot3](.github/assets/ss3.png)
+
 ## Setup
 
 Run this command to setup nixos on your drive. 
