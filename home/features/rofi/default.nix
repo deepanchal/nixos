@@ -2,9 +2,7 @@
   pkgs,
   config,
   ...
-}: let
-  accent = config.theme.accent;
-in {
+}: {
   # xdg.configFile."rofi/config.rasi".source = ./config.rasi;
 
   xdg.configFile."rofi/config.rasi".text = with config.colorScheme.palette; ''
@@ -61,7 +59,7 @@ in {
 
     /*****----- Global Properties -----*****/
     * {
-        active-background: #${accent};
+        active-background: #${primary};
         active-foreground: @foreground;
         normal-background: @background;
         normal-foreground: @foreground;
@@ -77,7 +75,7 @@ in {
 
         selected-active-background: #${base08};
         selected-active-foreground: @foreground;
-        selected-normal-background: #${accent};
+        selected-normal-background: #${primary};
         selected-normal-foreground: @foreground;
         selected-urgent-background: #${base0A};
         selected-urgent-foreground: @foreground;

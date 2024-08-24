@@ -5,8 +5,7 @@
   lib,
   ...
 }: let
-  colors = config.colorscheme.palette;
-  accent = config.theme.accent;
+  colors = config.colorScheme.palette;
   bgImageSection = name:
   # css
   ''
@@ -44,7 +43,7 @@ in {
         button:active,
         button:hover {
           color: #${colors.base01};
-          background-color: #${accent};
+          background-color: #${colors.primary};
         }
 
         ${lib.concatMapStringsSep "\n" bgImageSection [

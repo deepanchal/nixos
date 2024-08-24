@@ -5,8 +5,7 @@
   config,
   ...
 }: let
-  colors = config.colorscheme.palette;
-  accent = config.theme.accent;
+  colors = config.colorScheme.palette;
   anyrunPkgs = inputs.anyrun.packages.${pkgs.system};
 in {
   imports = [
@@ -160,15 +159,14 @@ in {
 
     # custom css for anyrun, based on catppuccin-mocha
     extraCss = let
-      primaryColor = "#${accent}";
-      secondaryColor = "#${colors.base0E}";
+      primaryColor = "#${colors.primary}";
+      secondaryColor = "#${colors.secondary}";
       bgColor = "#${colors.base01}";
       textColor = "#${colors.base05}";
     in
       # css
       ''
         /*
-         * Using catppuccin mocha theme with blue accent
          * See:
          *  - https://docs.gtk.org/gtk4/css-properties.html#non-css-colors
          *  - https://docs.gtk.org/gtk3/css-overview.html#an-example-for-defining-colors

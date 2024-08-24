@@ -1,6 +1,5 @@
 {config, ...}: let
   colors = config.colorScheme.palette;
-  accent = config.theme.accent;
 in {
   services.dunst = {
     enable = true;
@@ -32,7 +31,7 @@ in {
         progress_bar_max_width = 300;
         separator_height = 1;
         frame_width = 2;
-        frame_color = "#${accent}";
+        frame_color = "#${colors.primary}";
         separator_color = "frame";
         corner_radius = 12;
         transparency = 0;
