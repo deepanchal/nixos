@@ -1,6 +1,5 @@
 {config, ...}: let
-  colors = config.colorscheme.palette;
-  accent = config.theme.accent;
+  colors = config.colorScheme.palette;
 in {
   programs.waybar.style =
     # css
@@ -24,15 +23,15 @@ in {
       }
       #workspaces button.active  {
         color: #${colors.base02};
-        background-color: #${accent};
+        background-color: #${colors.primary};
         border-radius: 1rem;
       }
       #workspaces button.empty {
-        color: @overlay1;
+        color: #${colors.overlay1};
       }
       #workspaces button:hover {
         color: #${colors.base02};
-        background-color: #${accent};
+        background-color: #${colors.primary};
         border-radius: 1rem;
       }
 
@@ -58,7 +57,7 @@ in {
 
       #submap {
         border-radius: 1rem;
-        background-color: #${accent};
+        background-color: #${colors.primary};
         color: #${colors.base02};
         padding-left: 1rem;
         padding-right: 1rem;
@@ -66,7 +65,7 @@ in {
 
       tooltip {
         background: #${colors.base00};
-        border: 1px solid #${accent};
+        border: 1px solid #${colors.primary};
       }
 
       tooltip label {
@@ -110,13 +109,13 @@ in {
       }
 
       #battery {
-        color: #a6d189;
+        color: #${colors.success};
       }
       #battery.warning {
-        color: #ef9f76;
+        color: #${colors.warning};
       }
       #battery.critical:not(.charging) {
-        color: #e78284;
+        color: #${colors.danger};
       }
     '';
 }

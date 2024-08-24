@@ -14,6 +14,7 @@ in {
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
     ./global
+    ./features/theme
     ./features/shell/nushell
     ./features/shell/fish.nix
     ./features/shell/zsh
@@ -38,17 +39,6 @@ in {
     ./features/terminal/programs/yazi.nix
     ./features/zellij
   ];
-
-  colorscheme = lib.mkDefault colorSchemes.catppuccin-mocha;
-  theme = {
-    name = "Catppuccin-Mocha";
-    flavor = "Mocha";
-    accentName = "Blue";
-    accent = colorSchemes.catppuccin-mocha.palette.base0D;
-  };
-  specialisation = {
-    light.configuration.colorscheme = colorSchemes.catppuccin-latte;
-  };
 
   # The home.packages option allows you to install Nix packages into your
   # environment.

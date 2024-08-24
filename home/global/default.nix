@@ -5,41 +5,13 @@
   config,
   outputs,
   ...
-}: let
-  inherit (inputs.nix-colors) colorSchemes;
-in {
+}: {
   imports =
     [
-      inputs.nix-colors.homeManagerModule
       # ../features/cli
       # ../features/nvim
     ]
     ++ (builtins.attrValues outputs.homeManagerModules);
-
-  options = {
-    theme = {
-      name = lib.mkOption {
-        type = lib.types.str;
-        default = "Catppuccin-Mocha";
-        description = "Theme name";
-      };
-      flavor = lib.mkOption {
-        type = lib.types.str;
-        default = "Mocha";
-        description = "Theme flavor name";
-      };
-      accentName = lib.mkOption {
-        type = lib.types.str;
-        default = "Teal";
-        description = "Theme accent color name";
-      };
-      accent = lib.mkOption {
-        type = lib.types.str;
-        default = colorSchemes.catppuccin-mocha.palette.base0C;
-        description = "Theme accent color";
-      };
-    };
-  };
 
   config = {
     nixpkgs = {
@@ -104,12 +76,6 @@ in {
       sessionPath = ["$HOME/.local/bin"];
     };
 
-    colorscheme = lib.mkOverride 1499 colorSchemes.dracula;
-    specialisation = {
-      dark.configuration.colorscheme = lib.mkOverride 1498 config.colorscheme;
-      light.configuration.colorscheme = lib.mkOverride 1498 config.colorscheme;
-    };
-
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
     # plain files is through 'home.file'.
     home.file = {
@@ -123,54 +89,6 @@ in {
       #   org.gradle.console=verbose
       #   org.gradle.daemon.idletimeout=3600000
       # '';
-
-      ".colorscheme".text = config.colorscheme.slug;
-      ".colorscheme.json".text = builtins.toJSON config.colorscheme;
     };
-
-    home.packages = let
-      specialisation = pkgs.writeShellScriptBin "specialisation" ''
-        profiles="$HOME/.local/state/nix/profiles"
-        current="$profiles/home-manager"
-        base="$profiles/home-manager-base"
-
-        # If current contains specialisations, link it as base
-        if [ -d "$current/specialisation" ]; then
-          echo >&2 "Using current profile as base"
-          ln -sfT "$(readlink "$current")" "$base"
-        # Check that $base contains specialisations before proceeding
-        elif [ -d "$base/specialisation" ]; then
-          echo >&2 "Using previously linked base profile"
-        else
-          echo >&2 "No suitable base config found. Try 'home-manager switch' again."
-          exit 1
-        fi
-
-        if [ "$1" = "list" ] || [ "$1" = "-l" ] || [ "$1" = "--list" ]; then
-          find "$base/specialisation" -type l -printf "%f\n"
-          exit 0
-        fi
-
-        echo >&2 "Switching to ''${1:-base} specialisation"
-        if [ -n "$1" ]; then
-          "$base/specialisation/$1/activate"
-        else
-          "$base/activate"
-        fi
-      '';
-      toggle-theme = pkgs.writeShellScriptBin "toggle-theme" ''
-        if [ -n "$1" ]; then
-          theme="$1"
-        else
-          current="$(${lib.getExe pkgs.jq} -re '.kind' "$HOME/.colorscheme.json")"
-          if [ "$current" = "light" ]; then
-            theme="dark"
-          else
-            theme="light"
-          fi
-        fi
-        ${lib.getExe specialisation} "$theme"
-      '';
-    in [specialisation toggle-theme];
   };
 }

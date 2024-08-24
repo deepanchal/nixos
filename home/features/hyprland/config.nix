@@ -4,8 +4,7 @@
   lib,
   ...
 }: let
-  colors = config.colorscheme.palette;
-  accent = config.theme.accent;
+  colors = config.colorScheme.palette;
   pointer = config.home.pointerCursor;
   rog-control-center = "${pkgs.asusctl}/bin/rog-control-center";
 in {
@@ -96,7 +95,7 @@ in {
         border_size = 2;
 
         # active border color
-        "col.active_border" = "rgb(${accent})";
+        "col.active_border" = "rgb(${colors.primary})";
         "col.inactive_border" = "rgb(${colors.base02})";
 
         # whether to apply the sensitivity to raw input (e.g. used by games where you aim using your mouse)
@@ -228,7 +227,7 @@ in {
             render_text = true;
             text_height = 10;
             text_font = "JetBrainsMono Nerd Font";
-            "col.active" = "0xff${accent}";
+            "col.active" = "0xff${colors.primary}";
             "col.urgent" = "0xff${colors.base09}";
             "col.inactive" = "0xff${colors.base02}";
             "col.text.active" = "0xff${colors.base00}";

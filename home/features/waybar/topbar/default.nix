@@ -3,8 +3,7 @@
   pkgs,
   ...
 }: let
-  colors = config.colorscheme.palette;
-  accent = config.theme.accent;
+  colors = config.colorScheme.palette;
 in {
   imports = [
     ./style.nix

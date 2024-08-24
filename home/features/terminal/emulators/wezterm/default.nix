@@ -2,9 +2,7 @@
   config,
   pkgs,
   ...
-}: let 
-  colorscheme = config.colorscheme;
-in {
+}: {
   programs.wezterm = {
     enable = true;
     extraConfig =
@@ -44,7 +42,7 @@ in {
         end)
 
         return {
-          color_scheme = "${colorscheme.slug}",
+          color_scheme = "${config.colorScheme.slug}",
           -- window_close_confirmation = "NeverPrompt",
           -- set_environment_variables = {
           --   TERM = 'wezterm',
