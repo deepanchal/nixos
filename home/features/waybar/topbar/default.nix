@@ -27,8 +27,9 @@ in {
       modules-left = [
         "custom/launcher"
         "hyprland/workspaces"
-        # "hyprland/window"
         "hyprland/submap"
+        "sway/workspaces"
+        "sway/mode"
       ];
       modules-center = [
         "clock"
@@ -110,6 +111,34 @@ in {
         };
       };
       "hyprland/submap" = {
+        format = "  {}";
+        max-length = 16;
+        tooltip = false;
+      };
+      "sway/workspaces" = {
+        all-outputs = true;
+        active-only = false;
+        disable-scroll = true;
+        format = "{icon}";
+        on-click = "activate";
+        show-special = true;
+        format-icons = {
+          urgent = "󱈸";
+        };
+        persistent-workspaces = {
+          "1" = [];
+          "2" = [];
+          "3" = [];
+          "4" = [];
+          "5" = [];
+          "6" = [];
+          "7" = [];
+          "8" = [];
+          "9" = [];
+          "10" = [];
+        };
+      };
+      "sway/mode" = {
         format = "  {}";
         max-length = 16;
         tooltip = false;

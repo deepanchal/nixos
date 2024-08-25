@@ -37,14 +37,26 @@ in {
     xwayland.enable = true;
   };
 
+  programs.sway = {
+    enable = true;
+    xwayland.enable = true;
+    extraOptions = [
+      "--verbose"
+      # "--debug"
+      # "--unsupported-gpu" # enable if using with nvidia
+    ];
+    # override default packages
+    extraPackages = with pkgs; [
+      swaylock
+      swayidle
+      # foot
+      # dmenu
+      # wmenu
+    ];
+  };
+
   xdg.portal = {
     enable = true;
-    # config.common.default = "*";
-    # wlr.enable = true;
-    extraPortals = [
-      # pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-hyprland
-    ];
   };
 
   ##########################################

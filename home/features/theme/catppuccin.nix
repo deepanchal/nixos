@@ -28,6 +28,9 @@
     };
   };
 
+  # Disable catppuccin theme on some apps
+  wayland.windowManager.sway.catppuccin.enable = false;
+
   # nix-colors also exposes helper functions
   # This function is used internally to convert base16's schemes to nix-colors format,
   # but is exposed so you can absolutely do the same.
