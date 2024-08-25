@@ -111,9 +111,10 @@ in {
         "${altMod}, C, exec, ${cliphist} list | anyrun-dmenu | ${cliphist} decode | ${wl-copy}"
         "${mainMod}, PERIOD, exec, anyrun-symbols | ${wl-copy}" # not working atm, anyrun can't copy to clipboard
 
-        "${modshift}, M, exec, ${playerctl} play-pause"
-        "${modshift}, N, exec, ${playerctl} next"
-        "${modshift}, B, exec, ${playerctl} previous"
+        # https://github.com/altdesktop/playerctl?tab=readme-ov-file#selecting-players-to-control
+        "${modshift}, M, exec, ${playerctl} -p spotify play-pause"
+        "${modshift}, N, exec, ${playerctl} -p spotify next"
+        "${modshift}, B, exec, ${playerctl} -p spotify previous"
 
         # workspace controls
         "${modshift}, right, hy3:movetoworkspace, +1" # move focused window to the next ws
@@ -125,13 +126,15 @@ in {
         ",F6, exec, grimblast --notify save area - | swappy -f -"
         # ",Print,exec, grim - | ${wl-copy}"
         # "${mainMod},S, exec, XDG_CURRENT_DESKTOP=GNOME XDG_SESSION_DESKTOP=gnome flameshot gui"
-
         # "${mainMod},Period,exec, tofi-emoji"
 
         "${ctrlAlt},L,exec,${hyprlock}"
 
         # capture current hyprctl clients for debugging
         "${mainMod}, Z, exec, hyprctl clients -j | jq > /tmp/hypr-clients.json && notify-send 'Saved current clients to /tmp/hypr-clients.json'"
+
+        ",Caps_Lock, exec, sleep 0.1 && ${swayosd} --caps-lock"
+        ",Num_Lock, exec, sleep 0.1 && ${swayosd} --num-lock"
 
         # ",XF86Bluetooth, exec, bcn"
       ]
@@ -142,6 +145,7 @@ in {
       "${mainMod}, mouse:273, resizewindow"
     ];
 
+    # https://wiki.hyprland.org/Configuring/Binds/#bind-flags
     binde = [
       ",XF86AudioRaiseVolume, exec, ${swayosd} --output-volume 5"
       ",XF86AudioLowerVolume, exec, ${swayosd} --output-volume -5"
@@ -149,7 +153,6 @@ in {
       ",XF86AudioMicMute, exec, ${swayosd} --input-volume mute-toggle"
       ",XF86MonBrightnessUp, exec, ${swayosd} --brightness +10"
       ",XF86MonBrightnessDown, exec, ${swayosd} --brightness -10"
-      ",Caps_Lock, exec, ${swayosd} --caps-lock"
 
       ",XF86Launch1, exec, ${rog-control-center}"
       ",XF86Launch3, exec, ${asusctl} led-mode -n"
