@@ -17,6 +17,7 @@
     ./features/theme
     ./features/shell
     ./features/hyprland
+    ./features/sway
     # ./features ./eww # Not working yet
     ./features/waybar
     ./features/anyrun
