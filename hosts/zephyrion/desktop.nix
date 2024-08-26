@@ -3,10 +3,7 @@
   pkgs,
   inputs,
   ...
-}: let
-  tuigreet = "${lib.getExe pkgs.greetd.tuigreet}";
-  tuigreet-theme = "border=blue;container=black;time=magenta;prompt=green;action=blue;button=yellow;text=cyan";
-in {
+}: {
   ##########################################
   # DESKTOP ENVIRONMENT
   ##########################################
@@ -66,27 +63,23 @@ in {
   services.greetd = {
     enable = true;
     settings = {
-      default_session = {
-        command = "${tuigreet} --remember --remember-session --time --theme ${tuigreet-theme} --cmd Hyprland";
+      default_session = let
+        tuigreet = "${lib.getExe pkgs.greetd.tuigreet}";
+        tuigreetOptions = [
+          "--remember"
+          "--remember-session"
+          "--time"
+          # Make sure theme is wrapped in single quotes. See https://github.com/apognu/tuigreet/issues/147
+          "--theme 'border=blue;text=cyan;prompt=green;time=red;action=blue;button=white;container=black;input=red'"
+          "--cmd Hyprland"
+        ];
+        flags = lib.concatStringsSep " " tuigreetOptions;
+      in {
+        command = "${tuigreet} ${flags}";
         user = "greeter";
       };
     };
   };
-
-  # this is a life saver.
-  # literally no documentation about this anywhere.
-  # might be good to write about this...
-  # https://www.reddit.com/r/NixOS/comments/u0cdpi/tuigreet_with_xmonad_how/
-  # systemd.services.greetd.serviceConfig = {
-  #   Type = "idle";
-  #   StandardInput = "tty";
-  #   StandardOutput = "tty";
-  #   StandardError = "journal"; # Without this errors will spam on screen
-  #   # Without these bootlogs will spam on screen
-  #   TTYReset = true;
-  #   TTYVHangup = true;
-  #   TTYVTDisallocate = true;
-  # };
 
   ##########################################
   # FONTS
@@ -112,22 +105,5 @@ in {
       noto-fonts-emoji
       (nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
     ];
-
-    # enableDefaultPackages = false;
-
-    # this fixes emoji stuff
-    # fontconfig = {
-    #   defaultFonts = {
-    #     monospace = [
-    #       "Iosevka Term"
-    #       "Iosevka Term Nerd Font Complete Mono"
-    #       "Iosevka Nerd Font"
-    #       "Noto Color Emoji"
-    #     ];
-    #     sansSerif = ["Lexend" "Noto Color Emoji"];
-    #     serif = ["Noto Serif" "Noto Color Emoji"];
-    #     emoji = ["Noto Color Emoji"];
-    #   };
-    # };
   };
 }
