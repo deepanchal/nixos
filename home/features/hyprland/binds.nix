@@ -122,11 +122,8 @@ in {
         "${mainMod}, mouse_down, workspace, e+1" # move to the next ws
         "${mainMod}, mouse_up, workspace, e-1" # move to the previous ws
 
-        # ",F6, exec, grimblast --notify save area - | tee ~/Pictures/screenshots/ss_$(date +'%Y-%m-%d_%H-%M-%S.png') | ${wl-copy}"
-        ",F6, exec, grimblast --notify save area - | swappy -f -"
-        # ",Print,exec, grim - | ${wl-copy}"
-        # "${mainMod},S, exec, XDG_CURRENT_DESKTOP=GNOME XDG_SESSION_DESKTOP=gnome flameshot gui"
-        # "${mainMod},Period,exec, tofi-emoji"
+        # screenshot
+        ",F6, exec, grimblast --notify save area - | satty -f -"
 
         "${ctrlAlt},L,exec,${hyprlock}"
 
