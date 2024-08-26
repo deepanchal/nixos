@@ -157,7 +157,7 @@ in {
         "${mod2}+c" = "exec cliphist list | anyrun-dmenu | cliphist decode | wl-copy";
 
         # Screenshots
-        "F6" = "exec grimblast --notify save area - | swappy -f -";
+        "F6" = "exec grimblast --notify save area - | satty -f -";
 
         # Utilities
         "--locked XF86AudioMute" = "exec swayosd-client --output-volume mute-toggle";
