@@ -38,6 +38,7 @@
     ./features/wlogout
     ./features/swappy
     ./features/satty
+    ./features/scripts
   ];
 
   # The home.packages option allows you to install Nix packages into your

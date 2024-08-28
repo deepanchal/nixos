@@ -161,8 +161,8 @@ in {
 
         # Utilities
         "--locked XF86AudioMute" = "exec swayosd-client --output-volume mute-toggle";
-        "--locked XF86AudioLowerVolume" = "exec swayosd-client --output-volume -5";
-        "--locked XF86AudioRaiseVolume" = "exec swayosd-client --output-volume +5";
+        "--locked XF86AudioLowerVolume" = "exec swayosd-client --output-volume -5 && play-vol-change-sound";
+        "--locked XF86AudioRaiseVolume" = "exec swayosd-client --output-volume +5 && play-vol-change-sound";
         "--locked XF86AudioMicMute" = "exec swayosd-client --input-volume mute-toggle";
         "--locked XF86MonBrightnessDown" = "exec swayosd-client --brightness -10";
         "--locked XF86MonBrightnessUp" = "exec swayosd-client --brightness +10";

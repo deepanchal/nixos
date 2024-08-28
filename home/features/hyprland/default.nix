@@ -52,35 +52,31 @@ in {
         fi
       ''
     )
-    (
-      # See: https://github.com/outfoxxed/hy3/issues/2#issuecomment-1854631120
-      writeShellScriptBin "hy3-movefocus"
-      ''
-        #!/bin/bash
-        NowWindow="$(hyprctl activewindow -j | jq ".address")"
-
-        hyprctl dispatch hy3:movefocus "$1"  # && sleep 0.05
-        ThenWindow="$(hyprctl activewindow -j | jq ".address")"
-        if [ "$NowWindow" == "$ThenWindow" ]; then
-          hyprctl dispatch movefocus "$1"
-        fi
-      ''
-    )
   ];
 
+  # https://github.com/nix-community/home-manager/blob/master/modules/services/window-managers/hyprland.nix
   wayland.windowManager.hyprland = {
     enable = true;
     plugins = [
-      pkgs.hyprlandPlugins.hy3
     ];
-    systemd = {
-      variables = ["--all"];
-      extraCommands = [
-        "systemctl --user stop graphical-session.target"
-        "systemctl --user start hyprland-session.target"
-      ];
-    };
+    # systemd = {
+    #   variables = ["--all"];
+    #   extraCommands = [
+    #     "systemctl --user stop graphical-session.target"
+    #     "systemctl --user start hyprland-session.target"
+    #   ];
+    # };
   };
+
+  # programs.hyprlock = {
+  #   enable = true;
+  # };
+  # services.hypridle = {
+  #   enable = true;
+  # };
+  # services.hyprpaper = {
+  #   enable = true;
+  # };
 
   # fake a tray to let apps start
   # https://github.com/nix-community/home-manager/issues/2064
