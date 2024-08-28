@@ -36,6 +36,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    xdph = {
+      # Slack & Browser screensharing works on this commit for me
+      # Also, building v1.3.2 from scratch is broken
+      url = "github:hyprwm/xdg-desktop-portal-hyprland?ref=b9b97e5ba23fe7bd5fa4df54696102e8aa863cf6";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # anyrun - a wayland launcher
     anyrun = {
       url = "github:Kirottu/anyrun";
