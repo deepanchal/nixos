@@ -6,5 +6,6 @@
 }: {
   imports = [
     ./sound.nix
+    ./utils.nix
   ];
 }
