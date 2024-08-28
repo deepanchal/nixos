@@ -27,7 +27,7 @@ in {
             extraArgs = "bitdepth,10"; # See: https://github.com/hyprwm/xdg-desktop-portal-hyprland/issues/172#issuecomment-2163262338
           in "${monitor.name},${
             if monitor.enabled
-            then "${resolution}@${refreshRate},${position},${scale},${extraArgs}"
+            then "${resolution}@${refreshRate},${position},${scale}"
             else "disable"
           }"
         ) (config.monitors);
@@ -51,7 +51,7 @@ in {
 
         # "waybar"
         # "[workspace 1 silent] ${lib.getExe pkgs.wezterm}"
-        "[workspace 2 silent] ${lib.getExe pkgs.firefox}"
+        # "[workspace 2 silent] ${lib.getExe pkgs.firefox}"
         "[workspace 3 silent] ${lib.getExe pkgs.alacritty}"
       ];
 
@@ -73,8 +73,10 @@ in {
         # kb_options = "";
         # kb_rules = "";
 
+        # See: https://wiki.hyprland.org/Configuring/Variables/#input
         follow_mouse = 1;
         sensitivity = 0.0;
+        # accel_profile = "flat"; # flat | adaptive | custom
         touchpad = {
           natural_scroll = true;
           clickfinger_behavior = true;
@@ -83,10 +85,13 @@ in {
         };
       };
 
-      general = {
-        # https://github.com/outfoxxed/hy3?tab=readme-ov-file#configuration
-        layout = "hy3"; # i3 / sway like layout for hyprland.
+      device = {
+        name = "logitech-usb-receiver";
+        sensitivity = 0.0;
+        accel_profile = "adaptive";
+      };
 
+      general = {
         # gaps
         gaps_in = 4;
         gaps_out = 4;
@@ -193,12 +198,13 @@ in {
       };
 
       binds = {
-        # workspace_back_and_forth = true;
+        workspace_back_and_forth = false;
+        movefocus_cycles_fullscreen = false;
       };
 
       misc = {
         disable_hyprland_logo = true;
-        disable_splash_rendering = true;
+        disable_splash_rendering = false;
         force_default_wallpaper = 0; # Set to 0 to disable the anime mascot wallpapers
 
         vfr = true;
@@ -217,49 +223,13 @@ in {
         force_zero_scaling = true;
       };
 
-      plugin = {
-        hy3 = {
-          tabs = {
-            height = 20;
-            padding = 2;
-            from_top = true;
-            rounding = 2;
-            render_text = true;
-            text_height = 10;
-            text_font = "JetBrainsMono Nerd Font";
-            "col.active" = "0xff${colors.primary}";
-            "col.urgent" = "0xff${colors.base09}";
-            "col.inactive" = "0xff${colors.base02}";
-            "col.text.active" = "0xff${colors.base00}";
-            "col.text.urgent" = "0xff${colors.base00}";
-            "col.text.inactive" = "0xff${colors.base05}";
-          };
-          autotile = {
-            enable = true;
-            # trigger_width = 800;
-            # trigger_height = 500;
-          };
-          no_gaps_when_only = false;
-          node_collapse_policy = 1;
-          tab_first_window = false;
-        };
-      };
-
-      "$kw" = "dwindle:no_gaps_when_only";
+      plugin = {};
 
       workspace = let
         primaryMonitor = lib.lists.findSingle (monitor: monitor.primary == true) null null config.monitors;
         secondaryMonitor = lib.lists.findSingle (monitor: monitor.primary == false) null null config.monitors;
-        primary = "${
-          if primaryMonitor == null
-          then ""
-          else primaryMonitor.name
-        }";
-        secondary = "${
-          if secondaryMonitor == null
-          then ""
-          else secondaryMonitor.name
-        }";
+        primary = lib.optionalString (primaryMonitor != null) primaryMonitor.name;
+        secondary = lib.optionalString (secondaryMonitor != null) secondaryMonitor.name;
       in [
         "1, name:coding, monitor:${primary}"
         "2, name:browsing, monitor:${primary}"

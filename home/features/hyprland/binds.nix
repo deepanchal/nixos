@@ -42,7 +42,7 @@
           builtins.toString (x + 1 - (c * 10));
       in [
         "${mainMod}, ${ws}, workspace, ${toString (x + 1)}"
-        "${mainMod} SHIFT, ${ws}, hy3:movetoworkspace, ${toString (x + 1)}"
+        "${modshift} SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
       ]
     )
     10);
@@ -57,7 +57,7 @@ in {
         # "${modshift}, B, exec, ${brave}"
         "${mainMod}, E, exec, ${thunar}"
 
-        "${modshift}, Q, hy3:killactive,"
+        "${modshift}, Q, killactive,"
         "${mainMod}, P, pseudo"
 
         # # will switch to a submap called resize
@@ -81,31 +81,34 @@ in {
         "${mainMod}, MINUS, togglespecialworkspace, magic"
         "${modshift}, MINUS, movetoworkspace, special:magic"
 
-        # Not fully working with hy3 -> https://github.com/outfoxxed/hy3/issues/2
-        # "${mainMod}, ${leftKey}, hy3:movefocus, l"
-        # "${mainMod}, ${downKey}, hy3:movefocus, d"
-        # "${mainMod}, ${upKey}, hy3:movefocus, u"
-        # "${mainMod}, ${rightKey}, hy3:movefocus, r"
-
         # Using workaround script
-        "${mainMod}, ${leftKey}, exec, hy3-movefocus l"
-        "${mainMod}, ${downKey}, exec, hy3-movefocus d"
-        "${mainMod}, ${upKey}, exec, hy3-movefocus u"
-        "${mainMod}, ${rightKey}, exec, hy3-movefocus r"
+        "${mainMod}, ${leftKey}, movefocus, l"
+        "${mainMod}, ${downKey}, movefocus, d"
+        "${mainMod}, ${upKey}, movefocus, u"
+        "${mainMod}, ${rightKey}, movefocus, r"
 
-        "${modshift}, ${leftKey}, hy3:movewindow, l"
-        "${modshift}, ${downKey}, hy3:movewindow, d"
-        "${modshift}, ${upKey}, hy3:movewindow, u"
-        "${modshift}, ${rightKey}, hy3:movewindow, r"
+        "${modshift}, ${leftKey}, movewindow, l"
+        "${modshift}, ${downKey}, movewindow, d"
+        "${modshift}, ${upKey}, movewindow, u"
+        "${modshift}, ${rightKey}, movewindow, r"
+
+        # "${modshift}, ${leftKey}, swapwindow, l"
+        # "${modshift}, ${downKey}, swapwindow, d"
+        # "${modshift}, ${upKey}, swapwindow, u"
+        # "${modshift}, ${rightKey}, swapwindow, r"
+
+        # Grouped (tabbed) windows
+        "${mainMod}, G, togglegroup"
+        "${mainMod}, TAB, changegroupactive, f"
+        "${modshift}, TAB, changegroupactive, b"
 
         # "${mainMod}, W, togglegroup," # group focused window
-        "${mainMod}, W, hy3:makegroup, tab"
-        "${mainMod}, V, hy3:makegroup, v"
-        "${mainMod}, B, hy3:makegroup, h"
+        # "${mainMod}, W, makegroup, tab"
+        # "${mainMod}, V, makegroup, v"
+        # "${mainMod}, B, makegroup, h"
 
         "${mainMod}, F, fullscreen," # fullscreen focused window
         "${mainMod}, P, pseudo,"
-        # "${modshift}, G, hy3:changegroupactive," # switch within the active group
         "${modshift}, R, exec, hyprctl reload && notify-send 'Reloaded hyprland'" # toggle floating for the focused window
         "${modshift}, SPACE, togglefloating," # toggle floating for the focused window
         "${altMod}, C, exec, ${cliphist} list | anyrun-dmenu | ${cliphist} decode | ${wl-copy}"
@@ -117,8 +120,8 @@ in {
         "${modshift}, B, exec, ${playerctl} -p spotify previous"
 
         # workspace controls
-        "${modshift}, right, hy3:movetoworkspace, +1" # move focused window to the next ws
-        "${modshift}, left, hy3:movetoworkspace, -1" # move focused window to the previous ws
+        "${modshift}, right, movetoworkspace, +1" # move focused window to the next ws
+        "${modshift}, left, movetoworkspace, -1" # move focused window to the previous ws
         "${mainMod}, mouse_down, workspace, e+1" # move to the next ws
         "${mainMod}, mouse_up, workspace, e-1" # move to the previous ws
 
@@ -144,8 +147,8 @@ in {
 
     # https://wiki.hyprland.org/Configuring/Binds/#bind-flags
     binde = [
-      ",XF86AudioRaiseVolume, exec, ${swayosd} --output-volume 5"
-      ",XF86AudioLowerVolume, exec, ${swayosd} --output-volume -5"
+      ",XF86AudioRaiseVolume, exec, ${swayosd} --output-volume 5 && play-vol-change-sound"
+      ",XF86AudioLowerVolume, exec, ${swayosd} --output-volume -5 && play-vol-change-sound"
       ",XF86AudioMute, exec, ${swayosd} --output-volume mute-toggle"
       ",XF86AudioMicMute, exec, ${swayosd} --input-volume mute-toggle"
       ",XF86MonBrightnessUp, exec, ${swayosd} --brightness +10"
