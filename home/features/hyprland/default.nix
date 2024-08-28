@@ -19,7 +19,7 @@ in {
   ];
   home.packages = with pkgs; [
     libnotify
-    wf-recorder
+    wl-screenrec
     brightnessctl
     pamixer
     python39Packages.requests
