@@ -2,6 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
+  lib,
   inputs,
   config,
   pkgs,
@@ -28,11 +29,12 @@
     # ./nvidia.nix
 
     ./asus.nix
+    ./users.nix
     ./desktop.nix
     ./services.nix
     ./virtualization.nix
     ./theme.nix
-    ./home.nix # Note: building home-manager along with nixos
+    ./home.nix # NOTE: building home-manager along with nixos
     ./impermanence.nix
   ];
 
@@ -98,37 +100,6 @@
     keyMap = "us";
   };
   boot.kernelPackages = pkgs.linuxKernel.packages.linux_6_10;
-
-  ##################################################
-  # USER SETTINGS
-  ##################################################
-  users.users = {
-    # Define a user account. Don't forget to set a password with ‘passwd’.
-    deep = {
-      isNormalUser = true;
-      description = "Deep Panchal";
-      initialPassword = "deep";
-      extraGroups = [
-        "networkmanager"
-        "input"
-        "wheel" # Enable ‘sudo’ for the user.
-        "video"
-        "audio"
-        "libvirtd"
-        "docker"
-      ];
-      shell = pkgs.zsh;
-      packages = with pkgs; [
-        neovim
-        firefox
-        brave
-        discord
-        spotify
-        vscode
-        slack
-      ];
-    };
-  };
 
   ##################################################
   # NIX SETTINGS
@@ -299,6 +270,7 @@
     mpv # video player
     imv # image viewer
 
+    cmake
     mold
     gcc13
     jdk11
