@@ -24,5 +24,25 @@
       done
       echo "xdph services have been restarted."
     '')
+
+    (pkgs.writeShellScriptBin "restart-xdpw" ''
+      delay=2
+      services=(
+        "xdg-desktop-portal-wlr"
+        "xdg-desktop-portal-gtk"
+        "xdg-desktop-portal"
+      )
+      for service in "''${services[@]}"; do
+        echo "Stopping $service..."
+        systemctl --user stop "$service"
+      done
+      echo "Waiting for $delay seconds before starting..."
+      sleep "$delay"
+      for service in "''${services[@]}"; do
+        echo "Starting $service..."
+        systemctl --user start "$service"
+      done
+      echo "xdpw services have been restarted."
+    '')
   ];
 }
