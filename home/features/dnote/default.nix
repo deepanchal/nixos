@@ -1,7 +1,8 @@
 {pkgs, ...}: {
   home.packages = [
-    # NOTE: This is coming from my custom packages. See pkgs/dnote-cli/default.nix
-    pkgs.dnote-cli
+    # NOTE: These are coming from my custom packages
+    pkgs.dnote-cli # See: pkgs/dnote-cli/default.nix
+    pkgs.dnote-tui # See: pkgs/dnote-tui/default.nix
   ];
 
   # Dnote's config file is in yaml
