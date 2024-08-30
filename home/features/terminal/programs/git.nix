@@ -38,22 +38,22 @@ in {
       diff = {
         colorMoved = "default";
       };
-      # color = {
-      #   diff = {
-      #     meta = 11;
-      #     frag = "magenta bold";
-      #     commit = "yellow bold";
-      #     old = "red bold";
-      #     new = "green bold";
-      #     whitespace = "red reverse";
-      #   };
-      #   "diff-hightlight" = {
-      #     oldNormal = "red bold";
-      #     oldHighlight = "red bold 52";
-      #     newNormal = "green bold";
-      #     newHightlight = "green bold 22";
-      #   };
-      # };
+      color = {
+        diff = {
+          meta = 11;
+          frag = "magenta bold";
+          commit = "yellow bold";
+          old = "red bold";
+          new = "green bold";
+          whitespace = "red reverse";
+        };
+        "diff-hightlight" = {
+          oldNormal = "red bold";
+          oldHighlight = "red bold 52";
+          newNormal = "green bold";
+          newHightlight = "green bold 22";
+        };
+      };
       # interactive = {
       #   diffFilter = "delta --color-only --tabs 2";
       # };
