@@ -135,6 +135,9 @@ in {
       '';
 
       envExtra = ''
+        # Cargo binaries
+        export PATH=$PATH:~/.cargo/bin
+
         # Android Env
         #export ANDROID_SDK_ROOT=/opt/android-sdk
         export ANDROID_SDK_ROOT=$HOME/Android/Sdk
