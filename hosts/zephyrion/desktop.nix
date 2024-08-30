@@ -32,8 +32,8 @@
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
-    # portalPackage = pkgs.xdg-desktop-portal-hyprland;
-    portalPackage = inputs.xdph.packages."${pkgs.system}".xdg-desktop-portal-hyprland;
+    # Temporarily using wlr portal. See: https://github.com/hyprwm/xdg-desktop-portal-hyprland/issues/251
+    portalPackage = pkgs.xdg-desktop-portal-wlr;
   };
 
   programs.sway = {
