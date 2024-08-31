@@ -32,6 +32,7 @@
     ./users.nix
     ./desktop.nix
     ./services.nix
+    ./nix-ld.nix
     ./virtualization.nix
     ./theme.nix
     ./home.nix # NOTE: building home-manager along with nixos
@@ -195,6 +196,9 @@
     curl
     iw
     wget
+
+    openssl
+    cacert
     gparted
 
     # Hardware tools
