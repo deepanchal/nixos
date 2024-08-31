@@ -100,57 +100,63 @@ in {
           # "fast-syntax-highlighting" # https://github.com/zdharma-continuum/fast-syntax-highlighting
         ];
 
-        extraConfig = ''
-          # Uncomment the following line if you want to disable marking untracked files
-          # under VCS as dirty. This makes repository status check for large repositories
-          # much, much faster.
-          DISABLE_UNTRACKED_FILES_DIRTY="true"
+        extraConfig =
+          # sh
+          ''
+            # Uncomment the following line if you want to disable marking untracked files
+            # under VCS as dirty. This makes repository status check for large repositories
+            # much, much faster.
+            DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-          # Key bind for zsh-autosuggestions
-          bindkey '^ ' autosuggest-accept
+            # Key bind for zsh-autosuggestions
+            bindkey '^ ' autosuggest-accept
 
-          # Enable option stacking for docker
-          # Example: docker run -it <TAB> doesn't work, because you're stacking the -i and -t options
-          # See: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker
-          zstyle ':completion:*:*:docker:*' option-stacking yes
-          zstyle ':completion:*:*:docker-*:*' option-stacking yes
+            # Enable option stacking for docker
+            # Example: docker run -it <TAB> doesn't work, because you're stacking the -i and -t options
+            # See: https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker
+            zstyle ':completion:*:*:docker:*' option-stacking yes
+            zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
-          # Hook mise (asdf rust clone) to shell
-          # eval "$(mise activate zsh)"
+            # Hook mise (asdf rust clone) to shell
+            # eval "$(mise activate zsh)"
 
-          # A shortcut for mise managed direnv.
-          # mise exec direnv@latest -- direnv
-          # direnv() { mise exec direnv@latest -- direnv "$@"; }
+            # A shortcut for mise managed direnv.
+            # mise exec direnv@latest -- direnv
+            # direnv() { mise exec direnv@latest -- direnv "$@"; }
 
-          # Load secret env vars
-          [ -f ~/scripts/load-secret-env-vars.sh ] && source ~/scripts/load-secret-env-vars.sh
-        '';
+            # Load secret env vars
+            [ -f ~/scripts/load-secret-env-vars.sh ] && source ~/scripts/load-secret-env-vars.sh
+          '';
       };
 
-      initExtraFirst = ''
-        # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-        if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-          source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-        fi
-      '';
+      initExtraFirst =
+        # sh
+        ''
+          # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+          if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+            source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+          fi
+        '';
 
-      envExtra = ''
-        # Cargo binaries
-        export PATH=$PATH:~/.cargo/bin
+      envExtra =
+        # sh
+        ''
+          # Cargo binaries
+          export PATH=$PATH:~/.cargo/bin
 
-        # Android Env
-        #export ANDROID_SDK_ROOT=/opt/android-sdk
-        export ANDROID_SDK_ROOT=$HOME/Android/Sdk
-        export ANDROID_HOME=$HOME/Android/Sdk
-        export PATH=$PATH:~/.android/avd
-        export PATH=$PATH:$ANDROID_HOME/emulator
-        export PATH=$PATH:$ANDROID_HOME/tools
-        export PATH=$PATH:$ANDROID_HOME/tools/bin
-        export PATH=$PATH:$ANDROID_HOME/platform-tools
-        export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
-        export ANDROID_NDK=$ANDROID_HOME/ndk-bundle
-        export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
-      '';
+          # Android Env
+          #export ANDROID_SDK_ROOT=/opt/android-sdk
+          export ANDROID_SDK_ROOT=$HOME/Android/Sdk
+          export ANDROID_HOME=$HOME/Android/Sdk
+          export PATH=$PATH:~/.android/avd
+          export PATH=$PATH:$ANDROID_HOME/emulator
+          export PATH=$PATH:$ANDROID_HOME/tools
+          export PATH=$PATH:$ANDROID_HOME/tools/bin
+          export PATH=$PATH:$ANDROID_HOME/platform-tools
+          export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+          export ANDROID_NDK=$ANDROID_HOME/ndk-bundle
+          export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
+        '';
 
       history = {
         # share history between different zsh sessions
@@ -178,6 +184,11 @@ in {
         grep = "rg";
         ps = "procs";
         tail = "tspin";
+
+        # Remove this annoying fd alias coming from maybe common-aliases plugin or hm fd module
+        # fd: aliased to fd '--hidden' '--no-ignore' '--no-absolute-path'
+        # https://github.com/ohmyzsh/ohmyzsh/issues/9414#issuecomment-734947141
+        fd = lib.mkForce "fd";
 
         # Other apps
         zj = "zellij";
