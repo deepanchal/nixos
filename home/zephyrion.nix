@@ -20,13 +20,12 @@
     ./features/waybar
     ./features/anyrun
     ./features/swaync
+    ./features/editors
     ./features/terminal
-    ./features/nvim
     ./features/swaylock
     ./features/gtk
     ./features/firefox
     ./features/thunar
-    ./features/jetbrains
     ./features/keybase
     ./features/wlogout
     ./features/satty
