@@ -17,22 +17,18 @@
     ./features/theme
     ./features/hyprland
     ./features/sway
-    # ./features ./eww # Not working yet
     ./features/waybar
     ./features/anyrun
-    # ./features ./dunst
     ./features/swaync
     ./features/terminal
     ./features/nvim
     ./features/swaylock
     ./features/gtk
-    ./features/flameshot
     ./features/firefox
     ./features/thunar
     ./features/jetbrains
     ./features/keybase
     ./features/wlogout
-    ./features/swappy
     ./features/satty
     ./features/scripts
     ./features/xdg
