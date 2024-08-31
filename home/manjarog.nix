@@ -9,7 +9,7 @@
 }: let
   inherit (inputs.nix-colors) colorSchemes;
 in {
-  # You can import other home-manager modules here
+  # NOTE: I have moved from manjaro to nixos so this config is outdated!
   imports = [
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example

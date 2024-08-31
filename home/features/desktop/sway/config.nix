@@ -4,6 +4,8 @@
   lib,
   ...
 }: let
+  cursorTheme = config.home.pointerCursor.name;
+  cursorSize = toString config.home.pointerCursor.size;
   colors = config.colorScheme.palette;
 in {
   wayland.windowManager.sway = {
@@ -382,8 +384,8 @@ in {
         # use this if they aren't displayed properly:
         export _JAVA_AWT_WM_NONREPARENTING=1
         # Consistent cursor size maybe?
-        export XCURSOR_THEME=Bibata-Modern-Classic
-        export XCURSOR_SIZE=16
+        export XCURSOR_THEME=${cursorTheme}
+        export XCURSOR_SIZE=${cursorSize}
       '';
 
     extraConfigEarly = ''

@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  lib,
+  pkgs,
+  ...
+}: let
   # browser = ["firefox.desktop"];
   browser = ["brave-browser.desktop"];
 
@@ -25,6 +29,10 @@
     "x-scheme-handler/tg" = ["telegramdesktop.desktop"];
   };
 in {
+  imports = [
+    ./xdpw.nix # xdg-desktop-portal-wlr
+  ];
+
   xdg = {
     userDirs = {
       enable = true;
