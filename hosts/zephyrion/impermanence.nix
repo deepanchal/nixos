@@ -139,6 +139,7 @@
         ".config/keybase"
         ".config/obs-studio"
         ".config/teamviewer"
+        ".config/rog" # asusctl's rog-control-center
 
         ".local/share"
         ".local/state"
