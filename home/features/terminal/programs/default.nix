@@ -3,6 +3,7 @@
     ./zellij
     ./direnv
     ./atuin.nix
+    ./aichat.nix
     ./eza.nix
     ./bat.nix
     ./btop.nix
