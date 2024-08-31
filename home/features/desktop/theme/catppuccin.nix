@@ -85,7 +85,8 @@
       danger = error;
 
       # All theme colors
-      # NOTE: `#` prefix gets removed by nix-colors `colorscheme.nix` module
+      # NOTE: `#` prefix gets removed by nix-colors `colorscheme.nix` module.
+      # I have kept the prefix here so that I can visualize colors with nvim-colorizer (https://github.com/norcalli/nvim-colorizer.lua)
       # https://github.com/Misterio77/nix-colors/blob/b01f024090d2c4fc3152cd0cf12027a7b8453ba1/module/colorscheme.nix#L66
       rosewater = "#f5e0dc";
       flamingo = "#f2cdcd";
