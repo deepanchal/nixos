@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   programs.mise = {
     enable = true;
     enableBashIntegration = config.programs.bash.enable;

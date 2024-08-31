@@ -15,7 +15,6 @@
     # outputs.homeManagerModules.example
     ./global
     ./features/theme
-    ./features/shell
     ./features/hyprland
     ./features/sway
     # ./features ./eww # Not working yet
@@ -25,12 +24,9 @@
     ./features/swaync
     ./features/terminal
     ./features/nvim
-    ./features/zellij
     ./features/swaylock
     ./features/gtk
     ./features/flameshot
-    # ./features/mise
-    ./features/tmux
     ./features/firefox
     ./features/thunar
     ./features/jetbrains
@@ -39,8 +35,7 @@
     ./features/swappy
     ./features/satty
     ./features/scripts
-    ./features/dnote
-    ./features/portals
+    ./features/xdg
   ];
 
   # The home.packages option allows you to install Nix packages into your
