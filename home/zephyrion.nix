@@ -14,23 +14,11 @@
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
     ./global
-    ./features/theme
-    ./features/hyprland
-    ./features/sway
-    ./features/waybar
-    ./features/anyrun
-    ./features/swaync
     ./features/editors
     ./features/terminal
-    ./features/swaylock
-    ./features/gtk
-    ./features/firefox
-    ./features/thunar
-    ./features/keybase
-    ./features/wlogout
-    ./features/satty
+    ./features/desktop
     ./features/scripts
-    ./features/xdg
+    ./features/programs
   ];
 
   # The home.packages option allows you to install Nix packages into your

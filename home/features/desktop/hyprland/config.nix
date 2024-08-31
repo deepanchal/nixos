@@ -4,6 +4,8 @@
   lib,
   ...
 }: let
+  cursorTheme = config.home.pointerCursor.name;
+  cursorSize = toString config.home.pointerCursor.size;
   colors = config.colorScheme.palette;
   pointer = config.home.pointerCursor;
   rog-control-center = "${pkgs.asusctl}/bin/rog-control-center";
@@ -56,12 +58,10 @@ in {
       ];
 
       env = [
-        # "XDG_CURRENT_DESKTOP,GNOME"
-        # "XDG_SESSION_DESKTOP,gnome"
-        "XCURSOR_THEME,Bibata-Modern-Classic"
-        "XCURSOR_SIZE,16"
-        "HYPRCURSOR_THEME,Bibata-Modern-Classic"
-        "HYPRCURSOR_SIZE,16"
+        "XCURSOR_THEME,${cursorTheme}"
+        "XCURSOR_SIZE,${cursorSize}"
+        "HYPRCURSOR_THEME,${cursorTheme}"
+        "HYPRCURSOR_SIZE,${cursorSize}"
       ];
 
       # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
