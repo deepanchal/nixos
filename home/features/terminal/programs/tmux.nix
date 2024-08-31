@@ -4,4 +4,3 @@
     historyLimit = 20000;
   };
 }
-

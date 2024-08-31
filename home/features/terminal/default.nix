@@ -2,5 +2,6 @@
   imports = [
     ./emulators
     ./programs
+    ./shell
   ];
 }
