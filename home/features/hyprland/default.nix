@@ -22,7 +22,6 @@ in {
     wl-screenrec
     brightnessctl
     pamixer
-    python39Packages.requests
     slurp
     grim
     hyprpicker
@@ -35,23 +34,7 @@ in {
     wev
     # watershot # Simple wayland native screenshot tool in Rust
     # ironbar # Wayland gtk bar in Rust
-    pngquant
     cliphist
-    (
-      writeShellScriptBin "micmute"
-      ''
-        #!/bin/sh
-
-        # shellcheck disable=SC2091
-        if $(pamixer --default-source --get-mute); then
-          pamixer --default-source --unmute
-          sudo mic-light-off
-        else
-          pamixer --default-source --mute
-          sudo mic-light-on
-        fi
-      ''
-    )
   ];
 
   # https://github.com/nix-community/home-manager/blob/master/modules/services/window-managers/hyprland.nix
