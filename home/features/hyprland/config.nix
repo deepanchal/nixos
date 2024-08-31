@@ -47,7 +47,7 @@ in {
         # "${wl-paste} --type image --watch cliphist store" # Stores only text data
         "wl-paste --watch cliphist store"
 
-        "${rog-control-center}"
+        # "${rog-control-center}"
 
         # "waybar"
         # "[workspace 1 silent] ${lib.getExe pkgs.wezterm}"
@@ -241,7 +241,10 @@ in {
         "8, name:misc4, monitor:${secondary}"
         # Workspaces 9 and 10 are not explicitly assigned to allow them to appear on the active monitor
 
-        "special:scratchpad, on-created-empty:alacritty"
+        "special:scratchpad, on-created-empty: [float; size 75% 75%; move center] alacritty --working-directory=$HOME/projects/nixos"
+        "special:notes, on-created-empty: [float; size 75% 75%; move center] alacritty -e dnote-tui"
+        "special:procs, on-created-empty: [float; size 75% 75%; move center] alacritty -e btop"
+        "special:magic, on-created-empty: [float; size 75% 75%; move center] alacritty -e tmux new -A -s scratchpad"
       ];
     };
   };

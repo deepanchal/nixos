@@ -81,7 +81,8 @@
       success = green;
       info = sapphire;
       warning = yellow;
-      danger = red;
+      error = red;
+      danger = error;
 
       # All theme colors
       # NOTE: `#` prefix gets removed by nix-colors `colorscheme.nix` module

@@ -65,20 +65,6 @@
       "size 400 100, class:^(thunar)$,title:^(File Operation Progress)$"
       "move 100%-w-25 5%, class:^(thunar)$,title:^(File Operation Progress)$"
       "center, class:^(thunar)$,title:^(Attention|Error)$"
-      # fix xwayland apps
-      "rounding 0, xwayland:1, floating:1"
-      "center, class:^(.*jetbrains.*)$, title:^(Confirm Exit|Open Project|splash)$"
-      # "size 640 400, class:^(.*jetbrains.*)$, title:^(splash)$"
-      # jetbrains
-      # (tileClass "jetbrains-studio")
-      "noborder, class:^(jetbrains-)(.*)$"
-      "opacity 1 override 1 override,class:^(jetbrains-.*)$"
-      "dimaround,class:^(jetbrains-.*)$,floating:1,title:^(?!win)"
-      "center,class:^(jetbrains-.*)$,floating:1,title:^(?!win)"
-      "noanim,class:^(jetbrains-.*)$,title:^(win.*)$"
-      "noinitialfocus,class:^(jetbrains-.*)$,title:^(win.*)$"
-      "rounding 0,class:^(jetbrains-.*)$,title:^(win.*)$"
-      "float, class:^(jetbrains-.*)$, title:^(win.*)$"
       # portal / polkit
       "float, class:^(xdg-desktop-portal-gtk)$"
       "center, class:^(xdg-desktop-portal-gtk)$"
@@ -90,6 +76,13 @@
       "float, title:^(MainPicker)$"
       "center, title:^(MainPicker)$"
       "size 50% 50%, class:^(MainPicker)$"
+      # JetBrains IDEs w/ wayland support. See: jetbrains module
+      "noanim, class:^(jetbrains-.*)$"
+      "noblur, class:^(jetbrains-.*)$"
+      "noshadow, class:^(jetbrains-.*)$"
+      "noborder, class:^(jetbrains-.*)$"
+      "norounding, class:^(jetbrains-.*)$"
+      "opacity 1, class:^(jetbrains-.*)$"
 
       ##########################################
       # OPAQUE

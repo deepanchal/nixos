@@ -32,7 +32,8 @@
   upKey = "K";
   downKey = "J";
 
-  # binds $mod + [shift +] {1..10} to [move to] workspace {1..10} (stolen from fufie)
+  # From https://github.com/fufexan/dotfiles/blob/41612095fbebb01a0f2fe0980ec507cf02196392/home/programs/wayland/hyprland/binds.nix
+  # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
   workspaces = builtins.concatLists (builtins.genList
     (
       x: let
@@ -42,7 +43,7 @@
           builtins.toString (x + 1 - (c * 10));
       in [
         "${mainMod}, ${ws}, workspace, ${toString (x + 1)}"
-        "${modshift} SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+        "${modshift}, ${ws}, movetoworkspace, ${toString (x + 1)}"
       ]
     )
     10);
@@ -60,26 +61,18 @@ in {
         "${modshift}, Q, killactive,"
         "${mainMod}, P, pseudo"
 
-        # # will switch to a submap called resize
-        # bind=$mainMod,R,submap,resize
-        #
-        # # will start a submap called "resize"
-        # submap=resize
-        #
-        # # sets repeatable binds for resizing the active window
-        # binde=,j,resizeactive,-10 0
-        # binde=,k,resizeactive,0 10
-        # binde=,l,resizeactive,0 -10
-        # binde=,SEMICOLON,resizeactive,10 0
-        #
-        # # use reset to go back to the global submap
-        # bind=,escape,submap,reset
-        #
-        # # will reset the submap, meaning end the current one and return to the global one
-        # submap=reset
+        # backtick = GRAVE
+        "${mainMod}, GRAVE, togglespecialworkspace, procs"
+        "${modshift}, GRAVE, movetoworkspace, special:procs"
 
-        "${mainMod}, MINUS, togglespecialworkspace, magic"
-        "${modshift}, MINUS, movetoworkspace, special:magic"
+        "${mainMod}, MINUS, togglespecialworkspace, scratchpad"
+        "${modshift}, MINUS, movetoworkspace, special:scratchpad"
+
+        "${mainMod}, EQUAL, togglespecialworkspace, notes"
+        "${modshift}, EQUAL, movetoworkspace, special:notes"
+
+        "${mainMod}, BACKSPACE, togglespecialworkspace, magic"
+        "${modshift}, BACKSPACE, movetoworkspace, special:magic"
 
         # Using workaround script
         "${mainMod}, ${leftKey}, movefocus, l"
