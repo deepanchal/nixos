@@ -43,8 +43,7 @@ return {
   { import = "astrocommunity.pack.tailwindcss" },
   -- { import = "astrocommunity.pack.prisma" },
   { import = "astrocommunity.pack.typescript" },
-  -- Disabled bc it uses archived rnix lsp
-  -- { import = "astrocommunity.pack.nix" },
+  { import = "astrocommunity.pack.nix" },
   { import = "astrocommunity.pack.python-ruff" },
   { import = "astrocommunity.pack.rust" },
   { import = "astrocommunity.pack.go" },
@@ -57,7 +56,6 @@ return {
   -- Lsp
   { import = "astrocommunity.lsp.lsp-signature-nvim" },
   { import = "astrocommunity.lsp.lsp-lens-nvim" },
-  -- { import = "astrocommunity.lsp.lsp-inlayhints-nvim" }, -- archived -> TODO: replace with native nvim inlay hints in future version
   -- { import = "astrocommunity.lsp.nvim-lint" },
   { import = "astrocommunity.lsp.garbage-day-nvim" },
 
@@ -66,5 +64,7 @@ return {
   -- { import = "astrocommunity.editing-support.conform-nvim" },
   { import = "astrocommunity.editing-support.refactoring-nvim" },
   { import = "astrocommunity.editing-support.chatgpt-nvim" },
+  { import = "astrocommunity.scrolling.mini-animate" },
+  -- { import = "astrocommunity.scrolling.cinnamon-nvim" },
   -- { import = "astrocommunity.media.vim-wakatime" },
 }

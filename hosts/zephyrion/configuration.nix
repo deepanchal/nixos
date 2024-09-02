@@ -276,6 +276,7 @@
     imv # image viewer
 
     cmake
+    gnumake
     mold
     gcc13
     jdk11
