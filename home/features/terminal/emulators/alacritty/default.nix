@@ -20,7 +20,7 @@
           y = 0;
         };
         startup_mode = "Maximized";
-        opacity = 0.9;
+        opacity = 0.85;
       };
 
       scrolling.history = 20000;

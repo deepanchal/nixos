@@ -57,7 +57,7 @@
           -- See: https://github.com/wez/wezterm/issues/2927
           front_end = "WebGpu",
 
-          window_background_opacity = 0.9,
+          window_background_opacity = 0.85,
           window_padding = {
             top = 0,
             right = 0,

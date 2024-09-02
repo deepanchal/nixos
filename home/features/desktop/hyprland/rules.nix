@@ -7,12 +7,15 @@
       "ignorezero, ^(launcher)$"
       "blur, notifications"
       "ignorezero, notifications"
-      "blur, bar"
+      # "blur, bar"
       "ignorezero, bar"
-      "ignorezero, ^(gtk-layer-shell|anyrun)$"
-      "blur, ^(gtk-layer-shell|anyrun)$"
+      "ignorezero, ^(gtk-layer-shell)$"
+      "blur, ^(gtk-layer-shell)$"
       "noanim, launcher"
       "noanim, bar"
+      "blur, anyrun"
+      "ignorezero, anyrun"
+      "xray 0, anyrun"
     ];
     windowrulev2 = [
       # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
@@ -58,7 +61,8 @@
       # make Firefox PiP window floating and sticky
       "float, title:^(Picture-in-Picture)$"
       "pin, title:^(Picture-in-Picture)$"
-      # thunar file operation progress
+      # thunar
+      "opacity 0.8, class:^(thunar)$"
       "float, class:^(thunar)$,title:^(File Operation Progress)$"
       "center, class:^(thunar)$,title:^(File Operation Progress)$"
       "pin, class:^(thunar)$,title:^(File Operation Progress)$"
@@ -83,6 +87,8 @@
       "noborder, class:^(jetbrains-.*)$"
       "norounding, class:^(jetbrains-.*)$"
       "opacity 1, class:^(jetbrains-.*)$"
+      # spotify
+      "opacity 0.8, initialTitle:^(Spotify.*)$"
 
       ##########################################
       # OPAQUE
@@ -97,8 +103,6 @@
       "opaque, class:(swappy)"
       "center 1, class:(swappy)"
       "stayfocused, class:(swappy)"
-
-      "tile, title:Spotify"
 
       ##########################################
       # IDLEINHIBIT

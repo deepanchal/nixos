@@ -1,6 +1,5 @@
 {
   imports = [
-    # ./sidebar
     ./topbar
   ];
 }

@@ -15,7 +15,7 @@
     settings = {
       term = "xterm-256color";
       window_padding_width = "0 0 0 0";
-      background_opacity = "0.9";
+      background_opacity = "0.85";
       cursor_shape = "block";
       cursor_blink_interval = 0;
       copy_on_select = "clipboard";

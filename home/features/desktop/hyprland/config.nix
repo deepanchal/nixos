@@ -88,7 +88,7 @@ in {
       device = {
         name = "logitech-usb-receiver";
         sensitivity = 0.0;
-        accel_profile = "adaptive";
+        accel_profile = "flat";
       };
 
       general = {
@@ -128,7 +128,7 @@ in {
           enabled = true;
           size = 3;
           passes = 3;
-          ignore_opacity = false;
+          ignore_opacity = true;
           new_optimizations = 1;
           xray = true;
           contrast = 0.7;

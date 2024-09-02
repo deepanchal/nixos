@@ -161,7 +161,7 @@ in {
     extraCss = let
       primaryColor = "#${colors.primary}";
       secondaryColor = "#${colors.secondary}";
-      bgColor = "#${colors.base01}";
+      bgColor = "#${colors.base02}";
       textColor = "#${colors.base05}";
     in
       # css
@@ -197,7 +197,7 @@ in {
 
         box#main {
           border-radius: 16px;
-          background-color: @bg-color;
+          background-color: alpha(@bg-color, 0.6);
           border: 0.5px solid alpha(@fg-color, 0.25);
         }
 

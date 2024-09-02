@@ -9,6 +9,10 @@
         min-height: 0px;
       }
 
+      window#waybar {
+        background-color: alpha(#${base01}, 0.5);
+      }
+
       #workspaces {
         border-radius: 1rem;
         background-color: #${base02};
@@ -37,6 +41,9 @@
       }
       #workspaces button.empty {
         color: #${overlay1};
+      }
+      #workspaces button.active.empty {
+        color: #${base04};
       }
       #workspaces button:hover {
         color: #${base02};
