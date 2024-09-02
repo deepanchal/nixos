@@ -46,8 +46,8 @@ return {
       n = {
         -- second key is the lefthand side of the map
 
-        ["<C-d>"] = { "<C-d>zz", desc = "PgDown Centered" },
-        ["<C-u>"] = { "<C-u>zz", desc = "PgUp Centered" },
+        -- ["<C-d>"] = { "<C-d>zz", desc = "PgDown Centered" },
+        -- ["<C-u>"] = { "<C-u>zz", desc = "PgUp Centered" },
         -- n = { "nzzzv", desc = "Next highlighted centered" },
         -- N = { "Nzzzv", desc = "Prev highlighted centered" },
         J = { "mzJ`z", desc = "Join Line w/ cursor at start" },

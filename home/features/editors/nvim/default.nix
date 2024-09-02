@@ -32,13 +32,13 @@
   home = {
     packages = with pkgs; [
       # C/C++
-      # cmake
+      cmake
       # cmake-language-server
-      # gnumake
-      # checkmake
-      # gcc # c/c++ compiler, required by nvim-treesitter!
-      # llvmPackages.clang-unwrapped # c/c++ tools with clang-tools such as clangd
-      # lldb
+      gnumake
+      checkmake
+      gcc # c/c++ compiler, required by nvim-treesitter!
+      llvmPackages.clang-unwrapped # c/c++ tools with clang-tools such as clangd
+      lldb
 
       # PYTHON
       python3
@@ -56,7 +56,8 @@
       # zls
 
       # NIX
-      nil
+      nixd
+      # nil
       statix # Lints and suggestions for the nix programming language
       deadnix # Find and remove unused code in .nix source files
       alejandra # Nix Code Formatter
