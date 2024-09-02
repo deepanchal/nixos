@@ -43,7 +43,6 @@
 
 ![screenshot1](.github/assets/ss1.png)
 ![screenshot2](.github/assets/ss2.png)
-![screenshot3](.github/assets/ss3.png)
 
 ## Theme
 
