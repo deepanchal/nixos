@@ -105,6 +105,7 @@ in {
         "${modshift}, R, exec, hyprctl reload && notify-send 'Reloaded hyprland'" # toggle floating for the focused window
         "${modshift}, SPACE, togglefloating," # toggle floating for the focused window
         "${altMod}, C, exec, ${cliphist} list | anyrun-dmenu | ${cliphist} decode | ${wl-copy}"
+        "${altMod}, W, exec, wallpaper-chooser"
         "${mainMod}, PERIOD, exec, anyrun-symbols | ${wl-copy}" # not working atm, anyrun can't copy to clipboard
 
         # https://github.com/altdesktop/playerctl?tab=readme-ov-file#selecting-players-to-control
@@ -119,9 +120,10 @@ in {
         "${mainMod}, mouse_up, workspace, e-1" # move to the previous ws
 
         # screenshot
-        ",F6, exec, grimblast --notify save area - | satty -f -"
+        ", F6, exec, grimblast --notify save area - | satty -f -"
+        "CTRL, F6, exec, grimblast --notify save output - | satty -f -"
 
-        "${ctrlAlt},L,exec,${hyprlock}"
+        "${ctrlAlt}, L, exec, sleep 0.5s && swaylock"
 
         # capture current hyprctl clients for debugging
         "${mainMod}, Z, exec, hyprctl clients -j | jq > /tmp/hypr-clients.json && notify-send 'Saved current clients to /tmp/hypr-clients.json'"
@@ -140,12 +142,12 @@ in {
 
     # https://wiki.hyprland.org/Configuring/Binds/#bind-flags
     binde = [
-      ",XF86AudioRaiseVolume, exec, ${swayosd} --output-volume 5 && play-vol-change-sound"
+      ",XF86AudioRaiseVolume, exec, ${swayosd} --output-volume +5 && play-vol-change-sound"
       ",XF86AudioLowerVolume, exec, ${swayosd} --output-volume -5 && play-vol-change-sound"
       ",XF86AudioMute, exec, ${swayosd} --output-volume mute-toggle"
       ",XF86AudioMicMute, exec, ${swayosd} --input-volume mute-toggle"
-      ",XF86MonBrightnessUp, exec, ${swayosd} --brightness +10"
-      ",XF86MonBrightnessDown, exec, ${swayosd} --brightness -10"
+      ",XF86MonBrightnessUp, exec, ${swayosd} --brightness +5"
+      ",XF86MonBrightnessDown, exec, ${swayosd} --brightness -5"
 
       ",XF86Launch1, exec, ${rog-control-center}"
       ",XF86Launch3, exec, ${asusctl} led-mode -n"

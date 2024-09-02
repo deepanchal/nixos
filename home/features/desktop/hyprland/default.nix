@@ -69,14 +69,4 @@ in {
       Requires = ["graphical-session-pre.target"];
     };
   };
-
-  systemd.user.services = {
-    swaybg = mkService {
-      Unit.Description = "Wallpaper chooser";
-      Service = {
-        ExecStart = "${lib.getExe pkgs.swaybg} -i ${config.wallpaper}";
-        Restart = "always";
-      };
-    };
-  };
 }
