@@ -40,6 +40,12 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+
+    # Helpful tools
+    pkgs.csvlens # csv tui in rust
+    pkgs.jless # pager for json in rust
+    pkgs.pipx
+    pkgs.httpie
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

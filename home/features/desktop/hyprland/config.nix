@@ -206,6 +206,7 @@ in {
         disable_hyprland_logo = true;
         disable_splash_rendering = false;
         force_default_wallpaper = 0; # Set to 0 to disable the anime mascot wallpapers
+        focus_on_activate = 1;
 
         vfr = true;
 
@@ -217,10 +218,6 @@ in {
         mouse_move_enables_dpms = true; # enable dpms on mouse/touchpad action
         key_press_enables_dpms = true; # enable dpms on keyboard action
         disable_autoreload = true; # autoreload is unnecessary on nixos, because the config is readonly anyway
-      };
-
-      xwayland = {
-        force_zero_scaling = true;
       };
 
       plugin = {};
