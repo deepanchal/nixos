@@ -123,7 +123,7 @@ in {
         ", F6, exec, grimblast --notify save area - | satty -f -"
         "CTRL, F6, exec, grimblast --notify save output - | satty -f -"
 
-        "${ctrlAlt}, L, exec, sleep 0.5s && swaylock"
+        "${ctrlAlt}, L, exec, sleep 0.1 && hyprlock"
 
         # capture current hyprctl clients for debugging
         "${mainMod}, Z, exec, hyprctl clients -j | jq > /tmp/hypr-clients.json && notify-send 'Saved current clients to /tmp/hypr-clients.json'"
