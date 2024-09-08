@@ -46,6 +46,9 @@
     pkgs.jless # pager for json in rust
     pkgs.pipx
     pkgs.httpie
+
+    # NOTE: My custom packages found under pkgs dir
+    pkgs.bt-keys-sync # See: pkgs/bt-keys-sync/default.nix
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
