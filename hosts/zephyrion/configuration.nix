@@ -280,6 +280,8 @@
     mold
     gcc13
     jdk11
+    ninja
+    pkg-config
 
     rustup
     gcc
