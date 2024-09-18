@@ -7,5 +7,6 @@
     ./cursor.nix
     ./gtk.nix
     ./qt.nix
+    ./profile.nix
   ];
 }

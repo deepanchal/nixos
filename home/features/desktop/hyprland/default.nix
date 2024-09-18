@@ -56,8 +56,9 @@ in {
       "$yellow" = "rgb(${c.warning})";
       "$text" = "rgb(${c.base05})";
       "$textAlpha" = "${c.base05}";
-      "$font" = "JetBrainsMono Nerd Font";
+      "$font" = "SF Pro Display SemiBold";
 
+      # Config from https://github.com/MrVivekRajan/Hyprlock-Styles/blob/a66b66a1697df450f9c9fa72478706005b9a69ba/Style-10/hyprlock.conf
       general = {
         disable_loading_bar = false;
         # grace = 300;
@@ -66,56 +67,128 @@ in {
       };
       background = [
         {
+          monitor = "";
           path = "screenshot";
-          blur_passes = 3;
-          blur_size = 3;
+          blur_passes = 2;
         }
       ];
       label = [
+        # Day
         {
           monitor = "";
-          text = "$TIME";
+          text = ''
+            cmd[update:1000] echo -e "$(date +"%A")"
+          '';
           color = "$text";
           font_size = "90";
+          font_family = "$font";
+          position = "0, 350";
+          halign = "center";
+          valign = "center";
+        }
+        # Date-Month
+        {
+          monitor = "";
+          text = ''
+            cmd[update:1000] echo -e "$(date +"%d %B")"
+          '';
+          color = "$text";
+          font_size = "40";
           font_family = "$font";
           position = "0, 250";
           halign = "center";
           valign = "center";
         }
+        # Time
         {
           monitor = "";
           text = ''
-            cmd[update:43200000] date +"%A, %d %B %Y"
+            cmd[update:1000] echo "<span>$(date +"- %I:%M -")</span>"
           '';
           color = "$text";
-          font_size = "25";
+          font_size = "20";
           font_family = "$font";
-          position = "0, -75";
+          position = "0, 190";
           halign = "center";
-          valign = "top";
+          valign = "center";
         }
+        # USER
+        {
+          monitor = "";
+          text = "  $USER";
+          color = "rgba(216, 222, 233, 0.80)";
+          outline_thickness = 2;
+          dots_size = 0.2;
+          dots_spacing = 0.2;
+          dots_center = true;
+          font_size = "18";
+          font_family = "$font";
+          position = "0, -130";
+          halign = "center";
+          valign = "center";
+        }
+        # Power
+        # {
+        #   monitor = "";
+        #   text = "󰐥  󰜉  󰤄";
+        #   color = "rgba(255, 255, 255, 0.6)";
+        #   font_size = "50";
+        #   position = "0, 100";
+        #   halign = "center";
+        #   valign = "bottom";
+        # }
       ];
+      # Profile-Pic
+      image = {
+        monitor = "";
+        path = "${config.home.homeDirectory}/.face";
+        border_size = 2;
+        border_color = "rgba(255, 255, 255, .65)";
+        size = 130;
+        rounding = -1;
+        rotate = 0;
+        reload_time = -1;
+        reload_cmd = "";
+        position = "0, 40";
+        halign = "center";
+        valign = "center";
+      };
+      # User-Box
+      shape = {
+        monitor = "";
+        size = "300, 60";
+        color = "rgba(255, 255, 255, .1)";
+        rounding = -1;
+        border_size = 0;
+        border_color = "rgba(255, 255, 255, 0)";
+        rotate = 0;
+        xray = false; # if true, make a "hole" in the background (rectangle of specified size, no rotation)
+        position = "0, -130";
+        halign = "center";
+        valign = "center";
+      };
       input-field = [
         {
           monitor = "";
           size = "300, 60";
-          outline_thickness = "4";
-          dots_size = "0.2";
-          dots_spacing = "0.2";
-          dots_center = "true";
-          outer_color = "$accent";
-          inner_color = "$surface0";
+          outline_thickness = 2;
+          dots_size = 0.2;
+          dots_spacing = 0.2;
+          dots_center = true;
+          outer_color = "rgba(255, 255, 255, 0)";
+          inner_color = "rgba(255, 255, 255, 0.1)";
           font_color = "$text";
-          fade_on_empty = "false";
+          fade_on_empty = false;
+          font_family = "$font";
           placeholder_text = ''
-            <span foreground="##$textAlpha"><i>󰌾  Logged in as </i><span foreground="##$accentAlpha">$USER</span></span>
+            <i><span foreground="##$textAlpha">󰌾  Enter Pass</span></i>
           '';
-          hide_input = "false";
+          hide_input = false;
           check_color = "$accent";
           fail_color = "$red";
           fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>";
           capslock_color = "$yellow";
-          position = "0, -47";
+          position = "0, -210";
           halign = "center";
           valign = "center";
         }
