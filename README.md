@@ -5,16 +5,15 @@
 </p>
 
 <p align="center">
-	<a href="https://github.com/deepanchal/nixos/stargazers">
-		<img alt="Stargazers" src="https://img.shields.io/github/stars/deepanchal/nixos?style=for-the-badge&logo=starship&color=C9CBFF&logoColor=D9E0EE&labelColor=302D41">
-	</a>
-  <a href="https://nixos.org/">
-    <img src="https://img.shields.io/badge/NixOS-24.11-informational.svg?style=for-the-badge&logo=nixos&color=F2CDCD&logoColor=D9E0EE&labelColor=302D41">
-  </a>
+  <a href="https://github.com/deepanchal/nixos/stargazers"><img alt="Stargazers" src="https://img.shields.io/github/stars/deepanchal/nixos?style=for-the-badge&logo=starship&color=C9CBFF&logoColor=D9E0EE&labelColor=302D41" /></a>
+  <a href="https://nixos.org/"><img alt="NixOSVersion" src="https://img.shields.io/badge/NixOS-24.11-informational.svg?style=for-the-badge&logo=nixos&color=F2CDCD&logoColor=D9E0EE&labelColor=302D41" /></a>
+</p>
+<p align="center">
+  <a href="https://github.com/NixOS/nixpkgs/tree/nixos-unstable"><img alt="NixPkgsVersion" src="https://img.shields.io/badge/dynamic/json?label=nixpkgs&url=https%3A%2F%2Fraw.githubusercontent.com%2Fdeepanchal%2Fnixos%2Fmain%2Fflake.lock&query=$.nodes.nixpkgs.locked.rev&style=for-the-badge&logo=nixos&color=F2CDCD&logoColor=D9E0EE&labelColor=302D41" /></a>
 </p>
 
 > [!NOTE]
-> This nix config is still a work in progress.
+> I use this system as my daily driver. While it is stable enough for my needs, it is still a work in progress.
 
 ## Components
 
@@ -49,7 +48,7 @@
 [Catppuccin Mocha][Catppuccin] theme with `blue` accent.
 
 > [!TIP]
-> See [`home/features/theme/catppuccin.nix`](home/features/theme/catppuccin.nix) file
+> See [`home/features/desktop/theme/catppuccin.nix`](home/features/desktop/theme/catppuccin.nix) file
 > which defines base16 colors + other theme colors with nix-colors
 
 | Color                   | Labels    | base16 | Hex       | RGB                  | HSL                  |
@@ -84,7 +83,7 @@
 ## Setup
 
 > [!WARNING]  
-> My NixOS config is still a work in progress. I have documented these setup instructions for myself and I might have missed some setup steps.
+> I have documented these setup instructions for myself and I may or may not have missed some setup steps.
 > I would advise using parts of my config that are helpful for you instead of fully installing it :)
 
 Run this command to setup nixos on your drive.
