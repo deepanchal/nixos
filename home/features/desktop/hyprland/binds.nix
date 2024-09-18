@@ -46,14 +46,14 @@ in {
         "$mod, P, pseudo"
 
         # backtick = GRAVE
-        "$mod, GRAVE, togglespecialworkspace, procs"
-        "$modShift, GRAVE, movetoworkspace, special:procs"
+        "$mod, GRAVE, togglespecialworkspace, notes"
+        "$modShift, GRAVE, movetoworkspace, special:notes"
 
         "$mod, MINUS, togglespecialworkspace, scratchpad"
         "$modShift, MINUS, movetoworkspace, special:scratchpad"
 
-        "$mod, EQUAL, togglespecialworkspace, notes"
-        "$modShift, EQUAL, movetoworkspace, special:notes"
+        "$mod, EQUAL, togglespecialworkspace, procs"
+        "$modShift, EQUAL, movetoworkspace, special:procs"
 
         "$mod, BACKSPACE, togglespecialworkspace, magic"
         "$modShift, BACKSPACE, movetoworkspace, special:magic"
