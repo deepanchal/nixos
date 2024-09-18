@@ -218,7 +218,10 @@ in {
 
       # https://wiki.hyprland.org/Configuring/Keywords/#executing
       exec-once = [
+        # https://github.com/hyprwm/xdg-desktop-portal-hyprland/issues/251#issuecomment-2357925548
         "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
+        "dbus-update-activation-environment --systemd --all"
+        "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
 
         # set cursor for HL itself
         "hyprctl setcursor ${cursorTheme} ${cursorSize}"
@@ -259,6 +262,7 @@ in {
         ) (config.monitors);
 
       env = [
+        "XDG_CURRENT_DESKTOP,Hyprland"
         "XCURSOR_THEME,${cursorTheme}"
         "XCURSOR_SIZE,${cursorSize}"
         "HYPRCURSOR_THEME,${cursorTheme}"

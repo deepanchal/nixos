@@ -32,7 +32,13 @@
     # # overrides. You can do that directly here, just don't forget the
     # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
     # # fonts?
-    (pkgs.nerdfonts.override {fonts = ["FiraCode" "JetBrainsMono"];})
+    (pkgs.nerdfonts.override {
+      fonts = [
+        "FiraCode"
+        "JetBrainsMono"
+        "RobotoMono"
+      ];
+    })
 
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
@@ -49,6 +55,7 @@
 
     # NOTE: My custom packages found under pkgs dir
     pkgs.bt-keys-sync # See: pkgs/bt-keys-sync/default.nix
+    pkgs.sf-pro-fonts # See: pkgs/sf-pro-fonts/default.nix
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
