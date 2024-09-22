@@ -10,6 +10,10 @@ in {
     enable = true;
     userName = "Deep Panchal";
     userEmail = "deep302001@gmail.com";
+    signing = {
+      key = "45FE8F325F0C658648AD56AFC0C2511B2C7608F4";
+      signByDefault = true;
+    };
     delta = {
       enable = true;
       options = {
@@ -29,6 +33,9 @@ in {
     };
 
     extraConfig = {
+      format = {
+        signOff = true;
+      };
       safe = {
         directory = "*";
       };
