@@ -156,6 +156,10 @@ in {
           export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
           export ANDROID_NDK=$ANDROID_HOME/ndk-bundle
           export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
+
+          # PNPM
+          export PNPM_HOME="$HOME/.local/share/pnpm"
+          export PATH="$PATH:$PNPM_HOME"
         '';
 
       history = {

@@ -211,7 +211,7 @@ vmap GC :action com.github.kawamataryo.copygitlink.CopyPermalink<CR>
 " with what is in the register BUT it will YANK (delete) it 
 " to a VOID register. Meaning I still have what I originally had
 " when I pasted. I don't loose the previous thing I YANKED!
-vnoremap <leader>p "_dP
+vnoremap p "_dP
 
 " Cool invert function from https://github.com/citizenmatt/dotfiles/blob/master/ideavimrc
 function! Invert(calledFromVisual)
