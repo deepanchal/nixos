@@ -84,7 +84,11 @@ in {
         # "$mod, V, makegroup, v"
         # "$mod, B, makegroup, h"
 
-        "$mod, F, fullscreen," # fullscreen focused window
+        # Set fullscreen mode without notifying the client that it has been fullscreened (Useful for brave/firefox hiding tabs on fullscreen)
+        "$mod, F, fullscreenstate, 2 -1"
+        # Maintain the current fullscreen state and notify the client that it has been fullscreened
+        "$modShift, F, fullscreenstate, -1 2"
+
         "$mod, P, pseudo,"
         "$modShift, R, exec, hyprctl reload && notify-send 'Reloaded hyprland'" # toggle floating for the focused window
         "$modShift, SPACE, togglefloating," # toggle floating for the focused window
