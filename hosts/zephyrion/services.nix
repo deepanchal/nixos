@@ -38,9 +38,16 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  # https://blog.stigok.com/2019/12/09/nixos-avahi-publish-service.html
   services.avahi = {
     enable = true;
     nssmdns4 = true;
+    publish = {
+      enable = true;
+      addresses = true;
+      workstation = true;
+      userServices = true;
+    };
   };
 
   ##################################################
