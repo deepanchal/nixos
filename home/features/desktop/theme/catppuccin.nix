@@ -30,7 +30,9 @@
 
   # Disable catppuccin theme on some apps
   wayland.windowManager.sway.catppuccin.enable = false;
+  wayland.windowManager.hyprland.catppuccin.enable = false;
   programs.swaylock.catppuccin.enable = false;
+  programs.hyprlock.catppuccin.enable = false;
   programs.git.delta.catppuccin.enable = false;
 
   # nix-colors also exposes helper functions
