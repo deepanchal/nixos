@@ -47,10 +47,7 @@
       black
 
       # RUST
-      rust-analyzer
-      cargo # rust package manager
-      rustc
-      rustfmt
+      rustup
 
       # ZIG
       # zls
