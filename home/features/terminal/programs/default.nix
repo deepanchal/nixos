@@ -13,6 +13,7 @@
     ./tealdeer.nix
     ./git.nix
     ./gh.nix
+    ./glow.nix
     ./fd.nix
     ./git-cliff.nix
     ./tailspin.nix
