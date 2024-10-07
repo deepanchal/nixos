@@ -9,16 +9,16 @@
 pkgs.rustPlatform.buildRustPackage rec {
   # TODO: Upstream this on dnote-tui repo with flake
   pname = "dnote-tui";
-  version = "v0.5.9";
+  version = "v0.5.10";
 
   src = pkgs.fetchFromGitHub {
     owner = "deepanchal";
     repo = pname;
     rev = version;
-    sha256 = "sha256-UsIQPLUOZOv6QnOLrhZ1yDgCb7xD4ZBpczzgToaf1ew=";
+    sha256 = "sha256-dmtrhK3REaXWT6bGAdlJQy42pX8+05AWr5tOs47O268=";
   };
 
-  cargoHash = "sha256-2RDDY9FbK/o9Q9/jaRaKD3FpeCtr0ERH3rQdHGUv910=";
+  cargoHash = "sha256-OWLn8JGUstvZdyzYgsksKbyQdfmWGIdm52XeZBVpMSA=";
 
   meta = with lib; {
     homepage = "https://github.com/${src.owner}/${pname}";
