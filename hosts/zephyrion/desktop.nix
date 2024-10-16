@@ -65,7 +65,7 @@
     settings = {
       default_session = let
         tuigreet = "${lib.getExe pkgs.greetd.tuigreet}";
-        baseSessionsDir = "${config.services.xserver.displayManager.sessionData.desktops}";
+        baseSessionsDir = "${config.services.displayManager.sessionData.desktops}";
         xSessions = "${baseSessionsDir}/share/xsessions";
         waylandSessions = "${baseSessionsDir}/share/wayland-sessions";
         tuigreetOptions = [

@@ -140,6 +140,7 @@
         ".config/obs-studio"
         ".config/teamviewer"
         ".config/rog" # asusctl's rog-control-center
+        ".config/configstore" # firebase cli state
 
         ".local/share"
         ".local/state"
