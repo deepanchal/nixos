@@ -48,12 +48,24 @@
     # '')
 
     # Helpful tools
-    pkgs.csvlens # csv tui in rust
+    # pkgs.csvlens # csv tui in rust
     pkgs.jless # pager for json in rust
     pkgs.pipx
     pkgs.httpie
 
     # NOTE: My custom packages found under pkgs dir
+
+    # How to sync bt?
+    # Boot into windows and pair your bt device (eg. headphones)
+    # Boot back into linux, forget your bt device
+    # We need to mount windows C drive to /mnt
+    # `sudo mkdir -p /mnt`
+    # Find your windows C drive partition with `lsblk`
+    # Mount windows C drive to /mnt with `sudo mount /dev/nvme1n1p3 /mnt`
+    # Run `bt-keys-sync`
+    # It will ask to run as root (sudo)
+    # Select import key from Windows to Linux option since windows has latest pairing key
+    # Once script exits, try powering on your bt device and it should auto connect in your linux
     pkgs.bt-keys-sync # See: pkgs/bt-keys-sync/default.nix
     pkgs.sf-pro-fonts # See: pkgs/sf-pro-fonts/default.nix
   ];
