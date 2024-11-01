@@ -241,8 +241,9 @@ in {
         sysinfo = "inxi -Fxxxz";
         errors = "journalctl -b -p err | less";
 
-        wg-on = "wg-quick up wg1";
-        wg-off = "wg-quick down wg1";
+        # https://wiki.nixos.org/wiki/WireGuard#Client_setup_(non-declaratively)
+        wg-on = "systemctl start wg-quick-wg0.service";
+        wg-off = "systemctl stop wg-quick-wg0.service";
 
         pj = "projen";
         min = "mise install";
