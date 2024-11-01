@@ -132,6 +132,8 @@
     # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
     networkmanager.enable = true; # Easiest to use and most distros use this by default.
     wireguard.enable = true;
+    # https://wiki.nixos.org/wiki/WireGuard#Client_setup_(non-declaratively)
+    wg-quick.interfaces.wg0.configFile = "/etc/wireguard/wg0.conf";
 
     # Configure network proxy if necessary
     # proxy.default = "http://user:password@proxy:port/";
@@ -139,7 +141,9 @@
     # Open ports in the firewall.
     firewall.enable = true;
     # firewall.allowedTCPPorts = [ 3000 ];
-    # firewall.allowedUDPPorts = [ 3000 ];
+    firewall.allowedUDPPorts = [
+      51820 # Clients and peers can use the same port, see listenport
+    ];
     # Or disable the firewall altogether.
     # firewall.enable = false;
 
