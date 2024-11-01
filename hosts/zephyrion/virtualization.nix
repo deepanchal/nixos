@@ -4,10 +4,10 @@
 
   # Enable Docker
   virtualisation.docker.enable = true;
-  virtualisation.docker.rootless = {
-    enable = true;
-    setSocketVariable = true;
-  };
+  # virtualisation.docker.rootless = {
+  #   enable = true;
+  #   setSocketVariable = true;
+  # };
   users.extraGroups.docker.members = ["deep"];
 
   # Enable Podman
