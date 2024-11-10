@@ -46,11 +46,6 @@ in {
         rounding = 8;
         active_opacity = 1.0;
         inactive_opacity = 1.0;
-        drop_shadow = true;
-        # Shadow range (“size”) in layout px
-        shadow_range = 20;
-        # shadow’s color. Alpha dictates shadow’s opacity.
-        "col.shadow" = "$shadowColor";
         # enables dimming of inactive windows
         dim_inactive = true;
         # how much inactive windows should be dimmed [0.0 - 1.0]
@@ -69,6 +64,14 @@ in {
           xray = false;
           # whether to blur behind the special workspace (note: expensive)
           special = false;
+        };
+
+        shadow = {
+          enabled = true;
+          # Shadow range (“size”) in layout px
+          range = 20;
+          # shadow’s color. Alpha dictates shadow’s opacity.
+          color = "$shadowColor";
         };
       };
 
@@ -287,9 +290,6 @@ in {
         # if enabled, makes the preselect direction persist until either this mode is turned off,
         # another direction is specified, or a non-direction is specified (anything other than l,r,u/t,d/b)	
         permanent_direction_override = true;
-        # whether to apply gaps when there is only one window on a workspace, aka. smart gaps. 
-        # (default: disabled - 0) no border - 1, with border - 2 [0/1/2]	
-        no_gaps_when_only = false;
       };
 
       # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
