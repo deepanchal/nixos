@@ -48,7 +48,7 @@
     # '')
 
     # Helpful tools
-    # pkgs.csvlens # csv tui in rust
+    pkgs.csvlens # csv tui in rust
     pkgs.jless # pager for json in rust
     pkgs.pipx
     pkgs.httpie
