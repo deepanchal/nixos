@@ -135,6 +135,10 @@ return {
     },
   },
 
+  {
+    "delphinus/vim-firestore",
+  },
+
   ---------------------------------------
   -- Astrocommunity overrides
   ---------------------------------------
