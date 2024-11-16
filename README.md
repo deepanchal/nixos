@@ -99,6 +99,12 @@ sudo nix --experimental-features "nix-command flakes" run github:nix-community/d
 # Make sure /mnt got formatted correctly with disko
 # Install nixos
 sudo nixos-install --root /mnt --no-root-password --show-trace --verbose --flake .#zephyrion
+
+# (Optional) Move your persist data if you are cloning your nixos to another drive
+# Once installed, make sure /mnt has your desired directory structure
+# Boot into your nixos drive
+# Clone persisted home data and other dirs similary with rsync
+rsync -avh --progress /mnt/@persist/home/deep/ /home/deep/
 ```
 
 ## References

@@ -22,6 +22,7 @@
       users = {
         # Persistent passwords for users
         # create a password with for root and $user with:
+        # sudo mkdir -p /persist/etc/shadow
         # mkpasswd -m sha-512 | sudo tee -a /persist/etc/shadow/root
         # See: https://reddit.com/r/NixOS/comments/o1er2p/tmpfs_as_root_but_without_hardcoding_your/h22f1b9/
         root = {

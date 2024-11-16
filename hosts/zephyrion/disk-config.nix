@@ -73,7 +73,7 @@
                   pushd $MNTPOINT/@docker
                   touch docker-volume.img
                   chattr +C docker-volume.img
-                  fallocate -l 30G docker-volume.img
+                  fallocate -l 100G docker-volume.img
                   mkfs.ext4 docker-volume.img # Note: make sure you have e2fsprogs nix pkg installed to use mkfs.ext4 command
                   popd # disko will show target busy if dir is in use
                 '';

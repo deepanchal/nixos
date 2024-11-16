@@ -15,7 +15,8 @@
     inputs.nixos-hardware.nixosModules.common-pc-ssd
 
     inputs.disko.nixosModules.default
-    (import ./disk-config.nix {device = "/dev/disk/by-id/nvme-WDC_WDS240G2G0C-00AJM0_205130900427";})
+    (import ./disk-config.nix {device = "/dev/disk/by-id/nvme-HFM001TD3JX013N_CYA3N053310603J32";})
+    # (import ./disk-config.nix {device = "/dev/disk/by-id/nvme-WDC_WDS240G2G0C-00AJM0_205130900427";})
     # (import ./disk-config.nix {device = "/dev/disk/by-id/ata-WDC_WDS240G2G0C-00AJM0_205130900427";})
 
     inputs.nur.nixosModules.nur
