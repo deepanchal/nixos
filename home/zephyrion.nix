@@ -52,6 +52,7 @@
     pkgs.jless # pager for json in rust
     pkgs.pipx
     pkgs.httpie
+    pkgs.localsend
 
     # NOTE: My custom packages found under pkgs dir
 
