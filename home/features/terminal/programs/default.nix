@@ -2,6 +2,7 @@
   imports = [
     ./zellij
     ./direnv
+    ./tmux
     ./atuin.nix
     ./aichat.nix
     ./eza.nix
@@ -21,7 +22,6 @@
     ./yazi.nix
     ./dnote.nix
     ./mise.nix
-    ./tmux.nix
   ];
 
   programs.jq.enable = true;
