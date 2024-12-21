@@ -7,4 +7,5 @@
   bt-keys-sync = pkgs.callPackage ./bt-keys-sync {};
   sf-pro-fonts = pkgs.callPackage ./sf-pro-fonts {};
   oh-my-tmux = pkgs.callPackage ./oh-my-tmux {};
+  mender-cli = pkgs.callPackage ./mender-cli {};
 }
