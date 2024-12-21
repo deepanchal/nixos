@@ -130,7 +130,16 @@
     networkmanager.enable = true; # Easiest to use and most distros use this by default.
     wireguard.enable = true;
     # https://wiki.nixos.org/wiki/WireGuard#Client_setup_(non-declaratively)
-    wg-quick.interfaces.wg0.configFile = "/etc/wireguard/wg0.conf";
+    wg-quick.interfaces = {
+      wg0 = {
+        autostart = false;
+        configFile = "/etc/wireguard/wg0.conf";
+      };
+      wg1 = {
+        autostart = false;
+        configFile = "/etc/wireguard/wg1.conf";
+      };
+    };
 
     # Configure network proxy if necessary
     # proxy.default = "http://user:password@proxy:port/";
