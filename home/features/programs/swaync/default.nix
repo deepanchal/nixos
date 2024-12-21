@@ -25,7 +25,7 @@
 in {
   # Install the default font if it is selected
   home.packages = lib.mkIf (customSwayNcfont == defaultSwayNcFont) [
-    (pkgs.nerdfonts.override {fonts = ["Ubuntu"];})
+    pkgs.nerd-fonts.ubuntu
   ];
 
   services.swaync = {
