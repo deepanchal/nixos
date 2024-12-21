@@ -186,7 +186,7 @@
     # "font.name.serif.x-western" = "${defaultFont}";
     # "browser.display.use_document_fonts" = 0;
   };
-  extensions = with config.nur.repos.rycee.firefox-addons; [
+  extensions = with pkgs.nur.repos.rycee.firefox-addons; [
     darkreader
     ublock-origin
     bitwarden

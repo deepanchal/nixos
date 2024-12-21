@@ -16,7 +16,10 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs?rev=4633a7c72337ea8fd23a4f2ba3972865e3ec685d";
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nur.url = "github:nix-community/NUR";
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nix-colors.url = "github:misterio77/nix-colors";
     catppuccin.url = "github:catppuccin/nix";
@@ -105,13 +108,7 @@
       # nh home switch ~/nixos -c deep@zephyrion
       # nh home switch
       "deep@zephyrion" = home-manager.lib.homeManagerConfiguration {
-        # pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home manager requires 'pkgs' instance
-        pkgs = import nixpkgs {
-          # config.allowBroken = true;
-          # config.allowUnfree = true; # resistance is futile
-          system = "x86_64-linux";
-          overlays = [inputs.nur.overlay];
-        };
+        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home manager requires 'pkgs' instance
         modules = [./home/zephyrion.nix];
         extraSpecialArgs = {inherit inputs outputs;};
       };

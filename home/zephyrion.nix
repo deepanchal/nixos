@@ -10,7 +10,7 @@
 }: {
   # You can import other home-manager modules here
   imports = [
-    inputs.nur.hmModules.nur
+    inputs.nur.modules.homeManager.default
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
     ./global

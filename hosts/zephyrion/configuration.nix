@@ -19,7 +19,7 @@
     # (import ./disk-config.nix {device = "/dev/disk/by-id/nvme-WDC_WDS240G2G0C-00AJM0_205130900427";})
     # (import ./disk-config.nix {device = "/dev/disk/by-id/ata-WDC_WDS240G2G0C-00AJM0_205130900427";})
 
-    inputs.nur.nixosModules.nur
+    inputs.nur.modules.nixos.default
 
     ./hardware-configuration.nix
 
@@ -112,15 +112,11 @@
   };
   nixpkgs = {
     config = {
+      allowBroken = true;
       allowUnfree = true;
-      packageOverrides = pkgs: {
-        nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-          inherit pkgs;
-        };
-      };
     };
     overlays = [
-      inputs.nur.overlay
+      inputs.nur.overlays.default
     ];
   };
 
