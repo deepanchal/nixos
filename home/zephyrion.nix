@@ -69,6 +69,7 @@
     # Once script exits, try powering on your bt device and it should auto connect in your linux
     pkgs.bt-keys-sync # See: pkgs/bt-keys-sync/default.nix
     pkgs.sf-pro-fonts # See: pkgs/sf-pro-fonts/default.nix
+    pkgs.mender-cli # See: pkgs/mender-cli/default.nix
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage

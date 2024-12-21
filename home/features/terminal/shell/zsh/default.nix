@@ -86,7 +86,7 @@ in {
           "rsync" # rsync aliases
           "mise" # mise (asdf clone) completions
           "systemd" # systemd aliases
-          "systemadmin" # aliases/functions to make system admin's life easier
+          # "systemadmin" # aliases/functions to make system admin's life easier
           "taskwarrior" # taskwarrior autocompletions
           # "timewarrior" # timewarrior completions/aliases (custom: https://github.com/svenXY/timewarrior)
           "tmux" # tmux completions/aliases
