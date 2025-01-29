@@ -44,12 +44,25 @@ in {
 
         # custom colours for the colour palette
         [color-palette]
-        first= "#${colors.danger}"
-        second= "#${colors.info}"
-        third= "#${colors.success}"
-        fourth= "#${colors.warning}"
-        fifth= "#${colors.primary}"
-        custom= "#${colors.accent}"
+        # These will be shown in the toolbar for quick selection
+        palette = [
+          "#${colors.danger}",
+          "#${colors.info}",
+          "#${colors.success}",
+          "#${colors.warning}",
+          "#${colors.primary}",
+          "#${colors.accent}",
+        ]
+        # These will be available in the color picker as presets
+        # Leave empty to use GTK's default
+        custom = [
+          "#00ffff",
+          "#a52a2a",
+          "#dc143c",
+          "#ff1493",
+          "#ffd700",
+          "#008000",
+        ]
       '';
   };
 }

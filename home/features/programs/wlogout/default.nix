@@ -18,7 +18,7 @@ in {
     enable = true;
     style =
       # css
-      ''
+      lib.mkForce ''
         * {
           background: none;
           font-family: JetBrainsMono Nerd Font, monospace;
