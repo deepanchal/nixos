@@ -29,6 +29,7 @@
   services.tumbler.enable = true;
   services.fwupd.enable = true;
   programs.light.enable = true;
+  programs.localsend.enable = true;
   programs.nh = {
     enable = true;
     clean.enable = true;
