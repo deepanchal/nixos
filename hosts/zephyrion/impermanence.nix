@@ -89,6 +89,10 @@
       "/var/lib/alsa"
       "/var/lib/upower"
       "/var/lib/systemd"
+
+      # Systemd requires /usr dir to be populated
+      # See: https://github.com/nix-community/impermanence/issues/253
+      "/usr/systemd-placeholder"
     ];
     files = [
       "/etc/machine-id"

@@ -13,7 +13,7 @@
     enable = true;
     enableUserService = true;
 
-    asusdConfig = ''
+    asusdConfig.text = ''
       (
         charge_control_end_threshold: 80,
         panel_od: false,
@@ -33,7 +33,7 @@
         nv_temp_target: None,
       )'';
 
-    fanCurvesConfig = ''
+    fanCurvesConfig.text = ''
       (
         balanced: [
             (
@@ -79,7 +79,7 @@
         ],
       )'';
 
-    auraConfig = ''
+    auraConfigs.default1.text = ''
       (
         brightness: Med,
         current_mode: Static,
