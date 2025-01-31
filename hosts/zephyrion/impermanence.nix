@@ -146,6 +146,7 @@
         ".config/rog" # asusctl's rog-control-center
         ".config/configstore" # firebase cli state
         ".config/flutter" # firebase cli state
+        ".config/sh.cider.genten" # Cider Apple Music Client
 
         ".local/share"
         ".local/state"

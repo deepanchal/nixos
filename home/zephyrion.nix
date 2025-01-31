@@ -42,6 +42,13 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
 
+    # Cider - Paid Apple Music Client
+    # 1. Get AppImage from https://cidercollective.itch.io/cider
+    # 2. Add it to nix store
+    #    nix-store --add-fixed sha256 ~/Downloads/apps/cider-linux-x64.AppImage
+    # 3. Rebuild system
+    pkgs.cider-2
+
     # Helpful tools
     pkgs.csvlens # csv tui in rust
     pkgs.jless # pager for json in rust

@@ -97,9 +97,9 @@ in {
         "$mod, PERIOD, exec, anyrun-symbols | ${wl-copy}" # not working atm, anyrun can't copy to clipboard
 
         # https://github.com/altdesktop/playerctl?tab=readme-ov-file#selecting-players-to-control
-        "$modShift, M, exec, ${playerctl} -p spotify play-pause"
-        "$modShift, N, exec, ${playerctl} -p spotify next"
-        "$modShift, B, exec, ${playerctl} -p spotify previous"
+        "$modShift, M, exec, ${playerctl} -p cider play-pause"
+        "$modShift, N, exec, ${playerctl} -p cider next"
+        "$modShift, B, exec, ${playerctl} -p cider previous"
 
         # workspace controls
         "$modShift, right, movetoworkspace, +1" # move focused window to the next ws
