@@ -23,17 +23,24 @@
     enable = true;
     flavor = flavor;
     accent = accent;
-    pointerCursor = {
-      enable = false;
+    cursors.enable = false;
+
+    sway.enable = false;
+    swaylock.enable = false;
+    hyprland.enable = false;
+    hyprlock.enable = false;
+    delta.enable = false;
+    glamour.enable = true;
+    kvantum.enable = true;
+    gtk = {
+      enable = true;
+      # Type: list of (one of “black”, “rimless”, “normal”)
+      tweaks = ["rimless"];
+      icon = {
+        enable = true;
+      };
     };
   };
-
-  # Disable catppuccin theme on some apps
-  wayland.windowManager.sway.catppuccin.enable = false;
-  wayland.windowManager.hyprland.catppuccin.enable = false;
-  programs.swaylock.catppuccin.enable = false;
-  programs.hyprlock.catppuccin.enable = false;
-  programs.git.delta.catppuccin.enable = false;
 
   # nix-colors also exposes helper functions
   # This function is used internally to convert base16's schemes to nix-colors format,

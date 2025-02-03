@@ -47,7 +47,7 @@ in {
         active_opacity = 1.0;
         inactive_opacity = 1.0;
         # enables dimming of inactive windows
-        dim_inactive = true;
+        dim_inactive = false;
         # how much inactive windows should be dimmed [0.0 - 1.0]
         dim_strength = 0.05;
 

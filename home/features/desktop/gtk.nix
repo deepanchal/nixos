@@ -15,14 +15,6 @@
 
   gtk = {
     enable = true;
-    catppuccin = {
-      enable = true;
-      # Type: list of (one of “black”, “rimless”, “normal”)
-      tweaks = ["rimless"];
-      icon = {
-        enable = true;
-      };
-    };
     cursorTheme = {
       name = config.home.pointerCursor.name;
       size = config.home.pointerCursor.size;

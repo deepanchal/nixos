@@ -12,8 +12,6 @@ in {
     pkgs.glow
   ];
 
-  programs.glamour.catppuccin.enable = true;
-
   xdg.configFile."glow/glow.yml".text =
     # yaml
     ''

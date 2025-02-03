@@ -15,9 +15,6 @@
     };
     style = {
       name = "kvantum";
-      catppuccin = {
-        enable = true;
-      };
     };
   };
 }
