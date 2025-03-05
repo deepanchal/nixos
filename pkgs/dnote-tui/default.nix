@@ -18,7 +18,7 @@ pkgs.rustPlatform.buildRustPackage rec {
     sha256 = "sha256-dmtrhK3REaXWT6bGAdlJQy42pX8+05AWr5tOs47O268=";
   };
 
-  cargoHash = "sha256-OWLn8JGUstvZdyzYgsksKbyQdfmWGIdm52XeZBVpMSA=";
+  cargoHash = "sha256-oB+XhjMvAcHOPWzOy8sJM21Db/MqVqfAV/TFNFfsah4=";
 
   meta = with lib; {
     homepage = "https://github.com/${src.owner}/${pname}";

@@ -6,7 +6,8 @@
   config = {
     programs.zellij = {
       enable = true;
-      enableFishIntegration = false; # do NOT auto-start, thank you
+      enableZshIntegration = false;
+      enableFishIntegration = false;
       settings = {
         # custom defined layouts
         layout_dir = "${./layouts}";
