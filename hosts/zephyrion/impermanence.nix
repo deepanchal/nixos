@@ -171,6 +171,7 @@
       files = [
         ".bash_history"
         ".wakatime.cfg"
+        ".aicommit2"
         ".config/pavucontrol.ini"
         # ".config/gh/hosts.yml"
       ];
