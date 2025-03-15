@@ -45,7 +45,7 @@
     # Cider - Paid Apple Music Client
     # 1. Get AppImage from https://cidercollective.itch.io/cider
     # 2. Add it to nix store
-    #    nix-store --add-fixed sha256 ~/Downloads/apps/cider-linux-x64.AppImage
+    #    nix-store --add-fixed sha256 ~/Downloads/apps/cider-2/cider-linux-x64.AppImage
     # 3. Rebuild system
     pkgs.cider-2
 
@@ -54,6 +54,11 @@
     pkgs.jless # pager for json in rust
     pkgs.pipx
     pkgs.httpie
+
+    # AI Tools
+    pkgs.aider-chat # AI pair programming in your terminal
+    pkgs.plandex # AI driven development in your terminal.
+    pkgs.code-cursor
 
     # NOTE: My custom packages found under pkgs dir
 
