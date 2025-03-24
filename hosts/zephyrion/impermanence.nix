@@ -148,6 +148,12 @@
         ".config/flutter" # firebase cli state
         ".config/sh.cider.genten" # Cider Apple Music Client
 
+        # aichat data dirs
+        ".config/aichat/roles"
+        ".config/aichat/sessions"
+        ".config/aichat/rags"
+        ".config/aichat/functions"
+
         ".local/share"
         ".local/state"
 
@@ -174,6 +180,9 @@
         ".aicommit2"
         ".config/pavucontrol.ini"
         # ".config/gh/hosts.yml"
+
+        # aichat data files
+        ".config/aichat/messages.md"
       ];
     };
   };
