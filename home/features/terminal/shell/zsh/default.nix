@@ -98,6 +98,9 @@ in {
           # "zsh-navigation-tools" # set of zsh nav tools (n-history, n-cd, n-kill, n-list)
           # "zsh-syntax-highlighting"       # zsh syntax highlighting !! must be last
           # "fast-syntax-highlighting" # https://github.com/zdharma-continuum/fast-syntax-highlighting
+          # Zsh vi mode
+          # Use ESC or CTRL-[ to enter Normal mode.
+          "vi-mode" # https://github.com/ohmyzsh/ohmyzsh/blob/899af6328b395f1db2e74d09880a1af435a188ca/plugins/vi-mode/README.md
         ];
 
         extraConfig =
