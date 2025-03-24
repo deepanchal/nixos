@@ -31,21 +31,10 @@
       font = {
         size = 10;
         normal = {
-          # family = "FiraCode Nerd Font";
           family = "JetBrainsMono Nerd Font";
           style = "Regular";
         };
       };
-
-      # cursor = {
-      #   style = {
-      #     shape = "Block";
-      #   };
-      # };
-
-      # mouse = {
-      #   hide_when_typing = true;
-      # };
 
       keyboard.bindings = [
         {
@@ -53,41 +42,6 @@
           mods = "Control|Shift";
           action = "SpawnNewInstance";
         }
-        {
-          key = "0";
-          mods = "Control";
-          action = "ResetFontSize";
-        }
-        {
-          key = "NumpadAdd";
-          mods = "Control|Shift";
-          action = "IncreaseFontSize";
-        }
-        {
-          key = "NumpadSubtract";
-          mods = "Control|Shift";
-          action = "DecreaseFontSize";
-        }
-        {
-          key = "X";
-          mods = "Control|Shift";
-          action = "ToggleViMode";
-        }
-        {
-          key = "Space";
-          mods = "Control|Shift";
-          action = "None";
-        }
-        # {
-        #   key = "Return";
-        #   mods = "Shift";
-        #   chars = "\e[13;2u";
-        # }
-        # {
-        #   key = "Return";
-        #   mods = "Control";
-        #   chars = "\e[13;5u";
-        # }
       ];
     };
   };
