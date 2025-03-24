@@ -142,20 +142,17 @@ return {
   ---------------------------------------
   -- Astrocommunity overrides
   ---------------------------------------
-  {
-    "jackMort/ChatGPT.nvim",
-    opts = {},
-    config = function()
-      require("chatgpt").setup {
-        openai_params = {
-          -- model = "gpt-4-turbo-preview",
-          model = "gpt-4o",
-          max_tokens = 4096,
-        },
-        openai_edit_params = {
-          model = "gpt-4-turbo-preview",
-        },
-      }
-    end,
-  },
+  -- {
+  --   "akilonx/ChatGPT.nvim",
+  --   branch = "fix/o1_model_support",
+  --   commit = "0e266ef7c1e8acb43b08883c4d556dc11d859360",
+  --   opts = {},
+  --   config = function()
+  --     require("chatgpt").setup {
+  --       openai_params = {
+  --         model = "o3-mini",
+  --       },
+  --     }
+  --   end,
+  -- },
 }
