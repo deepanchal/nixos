@@ -52,8 +52,11 @@
     # Helpful tools
     pkgs.csvlens # csv tui in rust
     pkgs.jless # pager for json in rust
+    pkgs.entr
     pkgs.pipx
     pkgs.httpie
+    pkgs.rpi-imager
+    pkgs.bmaptool
 
     # AI Tools
     pkgs.aider-chat # AI pair programming in your terminal

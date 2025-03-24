@@ -103,8 +103,8 @@ nnoremap <c-\> :action SplitVertically<CR>
 nnoremap <c--> :action SplitHorizontally<CR>
 nnoremap <c-=> :action Unsplit<CR>
 nnoremap <c-m> :action MoveEditorToOppositeTabGroup<CR>
-sethandler <c-j> a:vim
-sethandler <c-k> a:vim
+" sethandler <c-j> a:vim
+" sethandler <c-k> a:vim
 " nnoremap <c-h> <c-w>h
 " nnoremap <c-l> <c-w>l
 " nnoremap <c-j> <c-w>j
@@ -195,7 +195,7 @@ nmap <leader>w :action SaveAll<CR>
 nmap <leader>/ :action CommentByLineComment<CR>
 vmap <leader>/ :action CommentByLineComment<CR>
 nmap <leader>o :action ActivateProjectToolWindow<CR>
-nmap <leader>lf :action ReformatWithPrettierAction<CR>
+nmap <leader>lf :action ReformatCode<CR>
 nmap <leader>lr :action RenameElement<CR>
 nmap <leader>ff :action GotoFile<CR>
 nmap <leader>fw :action FindInPath<CR>
