@@ -4,7 +4,8 @@
   config,
   inputs,
   ...
-}: {
+}:
+{
   # https://github.com/Mic92/envfs
   # A fuse filesystem that dynamically populates contents of /bin and /usr/bin/ so that it contains all executables from the PATH of the requesting process.
   # This allows executing FHS based programs on a non-FHS system.
@@ -67,14 +68,11 @@
   # Also see: https://github.com/sebastian-eichelbaum/nixos/blob/d2eb6a3e2ebf6ff8e7ef63de1fe6b92486937418/system/workstation/desktop/nix-ld.nix
   # Set LD_LIBRARY_PATH env var for compatibility
   environment.variables = {
-    LD_LIBRARY_PATH = lib.makeLibraryPath (with pkgs; [
-      stdenv.cc.cc.lib # To fix: libstdc++.so.6: cannot open shared object file: No such file or directory
-      zlib
-      glib
-      libpulseaudio
-      openssl
-      libz
-      libGL
-    ]);
+    LD_LIBRARY_PATH = lib.makeLibraryPath (
+      with pkgs;
+      [
+        stdenv.cc.cc.lib # To fix: libstdc++.so.6: cannot open shared object file: No such file or directory
+      ]
+    );
   };
 }
