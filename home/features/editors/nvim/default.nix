@@ -3,7 +3,8 @@
   config,
   inputs,
   ...
-}: {
+}:
+{
   programs = {
     neovim = {
       enable = true;
@@ -58,6 +59,7 @@
       # nil
       statix # Lints and suggestions for the nix programming language
       deadnix # Find and remove unused code in .nix source files
+      nixfmt-tree # Official nix code formatter
       alejandra # Nix Code Formatter
 
       # GOLANG
