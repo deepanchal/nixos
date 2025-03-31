@@ -210,7 +210,10 @@ in {
       personal = {
         id = 0;
         isDefault = true;
-        bookmarks = [];
+        bookmarks = {
+          force = true;
+          settings = [];
+        };
         extensions = extensions;
         containers = {};
         search = search;
@@ -218,7 +221,10 @@ in {
       };
       work = {
         id = 1;
-        bookmarks = [];
+        bookmarks = {
+          force = true;
+          settings = [];
+        };
         extensions = extensions;
         containers = {};
         search = search;

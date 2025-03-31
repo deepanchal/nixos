@@ -10,7 +10,7 @@
   # eventually to keep theming more generic
   imports = [
     inputs.nix-colors.homeManagerModule
-    inputs.catppuccin.homeManagerModules.catppuccin
+    inputs.catppuccin.homeModules.catppuccin
   ];
 
   catppuccin = let
@@ -27,6 +27,7 @@
 
     sway.enable = false;
     swaylock.enable = false;
+    swaync.font = "JetBrainsMono Nerd Font";
     hyprland.enable = false;
     hyprlock.enable = false;
     delta.enable = false;

@@ -3,34 +3,9 @@
   pkgs,
   config,
   ...
-}: let
-  # TODO: Remove this once https://github.com/catppuccin/nix/pull/149/files gets merged
-  sources = {
-    swaync-mocha = builtins.fetchurl {
-      url = "https://github.com/catppuccin/swaync/releases/download/v0.2.2/mocha.css";
-      sha256 = "sha256-YFboTWj/hiJhmnMbGLtfcxKxvIpJxUCSVl2DgfpglfE=";
-    };
-  };
-  defaultSwayNcFont = "Ubuntu Nerd Font";
-  customSwayNcfont = "JetBrainsMono Nerd Font";
-  themeRaw = sources."swaync-${config.catppuccin.flavor}";
-  theme = pkgs.substitute {
-    src = themeRaw;
-    substitutions = [
-      "--replace-warn"
-      defaultSwayNcFont
-      customSwayNcfont
-    ];
-  };
-in {
-  # Install the default font if it is selected
-  home.packages = lib.mkIf (customSwayNcfont == defaultSwayNcFont) [
-    pkgs.nerd-fonts.ubuntu
-  ];
-
+}: {
   services.swaync = {
     enable = true;
-    style = theme;
     settings = {
       positionX = "right";
       positionY = "top";
