@@ -15,7 +15,7 @@ return {
         -- top_p = 0.1,
         -- n = 1,
         -- model = "o1-mini-2024-09-12",
-        model = "o3-mini",
+        model = "o1",
         max_tokens = 4095,
         -- max_completion_tokens = 4095,
         frequency_penalty = 0,

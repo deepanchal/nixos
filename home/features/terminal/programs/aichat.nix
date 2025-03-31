@@ -25,7 +25,7 @@ in {
   xdg.configFile."aichat/config.yaml".text =
     # yaml
     ''
-      model: openai:o3-mini
+      model: openai:o1
       clients:
         - type: openai
           # api_key comes from $OPENAI_API_KEY env var
