@@ -309,8 +309,8 @@ in {
         "4, name:misc1, monitor:${primary}"
         "5, name:slack, monitor:${secondary}"
         "6, name:misc2, monitor:${secondary}"
-        "7, name:misc3, monitor:${secondary}"
-        "8, name:misc4, monitor:${secondary}"
+        "7, name:misc3, monitor:${primary}"
+        "8, name:misc4, monitor:${primary}"
         # Workspaces 9 and 10 are not explicitly assigned to allow them to appear on the active monitor
 
         "special:scratchpad, on-created-empty: [float; size 75% 75%; move center] alacritty --working-directory=$HOME/projects/nixos && hyprctl dispatch movecursor 800 800"

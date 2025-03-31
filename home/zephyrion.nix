@@ -55,6 +55,7 @@
     pkgs.entr
     pkgs.pipx
     pkgs.httpie
+    pkgs.popsicle # utility for flashing multiple usb devices in parallel in rust, also provides popsicle cli
     pkgs.rpi-imager
     pkgs.bmaptool
 

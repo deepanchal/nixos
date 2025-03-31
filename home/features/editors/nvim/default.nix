@@ -45,6 +45,7 @@
       pyright
       ruff-lsp
       black
+      uv
 
       # RUST
       rustup

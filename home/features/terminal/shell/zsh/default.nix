@@ -235,6 +235,13 @@ in {
         gcmsgn = "git commit --no-verify --message";
         glscommits = "git log --no-merges --count HEAD ^$(git_main_branch) --reverse --pretty=format:%s | sed 's/^/- /'";
 
+        # Rust
+        ca = "cargo";
+        cab = "cargo build";
+        car = "cargo run";
+        cac = "cargo clippy";
+        caf = "cargo fmt";
+
         # Other
         c = "clear";
         rm = "rm -i";
