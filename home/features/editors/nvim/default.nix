@@ -46,6 +46,7 @@
       pyright
       ruff-lsp
       black
+      poetry
       uv
 
       # RUST
