@@ -40,7 +40,7 @@ return {
   { import = "astrocommunity.pack.markdown" },
   { import = "astrocommunity.pack.html-css" },
   { import = "astrocommunity.pack.vue" },
-  { import = "astrocommunity.pack.tailwindcss" },
+  -- { import = "astrocommunity.pack.tailwindcss" },
   -- { import = "astrocommunity.pack.prisma" },
   { import = "astrocommunity.pack.typescript" },
   -- { import = "astrocommunity.pack.nix" },
