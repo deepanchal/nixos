@@ -31,9 +31,28 @@ in {
           # api_key comes from $OPENAI_API_KEY env var
           # See: https://github.com/sigoden/aichat/wiki/Environment-Variables#client-related-envs
           api_key: null
-      stream: true
+
+        # See https://ai.google.dev/docs
+        - type: gemini
+          # api_key comes from $GEMINI_API_KEY env var
+          # See: https://github.com/sigoden/aichat/wiki/Environment-Variables#client-related-envs
+          api_key: null
+          patch:
+            chat_completions:
+              '.*':
+                body:
+                  safetySettings:
+                    - category: HARM_CATEGORY_HARASSMENT
+                      threshold: BLOCK_NONE
+                    - category: HARM_CATEGORY_HATE_SPEECH
+                      threshold: BLOCK_NONE
+                    - category: HARM_CATEGORY_SEXUALLY_EXPLICIT
+                      threshold: BLOCK_NONE
+                    - category: HARM_CATEGORY_DANGEROUS_CONTENT
+                      threshold: BLOCK_NONE
       save: true
       keybindings: emacs
       save_session: true
+      stream: false
     '';
 }
