@@ -37,7 +37,7 @@ in {
       [
         "$mod2, SPACE, exec, run-as-service $(anyrun)"
         "$mod, RETURN, exec, alacritty msg create-window || alacritty"
-        "$modShift, RETURN, exec, ${wezterm}"
+        "$modShift, RETURN, exec, rio"
         # "$mod, B, exec, ${firefox}"
         # "$modShift, B, exec, ${brave}"
         "$mod, E, exec, ${thunar}"
