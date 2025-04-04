@@ -3,5 +3,6 @@
     ./alacritty
     ./wezterm
     ./kitty
+    ./rio
   ];
 }
