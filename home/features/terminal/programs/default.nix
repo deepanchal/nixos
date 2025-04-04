@@ -22,6 +22,7 @@
     ./yazi.nix
     ./dnote.nix
     ./mise.nix
+    ./vale.nix
   ];
 
   programs.jq.enable = true;
