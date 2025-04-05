@@ -5,14 +5,14 @@
   ...
 }: let
   search = {
-    default = "DuckDuckGo";
+    default = "ddg";
     force = true;
     engines = {
       # don't need these default ones
-      "Amazon.com".metaData.hidden = true;
-      "Bing".metaData.hidden = true;
-      "eBay".metaData.hidden = true;
-      "DuckDuckGo" = {
+      "amazondotcom-us".metaData.hidden = true;
+      "bing".metaData.hidden = true;
+      "ebay".metaData.hidden = true;
+      "ddg" = {
         urls = [
           {
             template = "https://duckduckgo.com";
@@ -26,7 +26,7 @@
         ];
         definedAliases = [",d"];
       };
-      "Google" = {
+      "google" = {
         urls = [
           {
             template = "https://google.com/search";
@@ -40,7 +40,7 @@
         ];
         definedAliases = [",g"];
       };
-      "Nix Packages" = {
+      "nix-pkgs" = {
         urls = [
           {
             template = "https://search.nixos.org/packages";
@@ -58,7 +58,7 @@
         ];
         definedAliases = [",ns"];
       };
-      "YouTube" = {
+      "youtube" = {
         urls = [
           {
             template = "https://www.youtube.com/results";
@@ -72,7 +72,7 @@
         ];
         definedAliases = [",yt"];
       };
-      "Wikipedia" = {
+      "wikipedia" = {
         urls = [
           {
             template = "https://en.wikipedia.org/wiki/Special:Search";
@@ -86,7 +86,7 @@
         ];
         definedAliases = [",w"];
       };
-      "DockerHub" = {
+      "dockerhub" = {
         urls = [
           {
             template = "https://hub.docker.com/search";
@@ -100,7 +100,7 @@
         ];
         definedAliases = [",dh"];
       };
-      "GitHub" = {
+      "gitHub" = {
         urls = [
           {
             template = "https://github.com/search";
@@ -214,7 +214,7 @@ in {
           force = true;
           settings = [];
         };
-        extensions = extensions;
+        extensions.packages = extensions;
         containers = {};
         search = search;
         settings = settings;
@@ -225,7 +225,7 @@ in {
           force = true;
           settings = [];
         };
-        extensions = extensions;
+        extensions.packages = extensions;
         containers = {};
         search = search;
         settings = settings;

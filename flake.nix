@@ -14,7 +14,7 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs?rev=52faf482a3889b7619003c0daec593a1912fddc1";
+    nixpkgs.url = "github:NixOS/nixpkgs?rev=06f3516b0397bd241bde2daefc8538fc886c5467";
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nur = {
       url = "github:nix-community/NUR";
