@@ -41,6 +41,11 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+    (pkgs.writeShellScriptBin "nohup-open" ''
+      # Run any command passed as arguments in the background,
+      # discarding both stdout and stderr.
+      nohup "$@" > /dev/null 2>&1 &
+    '')
 
     # Cider - Paid Apple Music Client
     # 1. Get AppImage from https://cidercollective.itch.io/cider
@@ -80,6 +85,7 @@
     pkgs.bt-keys-sync # See: pkgs/bt-keys-sync/default.nix
     pkgs.sf-pro-fonts # See: pkgs/sf-pro-fonts/default.nix
     pkgs.mender-cli # See: pkgs/mender-cli/default.nix
+    pkgs.codegrab # See: pkgs/codegrab/default.nix
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
