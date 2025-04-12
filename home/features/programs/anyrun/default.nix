@@ -8,19 +8,15 @@
   colors = config.colorScheme.palette;
   anyrunPkgs = inputs.anyrun.packages.${pkgs.system};
 in {
-  imports = [
-    inputs.anyrun.homeManagerModules.default
-  ];
-
   # Originally from:
   # https://github.com/timon-schelling/nixos-genesis/blob/39be9df126ba5e54c31ead9be11d1c1aaf021bbf/src/user/desktop/anyrun/home.nix#L69-L71
   # https://github.com/coesu/nix-config/blob/da2c17fe97c7350a6da0f0bdc473c2cdd37ae38e/home/desktop/scripts.nix#L9
   home.packages = [
     (pkgs.writeShellScriptBin "anyrun-dmenu" ''
-      anyrun --plugins "${anyrunPkgs.stdin}/lib/libstdin.so" --hide-plugin-info true --show-results-immediately true
+      anyrun --plugins ${pkgs.anyrun}/lib/libstdin.so --hide-plugin-info true --show-results-immediately true
     '')
     (pkgs.writeShellScriptBin "anyrun-symbols" ''
-      anyrun --plugins ${anyrunPkgs.symbols}/lib/libsymbols.so --hide-plugin-info true --show-results-immediately true
+      anyrun --plugins ${pkgs.anyrun}/lib/libsymbols.so --hide-plugin-info true --show-results-immediately true
     '')
   ];
 

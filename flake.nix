@@ -14,7 +14,7 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs?rev=06f3516b0397bd241bde2daefc8538fc886c5467";
+    nixpkgs.url = "github:NixOS/nixpkgs?rev=98e45db76da9492efa4c66d24ec43894085789bb";
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nur = {
       url = "github:nix-community/NUR";
@@ -42,7 +42,7 @@
 
     # anyrun - a wayland launcher
     anyrun = {
-      url = "github:Kirottu/anyrun";
+      url = "github:anyrun-org/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

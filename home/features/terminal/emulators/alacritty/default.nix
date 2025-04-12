@@ -26,7 +26,7 @@
         opacity = 0.85;
       };
 
-      scrolling.history = 20000;
+      scrolling.history = 32000;
 
       font = {
         size = 10;
@@ -41,6 +41,11 @@
           key = "N";
           mods = "Control|Shift";
           action = "SpawnNewInstance";
+        }
+        {
+          key = "K";
+          mods = "Control";
+          action = "ClearHistory";
         }
       ];
     };

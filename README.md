@@ -197,7 +197,7 @@ List of awesome configs I used to build my config:
 [Waybar]: https://github.com/Alexays/Waybar
 [polybar]: https://github.com/polybar/polybar
 [rofi]: https://github.com/davatorium/rofi
-[anyrun]: https://github.com/Kirottu/anyrun
+[anyrun]: https://github.com/anyrun-org/anyrun
 [Dunst]: https://github.com/dunst-project/dunst
 [Fcitx5]: https://github.com/fcitx/fcitx5
 [Btop]: https://github.com/aristocratos/btop

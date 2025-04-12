@@ -109,7 +109,7 @@
       # MISC
       tree-sitter # common language parser/highlighter
       nodePackages.prettier # common code formatter
-      marksman # language server for markdown
+      # marksman # language server for markdown
       # glow # markdown previewer
 
       # OPTIONAL REQUIREMENTS:
