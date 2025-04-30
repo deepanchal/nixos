@@ -6,7 +6,7 @@
   # Catppuccin Nix is setting bat theme and we
   # are simply setting aichat theme to bat's theme
   # since they are both using `thTheme` files
-  # See: 
+  # See:
   # - https://github.com/catppuccin/nix/blob/874e668ddaf3687e8d38ccd0188a641ffefe1cfb/modules/home-manager/bat.nix
   # - https://github.com/catppuccin/bat/tree/699f60fc8ec434574ca7451b444b880430319941/themes
   batTheme = builtins.fetchurl {
@@ -14,7 +14,19 @@
     sha256 = "sha256:1algv6hb3sz02cy6y3hnxpa61qi3nanqg39gsgmjys62yc3xngj6";
   };
 
+  # This commit has new openai o3 and o4-mini models
+  aichatOverlay = final: prev: {
+    aichat = prev.aichat.overrideAttrs (old: {
+      src = prev.fetchFromGitHub {
+        owner = "sigoden";
+        repo = "aichat";
+        rev = "e9adefccdff050dd1bb52dff0a62f188e72ecd4c";
+        sha256 = "sha256-Z6/B8ZM18h+t7XFpofH3HYoP/+IG+OI2Cu/dDh7k2ik=";
+      };
+    });
+  };
 in {
+  nixpkgs.overlays = [aichatOverlay];
   home.packages = [
     pkgs.aichat
   ];
@@ -25,7 +37,7 @@ in {
   xdg.configFile."aichat/config.yaml".text =
     # yaml
     ''
-      model: openai:o1
+      model: openai:o4-mini
       clients:
         - type: openai
           # api_key comes from $OPENAI_API_KEY env var
@@ -54,5 +66,7 @@ in {
       keybindings: emacs
       save_session: true
       stream: false
+      session:
+        compress_threshold: 100000000
     '';
 }

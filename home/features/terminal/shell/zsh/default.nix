@@ -242,6 +242,12 @@ in {
         cac = "cargo clippy";
         caf = "cargo fmt";
 
+        # AI
+        ai = "aichat --session";
+        aish = "aichat -c -r %shell%";
+        aiquick = "aichat --model openai:o4-mini --session";
+        aireason = "aichat --model openai:o3 --session";
+
         # Other
         c = "clear";
         rm = "rm -i";
