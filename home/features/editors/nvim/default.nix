@@ -49,6 +49,10 @@
       poetry
       uv
 
+      # node
+      nodejs
+      deno
+
       # RUST
       rustup
 
@@ -64,19 +68,24 @@
       alejandra # Nix Code Formatter
 
       # GOLANG
-      # go
-      # gomodifytags
-      # iferr # generate error handling code for go
-      # impl # generate function implementation for go
-      # gotools # contains tools like: godoc, goimports, etc.
-      # gopls # go language server
-      # delve # go debugger
+      go
+      gomodifytags
+      iferr # generate error handling code for go
+      impl # generate function implementation for go
+      gotools # contains tools like: godoc, goimports, etc.
+      gopls # go language server
+      delve # go debugger
 
       # LUA
       lua
       luarocks
       stylua
       lua-language-server
+
+      # csharp
+      dotnet-sdk
+      csharp-ls
+      csharpier
 
       # BASH
       nodePackages.bash-language-server
@@ -91,6 +100,12 @@
       # SCALA
       # coursier
       # metals
+
+      # arduino
+      arduino-language-server
+      arduino-cli
+      arduino-ide
+      avrdude
 
       # CLOUDNATIVE
       nodePackages.dockerfile-language-server-nodejs
