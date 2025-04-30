@@ -44,7 +44,7 @@
       # PYTHON
       python3
       pyright
-      ruff-lsp
+      ruff
       black
       poetry
       uv
