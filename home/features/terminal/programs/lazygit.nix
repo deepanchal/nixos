@@ -16,23 +16,21 @@
           command = "git cz";
           context = "files";
           loadingText = "opening commitizen commit tool";
-          subprocess = true;
+          output = "terminal";
         }
         {
           key = "<c-a>";
           description = "Pick AI Commit";
           command = "aicommit2";
           context = "files";
-          subprocess = true;
-          showOutput = true;
+          output = "terminal";
         }
         {
           key = "<c-n>";
           description = "Pick AI Commit (no verify)";
           command = "aicommit2 --no-verify";
           context = "files";
-          subprocess = true;
-          showOutput = true;
+          output = "terminal";
         }
         {
           key = "E";
@@ -82,6 +80,7 @@
           pager = "delta --dark --paging=never --tabs 2";
         };
         branchLogCmd = "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --oneline {{branchName}} --";
+        overrideGpg = true;
       };
     };
   };

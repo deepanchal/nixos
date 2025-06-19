@@ -145,7 +145,7 @@ in {
         # sh
         ''
           # Cargo binaries
-          export PATH=$PATH:~/.cargo/bin
+          export PATH=$PATH:$HOME/.cargo/bin/
 
           # Android Env
           #export ANDROID_SDK_ROOT=/opt/android-sdk

@@ -133,6 +133,9 @@ vnoremap > >gv
 nnoremap <leader>gh :action Vcs.RollbackChangedLines<CR>
 nnoremap <leader>gr :action Vcs.RollbackChangedLines<CR>
 
+" open URL under caret in VISUAL mode
+vnoremap gx :action OpenLinkAtCaret<CR>
+
 " Move visual block
 "vnoremap J :m '>+1<CR>
 " xnoremap K :m '<-2<CR>

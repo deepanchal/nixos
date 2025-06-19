@@ -117,6 +117,10 @@
 
         "Android" # android sdk stuff
         ".android" # adb keys
+        ".arduino15"
+        ".ollama" # ollama models, keys
+        ".vscode"
+        ".cursor"
         "go"
         ".keychain"
         ".rustup"
@@ -136,6 +140,8 @@
         ".config/Google" # android studio
         ".config/JetBrains"
         ".config/Slack"
+        ".config/Cursor"
+        ".config/Code"
         ".config/discord"
         ".config/google-chrome"
         ".config/spotify"

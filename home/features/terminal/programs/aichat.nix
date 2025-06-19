@@ -20,8 +20,8 @@
       src = prev.fetchFromGitHub {
         owner = "sigoden";
         repo = "aichat";
-        rev = "e9adefccdff050dd1bb52dff0a62f188e72ecd4c";
-        sha256 = "sha256-Z6/B8ZM18h+t7XFpofH3HYoP/+IG+OI2Cu/dDh7k2ik=";
+        rev = "c4df18b4c82e36a7ce0adf0eeff1a3bcaf980425";
+        sha256 = "sha256-swPbgS9KRzTnWVZ0+0QV/RPwqKh8uQ7dtCC5hcxtAnE=";
       };
     });
   };
@@ -43,6 +43,24 @@ in {
           # api_key comes from $OPENAI_API_KEY env var
           # See: https://github.com/sigoden/aichat/wiki/Environment-Variables#client-related-envs
           api_key: null
+
+        # For any platform compatible with OpenAI's API
+        - type: openai-compatible
+          name: ollama
+          api_base: http://localhost:11434/v1
+          models:
+            - name: deepseek-r1:1.5b
+              max_input_tokens: 131072
+            - name: llama3.1
+              max_input_tokens: 128000
+              supports_function_calling: true
+            - name: llama3.2-vision
+              max_input_tokens: 131072
+              supports_vision: true
+            - name: nomic-embed-text
+              type: embedding
+              default_chunk_size: 1000
+              max_batch_size: 50
 
         # See https://ai.google.dev/docs
         - type: gemini
@@ -67,6 +85,6 @@ in {
       save_session: true
       stream: false
       session:
-        compress_threshold: 100000000
+        compress_threshold: 100000000000
     '';
 }

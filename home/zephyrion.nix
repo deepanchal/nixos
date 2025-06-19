@@ -48,9 +48,13 @@
     '')
 
     # Cider - Paid Apple Music Client
-    # 1. Get AppImage from https://cidercollective.itch.io/cider
+    # 1. Get AppImage from 
+    #    - https://taproom.cider.sh/downloads
+    #    - https://cidercollective.itch.io/cider
+    # 2. Make it executable
+    #      chmod +x ~/Downloads/apps/cider-v3.0.2-linux-x64.AppImage
     # 2. Add it to nix store
-    #    nix-store --add-fixed sha256 ~/Downloads/apps/cider-2/cider-linux-x64.AppImage
+    #      nix-store --add-fixed sha256 ~/Downloads/apps/cider-3/cider-linux-x64.AppImage
     # 3. Rebuild system
     pkgs.cider-2
 
@@ -68,6 +72,7 @@
     pkgs.aider-chat # AI pair programming in your terminal
     pkgs.plandex # AI driven development in your terminal.
     pkgs.code-cursor
+    pkgs.ollama
 
     # NOTE: My custom packages found under pkgs dir
 
@@ -174,8 +179,8 @@
       name = "eDP-1"; # laptop screen
       enabled = true;
       primary = false;
-      width = 2560;
-      height = 1440;
+      width = 1920;
+      height = 1080;
       x = 0;
       # center monitor horizontally below primary monitor (not working)
       # x = builtins.floor (primaryMonitor.width * primaryMonitor.scaleFactor - width * scaleFactor);

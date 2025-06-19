@@ -17,6 +17,7 @@
   # Gnome Exclude Packages
   environment.gnome.excludePackages = with pkgs; [
     # gnome-terminal
+    # loupe # gnome image viewer
     gnome-tour
     gedit # text editor
     epiphany # web browser

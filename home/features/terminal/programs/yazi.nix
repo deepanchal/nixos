@@ -19,7 +19,7 @@
     # See: https://yazi-rs.github.io/docs/quick-start/#shell-wrapper
     shellWrapperName = "f";
     settings = {
-      manager = {
+      mgr = {
         layout = [1 4 3];
         sort_by = "alphabetical";
         sort_sensitive = true;
@@ -37,7 +37,7 @@
       };
     };
     keymap = {
-      manager.prepend_keymap = [
+      mgr.prepend_keymap = [
         {
           on = ["d"];
           run = [
