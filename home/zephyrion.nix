@@ -67,6 +67,7 @@
     pkgs.popsicle # utility for flashing multiple usb devices in parallel in rust, also provides popsicle cli
     pkgs.rpi-imager
     pkgs.bmaptool
+    pkgs.totp-cli
 
     # AI Tools
     pkgs.aider-chat # AI pair programming in your terminal

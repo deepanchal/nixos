@@ -207,14 +207,18 @@ in {
   programs.firefox = {
     enable = true;
     profiles = {
-      personal = {
+      # personal
+      default = {
         id = 0;
         isDefault = true;
         bookmarks = {
           force = true;
           settings = [];
         };
-        extensions.packages = extensions;
+        extensions = {
+          force = true;
+          packages = extensions;
+        };
         containers = {};
         search = search;
         settings = settings;

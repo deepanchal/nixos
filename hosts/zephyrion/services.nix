@@ -17,7 +17,7 @@
   services.dbus.enable = true;
   services.dbus.packages = with pkgs; [
     xfce.xfconf
-    gnome2.GConf
+    # gnome2.GConf
   ];
   services.mpd.enable = true;
   programs.thunar.enable = true;

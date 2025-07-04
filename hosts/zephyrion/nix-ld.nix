@@ -72,6 +72,12 @@
       with pkgs;
       [
         stdenv.cc.cc.lib # To fix: libstdc++.so.6: cannot open shared object file: No such file or directory
+        zlib
+        glib
+        libpulseaudio
+        openssl
+        libz
+        libGL
       ]
     );
   };
