@@ -68,6 +68,9 @@
     pkgs.rpi-imager
     pkgs.bmaptool
     pkgs.totp-cli
+    pkgs.scrcpy
+    pkgs.kubectl
+    pkgs.bluetui
 
     # AI Tools
     pkgs.aider-chat # AI pair programming in your terminal

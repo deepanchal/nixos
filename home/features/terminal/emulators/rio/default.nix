@@ -7,7 +7,7 @@
 }:
 {
   programs.rio = {
-    enable = true;
+    enable = false;
     settings = {
       confirm-before-quit = false;
       padding-x = 0;
