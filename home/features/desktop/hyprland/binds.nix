@@ -101,6 +101,9 @@ in {
         "$modShift, N, exec, ${playerctl} -p cider next"
         "$modShift, B, exec, ${playerctl} -p cider previous"
 
+        # Toggles headphones on/off (See scripts/bluetooth.nix)
+        "$mod2, B, exec, bt-toggle"
+
         # workspace controls
         "$modShift, right, movetoworkspace, +1" # move focused window to the next ws
         "$modShift, left, movetoworkspace, -1" # move focused window to the previous ws

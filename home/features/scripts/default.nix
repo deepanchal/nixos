@@ -7,5 +7,6 @@
   imports = [
     ./sound.nix
     ./utils.nix
+    ./bluetooth.nix
   ];
 }

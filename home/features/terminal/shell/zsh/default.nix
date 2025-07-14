@@ -261,6 +261,12 @@ in {
         wg-on = "systemctl start wg-quick-wg0.service";
         wg-off = "systemctl stop wg-quick-wg0.service";
 
+        # bluetooth
+        bt-on = "bluetoothctl power on";
+        bt-off = "bluetoothctl power off";
+        bt-connect = "bluetoothctl connect $HEADPHONES_MAC";
+        bt-disconnect = "bluetoothctl disconnect $HEADPHONES_MAC";
+
         pj = "projen";
         min = "mise install";
       };
