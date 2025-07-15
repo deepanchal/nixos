@@ -12,7 +12,10 @@
       layer = "overlay";
       control-center-layer = "top";
       layer-shell = true;
-      cssPriority = "application";
+      # Setting cssPriority to from application to user fixed gtk4 background on notification
+      # https://github.com/ErikReider/SwayNotificationCenter/issues/584#issuecomment-3070073297
+      # Should be fixed in https://github.com/ErikReider/SwayNotificationCenter/releases/tag/v0.12.1
+      cssPriority = "user";
       control-center-margin-top = 0;
       control-center-margin-bottom = 0;
       control-center-margin-right = 0;
