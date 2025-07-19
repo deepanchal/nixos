@@ -130,6 +130,7 @@
         ".gradle"
         ".pub-cache"
         ".minikube"
+        ".kube"
         ".mozilla" # firefox
         ".cache"
         ".wakatime"

@@ -209,6 +209,7 @@
     wget
 
     openssl
+    openssl.dev
     cacert
     gparted
 
