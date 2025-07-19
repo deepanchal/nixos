@@ -15,18 +15,18 @@
   };
 
   # This commit has new openai o3 and o4-mini models
-  aichatOverlay = final: prev: {
-    aichat = prev.aichat.overrideAttrs (old: {
-      src = prev.fetchFromGitHub {
-        owner = "sigoden";
-        repo = "aichat";
-        rev = "c4df18b4c82e36a7ce0adf0eeff1a3bcaf980425";
-        sha256 = "sha256-swPbgS9KRzTnWVZ0+0QV/RPwqKh8uQ7dtCC5hcxtAnE=";
-      };
-    });
-  };
+  # aichatOverlay = final: prev: {
+  #   aichat = prev.aichat.overrideAttrs (old: {
+  #     src = prev.fetchFromGitHub {
+  #       owner = "sigoden";
+  #       repo = "aichat";
+  #       rev = "c4df18b4c82e36a7ce0adf0eeff1a3bcaf980425";
+  #       sha256 = "sha256-swPbgS9KRzTnWVZ0+0QV/RPwqKh8uQ7dtCC5hcxtAnE=";
+  #     };
+  #   });
+  # };
 in {
-  nixpkgs.overlays = [aichatOverlay];
+  # nixpkgs.overlays = [aichatOverlay];
   home.packages = [
     pkgs.aichat
   ];
