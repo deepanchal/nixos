@@ -76,7 +76,12 @@
           "--time"
           # Make sure theme is wrapped in single quotes. See https://github.com/apognu/tuigreet/issues/147
           "--theme 'border=blue;text=cyan;prompt=green;time=red;action=blue;button=white;container=black;input=red'"
-          "--cmd Hyprland"
+          # After upgrading to Hyprland 0.50.0, I started getting this error
+          # /home/deep/.nix-profile/bin/Hyprland: /nix/store/6vzcxjxa2wlh3p9f5nhbk62bl3q313ri-gcc-14.3.0-lib/lib/libstdc++.so.6: version `GLIBCXX_3.4.34' not found (required by /home/deep/.nix-profile/bin/Hyprland)
+          # which is similar to https://github.com/hyprwm/Hyprland/issues/7803
+          # and this is happening bc I am setting LD_LIBRARY_PATH in nix-ld.nix file
+          # Therefore, I am unsetting env var and launching Hyprland
+          "--cmd bash -c 'LD_LIBRARY_PATH= Hyprland'"
         ];
         flags = lib.concatStringsSep " " tuigreetOptions;
       in {
