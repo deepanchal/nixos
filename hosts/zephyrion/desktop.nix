@@ -69,6 +69,7 @@
         baseSessionsDir = "${config.services.displayManager.sessionData.desktops}";
         xSessions = "${baseSessionsDir}/share/xsessions";
         waylandSessions = "${baseSessionsDir}/share/wayland-sessions";
+        hyprlandCmd = "env LD_LIBRARY_PATH= Hyprland";
         tuigreetOptions = [
           "--remember"
           "--remember-session"
@@ -81,7 +82,7 @@
           # which is similar to https://github.com/hyprwm/Hyprland/issues/7803
           # and this is happening bc I am setting LD_LIBRARY_PATH in nix-ld.nix file
           # Therefore, I am unsetting env var and launching Hyprland
-          "--cmd bash -c 'LD_LIBRARY_PATH= Hyprland'"
+          "--cmd ${hyprlandCmd}"
         ];
         flags = lib.concatStringsSep " " tuigreetOptions;
       in {

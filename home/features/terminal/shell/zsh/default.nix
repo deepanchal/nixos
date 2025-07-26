@@ -163,6 +163,10 @@ in {
           # PNPM
           export PNPM_HOME="$HOME/.local/share/pnpm"
           export PATH="$PATH:$PNPM_HOME"
+
+          # Dart
+          export DART_PUB_CACHE_BIN="$HOME/.pub-cache/bin"
+          export PATH="$PATH:$DART_PUB_CACHE_BIN"
         '';
 
       history = {
