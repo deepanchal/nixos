@@ -2,5 +2,6 @@
   imports = [
     ./nvim
     ./jetbrains
+    ./zed
   ];
 }

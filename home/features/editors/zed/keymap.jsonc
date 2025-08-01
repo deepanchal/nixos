@@ -1,0 +1,104 @@
+// https://github.com/fatih/dotfiles/blob/bb5ad1eefcc0c849f595fe85940320ff2e4303e0/zed-keymap.json#L93
+// https://github.com/ryangchung/ryangchung/blob/5140579ddd8c7857a01a81a5c41ff8684ab387ef/nix/modules/hm/default.nix#L254
+[
+  {
+    // When vim is in normal & visual mode
+    "context": "Editor && VimControl && !VimWaiting && !menu",
+    "bindings": {
+      "L": "pane::ActivateNextItem",
+      "H": "pane::ActivatePreviousItem",
+      "K": "editor::Hover",
+      "space l f": "editor::FormatSelections",
+      "space g l": "git::Blame",
+      "space g r": "git::Restore",
+      "space f f": "file_finder::Toggle",
+      "space f w": "workspace::NewSearch",
+      "space e": "workspace::ToggleLeftDock",
+      "ctrl-g": "outline::Toggle",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      // "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-l": "workspace::ActivateNextPane"
+    }
+  },
+  {
+    "context": "Editor && showing_completions",
+    "use_key_equivalents": true,
+    "bindings": {
+      "enter": "editor::ConfirmCompletion",
+      "shift-enter": "editor::Newline",
+      "j j": "vim::NormalBefore",
+      "j k": "vim::NormalBefore",
+      "tab": "editor::ContextMenuNext",
+      "shift-tab": "editor::ContextMenuPrevious",
+      "g g": "editor::ContextMenuFirst",
+      "shift-G": "editor::ContextMenuLast"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == insert && !menu",
+    "bindings": {
+      "j j": "vim::NormalBefore",
+      "j k": "vim::NormalBefore",
+      "tab": "menu::SelectNext",
+      "shift-tab": "menu::SelectPrevious"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal && (vim_operator == none || vim_operator == n) && !VimWaiting",
+    "bindings": {
+      "space w": "workspace::SaveWithoutFormat",
+      "space q": "pane::CloseActiveItem",
+      "space c": "pane::CloseActiveItem"
+    }
+  },
+  {
+    "context": "Editor && mode == full && edit_prediction",
+    "bindings": {
+      "tab": "editor::NextEditPrediction",
+      "shift-tab": "editor::PreviousEditPrediction",
+      "enter": "editor::AcceptPartialEditPrediction"
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "shift shift": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown"
+    }
+  },
+  {
+    "context": "Dock || Terminal || Editor || CommitEditor",
+    "bindings": {
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-'": "terminal_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "GitPanel",
+    "bindings": {
+      "space q": "git_panel::Close",
+      "space n": "project_panel::ToggleFocus",
+      "cmd-shift-g": "git_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "ProjectPanel && not_editing",
+    "bindings": {
+      "space e": "workspace::ToggleLeftDock",
+      "l": "editor::OpenSelectedFilename"
+    }
+  }
+]
