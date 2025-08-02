@@ -3,6 +3,7 @@
     ./zellij
     ./direnv
     ./tmux
+    ./television
     ./atuin.nix
     ./aichat.nix
     ./eza.nix
