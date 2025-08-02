@@ -71,6 +71,7 @@
     pkgs.scrcpy
     pkgs.kubectl
     pkgs.bluetui
+    pkgs.prismlauncher # minecraft launcher
 
     # AI Tools
     pkgs.aider-chat # AI pair programming in your terminal

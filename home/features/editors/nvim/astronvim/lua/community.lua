@@ -61,6 +61,7 @@ return {
 
   -- Other
   { import = "astrocommunity.syntax.vim-easy-align" },
+  { import = "astrocommunity.completion.copilot-lua" },
   -- { import = "astrocommunity.editing-support.conform-nvim" },
   { import = "astrocommunity.editing-support.refactoring-nvim" },
   { import = "astrocommunity.editing-support.chatgpt-nvim" },
