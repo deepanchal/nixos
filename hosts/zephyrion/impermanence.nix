@@ -132,10 +132,13 @@
         ".minikube"
         ".kube"
         ".mozilla" # firefox
+        ".minecraft"
         ".cache"
         ".wakatime"
 
+        ".config/nixpkgs"
         ".config/gh"
+        ".config/github-copilot"
         ".config/glab-cli"
         ".config/BraveSoftware"
         ".config/Google" # android studio
