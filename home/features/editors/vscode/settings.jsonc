@@ -1,0 +1,272 @@
+{
+  // Workspace settings
+  "workbench.colorTheme": "Catppuccin Mocha",
+  "editor.fontFamily": "JetBrainsMono Nerd Font",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 14,
+  "editor.tabSize": 2,
+
+  // ——————————————————————————————————————————
+  // VS Code / Editor settings
+  // ——————————————————————————————————————————
+  "window.commandCenter": true,
+  "window.openFoldersInNewWindow": "on",
+  "editor.lineNumbers": "on",
+  "editor.cursorBlinking": "solid",
+  // ——————————————————————————————————————————
+  // Global VSCodeVim flags
+  // ——————————————————————————————————————————
+  "vim.leader": " ",
+  "vim.useSystemClipboard": true, // clipboard+=unnamedplus
+  "vim.hlsearch": true, // highlight search
+  "vim.incsearch": true, // incremental search
+  "vim.ignorecase": true, // ignorecase
+  "vim.smartcase": true, // smartcase
+  // ——————————————————————————————————————————
+  // Insert-mode remaps
+  // ——————————————————————————————————————————
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["j", "k"],
+      "after": ["<Esc>"]
+    }
+  ],
+  // ——————————————————————————————————————————
+  // Normal-mode remaps
+  // ——————————————————————————————————————————
+  "vim.normalModeKeyBindingsNonRecursive": [
+    // quick delete line: <leader>d → dd
+    {
+      "before": ["<leader>", "d"],
+      "after": ["d", "d"]
+    },
+    // clear search highlight
+    {
+      "before": ["<C-h>"],
+      "commands": ["vim.clearSearchHighlight"]
+    },
+    // Q for formatting
+    {
+      "before": ["Q"],
+      "after": ["g", "q", "a", "p"]
+    },
+    // zj / zk: new line below/above and stay in normal mode
+    {
+      "before": ["z", "j"],
+      "after": ["o", "<Esc>", "k"]
+    },
+    {
+      "before": ["z", "k"],
+      "after": ["O", "<Esc>", "j"]
+    },
+    // Refactorings
+    {
+      "before": ["<leader>", "r", "r"],
+      "commands": ["editor.action.rename"]
+    },
+    {
+      "before": ["<leader>", "r", "g"],
+      "commands": ["editor.action.quickFix"]
+    },
+    {
+      "before": ["<leader>", "r", "I"],
+      "commands": ["editor.action.organizeImports"]
+    },
+    // Search
+    {
+      "before": ["<leader>", "/"],
+      "commands": ["actions.find"]
+    },
+    {
+      "before": ["<leader>", "\\"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    // Move lines
+    {
+      "before": ["[", "e"],
+      "commands": ["editor.action.moveLinesUpAction"]
+    },
+    {
+      "before": ["]", "e"],
+      "commands": ["editor.action.moveLinesDownAction"]
+    },
+    // Distraction-free / Zen
+    {
+      "before": ["<C-z>"],
+      "commands": ["workbench.action.toggleZenMode"]
+    },
+    // Terminal
+    {
+      "before": ["<C-t>"],
+      "commands": ["workbench.action.terminal.focus"]
+    },
+    {
+      "before": ["<leader>", "t"],
+      "commands": ["workbench.action.terminal.new"]
+    },
+    // Splits & window management
+    {
+      "before": ["<C-\\>"],
+      "commands": ["workbench.action.splitEditorRight"]
+    },
+    {
+      "before": ["<C-->"],
+      "commands": ["workbench.action.splitEditorDown"]
+    },
+    {
+      "before": ["<C-=>"],
+      "commands": ["workbench.action.closeGroup"]
+    },
+    {
+      "before": ["<C-m>"],
+      "commands": ["workbench.action.moveEditorToNextGroup"]
+    },
+    {
+      "before": ["<leader>", "n"],
+      "commands": ["workbench.action.focusNextGroup"]
+    },
+    // Tabs & buffers
+    {
+      "before": ["<Tab>"],
+      "commands": ["workbench.action.previousEditor"]
+    },
+    {
+      "before": ["<S-Tab>"],
+      "commands": ["workbench.action.nextEditor"]
+    },
+    {
+      "before": ["<leader>", "c"],
+      "commands": ["workbench.action.closeActiveEditor"]
+    },
+    {
+      "before": ["<leader>", "q"],
+      "commands": ["workbench.action.closeActiveEditor"]
+    },
+    // center search results
+    {
+      "before": ["n"],
+      "after": ["n", "z", "z"]
+    },
+    {
+      "before": ["N"],
+      "after": ["N", "z", "z"]
+    },
+    // folding
+    {
+      "before": ["z", "c"],
+      "commands": ["editor.fold"]
+    },
+    {
+      "before": ["z", "o"],
+      "commands": ["editor.unfold"]
+    },
+    {
+      "before": ["<leader>", "z", "c"],
+      "commands": ["editor.foldAll"]
+    },
+    {
+      "before": ["<leader>", "z", "o"],
+      "commands": ["editor.unfoldAll"]
+    },
+    // save all
+    {
+      "before": ["<leader>", "w"],
+      "commands": ["workbench.action.files.saveWithoutFormatting"]
+    },
+    // formatting / comment / file navigation
+    {
+      "before": ["<leader>", "l", "f"],
+      "commands": ["editor.action.formatDocument"]
+    },
+    {
+      "before": ["<leader>", "l", "r"],
+      "commands": ["editor.action.rename"]
+    },
+    {
+      "before": ["<leader>", "f", "f"],
+      "commands": ["workbench.action.quickOpen"]
+    },
+    {
+      "before": ["<leader>", "f", "w"],
+      "commands": ["workbench.action.findInFiles"]
+    },
+    // H/L for tabs
+    {
+      "before": ["H"],
+      "commands": ["workbench.action.previousEditor"]
+    },
+    {
+      "before": ["L"],
+      "commands": ["workbench.action.nextEditor"]
+    },
+    // git keybinds
+    {
+      "before": ["<leader>", "g", "r"],
+      "commands": ["git.revertSelectedRanges"]
+    },
+    {
+      "before": ["g", "e"],
+      "commands": ["editor.action.marker.next"]
+    },
+    {
+      "before": ["g", "E"],
+      "commands": ["editor.action.marker.prev"]
+    },
+    // misc
+    {
+      "before": ["<leader>", "f", "f"],
+      "commands": ["find-it-faster.findFiles"]
+    },
+    {
+      "before": ["<leader>", "f", "w"],
+      "commands": ["find-it-faster.findWithinFiles"]
+    },
+    {
+      "before": ["<leader>", "f", "<cr>"],
+      "commands": ["find-it-faster.resumeSearch"]
+    },
+  ],
+  // ——————————————————————————————————————————
+  // Visual-mode remaps
+  // ——————————————————————————————————————————
+  "vim.visualModeKeyBindingsNonRecursive": [
+    // reselect the visual block after indenting
+    { "before": ["<"], "after": ["<", "g", "v"] },
+    { "before": [">"], "after": [">", "g", "v"] },
+
+    // comment selection
+    {
+      "before": ["<leader>", "/"],
+      "commands": ["editor.action.commentLine"]
+    },
+
+    // Greatest remap EVER!!
+    // This remap while in visual mode
+    // will delete what is currently highlighted and replace it
+    // with what is in the register BUT it will YANK (delete) it
+    // to a VOID register. Meaning I still have what I originally had
+    // when I pasted. I don't loose the previous thing I YANKED!
+    { "before": ["p"], "after": ["\"", "_", "d", "P"] },
+
+    // git changes
+    {
+      "before": ["<leader>", "g", "r"],
+      "commands": ["git.revertSelectedRanges"]
+    },
+
+    // Q to format selection
+    {
+      "before": ["Q"],
+      "after": ["g", "q"]
+    }
+  ],
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
+}
