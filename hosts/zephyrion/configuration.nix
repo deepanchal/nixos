@@ -175,7 +175,7 @@
   environment.variables = {
     EDITOR = "nvim";
     VISUAL = "nvim";
-    BROWSER = "firefox";
+    BROWSER = "brave";
 
     # Wayland
     NIXOS_OZONE_WL = "1";
