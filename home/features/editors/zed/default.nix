@@ -18,4 +18,6 @@ in
     config.lib.file.mkOutOfStoreSymlink "${zedSettingsDir}/settings.jsonc";
   xdg.configFile."zed/keymap.json".source =
     config.lib.file.mkOutOfStoreSymlink "${zedSettingsDir}/keymap.jsonc";
+  xdg.configFile."zed/tasks.json".source =
+    config.lib.file.mkOutOfStoreSymlink "${zedSettingsDir}/tasks.jsonc";
 }

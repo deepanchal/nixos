@@ -1,5 +1,7 @@
-// https://github.com/fatih/dotfiles/blob/bb5ad1eefcc0c849f595fe85940320ff2e4303e0/zed-keymap.json#L93
-// https://github.com/ryangchung/ryangchung/blob/5140579ddd8c7857a01a81a5c41ff8684ab387ef/nix/modules/hm/default.nix#L254
+// Modified from:
+// - https://github.com/fatih/dotfiles/blob/bb5ad1eefcc0c849f595fe85940320ff2e4303e0/zed-keymap.json#L93
+// - https://github.com/ryangchung/ryangchung/blob/5140579ddd8c7857a01a81a5c41ff8684ab387ef/nix/modules/hm/default.nix#L254
+// Note: Using astronvim like keybinds for zed
 [
   {
     // When vim is in normal & visual mode
@@ -11,8 +13,13 @@
       "space l f": "editor::FormatSelections",
       "space g l": "git::Blame",
       "space g r": "git::Restore",
-      "space f f": "file_finder::Toggle",
-      "space f w": "workspace::NewSearch",
+      "space f f": ["task::Spawn", { "task_name": "file_finder" }],
+      "space f w": ["task::Spawn", { "task_name": "live_grep" }],
+      "space f p": ["projects::OpenRecent", { "create_new_window": true }],
+      "space y": ["task::Spawn", { "task_name": "yazi" }],
+      "space g g": ["task::Spawn", { "task_name": "lazygit" }],
+      "space r o": ["task::Spawn", { "task_name": "gh_browse" }],
+      "space a i": "agent::ToggleFocus",
       "space e": "workspace::ToggleLeftDock",
       "ctrl-g": "outline::Toggle",
       "ctrl-h": "workspace::ActivatePaneLeft",
@@ -64,7 +71,8 @@
   {
     "context": "Workspace",
     "bindings": {
-      "shift shift": "file_finder::Toggle"
+      // "ctrl-p": null,
+      // "ctrl-n": null,
     }
   },
   {
@@ -84,6 +92,23 @@
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-j": "workspace::ActivatePaneDown",
       "ctrl-'": "terminal_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      // "ctrl-j": ["terminal::SendKeystroke", "ctrl-j"],
+      // "ctrl-k": ["terminal::SendKeystroke", "ctrl-k"],
+      "ctrl-n": ["terminal::SendKeystroke", "ctrl-n"],
+      "ctrl-p": ["terminal::SendKeystroke", "ctrl-p"],
+      "ctrl-d": ["terminal::SendKeystroke", "ctrl-d"],
+      "ctrl-c": ["terminal::SendKeystroke", "ctrl-c"]
+    }
+  },
+  {
+    "context": "AgentPanel",
+    "bindings": {
+      "space q": "workspace::CloseActiveDock"
     }
   },
   {
