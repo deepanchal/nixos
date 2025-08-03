@@ -229,7 +229,10 @@ in {
           force = true;
           settings = [];
         };
-        extensions.packages = extensions;
+        extensions = {
+          force = true;
+          packages = extensions;
+        };
         containers = {};
         search = search;
         settings = settings;

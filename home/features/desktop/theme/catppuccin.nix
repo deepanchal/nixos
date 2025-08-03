@@ -33,14 +33,6 @@
     delta.enable = false;
     glamour.enable = true;
     kvantum.enable = true;
-    gtk = {
-      enable = true;
-      # Type: list of (one of “black”, “rimless”, “normal”)
-      tweaks = ["rimless"];
-      icon = {
-        enable = true;
-      };
-    };
   };
 
   # nix-colors also exposes helper functions
