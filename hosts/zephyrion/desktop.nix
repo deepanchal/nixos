@@ -9,7 +9,7 @@
   # DESKTOP ENVIRONMENT
   ##########################################
   services.xserver.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  services.desktopManager.gnome.enable = true;
   services.gnome.gnome-keyring.enable = true;
   # security.pam.services.gdm.enableGnomeKeyring = true;
   security.pam.services.greetd.enableGnomeKeyring = true;
@@ -65,7 +65,7 @@
     enable = true;
     settings = {
       default_session = let
-        tuigreet = "${lib.getExe pkgs.greetd.tuigreet}";
+        tuigreet = "${lib.getExe pkgs.tuigreet}";
         baseSessionsDir = "${config.services.displayManager.sessionData.desktops}";
         xSessions = "${baseSessionsDir}/share/xsessions";
         waylandSessions = "${baseSessionsDir}/share/wayland-sessions";

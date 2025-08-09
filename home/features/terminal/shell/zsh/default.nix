@@ -4,17 +4,13 @@
   lib,
   inputs,
   ...
-}: let
+}:
+let
   isWayland = config.wayland.windowManager.hyprland.enable;
-  copy-cmd =
-    if isWayland
-    then "wl-copy"
-    else "xclip -selection clipboard";
-  paste-cmd =
-    if isWayland
-    then "wl-paste"
-    else "xclip -selection clipboard -o";
-in {
+  copy-cmd = if isWayland then "wl-copy" else "xclip -selection clipboard";
+  paste-cmd = if isWayland then "wl-paste" else "xclip -selection clipboard -o";
+in
+{
   config = {
     home.packages = [
       (pkgs.writeShellScriptBin "glsc" ''
@@ -47,7 +43,7 @@ in {
 
     programs.zsh = {
       enable = true;
-      dotDir = ".config/zsh";
+      dotDir = "${config.xdg.configHome}/zsh";
       enableCompletion = true;
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
@@ -132,14 +128,15 @@ in {
           '';
       };
 
-      initExtraFirst =
-        # sh
-        ''
-          # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-          if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-            source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-          fi
-        '';
+      initContent =
+        lib.mkBefore
+          # sh
+          ''
+            # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+            if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
+              source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
+            fi
+          '';
 
       envExtra =
         # sh
@@ -183,7 +180,12 @@ in {
         expireDuplicatesFirst = true;
         ignoreDups = true;
         ignoreSpace = true;
-        ignorePatterns = ["rm *" "pkill *" "kill *" "killall *"];
+        ignorePatterns = [
+          "rm *"
+          "pkill *"
+          "kill *"
+          "killall *"
+        ];
       };
 
       shellAliases = {
