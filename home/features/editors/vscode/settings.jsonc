@@ -184,11 +184,13 @@
     },
     {
       "before": ["<leader>", "f", "f"],
-      "commands": ["workbench.action.quickOpen"]
+      "commands": ["television.ToggleFileFinder"]
+      // "commands": ["workbench.action.quickOpen"]
     },
     {
       "before": ["<leader>", "f", "w"],
-      "commands": ["workbench.action.findInFiles"]
+      "commands": ["television.ToggleTextFinder"]
+      // "commands": ["workbench.action.findInFiles"]
     },
     // H/L for tabs
     {
@@ -214,17 +216,25 @@
     },
     // misc
     {
+      "before": ["<leader>", "g", "g"],
+      "commands": [
+        {
+          "command": "workbench.action.tasks.runTask",
+          "args": "lazygit",
+          "when": "terminalProcessSupported"
+        }
+      ]
+    },
+    {
       "before": ["<leader>", "f", "f"],
-      "commands": ["find-it-faster.findFiles"]
+      "commands": ["television.ToggleFileFinder"]
+      // "commands": ["workbench.action.quickOpen"]
     },
     {
       "before": ["<leader>", "f", "w"],
-      "commands": ["find-it-faster.findWithinFiles"]
-    },
-    {
-      "before": ["<leader>", "f", "<cr>"],
-      "commands": ["find-it-faster.resumeSearch"]
-    },
+      "commands": ["television.ToggleTextFinder"]
+      // "commands": ["workbench.action.findInFiles"]
+    }
   ],
   // ——————————————————————————————————————————
   // Visual-mode remaps
@@ -268,5 +278,6 @@
   },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "explorer.confirmDelete": false
 }

@@ -14,9 +14,13 @@
   "base_keymap": "VSCode",
   "use_smartcase_search": true,
   "show_wrap_guides": true,
-  "auto_signature_help": true,
-  "vim_mode": true,
+  "auto_signature_help": false,
+  "scroll_beyond_last_line": "vertical_scroll_margin",
   "relative_line_numbers": false,
+  "vim_mode": true,
+  "vim": {
+    "use_system_clipboard": "always"
+  },
   "diagnostics": {
     "inline": {
       "enabled": true,
@@ -33,6 +37,7 @@
   },
   "terminal": {
     "dock": "bottom",
+    "default_height": 400,
     "font_family": "JetBrainsMono Nerd Font",
     "font_size": 14,
     "font_weight": 200,
@@ -72,13 +77,14 @@
   },
   "agent_font_size": 16,
   "agent": {
+    "play_sound_when_agent_done": true,
     "default_model": {
-      "provider": "openai",
-      "model": "o4-mini"
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4"
     }
   },
   "edit_predictions": {
-    "mode": "subtle",
+    "mode": "eager",
     "enabled_in_text_threads": false
   },
   "features": {

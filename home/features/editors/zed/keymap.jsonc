@@ -11,6 +11,7 @@
       "H": "pane::ActivatePreviousItem",
       "K": "editor::Hover",
       "space l f": "editor::FormatSelections",
+      "space l r": "editor::Rename",
       "space g l": "git::Blame",
       "space g r": "git::Restore",
       "space f f": ["task::Spawn", { "task_name": "file_finder" }],
