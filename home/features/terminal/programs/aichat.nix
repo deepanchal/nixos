@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   # Catppuccin Nix is setting bat theme and we
   # are simply setting aichat theme to bat's theme
   # since they are both using `thTheme` files
@@ -14,19 +15,19 @@
     sha256 = "sha256:1algv6hb3sz02cy6y3hnxpa61qi3nanqg39gsgmjys62yc3xngj6";
   };
 
-  # This commit has new openai o3 and o4-mini models
-  # aichatOverlay = final: prev: {
-  #   aichat = prev.aichat.overrideAttrs (old: {
-  #     src = prev.fetchFromGitHub {
-  #       owner = "sigoden";
-  #       repo = "aichat";
-  #       rev = "c4df18b4c82e36a7ce0adf0eeff1a3bcaf980425";
-  #       sha256 = "sha256-swPbgS9KRzTnWVZ0+0QV/RPwqKh8uQ7dtCC5hcxtAnE=";
-  #     };
-  #   });
-  # };
-in {
-  # nixpkgs.overlays = [aichatOverlay];
+  aichatOverlay = final: prev: {
+    aichat = prev.aichat.overrideAttrs (old: {
+      src = prev.fetchFromGitHub {
+        owner = "sigoden";
+        repo = "aichat";
+        rev = "9a60b5f3a2a0bffa23dbd7960e306bf9683ed951";
+        sha256 = "sha256-WE/92g3+u9hA+jICo24iIZn+y+VhoUpUQw4ivNtt/RY=";
+      };
+    });
+  };
+in
+{
+  nixpkgs.overlays = [ aichatOverlay ];
   home.packages = [
     pkgs.aichat
   ];
@@ -37,7 +38,7 @@ in {
   xdg.configFile."aichat/config.yaml".text =
     # yaml
     ''
-      model: openai:o4-mini
+      model: openai:gpt-5
       clients:
         - type: openai
           # api_key comes from $OPENAI_API_KEY env var
@@ -61,6 +62,12 @@ in {
               type: embedding
               default_chunk_size: 1000
               max_batch_size: 50
+
+        # See https://docs.anthropic.com/claude/reference/getting-started-with-the-api
+        - type: claude
+          # Comes from $CLAUDE_API_KEY env var
+          # See: https://github.com/sigoden/aichat/wiki/Environment-Variables#client-related-envs
+          api_key: null
 
         # See https://ai.google.dev/docs
         - type: gemini

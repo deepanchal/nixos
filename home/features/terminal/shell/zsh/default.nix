@@ -251,7 +251,7 @@ in
         # AI
         ai = "aichat --session";
         aish = "aichat -c -r %shell%";
-        aiquick = "aichat --model openai:o4-mini --session";
+        aiquick = "aichat --model openai:gpt-5-mini --session";
         aireason = "aichat --model openai:o3 --session";
 
         # Other
