@@ -88,7 +88,7 @@
     "enabled_in_text_threads": false
   },
   "features": {
-    "edit_prediction_provider": "copilot"
+    "edit_prediction_provider": "zed"
   },
   "icon_theme": "Zed (Default)",
   "telemetry": {

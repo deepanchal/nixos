@@ -98,6 +98,7 @@
     pkgs.sf-pro-fonts # See: pkgs/sf-pro-fonts/default.nix
     pkgs.mender-cli # See: pkgs/mender-cli/default.nix
     pkgs.codegrab # See: pkgs/codegrab/default.nix
+    pkgs.fuego # See: pkgs/fuego/default.nix
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
