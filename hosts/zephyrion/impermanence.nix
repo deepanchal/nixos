@@ -146,6 +146,7 @@
         ".config/Slack"
         ".config/Cursor"
         ".config/Code"
+        ".config/clipse" # preserve clipse history & tmp_files which contains images
         ".config/discord"
         ".config/google-chrome"
         ".config/spotify"

@@ -89,6 +89,11 @@
       "opacity 1, class:^(jetbrains-.*)$"
       # spotify
       "opacity 0.8, initialTitle:^(Spotify.*)$"
+      # clipse
+      "float, class:(clipse)"
+      "center, class:(clipse)"
+      "size 40% 64%, class:(clipse)"
+      "noanim, class:(clipse)"
 
       ##########################################
       # OPAQUE

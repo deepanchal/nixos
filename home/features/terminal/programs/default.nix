@@ -9,6 +9,7 @@
     ./eza.nix
     ./bat.nix
     ./btop.nix
+    ./clipse.nix
     ./ripgrep.nix
     ./lazygit.nix
     ./zoxide.nix

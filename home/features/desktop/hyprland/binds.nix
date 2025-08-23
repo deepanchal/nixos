@@ -13,6 +13,7 @@
   rog-control-center = "${pkgs.asusctl}/bin/rog-control-center";
   thunar = "thunar";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
+  clipse = "${pkgs.clipse}/bin/clipse";
 
   # From https://github.com/fufexan/dotfiles/blob/41612095fbebb01a0f2fe0980ec507cf02196392/home/programs/wayland/hyprland/binds.nix
   # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
@@ -92,7 +93,8 @@ in {
         "$mod, P, pseudo,"
         "$modShift, R, exec, hyprctl reload && notify-send 'Reloaded hyprland'" # toggle floating for the focused window
         "$modShift, SPACE, togglefloating," # toggle floating for the focused window
-        "$mod2, C, exec, ${cliphist} list | anyrun-dmenu | ${cliphist} decode | ${wl-copy}"
+        "$mod2, C, exec, pkill clipse || kitty --class clipse -e '${clipse}'"
+        "$mod2, V, exec, ${cliphist} list | anyrun-dmenu | ${cliphist} decode | ${wl-copy}"
         "$mod2, W, exec, wallpaper-chooser"
         "$mod, PERIOD, exec, anyrun-symbols | ${wl-copy}" # not working atm, anyrun can't copy to clipboard
 
