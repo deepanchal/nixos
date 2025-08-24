@@ -34,6 +34,7 @@
     ./users.nix
     ./desktop.nix
     ./services.nix
+    ./udev.nix
     ./nix-ld.nix
     ./virtualization.nix
     ./theme.nix
