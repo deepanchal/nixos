@@ -74,6 +74,7 @@
     pkgs.neofetch
     pkgs.google-cloud-sdk
     pkgs.prismlauncher # minecraft launcher
+    pkgs.postman
 
     # AI Tools
     pkgs.aider-chat # AI pair programming in your terminal

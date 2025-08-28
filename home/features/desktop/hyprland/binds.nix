@@ -113,7 +113,9 @@ in {
         "$mod, mouse_up, workspace, e-1" # move to the previous ws
 
         # screenshot
+        # ", Print, exec, grimblast --freeze copy area"
         ", F6, exec, grimblast --notify save area - | satty -f -"
+        ", Print, exec, grimblast --notify save area - | satty -f -"
         "CTRL, F6, exec, grimblast --notify save output - | satty -f -"
 
         "CTRL_ALT, L, exec, sleep 0.1 && hyprlock"
