@@ -121,6 +121,7 @@
         ".ollama" # ollama models, keys
         ".vscode"
         ".cursor"
+        ".claude" # for claude code
         "go"
         ".keychain"
         ".rustup"
