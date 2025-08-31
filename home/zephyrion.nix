@@ -86,7 +86,7 @@
 
     # How to sync bt?
     # Boot into windows and pair your bt device (eg. headphones)
-    # Boot back into linux, forget your bt device
+    # Boot back into linux
     # We need to mount windows C drive to /mnt
     # `sudo mkdir -p /mnt`
     # Find your windows C drive partition with `lsblk`
