@@ -107,8 +107,8 @@ in {
         "$mod2, B, exec, bt-toggle"
 
         # workspace controls
-        "$modShift, right, movetoworkspace, +1" # move focused window to the next ws
-        "$modShift, left, movetoworkspace, -1" # move focused window to the previous ws
+        # "$modShift, right, movetoworkspace, +1" # move focused window to the next ws
+        # "$modShift, left, movetoworkspace, -1" # move focused window to the previous ws
         "$mod, mouse_down, workspace, e+1" # move to the next ws
         "$mod, mouse_up, workspace, e-1" # move to the previous ws
 
@@ -150,6 +150,16 @@ in {
 
       "$mod_ALT, $right, resizeactive, 80 0"
       "$mod_ALT, $left, resizeactive, -80 0"
+
+      # mouse controls with custom move-cursor script (see home/features/desktop/hyprland/default.nix)
+      "$mod SHIFT, right, exec, move-cursor right 10"
+      "$mod SHIFT, left, exec, move-cursor left 10"
+      "$mod SHIFT, down, exec, move-cursor down 10"
+      "$mod SHIFT, up, exec, move-cursor up 10"
+      "$mod+ALT SHIFT, right, exec, move-cursor right 1"
+      "$mod+ALT SHIFT, left, exec, move-cursor left 1"
+      "$mod+ALT SHIFT, down, exec, move-cursor down 1"
+      "$mod+ALT SHIFT, up, exec, move-cursor up 1"
     ];
     # binds that are locked, a.k.a will activate even while an input inhibitor is active
 
@@ -172,6 +182,25 @@ in {
     binde = , $down, resizeactive, 0 40
     bind = , escape, submap, reset
     bind = , catchall, submap, reset # https://wiki.hyprland.org/Configuring/Binds/#catch-all
+    submap = reset
+
+    # Mouse Move Mode
+    bind = $mod, M, submap, mouse
+    submap = mouse
+      # movement
+      binde = , $left, exec, move-cursor left 16
+      binde = , $right, exec, move-cursor right 16
+      binde = , $up, exec, move-cursor up 16
+      binde = , $down, exec, move-cursor down 16
+
+      # clicks
+      bind = , a, exec, hyprctl dispatch mouse 1   # left click
+      bind = , s, exec, hyprctl dispatch mouse 2   # right click
+      bind = , d, exec, hyprctl dispatch mouse 3   # middle click
+
+      # exit
+      bind = , escape, submap, reset
+      bind = , catchall, submap, reset
     submap = reset
 
     # Launch Mode

@@ -30,6 +30,30 @@ in {
     # watershot # Simple wayland native screenshot tool in Rust
     # ironbar # Wayland gtk bar in Rust
     cliphist
+
+    (pkgs.writeShellScriptBin "move-cursor" ''
+      set -e
+
+      dir="$1"   # up | down | left | right
+      amt="$2"   # pixel offset (positive integer)
+
+      pos=$(hyprctl cursorpos)
+      x=$(echo "$pos" | cut -d ',' -f1)
+      y=$(echo "$pos" | cut -d ',' -f2 | tr -d '[:space:]')
+
+      case "$dir" in
+        left)  x=$((x - amt)) ;;
+        right) x=$((x + amt)) ;;
+        up)    y=$((y - amt)) ;;
+        down)  y=$((y + amt)) ;;
+        *)
+          echo "Usage: move_cursor {up|down|left|right} amount" >&2
+          exit 1
+          ;;
+      esac
+
+      hyprctl dispatch movecursor "$x" "$y"
+    '')
   ];
 
   # https://github.com/nix-community/home-manager/blob/master/modules/services/window-managers/hyprland.nix
