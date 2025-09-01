@@ -230,6 +230,23 @@ Here is the diff:
 
 '
 
+# Human-readable recap prompt
+HUMAN_PROMPT='You are an assistant generating human-readable daily work logs.
+Based on the following commit summaries (which follow Conventional Commits),
+rewrite them as clear, simple bullet points that a project manager can easily understand.
+
+Guidelines:
+- Keep the same number of bullet points as the original.
+- Use plain language, no technical jargon.
+- Focus on what was done or accomplished (not how).
+- Write in past tense.
+- Do not include commit hashes, file names, or code details.
+- Output ONLY bullet points.
+
+Here are the commit summaries:
+
+'
+
 # Get commits
 log_info "Searching for commits on $DATE..."
 COMMITS=$(eval "$GIT_CMD")
@@ -327,6 +344,19 @@ for i in "${!ALL_RESPONSES[@]}"; do
 		fi
 	done <<<"${ALL_RESPONSES[$i]}"
 done
+
+echo
+print_header "HUMAN-READABLE DAILY SUMMARY"
+
+ALL_TEXT=$(printf "%s\n" "${ALL_RESPONSES[@]}")
+
+HUMAN_RECAP=$(echo "${HUMAN_PROMPT}${ALL_TEXT}" | aichat --model openai:gpt-4.1)
+
+if [[ "$NO_COLOR" == "true" ]]; then
+	echo "$HUMAN_RECAP"
+else
+	echo -e "${WHITE}$HUMAN_RECAP${RESET}"
+fi
 
 echo
 log_success "Recap complete! Processed $COMMIT_COUNT commit(s)"
