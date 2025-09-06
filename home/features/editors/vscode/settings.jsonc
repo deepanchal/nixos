@@ -289,9 +289,7 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cursor.cpp.disabledLanguages": [
-    "plaintext"
-  ],
+  "cursor.cpp.disabledLanguages": [],
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }

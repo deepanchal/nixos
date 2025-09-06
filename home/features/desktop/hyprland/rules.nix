@@ -27,6 +27,7 @@
       "float, title:(Media viewer)"
       "float, class:^(imv)$"
       "float, class:^(mpv)$"
+      "float, class:^(org.gnome.Loupe)$"
       "noshadow, floating:0" # only allow shadows for floating windows
       "float, class:Rofi"
       "stayfocused, class:Rofi"
@@ -105,6 +106,7 @@
       "opaque, title:(telegram)"
       "opaque, class:^(imv)$"
       "opaque, class:^(mpv)$"
+      "opaque, class:^(org.gnome.Loupe)$"
       "opaque, class:(swappy)"
       "center 1, class:(swappy)"
       "stayfocused, class:(swappy)"
