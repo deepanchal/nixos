@@ -1,4 +1,4 @@
-{
+{ config, pkgs, ...}: {
   imports = [
     ./zellij
     ./direnv
@@ -25,6 +25,12 @@
     ./dnote.nix
     ./mise.nix
     # ./vale.nix
+  ];
+
+  home.packages = [
+    pkgs.impala # wifi tui
+    pkgs.bluetui # bluetooth tui
+    pkgs.tenere # llm tui
   ];
 
   programs.jq.enable = true;

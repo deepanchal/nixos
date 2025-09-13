@@ -107,13 +107,9 @@
       "opaque, class:^(imv)$"
       "opaque, class:^(mpv)$"
       "opaque, class:^(org.gnome.Loupe)$"
-      "opaque, class:(swappy)"
-      "center 1, class:(swappy)"
-      "stayfocused, class:(swappy)"
       "opaque, class:^(com.gabm.satty)$"
       "center 1, class:^(com.gabm.satty)$"
-      "stayfocused, class:^(com.gabm.satty)$"
-      "size 50% 50%, class:^(com.gabm.satty)$"
+      "size 80% 80%, class:^(com.gabm.satty)$"
 
       ##########################################
       # IDLEINHIBIT

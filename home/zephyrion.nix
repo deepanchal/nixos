@@ -70,7 +70,6 @@
     pkgs.totp-cli
     pkgs.scrcpy
     pkgs.kubectl
-    pkgs.bluetui
     pkgs.neofetch
     pkgs.google-cloud-sdk
     pkgs.prismlauncher # minecraft launcher
