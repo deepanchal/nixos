@@ -190,6 +190,7 @@
         ".bash_history"
         ".wakatime.cfg"
         ".aicommit2"
+        ".claude.json"
         ".config/pavucontrol.ini"
         # ".config/gh/hosts.yml"
 

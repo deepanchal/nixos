@@ -227,6 +227,11 @@
     cpufrequtils
     e2fsprogs # Tools for creating and checking ext2/ext3/ext4 filesystems
     ntfs3g # ntfs filesystem support
+    screen
+    picocom
+    groff
+    mandoc
+    hw-probe
 
     # upx
     git
