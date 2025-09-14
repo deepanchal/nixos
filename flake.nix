@@ -5,12 +5,8 @@
   # See: https://nixos-and-flakes.thiscute.world/nix-store/add-binary-cache-servers
   nixConfig = {
     # substituers will be appended to the default substituters when fetching packages
-    extra-substituters = [
-      "https://anyrun.cachix.org"
-    ];
-    extra-trusted-public-keys = [
-      "anyrun.cachix.org-1:pqBobmOjI7nKlsUMV25u9QHa9btJK65/C8vnO3p346s="
-    ];
+    extra-substituters = [ ];
+    extra-trusted-public-keys = [ ];
   };
 
   inputs = {
@@ -37,12 +33,6 @@
 
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # anyrun - a wayland launcher
-    anyrun = {
-      url = "github:anyrun-org/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
