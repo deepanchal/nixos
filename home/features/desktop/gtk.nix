@@ -16,15 +16,19 @@
 
   gtk = {
     enable = true;
-    theme = {
-      name = "Catppuccin-GTK-Purple-Dark-Compact";
-      package = pkgs.magnetic-catppuccin-gtk.override {
-        accent = [ "purple" ]; # "default" | "purple" | "pink" | "red" | "orange" | "yellow" | "green" | "teal" | "grey" | "all"
-        shade = "dark"; # "light" | "dark"
-        size = "compact"; # "standard" | "compact"
-        # tweaks = [ "macchiato" ]; # "frappe" | "macchiato" | "black" | "float" | "outline" | "macos"
+    theme =
+      let
+        flavor = config.catppuccin.flavor;
+        accent = config.catppuccin.accent;
+      in
+      {
+        name = "catppuccin-${flavor}-${accent}-standard";
+        package = pkgs.catppuccin-gtk.override {
+          size = "standard";
+          accents = [ accent ];
+          variant = flavor;
+        };
       };
-    };
     cursorTheme = {
       name = config.home.pointerCursor.name;
       size = config.home.pointerCursor.size;
