@@ -6,27 +6,8 @@
 }:
 let
   c = config.colorScheme.palette;
-  # Using this overlay with latest version since it's not in nixpkgs yet
-  televisionOverlay = final: prev: {
-    television = prev.television.overrideAttrs (
-      finalAttrs: _: {
-        src = prev.fetchFromGitHub {
-          owner = "alexpasmantier";
-          repo = "television";
-          rev = "4463579d1334cba031aeb8b3ccb2c718974ac6aa";
-          sha256 = "sha256-ncaIZJ/XQTl2uIuFYVl+NJpADSH/0ce8YsJshyAJ5/I=";
-        };
-        cargoDeps = prev.rustPlatform.fetchCargoVendor {
-          inherit (finalAttrs) src;
-          hash = "sha256-U0bgHU3RmW6v0AHy8LdVj3wjtcIr0y6ppPl/U++u4HY=";
-        };
-        doCheck = false;
-      }
-    );
-  };
 in
 {
-  nixpkgs.overlays = [ televisionOverlay ];
   home.packages = with pkgs; [
     bat
     fd

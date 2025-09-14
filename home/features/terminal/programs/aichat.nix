@@ -20,8 +20,8 @@ let
       src = prev.fetchFromGitHub {
         owner = "sigoden";
         repo = "aichat";
-        rev = "9a60b5f3a2a0bffa23dbd7960e306bf9683ed951";
-        sha256 = "sha256-WE/92g3+u9hA+jICo24iIZn+y+VhoUpUQw4ivNtt/RY=";
+        rev = "b0d54b60cd2fb1fdc8489712b635ec3754fe32da";
+        sha256 = "sha256-cTw3ewam9RxFktaomSNLWJAfhzbbVC+fdAtsmCy9u+c=";
       };
     });
   };
@@ -90,7 +90,7 @@ in
       save: true
       keybindings: emacs
       save_session: true
-      stream: false
+      stream: true
       session:
         compress_threshold: 100000000000
     '';
