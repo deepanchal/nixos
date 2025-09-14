@@ -79,7 +79,6 @@ in {
       # https://wiki.hyprland.org/Configuring/Animations
       animations = {
         enabled = true;
-        first_launch_animation = true;
         bezier = [
           "overshot, 0.05, 0.9, 0.1, 1.05"
         ];
@@ -127,10 +126,6 @@ in {
 
       # https://wiki.hyprland.org/Configuring/Variables/#gestures
       gestures = {
-        # enable workspace swipe gesture on touchpad
-        workspace_swipe = true;
-        # how many fingers for the touchpad gesture
-        workspace_swipe_fingers = 4;
         # if enabled, swiping will not clamp at the neighboring workspaces but continue to the further ones
         workspace_swipe_forever = true;
         # whether a swipe right on the last workspace should create a new one

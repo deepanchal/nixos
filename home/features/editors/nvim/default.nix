@@ -109,7 +109,7 @@
       avrdude
 
       # CLOUDNATIVE
-      nodePackages.dockerfile-language-server-nodejs
+      dockerfile-language-server
       # terraform
       # terraform-ls
       # hadolint # Dockerfile linter

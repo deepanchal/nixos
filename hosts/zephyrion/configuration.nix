@@ -303,16 +303,18 @@
     ninja
     pkg-config
 
+    nodePackages.nodejs
     rustup
     gcc
     libgcc
     go
-    (python311Full.withPackages (ps: with ps; [pygobject3 gobject-introspection pyqt6-sip]))
-    nodePackages_latest.nodejs
     # bun
     lua
     zig
     # numbat
+    gobject-introspection
+    python312Packages.pygobject3
+    python312Packages.pyqt6-sip
   ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
