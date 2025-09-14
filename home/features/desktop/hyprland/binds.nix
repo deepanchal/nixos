@@ -36,7 +36,7 @@ in {
     # For uncommon syms/bindings, see https://github.com/xkbcommon/libxkbcommon/blob/master/include/xkbcommon/xkbcommon-keysyms.h
     bind =
       [
-        "$mod2, SPACE, exec, run-as-service $(anyrun)"
+        "$mod2, SPACE, exec, pkill fuzzel || fuzzel"
         "$mod, RETURN, exec, alacritty msg create-window || alacritty"
         "$modShift, RETURN, exec, rio"
         # "$mod, B, exec, ${firefox}"
@@ -94,9 +94,8 @@ in {
         "$modShift, R, exec, hyprctl reload && notify-send 'Reloaded hyprland'" # toggle floating for the focused window
         "$modShift, SPACE, togglefloating," # toggle floating for the focused window
         "$mod2, C, exec, pkill clipse || kitty --class clipse -e '${clipse}'"
-        "$mod2, V, exec, ${cliphist} list | anyrun-dmenu | ${cliphist} decode | ${wl-copy}"
+        "$mod2, V, exec, ${cliphist} list | fuzzel --dmenu | ${cliphist} decode | ${wl-copy}"
         "$mod2, W, exec, wallpaper-chooser"
-        "$mod, PERIOD, exec, anyrun-symbols | ${wl-copy}" # not working atm, anyrun can't copy to clipboard
 
         # https://github.com/altdesktop/playerctl?tab=readme-ov-file#selecting-players-to-control
         "$modShift, M, exec, ${playerctl} -p cider play-pause"

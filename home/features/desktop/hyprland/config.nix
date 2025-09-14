@@ -228,10 +228,6 @@ in {
         # "${wl-paste} --type image --watch cliphist store" # Stores only text data
         "wl-paste --watch cliphist store"
 
-        ## Fix anyrun
-        ## https://github.com/anyrun-org/anyrun/issues/153
-        "ln -s $XDG_RUNTIME_DIR/hypr /tmp/hypr"
-
         # "[workspace 1 silent] ${lib.getExe pkgs.wezterm}"
         # "[workspace 2 silent] ${lib.getExe pkgs.firefox}"
         "[workspace 3 silent] ${lib.getExe pkgs.alacritty}"

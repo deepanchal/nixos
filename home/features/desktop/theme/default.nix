@@ -21,24 +21,7 @@ in {
     pkgs.swww
 
     (pkgs.writeShellScriptBin "wallpaper-chooser" ''
-      wallpaper_dir=~/Pictures/wallpapers
-
-      select_wallpaper() {
-        fd . "$wallpaper_dir" --format {/} | anyrun-dmenu
-      }
-
-      change_wallpaper() {
-        local wallpaper=$1
-
-        if output=$(swww img "$wallpaper_dir/$wallpaper" 2>&1); then
-          notify-send "Wallpaper changed to $wallpaper"
-        else
-          notify-send "Failed to change wallpaper!\n$output"
-        fi
-      }
-
-      wallpaper=$(select_wallpaper)
-      [ -n "$wallpaper" ] && change_wallpaper "$wallpaper"
+      swww img ~/Pictures/wallpapers/"$(fd . ~/Pictures/wallpapers --format {/} | fuzzel --dmenu)" && notify-send "Wallpaper changed" || notify-send "Failed to change wallpaper!"
     '')
   ];
 

@@ -13,9 +13,6 @@
       "blur, ^(gtk-layer-shell)$"
       "noanim, launcher"
       "noanim, bar"
-      "blur, anyrun"
-      "ignorezero, anyrun"
-      "xray 0, anyrun"
     ];
     windowrulev2 = [
       # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more

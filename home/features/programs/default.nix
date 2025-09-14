@@ -1,6 +1,7 @@
 {
   imports = [
     ./firefox
+    ./fuzzel
     ./keybase
     ./satty
     ./swaylock

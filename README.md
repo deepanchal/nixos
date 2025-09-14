@@ -24,7 +24,7 @@
 | **Terminal Emulator**       | [Alacritty][Alacritty] ![rust][rs]                                                                                     |
 | **Shell**                   | [Zsh][Zsh] ![c][c] &nbsp;+&nbsp; [PowerLevel10K][PowerLevel10K] ![shell][sh]                                           |
 | **Bar**                     | [Waybar][Waybar] ![c++][cpp]                                                                                           |
-| **Application Launcher**    | [anyrun][anyrun] ![rust][rs]                                                                                           |
+| **Application Launcher**    | [fuzzel][Fuzzel] ![c][c]                                                                                           |
 | **File Manager**            | [Yazi][Yazi] ![rust][rs] &nbsp;+&nbsp; [thunar][thunar] ![c][c]                                                        |
 | **Filesystem**              | [Btrfs][Btrfs] ![c][c] &nbsp;+&nbsp; [disko][disko] ![nix][nix] &nbsp;&&nbsp; [impermanence][impermanence] ![nix][nix] |
 | **Text Editor**             | [Neovim][Neovim] ![lua][lua] &nbsp;+&nbsp; [AstroNvim][AstroNvim] ![lua][lua]                                          |
@@ -197,6 +197,7 @@ List of awesome configs I used to build my config:
 [Waybar]: https://github.com/Alexays/Waybar
 [polybar]: https://github.com/polybar/polybar
 [rofi]: https://github.com/davatorium/rofi
+[fuzzel]: https://codeberg.org/dnkl/fuzzel
 [anyrun]: https://github.com/anyrun-org/anyrun
 [Dunst]: https://github.com/dunst-project/dunst
 [Fcitx5]: https://github.com/fcitx/fcitx5

@@ -17,7 +17,7 @@ in {
       right = "l";
 
       terminal = "alacritty";
-      menu = "anyrun";
+      menu = "fuzzel";
 
       workspaceLayout = "default"; # “default” | “stacking” | “tabbed”
       workspaceAutoBackAndForth = false;
@@ -156,7 +156,7 @@ in {
         "${mod2}+Space" = "exec ${cfg.menu}";
 
         # Clipboard
-        "${mod2}+c" = "exec cliphist list | anyrun-dmenu | cliphist decode | wl-copy";
+        "${mod2}+c" = "exec cliphist list | fuzzel --dmenu | cliphist decode | wl-copy";
 
         # Screenshots
         "F6" = "exec grimblast --notify save area - | satty -f -";
@@ -424,8 +424,6 @@ in {
         layer_effects notifications blur_ignore_transparent enable
         layer_effects rofi blur enable
         layer_effects rofi blur_ignore_transparent enable
-        layer_effects anyrun blur enable
-        layer_effects anyrun blur_ignore_transparent enable
         layer_effects swaybar blur enable
         layer_effects swaybar blur_ignore_transparent enable
         layer_effects swayosd blur enable
