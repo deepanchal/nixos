@@ -195,6 +195,7 @@
   ##################################################
   # MISC
   ##################################################
+  hardware.usb-modeswitch.enable = true; # For switching usb devices from storage to network mode
   hardware.logitech.wireless = {
     enable = true;
     enableGraphical = true;
