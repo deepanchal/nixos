@@ -13,6 +13,7 @@
         # node = "lts";
         # rust = "stable";
         pnpm = "latest";
+        awscli = "latest";
         # python = "latest";
         # java = [
         #   "adoptopenjdk-17.0.8+7"

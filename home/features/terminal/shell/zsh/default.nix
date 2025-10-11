@@ -144,6 +144,9 @@ in
           # Cargo binaries
           export PATH=$PATH:$HOME/.cargo/bin/
 
+          # Go binaries
+          export PATH=$PATH:$HOME/go/bin/
+
           # Android Env
           #export ANDROID_SDK_ROOT=/opt/android-sdk
           export ANDROID_SDK_ROOT=$HOME/Android/Sdk

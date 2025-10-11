@@ -292,5 +292,8 @@
   "cursor.cpp.disabledLanguages": [],
   "[vue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[shellscript]": {
+    "editor.defaultFormatter": "mkhl.shfmt"
   }
 }
