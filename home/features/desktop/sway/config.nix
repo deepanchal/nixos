@@ -173,9 +173,9 @@ in {
         "--locked XF86AudioPlay" = "exec playerctl play-pause";
         "--locked XF86AudioPrev" = "exec playerctl previous";
         "--locked XF86AudioNext" = "exec playerctl next";
-        "${mod}+Shift+m" = "exec playerctl -p cider play-pause";
-        "${mod}+Shift+n" = "exec playerctl -p cider next";
-        "${mod}+Shift+b" = "exec playerctl -p cider previous";
+        "${mod}+Shift+m" = "exec playerctl play-pause";
+        "${mod}+Shift+n" = "exec playerctl next";
+        "${mod}+Shift+b" = "exec playerctl previous";
 
         # Other
         "--locked --release Caps_Lock" = "exec swayosd-client --caps-lock";

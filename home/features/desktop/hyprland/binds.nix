@@ -98,9 +98,9 @@ in {
         "$mod2, W, exec, wallpaper-chooser"
 
         # https://github.com/altdesktop/playerctl?tab=readme-ov-file#selecting-players-to-control
-        "$modShift, M, exec, ${playerctl} -p cider play-pause"
-        "$modShift, N, exec, ${playerctl} -p cider next"
-        "$modShift, B, exec, ${playerctl} -p cider previous"
+        "$modShift, M, exec, ${playerctl} play-pause"
+        "$modShift, N, exec, ${playerctl} next"
+        "$modShift, B, exec, ${playerctl} previous"
 
         # Toggles headphones on/off (See scripts/bluetooth.nix)
         "$mod2, B, exec, bt-toggle"
@@ -112,10 +112,12 @@ in {
         "$mod, mouse_up, workspace, e-1" # move to the previous ws
 
         # screenshot
+        ", F6, exec, screenshot"
+        ", Print, exec, screenshot"
         # ", Print, exec, grimblast --freeze copy area"
-        ", F6, exec, grimblast --notify save area - | satty -f -"
-        ", Print, exec, grimblast --notify save area - | satty -f -"
-        "CTRL, F6, exec, grimblast --notify save output - | satty -f -"
+        # ", F6, exec, grimblast --notify save area - | satty -f -"
+        # ", Print, exec, grimblast --notify save area - | satty -f -"
+        # "CTRL, F6, exec, grimblast --notify save output - | satty -f -"
 
         "CTRL_ALT, L, exec, sleep 0.1 && hyprlock"
 

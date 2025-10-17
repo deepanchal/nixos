@@ -23,6 +23,7 @@ in {
     swappy
     grimblast
     hyprpicker
+    hyprshot
     wl-clip-persist
     wl-clipboard
     wdisplays
