@@ -316,6 +316,18 @@
     gobject-introspection
     python312Packages.pygobject3
     python312Packages.pyqt6-sip
+
+    # For python
+    zlib.dev
+    bzip2.dev
+    xz.dev
+    libffi.dev
+    sqlite.dev
+    readline.dev
+    ncurses.dev
+    gdbm.dev
+    tcl
+    tk
   ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
