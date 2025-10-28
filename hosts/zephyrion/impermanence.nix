@@ -191,6 +191,7 @@
         ".wakatime.cfg"
         ".aicommit2"
         ".claude.json"
+        ".claude.json.backup"
         ".config/pavucontrol.ini"
         # ".config/gh/hosts.yml"
 

@@ -252,6 +252,7 @@
     # just
     # sd
     du-dust
+    hexyl
     # tokei
     # hyperfine
     # grex
