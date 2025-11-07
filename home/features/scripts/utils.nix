@@ -62,5 +62,21 @@
           --save-after-copy \
           --copy-command 'wl-copy'
     '')
+
+    (pkgs.writeShellScriptBin "clip2path" ''
+      set -euo pipefail
+
+      CLIPBOARD_TYPES="$(wl-paste --list-types 2>/dev/null || true)"
+
+      if echo "$CLIPBOARD_TYPES" | grep -q "image/"; then
+        IMAGE_TYPE="$(echo "$CLIPBOARD_TYPES" | grep "image/" | head -n1)"
+        EXTENSION="''${IMAGE_TYPE#image/}"
+        TEMP_FILE="/tmp/claude-clipboard-$(date +%Y%m%d-%H%M%S).$EXTENSION"
+        wl-paste --type "$IMAGE_TYPE" > "$TEMP_FILE" 2>/dev/null
+        echo "\"$TEMP_FILE\""
+      else
+        wl-paste 2>/dev/null
+      fi
+    '')
   ];
 }
