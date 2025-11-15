@@ -2,7 +2,8 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   programs.lazygit = {
     enable = true;
     settings = {
@@ -74,11 +75,13 @@
         commit = {
           signOff = true;
         };
-        paging = {
-          colorArg = "always";
-          # pager = "diff-so-fancy";
-          pager = "delta --dark --paging=never --tabs 2";
-        };
+        pagers = [
+          {
+            colorArg = "always";
+            # pager = "diff-so-fancy";
+            pager = "delta --dark --paging=never --tabs 2";
+          }
+        ];
         branchLogCmd = "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --oneline {{branchName}} --";
         overrideGpg = true;
       };

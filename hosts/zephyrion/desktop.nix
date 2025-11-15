@@ -113,7 +113,7 @@
       dejavu_fonts
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
+      noto-fonts-color-emoji
       # NOTE: I had to run `fc-cache -rf` to fix broken fonts after installation
       # See: https://github.com/NixOS/nixpkgs/issues/366979
       nerd-fonts.fira-code

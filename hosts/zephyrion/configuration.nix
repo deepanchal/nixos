@@ -251,7 +251,7 @@
     procs
     # just
     # sd
-    du-dust
+    dust
     hexyl
     # tokei
     # hyperfine

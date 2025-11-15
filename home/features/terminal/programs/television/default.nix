@@ -22,7 +22,7 @@ in
     settings = {
       ui = {
         input_bar_position = "top";
-        theme = "catppuccin";
+        # theme = "catppuccin";
       };
     };
   };

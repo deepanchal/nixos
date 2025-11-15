@@ -295,5 +295,8 @@
   },
   "[shellscript]": {
     "editor.defaultFormatter": "mkhl.shfmt"
+  },
+  "[handlebars]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
