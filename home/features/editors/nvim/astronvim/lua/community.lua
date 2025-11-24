@@ -49,7 +49,7 @@ return {
   { import = "astrocommunity.pack.go" },
   -- { import = "astrocommunity.pack.just" },
   -- { import = "astrocommunity.pack.ansible" },
-  -- { import = "astrocommunity.pack.dart" },
+  { import = "astrocommunity.pack.dart" },
   -- { import = "astrocommunity.pack.cpp" },
   -- { import = "astrocommunity.pack.cs" },
 

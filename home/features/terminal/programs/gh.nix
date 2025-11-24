@@ -13,6 +13,7 @@ in {
       prompt = "enable";
       aliases = {
         prc = "pr create";
+        prco = "pr checkout";
       };
     };
   };
