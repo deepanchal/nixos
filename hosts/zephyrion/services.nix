@@ -20,6 +20,8 @@
     # gnome2.GConf
   ];
   services.mpd.enable = true;
+  # Socket daemon to multiplex connections from and to iOS devices
+  services.usbmuxd.enable = true;
   programs.thunar.enable = true;
   programs.adb.enable = true;
   services.tailscale.enable = true;
