@@ -40,6 +40,7 @@
     ./theme.nix
     ./home.nix # NOTE: building home-manager along with nixos
     ./impermanence.nix
+    ./btrbk.nix
   ];
 
   ##################################################
