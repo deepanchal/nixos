@@ -234,6 +234,8 @@
     groff
     mandoc
     hw-probe
+    iotop
+    libqalculate
 
     # upx
     git
@@ -258,6 +260,7 @@
     # hyperfine
     # grex
     delta
+    tokei
     # nushell
     # helix
     # mcfly # terminal history
