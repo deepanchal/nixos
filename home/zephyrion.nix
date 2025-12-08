@@ -166,6 +166,7 @@
     swayosd.enable = true;
     gnome-keyring.enable = true;
     gpg-agent.enable = true;
+    tailscale-systray.enable = true;
   };
 
   # Defined in custom hm module -> monitors.nix
