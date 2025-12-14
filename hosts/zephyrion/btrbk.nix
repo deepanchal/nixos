@@ -65,6 +65,11 @@ in
     };
   };
 
+  services.btrfs.autoScrub = {
+    enable = true;
+    interval = "weekly";
+  };
+
   environment.systemPackages = [
     pkgs.btrbk # For manual btrbk operations
   ];
