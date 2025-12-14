@@ -4,7 +4,7 @@
   config,
   ...
 }: let
-  airpodsProMac = "44:F0:9E:51:5C:CE";
+  airpodsProMac = "BC:80:4E:89:10:B0";
   airpodsMaxMac = "F8:73:DF:1F:D9:92";
   headphonesMac = airpodsMaxMac;
 in {
