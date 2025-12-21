@@ -31,6 +31,17 @@
       "after": ["<Esc>"]
     }
   ],
+  // Jump over folds. See: https://stackoverflow.com/a/78465607
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["j"],
+      "after": ["g", "j"]
+    },
+    {
+      "before": ["k"],
+      "after": ["g", "k"]
+    }
+  ],
   // ——————————————————————————————————————————
   // Normal-mode remaps
   // ——————————————————————————————————————————
