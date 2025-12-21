@@ -142,6 +142,7 @@
         ".config/gh"
         ".config/github-copilot"
         ".config/glab-cli"
+        ".config/gcloud"
         ".config/BraveSoftware"
         ".config/Google" # android studio
         ".config/JetBrains"
