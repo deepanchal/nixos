@@ -277,6 +277,8 @@ in
         bt-disconnect = "bluetoothctl disconnect $HEADPHONES_MAC";
 
         pj = "projen";
+        v = "nvim";
+        m = "mise";
         min = "mise install";
       };
 
