@@ -272,6 +272,7 @@
     nix-index
 
     progress
+    speedtest-cli
     # noti
     # rewrk
     # wrk2
