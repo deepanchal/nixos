@@ -334,6 +334,7 @@
     gdbm.dev
     tcl
     tk
+    android-tools # contains adb
   ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,

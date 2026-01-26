@@ -69,7 +69,7 @@
         baseSessionsDir = "${config.services.displayManager.sessionData.desktops}";
         xSessions = "${baseSessionsDir}/share/xsessions";
         waylandSessions = "${baseSessionsDir}/share/wayland-sessions";
-        hyprlandCmd = "env LD_LIBRARY_PATH= Hyprland";
+        hyprlandCmd = "env LD_LIBRARY_PATH= start-hyprland";
         tuigreetOptions = [
           "--remember"
           "--remember-session"

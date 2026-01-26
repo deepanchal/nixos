@@ -10,7 +10,7 @@
   };
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs?rev=fb7944c166a3b630f177938e478f0378e64ce108";
+    nixpkgs.url = "github:NixOS/nixpkgs?rev=e4bae1bd10c9c57b2cf517953ab70060a828ee6f";
     # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nur = {
       url = "github:nix-community/NUR";
@@ -38,6 +38,11 @@
 
     zsh-omz-plugin-pnpm = {
       url = "github:ntnyq/omz-plugin-pnpm";
+      flake = false;
+    };
+
+    zsh-omz-plugin-bun = {
+      url = "github:ntnyq/omz-plugin-bun";
       flake = false;
     };
   };

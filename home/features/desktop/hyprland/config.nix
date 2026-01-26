@@ -30,7 +30,6 @@ in {
       # https://wiki.hyprland.org/Configuring/Variables/#general
       general = {
         border_size = 2;
-        no_border_on_floating = false;
         gaps_in = 4;
         gaps_out = 4;
         "col.active_border" = "$primaryColor";
@@ -175,9 +174,9 @@ in {
         focus_on_activate = 1;
         # close the special workspace if the last window is removed
         close_special_on_empty = true;
-        # if there is a fullscreen or maximized window, decide whether a new tiled window opened should replace it,
-        # stay behind or disable the fullscreen/maximized state. 0 - behind, 1 - takes over, 2 - unfullscreen/unmaxize [0/1/2]
-        new_window_takes_over_fullscreen = 0;
+        # controls behavior when a new window is opened while another is fullscreen
+        # 0 - do nothing (new window stays behind), 1 - focus new window, 2 - unfullscreen the fullscreen window
+        on_focus_under_fullscreen = 0;
       };
 
       # https://wiki.hyprland.org/Configuring/Variables/#binds

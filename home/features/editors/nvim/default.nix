@@ -46,7 +46,7 @@
       pyright
       ruff
       black
-      poetry
+      # poetry
       uv
 
       # node

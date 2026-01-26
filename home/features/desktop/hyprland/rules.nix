@@ -1,18 +1,16 @@
 {...}: {
   wayland.windowManager.hyprland.settings = {
     layerrule = [
-      "blur, ^(gtk-layer-shell)$"
-      "blur, ^(launcher)$"
-      "ignorezero, ^(gtk-layer-shell)$"
-      "ignorezero, ^(launcher)$"
-      "blur, notifications"
-      "ignorezero, notifications"
-      # "blur, bar"
-      "ignorezero, bar"
-      "ignorezero, ^(gtk-layer-shell)$"
-      "blur, ^(gtk-layer-shell)$"
-      "noanim, launcher"
-      "noanim, bar"
+      "blur on, match:namespace ^(gtk-layer-shell)$"
+      "ignore_alpha 0.5, match:namespace ^(gtk-layer-shell)$"
+      "blur on, match:namespace ^(launcher)$"
+      "ignore_alpha 0.5, match:namespace ^(launcher)$"
+      "no_anim on, match:namespace launcher"
+      "blur on, match:namespace notifications"
+      "ignore_alpha 0.5, match:namespace notifications"
+      # "blur on, match:namespace bar"
+      "ignore_alpha 0.5, match:namespace bar"
+      "no_anim on, match:namespace bar"
     ];
     windowrulev2 = [
       # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
@@ -20,132 +18,132 @@
       ##########################################
       # FLOATING
       ##########################################
-      "float,class:udiskie"
-      "float, title:(Media viewer)"
-      "float, class:^(imv)$"
-      "float, class:^(mpv)$"
-      "float, class:^(org.gnome.Loupe)$"
-      "noshadow, floating:0" # only allow shadows for floating windows
-      "float, class:Rofi"
-      "stayfocused, class:Rofi"
-      "float, class:feh"
-      "float, class:wlogout"
-      "float, class:file_progress"
-      "float, class:confirm"
-      "float, class:dialog"
-      "float, class:download"
-      "float, class:notification"
-      "float, class:error"
-      "float, class:splash"
-      "float, class:confirmreset"
-      "float, class:^(wdisplays)$"
-      "size 70% 70%, class:^(wdisplays)$"
+      "float on, match:class udiskie"
+      "float on, match:title (Media viewer)"
+      "float on, match:class ^(imv)$"
+      "float on, match:class ^(mpv)$"
+      "float on, match:class ^(org.gnome.Loupe)$"
+      "no_shadow on, match:float false" # only allow shadows for floating windows
+      "float on, match:class Rofi"
+      "stay_focused on, match:class Rofi"
+      "float on, match:class feh"
+      "float on, match:class wlogout"
+      "float on, match:class file_progress"
+      "float on, match:class confirm"
+      "float on, match:class dialog"
+      "float on, match:class download"
+      "float on, match:class notification"
+      "float on, match:class error"
+      "float on, match:class splash"
+      "float on, match:class confirmreset"
+      "float on, match:class ^(wdisplays)$"
+      "size 70% 70%, match:class ^(wdisplays)$"
       # float blueman-manager
-      "float, class:^(.*blueman-.*)$"
-      "center, class:^(.*blueman-.*)$"
-      "size 50% 60%, class:^(.*blueman-.*)$"
-      "dimaround, class:^(.*blueman-.*)$"
+      "float on, match:class ^(.*blueman-.*)$"
+      "center on, match:class ^(.*blueman-.*)$"
+      "size 50% 60%, match:class ^(.*blueman-.*)$"
+      "dim_around on, match:class ^(.*blueman-.*)$"
       # float network-manager-editor
-      "float, class:^(nm-connection-editor)$"
-      "center, class:^(nm-connection-editor)$"
+      "float on, match:class ^(nm-connection-editor)$"
+      "center on, match:class ^(nm-connection-editor)$"
       # float bitwarden
-      "float, title:^(.*Bitwarden.*)$"
-      "center, title:^(.*Bitwarden.*)$"
+      "float on, match:title ^(.*Bitwarden.*)$"
+      "center on, match:title ^(.*Bitwarden.*)$"
       # float pavucontrol
-      "float, class:^(.*pavucontrol.*)$"
-      "center, class:^(.*pavucontrol.*)$"
-      "size 50% 60%, class:^(.*pavucontrol.*)$"
-      "dimaround, class:^(.*pavucontrol.*)$"
+      "float on, match:class ^(.*pavucontrol.*)$"
+      "center on, match:class ^(.*pavucontrol.*)$"
+      "size 50% 60%, match:class ^(.*pavucontrol.*)$"
+      "dim_around on, match:class ^(.*pavucontrol.*)$"
       # make Firefox PiP window floating and sticky
-      "float, title:^(Picture-in-Picture)$"
-      "pin, title:^(Picture-in-Picture)$"
+      "float on, match:title ^(Picture-in-Picture)$"
+      "pin on, match:title ^(Picture-in-Picture)$"
       # thunar
-      "opacity 0.8, class:^(thunar)$"
-      "float, class:^(thunar)$,title:^(File Operation Progress)$"
-      "center, class:^(thunar)$,title:^(File Operation Progress)$"
-      "pin, class:^(thunar)$,title:^(File Operation Progress)$"
-      "size 400 100, class:^(thunar)$,title:^(File Operation Progress)$"
-      "move 100%-w-25 5%, class:^(thunar)$,title:^(File Operation Progress)$"
-      "center, class:^(thunar)$,title:^(Attention|Error)$"
+      "opacity 0.8, match:class ^(thunar)$"
+      "float on, match:class ^(thunar)$, match:title ^(File Operation Progress)$"
+      "center on, match:class ^(thunar)$, match:title ^(File Operation Progress)$"
+      "pin on, match:class ^(thunar)$, match:title ^(File Operation Progress)$"
+      "size 400 100, match:class ^(thunar)$, match:title ^(File Operation Progress)$"
+      "move 100%-w-25 5%, match:class ^(thunar)$, match:title ^(File Operation Progress)$"
+      "center on, match:class ^(thunar)$, match:title ^(Attention|Error)$"
       # portal / polkit
-      "float, class:^(xdg-desktop-portal-gtk)$"
-      "center, class:^(xdg-desktop-portal-gtk)$"
-      "size 50% 50%, class:^(xdg-desktop-portal-gtk)$"
-      "dimaround, class:^(xdg-desktop-portal-gtk)$"
-      "dimaround, class:^(polkit-gnome-authentication-agent-1)$"
-      "float, class:^(polkit-gnome-authentication-agent-1)$"
+      "float on, match:class ^(xdg-desktop-portal-gtk)$"
+      "center on, match:class ^(xdg-desktop-portal-gtk)$"
+      "size 50% 50%, match:class ^(xdg-desktop-portal-gtk)$"
+      "dim_around on, match:class ^(xdg-desktop-portal-gtk)$"
+      "dim_around on, match:class ^(polkit-gnome-authentication-agent-1)$"
+      "float on, match:class ^(polkit-gnome-authentication-agent-1)$"
       # hyprland share picker
-      "float, title:^(MainPicker)$"
-      "center, title:^(MainPicker)$"
-      "size 50% 50%, class:^(MainPicker)$"
+      "float on, match:title ^(MainPicker)$"
+      "center on, match:title ^(MainPicker)$"
+      "size 50% 50%, match:class ^(MainPicker)$"
       # JetBrains IDEs w/ wayland support. See: jetbrains module
-      "noanim, class:^(jetbrains-.*)$"
-      "noblur, class:^(jetbrains-.*)$"
-      "noshadow, class:^(jetbrains-.*)$"
-      "noborder, class:^(jetbrains-.*)$"
-      "norounding, class:^(jetbrains-.*)$"
-      "opacity 1, class:^(jetbrains-.*)$"
+      "no_anim on, match:class ^(jetbrains-.*)$"
+      "no_blur on, match:class ^(jetbrains-.*)$"
+      "no_shadow on, match:class ^(jetbrains-.*)$"
+      "border_size 0, match:class ^(jetbrains-.*)$"
+      "rounding 0, match:class ^(jetbrains-.*)$"
+      "opacity 1, match:class ^(jetbrains-.*)$"
       # spotify
-      "opacity 0.8, initialTitle:^(Spotify.*)$"
+      "opacity 0.8, match:initialTitle ^(Spotify.*)$"
       # clipse
-      "float, class:(clipse)"
-      "center, class:(clipse)"
-      "size 40% 64%, class:(clipse)"
-      "noanim, class:(clipse)"
+      "float on, match:class (clipse)"
+      "center on, match:class (clipse)"
+      "size 40% 64%, match:class (clipse)"
+      "no_anim on, match:class (clipse)"
 
       ##########################################
       # OPAQUE
       ##########################################
-      "opaque, class:^(brave)$"
-      "opaque, title:(Media viewer)"
-      "opaque, title:(Firefox)"
-      "opaque, title:(Slack)"
-      "opaque, title:(telegram)"
-      "opaque, class:^(imv)$"
-      "opaque, class:^(mpv)$"
-      "opaque, class:^(org.gnome.Loupe)$"
-      "opaque, class:^(com.gabm.satty)$"
-      "center 1, class:^(com.gabm.satty)$"
-      "size 80% 80%, class:^(com.gabm.satty)$"
+      "opaque on, match:class ^(brave)$"
+      "opaque on, match:title (Media viewer)"
+      "opaque on, match:title (Firefox)"
+      "opaque on, match:title (Slack)"
+      "opaque on, match:title (telegram)"
+      "opaque on, match:class ^(imv)$"
+      "opaque on, match:class ^(mpv)$"
+      "opaque on, match:class ^(org.gnome.Loupe)$"
+      "opaque on, match:class ^(com.gabm.satty)$"
+      "center on, match:class ^(com.gabm.satty)$"
+      "size 80% 80%, match:class ^(com.gabm.satty)$"
 
       ##########################################
       # IDLEINHIBIT
       ##########################################
-      "idleinhibit focus, class:^(mpv)$"
-      "idleinhibit focus,class:^(alacritty)$"
-      "idleinhibit focus,class:^(wezterm)$"
-      "idleinhibit fullscreen, class:^(firefox)$"
+      "idle_inhibit focus, match:class ^(mpv)$"
+      "idle_inhibit focus, match:class ^(alacritty)$"
+      "idle_inhibit focus, match:class ^(wezterm)$"
+      "idle_inhibit fullscreen, match:class ^(firefox)$"
 
       ##########################################
       # WORKSPACE CONFIG
       ##########################################
       # throw sharing indicators away
-      "workspace special silent, title:^(Firefox — Sharing Indicator)$"
-      "workspace special silent, title:^.*(Sharing Indicator)$"
-      "workspace special silent, title:^(.*is sharing (your screen|a window)\.)$"
+      "workspace special silent, match:title ^(Firefox — Sharing Indicator)$"
+      "workspace special silent, match:title ^.*(Sharing Indicator)$"
+      "workspace special silent, match:title ^(.*is sharing (your screen|a window)\\.)$"
 
       # IDE
-      "workspace 1, class:^(Code)$"
-      "workspace 1, class:^(jetbrains-studio)$" # android studio
-      "workspace 1, class:^(jetbrains-studio), title:^(Conflicts)$" # android studio
+      "workspace 1, match:class ^(Code)$"
+      "workspace 1, match:class ^(jetbrains-studio)$" # android studio
+      "workspace 1, match:class ^(jetbrains-studio)$, match:title ^(Conflicts)$" # android studio
 
       # Browsing
-      # "workspace 2, class:^(firefox)$"
-      # "workspace 2, class:^(brave)$"
+      # "workspace 2, match:class ^(firefox)$"
+      # "workspace 2, match:class ^(brave)$"
 
       # Terminal
-      # "workspace 3, class:^(wezterm)$"
-      # "workspace 3, class:^(alacritty)$"
-      # "workspace 3, class:^(kitty)$"
+      # "workspace 3, match:class ^(wezterm)$"
+      # "workspace 3, match:class ^(alacritty)$"
+      # "workspace 3, match:class ^(kitty)$"
 
       # Messaging
-      # "workspace 5 silent, class:^(Slack)$"
-      # "workspace 5 silent, class:^(org.telegram.desktop)$"
-      # "workspace 5 silent, class:^(discord)$"
-      # "workspace 5 silent, class:^(zoom)$"
-      # "workspace 5 silent, class:^(teams-for-linux)$"
+      # "workspace 5 silent, match:class ^(Slack)$"
+      # "workspace 5 silent, match:class ^(org.telegram.desktop)$"
+      # "workspace 5 silent, match:class ^(discord)$"
+      # "workspace 5 silent, match:class ^(zoom)$"
+      # "workspace 5 silent, match:class ^(teams-for-linux)$"
 
-      # "workspace special silent,class:^(.*pavucontrol.*)$"
+      # "workspace special silent, match:class ^(.*pavucontrol.*)$"
     ];
   };
 }
