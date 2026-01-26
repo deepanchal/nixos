@@ -10,6 +10,7 @@
     ./bat.nix
     ./btop.nix
     ./clipse.nix
+    ./claude.nix
     ./ripgrep.nix
     ./lazygit.nix
     ./zoxide.nix
