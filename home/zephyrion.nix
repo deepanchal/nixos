@@ -73,6 +73,7 @@
     pkgs.neofetch
     pkgs.google-cloud-sdk
     pkgs.prismlauncher # minecraft launcher
+    pkgs.bitwarden-cli
     pkgs.postman
 
     # AI Tools

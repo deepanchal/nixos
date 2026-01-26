@@ -52,6 +52,7 @@
       # node
       nodejs
       deno
+      bun
 
       # RUST
       rustup

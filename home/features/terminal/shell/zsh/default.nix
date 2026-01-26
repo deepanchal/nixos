@@ -74,6 +74,7 @@ in
           "kubectl" # kubectl completions/aliases
           "minikube" # minikube completions
           "npm" # npm aliases
+          "bun" # bun autocompletions
           # "pnpm" # pnpm aliases (custom: https://github.com/ntnyq/omz-plugin-pnpm)
           "poetry" # python poetry autocompletions
           # "projen" # projen autocompletions (custom: mkdir -p $ZSH_CUSTOM/plugins/projen && projen completion > $ZSH_CUSTOM/plugins/projen/_projen)
@@ -297,6 +298,11 @@ in
           name = "pnpm";
           src = inputs.zsh-omz-plugin-pnpm;
           file = "pnpm.plugin.zsh";
+        }
+        {
+          name = "bun";
+          src = inputs.zsh-omz-plugin-bun;
+          file = "bun.plugin.zsh";
         }
         {
           name = "powerlevel10k";
