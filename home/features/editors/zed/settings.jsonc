@@ -16,7 +16,7 @@
   "show_wrap_guides": true,
   "auto_signature_help": false,
   "scroll_beyond_last_line": "vertical_scroll_margin",
-  "relative_line_numbers": false,
+  "relative_line_numbers": "disabled",
   "vim_mode": true,
   "vim": {
     "use_system_clipboard": "always"
@@ -75,7 +75,7 @@
     "ruff": true,
     "vue": true
   },
-  "agent_font_size": 16,
+  "agent_ui_font_size": 16,
   "agent": {
     "play_sound_when_agent_done": true,
     "default_model": {

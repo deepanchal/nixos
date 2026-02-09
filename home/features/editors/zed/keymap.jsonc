@@ -10,7 +10,7 @@
       "L": "pane::ActivateNextItem",
       "H": "pane::ActivatePreviousItem",
       "K": "editor::Hover",
-      "space l f": "editor::FormatSelections",
+      "space l f": "editor::Format",
       "space l r": "editor::Rename",
       "space g l": "git::Blame",
       "space g r": "git::Restore",
@@ -27,8 +27,8 @@
       "ctrl-j": "workspace::ActivatePaneDown",
       "ctrl-k": "workspace::ActivatePaneUp",
       // "ctrl-l": "workspace::ActivatePaneRight",
-      "ctrl-l": "workspace::ActivateNextPane"
-    }
+      "ctrl-l": "workspace::ActivateNextPane",
+    },
   },
   {
     "context": "Editor && showing_completions",
@@ -41,8 +41,8 @@
       "tab": "editor::ContextMenuNext",
       "shift-tab": "editor::ContextMenuPrevious",
       "g g": "editor::ContextMenuFirst",
-      "shift-G": "editor::ContextMenuLast"
-    }
+      "shift-G": "editor::ContextMenuLast",
+    },
   },
   {
     "context": "Editor && vim_mode == insert && !menu",
@@ -50,31 +50,31 @@
       "j j": "vim::NormalBefore",
       "j k": "vim::NormalBefore",
       "tab": "menu::SelectNext",
-      "shift-tab": "menu::SelectPrevious"
-    }
+      "shift-tab": "menu::SelectPrevious",
+    },
   },
   {
     "context": "Editor && vim_mode == normal && (vim_operator == none || vim_operator == n) && !VimWaiting",
     "bindings": {
       "space w": "workspace::SaveWithoutFormat",
       "space q": "pane::CloseActiveItem",
-      "space c": "pane::CloseActiveItem"
-    }
+      "space c": "pane::CloseActiveItem",
+    },
   },
   {
     "context": "Editor && mode == full && edit_prediction",
     "bindings": {
       "tab": "editor::NextEditPrediction",
       "shift-tab": "editor::PreviousEditPrediction",
-      "enter": "editor::AcceptPartialEditPrediction"
-    }
+      "enter": "editor::AcceptPartialCopilotSuggestion",
+    },
   },
   {
     "context": "Workspace",
     "bindings": {
       // "ctrl-p": null,
       // "ctrl-n": null,
-    }
+    },
   },
   {
     "context": "Pane",
@@ -82,8 +82,8 @@
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown"
-    }
+      "ctrl-j": "workspace::ActivatePaneDown",
+    },
   },
   {
     "context": "Dock || Terminal || Editor || CommitEditor",
@@ -92,8 +92,8 @@
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-j": "workspace::ActivatePaneDown",
-      "ctrl-'": "terminal_panel::ToggleFocus"
-    }
+      "ctrl-'": "terminal_panel::ToggleFocus",
+    },
   },
   {
     "context": "Terminal",
@@ -103,28 +103,28 @@
       "ctrl-n": ["terminal::SendKeystroke", "ctrl-n"],
       "ctrl-p": ["terminal::SendKeystroke", "ctrl-p"],
       "ctrl-d": ["terminal::SendKeystroke", "ctrl-d"],
-      "ctrl-c": ["terminal::SendKeystroke", "ctrl-c"]
-    }
+      "ctrl-c": ["terminal::SendKeystroke", "ctrl-c"],
+    },
   },
   {
     "context": "AgentPanel",
     "bindings": {
-      "space q": "workspace::CloseActiveDock"
-    }
+      "space q": "workspace::CloseActiveDock",
+    },
   },
   {
     "context": "GitPanel",
     "bindings": {
       "space q": "git_panel::Close",
       "space n": "project_panel::ToggleFocus",
-      "cmd-shift-g": "git_panel::ToggleFocus"
-    }
+      "cmd-shift-g": "git_panel::ToggleFocus",
+    },
   },
   {
     "context": "ProjectPanel && not_editing",
     "bindings": {
       "space e": "workspace::ToggleLeftDock",
-      "l": "editor::OpenSelectedFilename"
-    }
-  }
+      "l": "editor::OpenSelectedFilename",
+    },
+  },
 ]
