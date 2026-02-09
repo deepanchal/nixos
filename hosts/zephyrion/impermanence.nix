@@ -151,6 +151,7 @@
         ".config/Code"
         ".config/clipse" # preserve clipse history & tmp_files which contains images
         ".config/discord"
+        ".config/sunshine"
         ".config/google-chrome"
         ".config/spotify"
         ".config/Keybase"

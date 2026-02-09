@@ -24,6 +24,11 @@
   services.usbmuxd.enable = true;
   programs.thunar.enable = true;
   services.tailscale.enable = true;
+  services.sunshine = {
+    enable = true;
+    openFirewall = true;
+    capSysAdmin = true; # Needed for Wayland capture
+  };
   # programs.openvpn3.enable = true;
   programs.nm-applet.enable = true;
   services.teamviewer.enable = true;
