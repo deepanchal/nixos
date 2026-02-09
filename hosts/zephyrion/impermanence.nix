@@ -78,6 +78,7 @@
       "/etc/NetworkManager/system-connections"
       "/etc/nixos"
       "/etc/wireguard"
+      "/etc/asusd"
 
       "/var/log"
       "/var/cache/tuigreet" # Persist tuigreet sessions
