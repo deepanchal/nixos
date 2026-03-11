@@ -30,6 +30,6 @@
     (pkgs.jetbrains.webstorm.override {vmopts = vmopts; jdk = alternateJdk;})
     (pkgs.jetbrains.rust-rover.override {vmopts = vmopts; jdk = alternateJdk;})
     (pkgs.jetbrains.datagrip.override {vmopts = vmopts; jdk = alternateJdk;})
-    (pkgs.jetbrains.pycharm-professional.override {vmopts = vmopts; jdk = alternateJdk;})
+    (pkgs.jetbrains.pycharm.override {vmopts = vmopts; jdk = alternateJdk;})
   ];
 }

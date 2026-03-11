@@ -12,7 +12,7 @@
       "ignore_alpha 0.5, match:namespace bar"
       "no_anim on, match:namespace bar"
     ];
-    windowrulev2 = [
+    windowrule = [
       # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
 
       ##########################################
@@ -84,7 +84,7 @@
       "rounding 0, match:class ^(jetbrains-.*)$"
       "opacity 1, match:class ^(jetbrains-.*)$"
       # spotify
-      "opacity 0.8, match:initialTitle ^(Spotify.*)$"
+      "opacity 0.8, match:initial_title ^(Spotify.*)$"
       # clipse
       "float on, match:class (clipse)"
       "center on, match:class (clipse)"

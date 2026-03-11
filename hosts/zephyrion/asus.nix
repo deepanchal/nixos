@@ -11,8 +11,6 @@
 
   services.asusd = {
     enable = true;
-    enableUserService = true;
-
     asusdConfig.text = ''
       (
         charge_control_end_threshold: 80,

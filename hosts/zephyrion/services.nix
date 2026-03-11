@@ -37,7 +37,6 @@
   services.locate.enable = true;
   services.tumbler.enable = true;
   services.fwupd.enable = true;
-  programs.light.enable = true;
   programs.localsend.enable = true;
   programs.nh = {
     enable = true;

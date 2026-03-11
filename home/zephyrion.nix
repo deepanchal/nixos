@@ -70,7 +70,7 @@
     pkgs.totp-cli
     pkgs.scrcpy
     pkgs.kubectl
-    pkgs.neofetch
+    pkgs.fastfetch
     pkgs.google-cloud-sdk
     pkgs.prismlauncher # minecraft launcher
     pkgs.bitwarden-cli
