@@ -310,7 +310,7 @@
     ninja
     pkg-config
 
-    nodePackages.nodejs
+    nodejs
     rustup
     gcc
     libgcc

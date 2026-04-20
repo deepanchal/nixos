@@ -71,12 +71,12 @@
 
       # GOLANG
       go
-      gomodifytags
-      iferr # generate error handling code for go
-      impl # generate function implementation for go
-      gotools # contains tools like: godoc, goimports, etc.
-      gopls # go language server
-      delve # go debugger
+      # gomodifytags
+      # iferr # generate error handling code for go
+      # impl # generate function implementation for go
+      # gotools # contains tools like: godoc, goimports, etc.
+      # gopls # go language server
+      # delve # go debugger
 
       # LUA
       lua
@@ -90,14 +90,14 @@
       csharpier
 
       # BASH
-      nodePackages.bash-language-server
+      bash-language-server
       shellcheck
       shfmt
 
       # JAVASCRIPT/TYPESCRIPT
-      nodePackages.typescript
-      nodePackages.typescript-language-server
-      nodePackages."@tailwindcss/language-server"
+      typescript
+      typescript-language-server
+      tailwindcss-language-server
 
       # SCALA
       # coursier
@@ -117,7 +117,7 @@
 
       # OTHERS
       taplo # TOML language server / formatter / validator
-      nodePackages.yaml-language-server
+      yaml-language-server
       # sqlfluff # SQL linter
       actionlint # GitHub Actions linter
       # buf # protoc plugin for linting and formatting
@@ -125,7 +125,7 @@
 
       # MISC
       tree-sitter # common language parser/highlighter
-      nodePackages.prettier # common code formatter
+      prettier # common code formatter
       # marksman # language server for markdown
       # glow # markdown previewer
 

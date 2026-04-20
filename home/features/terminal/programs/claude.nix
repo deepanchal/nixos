@@ -11,12 +11,6 @@ in
   ];
 
   home.packages = [
-    # pkgs.claude-code
-    # OR
-    # pkgs.claude-code-bun
-    (inputs.claude-code-nix.packages.${pkgs.stdenv.system}.claude-code-bun.override {
-      bunBinName = "claude";
-    })
+    pkgs.claude-code
   ];
-
 }
