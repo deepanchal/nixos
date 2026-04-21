@@ -27,8 +27,6 @@
         verbose = false;
         experimental = true;
         all_compile = false;
-        python_compile = false;
-        # node_compile = false;
         disable_tools = [];
         idiomatic_version_file_enable_tools = ["python"];
       };
