@@ -18,10 +18,10 @@ in {
 
   home.packages = [
     pkgs.swaybg
-    pkgs.swww
+    pkgs.awww
 
     (pkgs.writeShellScriptBin "wallpaper-chooser" ''
-      swww img ~/Pictures/wallpapers/"$(fd . ~/Pictures/wallpapers --format {/} | fuzzel --dmenu)" && notify-send "Wallpaper changed" || notify-send "Failed to change wallpaper!"
+      awww img ~/Pictures/wallpapers/"$(fd . ~/Pictures/wallpapers --format {/} | fuzzel --dmenu)" && notify-send "Wallpaper changed" || notify-send "Failed to change wallpaper!"
     '')
   ];
 
@@ -34,31 +34,31 @@ in {
     #   };
     # };
 
-    # A Solution to your Wayland Wallpaper Woes (SWWW) services
-    # Also see: https://github.com/LGFae/swww/blob/main/example_scripts/README.md
-    swww-daemon = mkService {
+    # Animated Wayland Wallpaper Woes (AWWW) services
+    # Also see: https://codeberg.org/LGFae/awww
+    awww-daemon = mkService {
       Unit.Description = "Efficient animated wallpaper daemon for wayland, controlled at runtime";
       Service = {
         Type = "simple";
         ExecStart = ''
-          ${pkgs.swww}/bin/swww-daemon
+          ${pkgs.awww}/bin/awww-daemon
         '';
-        ExecStop = "${pkgs.swww}/bin/swww kill";
+        ExecStop = "${pkgs.awww}/bin/awww kill";
         Restart = "on-failure";
       };
     };
-    swww = mkService {
+    awww = mkService {
       Unit = {
-        Description = "Set default wallpaper with swww";
-        Requires = ["swww-daemon.service"];
-        After = ["swww-daemon.service"];
-        PartOf = ["swww-daemon.service"];
+        Description = "Set default wallpaper with awww";
+        Requires = ["awww-daemon.service"];
+        After = ["awww-daemon.service"];
+        PartOf = ["awww-daemon.service"];
       };
-      Install.WantedBy = ["swww-daemon.service"];
+      Install.WantedBy = ["awww-daemon.service"];
       Service = {
         Type = "oneshot";
         ExecStart = ''
-          ${pkgs.swww}/bin/swww img "${config.wallpaper}" --transition-type random
+          ${pkgs.awww}/bin/awww img "${config.wallpaper}" --transition-type random
         '';
         Restart = "on-failure";
       };

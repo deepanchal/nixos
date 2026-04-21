@@ -152,7 +152,7 @@
     # avizo
     wlogout
     # wpaperd
-    # swww
+    awww
     # gifsicle
 
     #   vulnix       #scan command: vulnix --system
