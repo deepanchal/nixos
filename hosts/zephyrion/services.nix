@@ -16,7 +16,7 @@
   programs.dconf.enable = true;
   services.dbus.enable = true;
   services.dbus.packages = with pkgs; [
-    xfce.xfconf
+    xfconf
     # gnome2.GConf
   ];
   services.mpd.enable = true;

@@ -12,6 +12,7 @@
   xdg = {
     userDirs = {
       enable = true;
+      setSessionVariables = true;
       documents = "$HOME/Documents";
       download = "$HOME/Downloads";
       videos = "$HOME/Videos";

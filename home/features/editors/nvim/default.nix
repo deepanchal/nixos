@@ -15,6 +15,7 @@
 
       withPython3 = true;
       withNodeJs = true;
+      withRuby = true;
     };
   };
 
@@ -65,7 +66,7 @@
       # nil
       statix # Lints and suggestions for the nix programming language
       deadnix # Find and remove unused code in .nix source files
-      nixfmt-rfc-style # Nix code formatter
+      nixfmt # Nix code formatter
       nixfmt-tree # Nix code formatter using treefmt
       alejandra # Nix Code Formatter
 

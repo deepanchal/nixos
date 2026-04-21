@@ -37,6 +37,7 @@
       name = "Noto Sans";
       size = 12;
     };
+    gtk4.theme = config.gtk.theme;
     gtk3 = {
       # Bookmarks in the sidebar of GTK file browser
       bookmarks =

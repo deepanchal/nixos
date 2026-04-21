@@ -6,33 +6,37 @@
   ...
 }: let
 in {
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      navigate = true; # use n and N to move between diff sections
+      # side-by-side = true;
+      diff-so-fancy = true;
+      line-numbers = true;
+    };
+  };
+
   programs.git = {
     enable = true;
-    userName = "Deep Panchal";
-    userEmail = "deep302001@gmail.com";
     signing = {
       key = "45FE8F325F0C658648AD56AFC0C2511B2C7608F4";
       signByDefault = true;
-    };
-    delta = {
-      enable = true;
-      options = {
-        navigate = true; # use n and N to move between diff sections
-        # side-by-side = true;
-        diff-so-fancy = true;
-        line-numbers = true;
-      };
+      format = "openpgp";
     };
 
     lfs = {
       enable = true;
     };
 
-    aliases = {
-      search = "log -p --all -S";
-    };
-
-    extraConfig = {
+    settings = {
+      user = {
+        name = "Deep Panchal";
+        email = "deep302001@gmail.com";
+      };
+      alias = {
+        search = "log -p --all -S";
+      };
       format = {
         signOff = true;
       };
