@@ -26,7 +26,7 @@
 
   xdg.configFile = {
     nvim = {
-      source = ./astronvim;
+      source = inputs.nvim-config;
       recursive = true;
     };
   };

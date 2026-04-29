@@ -312,6 +312,22 @@
         "type": "github"
       }
     },
+    "nvim-config": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1777483090,
+        "narHash": "sha256-47uivysS770Yw0m7yk/ZMA8l1+SvD/d1chNapIIt+UQ=",
+        "owner": "deepanchal",
+        "repo": "nvim",
+        "rev": "b2d1fe75aa96ca068bd2e40cee91a132bcb22600",
+        "type": "github"
+      },
+      "original": {
+        "owner": "deepanchal",
+        "repo": "nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "catppuccin": "catppuccin",
@@ -324,6 +340,7 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
         "nur": "nur",
+        "nvim-config": "nvim-config",
         "zsh-omz-plugin-bun": "zsh-omz-plugin-bun",
         "zsh-omz-plugin-pnpm": "zsh-omz-plugin-pnpm"
       }

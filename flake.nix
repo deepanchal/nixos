@@ -50,6 +50,11 @@
       url = "github:sadjow/claude-code-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nvim-config = {
+      url = "github:deepanchal/nvim";
+      flake = false;
+    };
   };
 
   outputs = {
