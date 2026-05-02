@@ -36,13 +36,6 @@ in
       pbcopy = copy-cmd;
       pbpaste = paste-cmd;
 
-      # Devops
-      mk = "minikube";
-      kctx = "kubectx";
-      kctl = "kubectl";
-      kspy = "kubespy";
-      kevents = "k get events --sort-by=.metadata.creationTimestamp";
-
       # Nix
       cleanup = "sudo nix-collect-garbage --delete-older-than 3d && nix-collect-garbage -d";
       bloat = "nix path-info -Sh /run/current-system";
@@ -51,19 +44,6 @@ in
       run = "nix run";
       search = "nix search";
       shell = "nix shell";
-
-      # Git
-      lg = "lazygit";
-      g = "git";
-      gls = "git --no-pager log --no-merges --reverse --pretty=format:'- %s (%h)' -n 100; and echo";
-      gcmsgn = "git commit --no-verify --message";
-
-      # Rust
-      ca = "cargo";
-      cab = "cargo build";
-      car = "cargo run";
-      cac = "cargo clippy";
-      caf = "cargo fmt";
 
       # AI
       ai = "aichat --session";
@@ -88,33 +68,16 @@ in
       bt-connect = "bluetoothctl connect $HEADPHONES_MAC";
       bt-disconnect = "bluetoothctl disconnect $HEADPHONES_MAC";
 
-      pj = "projen";
       v = "nvim";
       m = "mise";
       min = "mise install";
     };
 
+    # Abbreviations expand inline when you press space
+    # commands so you see what's actually being run.
     shellAbbrs = {
-      # Git
-      gco = "git checkout";
-      gsb = "git status -b";
-      gp = "git push";
-      gl = "git pull";
-      gst = "git status";
-      ga = "git add";
-      gcm = "git commit -m";
-      gd = "git diff";
-      gds = "git diff --staged";
-
-      # Pipe-style abbrs replace zsh global aliases (CP / JQ).
-      # Type `something CP<space>` and it expands to `something | wl-copy`.
-      CP = "| ${copy-cmd}";
-      JQ = "| jq";
     };
 
-    # Aliases that need command substitution at call time become functions
-    # (fish aliases are functions that just append $argv to the body, so
-    # `$(...)` and `$@` don't behave like in zsh).
     functions = {
       docker_clean_images = "docker rmi (docker images -a --filter=dangling=true -q)";
       docker_clean_ps = "docker rm (docker ps --filter=status=exited --filter=status=created -q)";
@@ -166,15 +129,10 @@ in
 
       # Disable the welcome banner
       set -g fish_greeting
-
-      # Load secret env vars (bash script — needs `bass` plugin to source)
-      if test -f ~/scripts/load-secret-env-vars.sh; and type -q bass
-        bass source ~/scripts/load-secret-env-vars.sh
-      end
     '';
 
     plugins = [
-      # bass: run bash scripts inside fish (needed for the secrets loader)
+      # bass: run bash scripts inside fish
       {
         name = "bass";
         inherit (pkgs.fishPlugins.bass) src;
