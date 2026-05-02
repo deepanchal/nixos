@@ -162,7 +162,7 @@ in
 
     interactiveShellInit = ''
       # Ctrl + Space to accept auto-suggestion
-      bind -k nul accept-autosuggestion
+      bind ctrl-space accept-autosuggestion
 
       # Disable the welcome banner
       set -g fish_greeting
