@@ -129,16 +129,6 @@ in
           '';
       };
 
-      initContent =
-        lib.mkBefore
-          # sh
-          ''
-            # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-            if [[ -r "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh" ]]; then
-              source "''${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-''${(%):-%n}.zsh"
-            fi
-          '';
-
       envExtra =
         # sh
         ''
@@ -303,21 +293,6 @@ in
           name = "bun";
           src = inputs.zsh-omz-plugin-bun;
           file = "bun.plugin.zsh";
-        }
-        {
-          name = "powerlevel10k";
-          src = pkgs.zsh-powerlevel10k;
-          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-        }
-        {
-          name = "p10k-config";
-          src = lib.cleanSource ./p10k;
-          file = "p10k.zsh";
-        }
-        {
-          name = "p10k-mise-config";
-          src = lib.cleanSource ./p10k;
-          file = "p10k.mise.zsh";
         }
       ];
     };
