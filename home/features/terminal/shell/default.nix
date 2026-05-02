@@ -3,6 +3,5 @@
     ./nushell
     ./zsh
     ./fish.nix
-    ./starship.nix
   ];
 }
