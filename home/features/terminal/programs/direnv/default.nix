@@ -4,6 +4,7 @@
     nix-direnv.enable = true; # https://github.com/nix-community/nix-direnv
     enableBashIntegration = config.programs.bash.enable;
     enableZshIntegration = config.programs.zsh.enable;
+    enableFishIntegration = config.programs.fish.enable;
     enableNushellIntegration = config.programs.nushell.enable;
     config = {};
     stdlib = builtins.readFile ./direnvrc;
