@@ -14,6 +14,7 @@ in
     ./docker-compose.nix
     ./docker.nix
     ./git.nix
+    ./systemd.nix
   ];
 
   programs.fish = {
