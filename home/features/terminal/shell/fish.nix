@@ -1,13 +1,6 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
+{ ... }: {
   programs.fish = {
-    enable = false;
-    # interactiveShellInit = ''
-    #   eval "$(${lib.getExe pkgs.starship} init fish)"
-    # '';
+    enable = true;
 
     shellAliases = {
       cat = "bat";
