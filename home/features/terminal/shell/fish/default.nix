@@ -10,6 +10,10 @@ let
   paste-cmd = if isWayland then "wl-paste" else "xclip -selection clipboard -o";
 in
 {
+  imports = [
+    ./git.nix
+  ];
+
   programs.fish = {
     enable = true;
 
@@ -76,6 +80,7 @@ in
     # Abbreviations expand inline when you press space
     # commands so you see what's actually being run.
     shellAbbrs = {
+      lg = "lazygit";
     };
 
     functions = {
