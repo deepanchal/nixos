@@ -13,6 +13,7 @@ in
   imports = [
     ./docker-compose.nix
     ./docker.nix
+    ./flutter.nix
     ./git.nix
     ./systemd.nix
   ];
