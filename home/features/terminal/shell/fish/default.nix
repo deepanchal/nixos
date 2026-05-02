@@ -11,6 +11,8 @@ let
 in
 {
   imports = [
+    ./docker-compose.nix
+    ./docker.nix
     ./git.nix
   ];
 
