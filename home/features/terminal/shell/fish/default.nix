@@ -31,7 +31,6 @@ in
       cat = "bat --pager=never --plain";
       grep = "rg";
       ps = "procs";
-      tail = "tspin";
 
       fd = lib.mkForce "fd";
 
@@ -132,10 +131,21 @@ in
     '';
 
     interactiveShellInit = ''
+      # Hybrid vi/emacs key bindings (modal editing + readline shortcuts)
+      set -g fish_key_bindings fish_hybrid_key_bindings
+
+      # Cursor shape per mode
+      set -g fish_cursor_default block
+      set -g fish_cursor_insert line
+      set -g fish_cursor_replace_one underscore
+      set -g fish_cursor_visual block
+
       # Ctrl + Space to accept auto-suggestion
+      bind -M insert ctrl-space accept-autosuggestion
       bind ctrl-space accept-autosuggestion
 
       # Ctrl + O to copy current command line to clipboard
+      bind -M insert ctrl-o fish_clipboard_copy
       bind ctrl-o fish_clipboard_copy
 
       # Disable the welcome banner
