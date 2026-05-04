@@ -1,0 +1,150 @@
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+let
+  isWayland = config.wayland.windowManager.hyprland.enable;
+  copy-cmd = if isWayland then "wl-copy" else "xclip -selection clipboard";
+  paste-cmd = if isWayland then "wl-paste" else "xclip -selection clipboard -o";
+in
+{
+  imports = [
+    ./bun.nix
+    ./docker-compose.nix
+    ./docker.nix
+    ./flutter.nix
+    ./git.nix
+    ./pnpm.nix
+    ./systemd.nix
+  ];
+
+  programs.fish = {
+    enable = true;
+
+    shellAliases = {
+      # Replacements
+      ls = "eza -l --icons --color always";
+      ll = "eza -l --icons --color always";
+      la = "eza -alughHo --git --icons --color always";
+      cat = "bat --pager=never --plain";
+      grep = "rg";
+      ps = "procs";
+      tail = "tspin";
+
+      fd = lib.mkForce "fd";
+
+      # Other apps
+      zj = "zellij";
+
+      # IP
+      myip = "ip addr | grep -m 1 -o '192.*.*.*' | cut -d '/' -f 1";
+      wanip = "curl -s -X GET https://checkip.amazonaws.com";
+
+      # Copy / Paste
+      pbcopy = copy-cmd;
+      pbpaste = paste-cmd;
+
+      # Nix
+      cleanup = "sudo nix-collect-garbage --delete-older-than 3d && nix-collect-garbage -d";
+      bloat = "nix path-info -Sh /run/current-system";
+      curgen = "sudo nix-env --list-generations --profile /nix/var/nix/profiles/system";
+      repair = "nix-store --verify --check-contents --repair";
+      run = "nix run";
+      search = "nix search";
+      shell = "nix shell";
+
+      # AI
+      ai = "aichat --session";
+      aish = "aichat -c -r %shell%";
+      aiquick = "aichat --model openai:gpt-5-mini --session";
+      aireason = "aichat --model openai:o3 --session";
+
+      # Other
+      c = "clear";
+      rm = "rm -i";
+      cp = "cp -i";
+      mv = "mv -i";
+      sysinfo = "inxi -Fxxxz";
+      errors = "journalctl -b -p err | less";
+
+      wg-on = "systemctl start wg-quick-wg0.service";
+      wg-off = "systemctl stop wg-quick-wg0.service";
+
+      bt-on = "bluetoothctl power on";
+      bt-off = "bluetoothctl power off";
+      bt-connect = "bluetoothctl connect $HEADPHONES_MAC";
+      bt-disconnect = "bluetoothctl disconnect $HEADPHONES_MAC";
+    };
+
+    # Abbreviations expand inline when you press space
+    # commands so you see what's actually being run.
+    shellAbbrs = {
+      lg = "lazygit";
+      min = "mise install";
+      dallow = "direnv allow";
+    };
+
+    functions = {
+      docker_clean_images = "docker rmi (docker images -a --filter=dangling=true -q)";
+      docker_clean_ps = "docker rm (docker ps --filter=status=exited --filter=status=created -q)";
+
+      gc-check = ''
+        nix-store --gc --print-roots \
+          | string match -rv '^(/nix/var|/run/\w+-system|\{memory|/proc)'
+      '';
+
+      build = ''nix build $argv --builders ""'';
+
+      glscommits = ''
+        set -l main_branch (git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
+        test -z "$main_branch"; and set main_branch main
+        git log --no-merges HEAD "^$main_branch" --reverse --pretty=format:%s | sed 's/^/- /'
+      '';
+    };
+
+    # Env / PATH (mirrors zsh envExtra).
+    shellInit = ''
+      # Cargo / Go
+      fish_add_path -ga $HOME/.cargo/bin
+      fish_add_path -ga $HOME/go/bin
+
+      # Android
+      set -gx ANDROID_SDK_ROOT $HOME/Android/Sdk
+      set -gx ANDROID_HOME $HOME/Android/Sdk
+      set -gx ANDROID_NDK $ANDROID_HOME/ndk-bundle
+      set -gx CHROME_EXECUTABLE /usr/bin/google-chrome-stable
+      fish_add_path -ga $HOME/.android/avd
+      fish_add_path -ga $ANDROID_HOME/emulator
+      fish_add_path -ga $ANDROID_HOME/tools
+      fish_add_path -ga $ANDROID_HOME/tools/bin
+      fish_add_path -ga $ANDROID_HOME/platform-tools
+      fish_add_path -ga $ANDROID_HOME/cmdline-tools/latest/bin
+
+      # PNPM
+      set -gx PNPM_HOME $HOME/.local/share/pnpm
+      fish_add_path -ga $PNPM_HOME
+
+      # Dart
+      set -gx DART_PUB_CACHE_BIN $HOME/.pub-cache/bin
+      fish_add_path -ga $DART_PUB_CACHE_BIN
+    '';
+
+    interactiveShellInit = ''
+      # Ctrl + Space to accept auto-suggestion
+      bind ctrl-space accept-autosuggestion
+
+      # Disable the welcome banner
+      set -g fish_greeting
+    '';
+
+    plugins = [
+      # bass: run bash scripts inside fish
+      {
+        name = "bass";
+        inherit (pkgs.fishPlugins.bass) src;
+      }
+    ];
+  };
+}
