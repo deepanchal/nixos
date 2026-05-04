@@ -11,6 +11,7 @@ let
 in
 {
   imports = [
+    ./bun.nix
     ./docker-compose.nix
     ./docker.nix
     ./flutter.nix
