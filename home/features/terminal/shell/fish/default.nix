@@ -135,6 +135,9 @@ in
       # Ctrl + Space to accept auto-suggestion
       bind ctrl-space accept-autosuggestion
 
+      # Ctrl + O to copy current command line to clipboard
+      bind ctrl-o fish_clipboard_copy
+
       # Disable the welcome banner
       set -g fish_greeting
     '';
