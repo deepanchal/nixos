@@ -2,7 +2,7 @@
   imports = [
     ./nushell
     ./zsh
-    ./fish.nix
+    ./fish
     ./starship.nix
   ];
 }
