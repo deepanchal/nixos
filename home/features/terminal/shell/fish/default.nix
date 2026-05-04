@@ -66,7 +66,6 @@ in
       rm = "rm -i";
       cp = "cp -i";
       mv = "mv -i";
-      dallow = "direnv allow";
       sysinfo = "inxi -Fxxxz";
       errors = "journalctl -b -p err | less";
 
@@ -77,16 +76,14 @@ in
       bt-off = "bluetoothctl power off";
       bt-connect = "bluetoothctl connect $HEADPHONES_MAC";
       bt-disconnect = "bluetoothctl disconnect $HEADPHONES_MAC";
-
-      v = "nvim";
-      m = "mise";
-      min = "mise install";
     };
 
     # Abbreviations expand inline when you press space
     # commands so you see what's actually being run.
     shellAbbrs = {
       lg = "lazygit";
+      min = "mise install";
+      dallow = "direnv allow";
     };
 
     functions = {
