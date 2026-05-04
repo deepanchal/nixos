@@ -1,0 +1,27 @@
+diff --git a/main.go b/main.go
+--- a/main.go
++++ b/main.go
+@@ -36,7 +36,7 @@ func main() {
+ 	}
+ 	defer db.Close()
+
+-	rows, err := db.Query("SELECT * FROM history ORDER BY timestamp ASC")
++	rows, err := db.Query("SELECT timestamp, command FROM history WHERE deleted_at IS NULL ORDER BY timestamp ASC")
+ 	if err != nil {
+ 		fmt.Println(err)
+ 		return
+@@ -44,11 +44,10 @@ func main() {
+ 	defer rows.Close()
+
+ 	for rows.Next() {
+-		var id, command, cwd, session, hostname string
+-		var timestamp, duration, exit int
+-		var deleted_at interface{}
++		var command string
++		var timestamp int
+
+-		err = rows.Scan(&id, &timestamp, &duration, &exit, &command, &cwd, &session, &hostname, &deleted_at)
++		err = rows.Scan(&timestamp, &command)
+ 		if err != nil {
+ 			fmt.Println(err)
+ 			continue
