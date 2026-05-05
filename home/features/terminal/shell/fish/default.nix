@@ -140,6 +140,9 @@ in
       set -g fish_cursor_replace_one underscore
       set -g fish_cursor_visual block
 
+      # vi mode: jk to exit insert mode (alongside Esc and Ctrl+[)
+      bind -M insert -m default jk cancel repaint-mode
+
       # Ctrl + Space to accept auto-suggestion
       bind -M insert ctrl-space accept-autosuggestion
       bind ctrl-space accept-autosuggestion
