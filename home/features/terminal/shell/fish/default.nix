@@ -143,6 +143,16 @@ in
       # vi mode: jk to exit insert mode (alongside Esc and Ctrl+[)
       bind -M insert -m default jk cancel repaint-mode
 
+      # vi mode: route yank/paste through the system clipboard.
+      # See: https://github.com/fish-shell/fish-shell/issues/4028
+      bind -M default Y fish_clipboard_copy
+      bind -M default yy fish_clipboard_copy
+      bind -M visual -m default y 'fish_clipboard_copy; commandline -f end-selection repaint-mode'
+      bind -M default p fish_clipboard_paste
+      bind -M default P 'fish_clipboard_paste; commandline -f backward-char'
+      bind -M visual -m default p 'commandline -f kill-selection end-selection; fish_clipboard_paste; commandline -f repaint-mode'
+      bind -M visual -m default P 'commandline -f kill-selection end-selection; fish_clipboard_paste; commandline -f repaint-mode'
+
       # Ctrl + Space to accept auto-suggestion
       bind -M insert ctrl-space accept-autosuggestion
       bind ctrl-space accept-autosuggestion
