@@ -27,14 +27,16 @@ shopt -s extglob
 # }
 export_function() {
 	local name=$1
-  local sh="${2:-$SHELL}"
+	# Function bodies are extracted via `declare -f` (bash syntax), so the
+	# wrapper must run under bash even when the user's $SHELL is fish/zsh/etc.
+	# Pass a 2nd arg to override (e.g. `export_function foo zsh`).
+	local sh="${2:-bash}"
 	local alias_dir=$PWD/.direnv/aliases
 	mkdir -p "$alias_dir"
 	PATH_add "$alias_dir"
 	local target="$alias_dir/$name"
 	if declare -f "$name" >/dev/null; then
-		#echo "#!$SHELL" >"$target"
-    echo "#!/usr/bin/env $(basename "$sh")" > "$target"
+		echo "#!/usr/bin/env $(basename "$sh")" > "$target"
 		declare -f "$name" >> "$target" 2>/dev/null
 		# Notice that we add shell variables to the function trigger.
 		echo "$name \$*" >>"$target"
