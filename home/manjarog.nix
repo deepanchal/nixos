@@ -123,7 +123,4 @@ in {
     wezterm.package = lib.mkForce pkgs.hello;
   };
 
-  services = {
-    blueman-applet.enable = true;
-  };
 }
