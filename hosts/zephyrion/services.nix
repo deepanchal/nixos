@@ -34,7 +34,6 @@
   services.teamviewer.enable = true;
   # Disable screen reader (https://github.com/NixOS/nixpkgs/issues/462935)
   services.orca.enable = false;
-  services.locate.enable = true;
   services.tumbler.enable = true;
   services.fwupd.enable = true;
   programs.localsend.enable = true;
