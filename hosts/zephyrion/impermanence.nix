@@ -134,7 +134,6 @@
         ".pub-cache"
         ".minikube"
         ".kube"
-        ".mozilla" # firefox
         ".minecraft"
         ".cache"
         ".wakatime"
@@ -148,6 +147,7 @@
         ".config/Google" # android studio
         ".config/JetBrains"
         ".config/Slack"
+        ".config/mozilla" # firefox
         ".config/Cursor"
         ".config/Code"
         ".config/clipse" # preserve clipse history & tmp_files which contains images
