@@ -121,6 +121,7 @@
         ".android" # adb keys
         ".arduino15"
         ".ollama" # ollama models, keys
+        ".dartServer" # dart language server
         ".vscode"
         ".cursor"
         ".claude" # for claude code
