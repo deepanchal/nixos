@@ -143,6 +143,12 @@ in
       # vi mode: jk to exit insert mode (alongside Esc and Ctrl+[)
       bind -M insert -m default jk cancel repaint-mode
 
+      # Ctrl+C preserves the typed command above the new prompt (zsh-like).
+      # fish_hybrid_key_bindings binds this to clear-commandline, which wipes
+      # the line entirely; cancel-commandline keeps it visible as reference.
+      bind -M default ctrl-c cancel-commandline
+      bind -M insert ctrl-c cancel-commandline
+
       # vi mode: route yank/paste through the system clipboard.
       # See: https://github.com/fish-shell/fish-shell/issues/4028
       bind -M default Y fish_clipboard_copy
