@@ -101,6 +101,23 @@ in
         test -z "$main_branch"; and set main_branch main
         git log --no-merges HEAD "^$main_branch" --reverse --pretty=format:%s | sed 's/^/- /'
       '';
+
+      # Insert system clipboard contents at cursor without the trailing-newline
+      # bug in fish_clipboard_paste/__fish_paste, which splits on \n and re-joins
+      # an empty trailing element when clipboard data ends with a newline (which
+      # fish_clipboard_copy can leave behind for some content).
+      fish_vi_paste = ''
+        set -l data (${paste-cmd} 2>/dev/null | string collect | string replace -r '\n+$' "")
+        test -z "$data"; and return
+        commandline -i -- $data
+      '';
+
+      # Replace the current vi visual selection with system clipboard contents.
+      fish_vi_visual_paste = ''
+        commandline -f kill-selection end-selection
+        fish_vi_paste
+        commandline -f repaint-mode
+      '';
     };
 
     # Env / PATH (mirrors zsh envExtra).
@@ -154,10 +171,10 @@ in
       bind -M default Y fish_clipboard_copy
       bind -M default yy fish_clipboard_copy
       bind -M visual -m default y 'fish_clipboard_copy; commandline -f end-selection repaint-mode'
-      bind -M default p fish_clipboard_paste
-      bind -M default P 'fish_clipboard_paste; commandline -f backward-char'
-      bind -M visual -m default p 'commandline -f kill-selection end-selection; fish_clipboard_paste; commandline -f repaint-mode'
-      bind -M visual -m default P 'commandline -f kill-selection end-selection; fish_clipboard_paste; commandline -f repaint-mode'
+      bind -M default p fish_vi_paste
+      bind -M default P 'fish_vi_paste; commandline -f backward-char'
+      bind -M visual -m default p fish_vi_visual_paste
+      bind -M visual -m default P fish_vi_visual_paste
 
       # Ctrl + Space to accept auto-suggestion
       bind -M insert ctrl-space accept-autosuggestion
