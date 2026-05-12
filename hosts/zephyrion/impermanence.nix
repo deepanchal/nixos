@@ -82,10 +82,12 @@
 
       "/var/log"
       "/var/cache/tuigreet" # Persist tuigreet sessions
+      "/var/cache/man" # Persist manpages
       "/var/db/sudo/lectured" # Remember lectured sudo users
       "/var/lib/bluetooth"
       "/var/lib/nixos"
       "/var/lib/tailscale"
+      "/var/lib/btrbk"
       # "/var/lib/docker" # handled by ext4 fs mount for docker from /btr_pool/@dumps/docker-volume.img
       "/var/lib/libvirt"
       "/var/lib/alsa"
