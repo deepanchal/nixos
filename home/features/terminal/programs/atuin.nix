@@ -38,8 +38,7 @@
 
       ## address of the sync server
       # sync_address = "https://api.atuin.sh"
-      sync_address = "http://192.168.0.79:8888";
-      # sync_address = "http://beacon.local:8888";
+      sync_address = "http://beacon.allosaurus-dojo.ts.net:8888";
 
       ## how often to sync history. note that this is only triggered when a command
       ## is ran, so sync intervals may well be longer
