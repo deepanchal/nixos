@@ -11,7 +11,7 @@
     ''
       # vim: ft=yaml
       editor: nvim
-      apiEndpoint: http://beacon.local:3333/api
+      apiEndpoint: http://beacon.allosaurus-dojo.ts.net:3333/api
       enableUpgradeCheck: false
     '';
 }
