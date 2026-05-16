@@ -7,59 +7,51 @@
 }:
 let
   hostname = config.networking.hostName;
+  # NOTE: btrbk's ssh:// URL form does NOT accept user@host — the user goes in
+  # ssh_user below. Keep this as host-only.
+  remote = "beacon.allosaurus-dojo.ts.net";
 in
 {
-  ##############################################################################################
-  # btrbk - btrfs snapshot and backup tool
+  # btrbk: daily snapshot of @persist on /btr_pool, then incremental btrfs-send
+  # over SSH to pi@beacon:/mnt/btrfs-backup/zephyrion.
   # Docs: https://digint.ch/btrbk/doc/btrbk.conf.5.html
-  # Repo: https://github.com/digint/btrbk
   #
-  # Usage:
-  #   1. btrbk will create snapshots on schedule
-  #   2. we can use `btrbk run` command to create a backup manually
+  # One-time setup (zephyrion):
+  #   sudo install -d -m 700 /etc/btrbk/ssh
+  #   sudo ssh-keygen -t ed25519 -N "" -f /etc/btrbk/ssh/id_ed25519 -C btrbk@zephyrion
+  #   sudo ssh -i /etc/btrbk/ssh/id_ed25519 pi@beacon.allosaurus-dojo.ts.net true  # pin host key
   #
-  # How to restore a snapshot:
-  #   1. Find the snapshot you want to restore in /snapshots
-  #   2. Use `btrfs subvol delete /btr_pool/@persist` to delete the current subvolume
-  #   3. Use `btrfs subvol snapshot /snapshots/@persist.20251207T1130 /btr_pool/@persist` to restore the snapshot
-  #   4. reboot the system or remount the filesystem to see the changes
-  ##############################################################################################
+  # One-time setup (beacon):
+  #   sudo chown pi:pi /mnt/btrfs-backup
+  #   sudo apt-get install -y btrbk
+  #   echo 'pi ALL=(root) NOPASSWD: /usr/sbin/btrfs, /usr/bin/btrbk, /usr/bin/readlink, /usr/bin/test' \
+  #     | sudo tee /etc/sudoers.d/btrbk && sudo chmod 440 /etc/sudoers.d/btrbk
+  #   # Append zephyrion's pubkey to /home/pi/.ssh/authorized_keys, prefixed with:
+  #   #   command="/usr/share/doc/btrbk/examples/ssh_filter_btrbk.sh --sudo --target -p /mnt/btrfs-backup",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty
+  #
+  # Run manually: sudo btrbk -c /etc/btrbk/btrbk-btrbk.conf {dryrun|run}
 
-  services.btrbk = {
-    instances."btrbk" = {
-      # onCalendar = "hourly";
-      onCalendar = "daily";
-      settings = {
-        timestamp_format = "long";
+  services.btrbk.instances."btrbk" = {
+    onCalendar = "daily";
+    settings = {
+      timestamp_format = "long";
 
-        # how to prune local snapshots:
-        # 1. keep daily snapshots for x days
-        snapshot_preserve = "14d";
-        # 2. keep all snapshots for x days, no matter how frequently you (or your cron job) run btrbk
-        snapshot_preserve_min = "2d";
+      # Local snapshots on zephyrion / remote backups on beacon
+      snapshot_preserve = "14d";
+      snapshot_preserve_min = "2d";
+      target_preserve = "3d 2w 3m";
+      target_preserve_min = "latest";
 
-        # how to prune remote incremental backups:
-        # keep daily backups for 7 days, weekly backups for 4 weeks, and monthly backups for 2 months
-        target_preserve = "7d 4w 2m";
-        target_preserve_min = "no";
+      ssh_identity = "/etc/btrbk/ssh/id_ed25519";
+      ssh_user = "pi";
+      backend_remote = "btrfs-progs-sudo"; # pi is non-root, needs sudo on receive
+      stream_compress = "zstd";
 
-        volume."/btr_pool" = {
-          # Backup target on external drive
-          target = "/btr_backup/${hostname}";
-          subvolume = {
-            "@persist" = {
-              snapshot_create = "always";
-              snapshot_dir = "@snapshots";
-            };
-            # "@dumps" = {
-            #   snapshot_create = "always";
-            #   snapshot_dir = "@snapshots";
-            # };
-            # "@nix" = {
-            #   snapshot_create = "always";
-            #   snapshot_dir = "@snapshots";
-            # };
-          };
+      volume."/btr_pool" = {
+        target = "ssh://${remote}/mnt/btrfs-backup/${hostname}";
+        subvolume."@persist" = {
+          snapshot_create = "always";
+          snapshot_dir = "@snapshots";
         };
       };
     };
