@@ -73,6 +73,9 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  # Stay awake on lid close when on AC
+  services.logind.lidSwitchExternalPower = "ignore";
+
   # Enable Security Services
   # users.users.root.hashedPassword = "!";
   # security.tpm2 = {
