@@ -101,6 +101,8 @@
     files = [
       "/etc/machine-id"
       "/etc/nix/tokens.conf"
+      "/etc/btrbk/ssh/id_ed25519"
+      "/etc/btrbk/ssh/id_ed25519.pub"
       "/etc/ssh/ssh_host_ed25519_key"
       "/etc/ssh/ssh_host_ed25519_key.pub"
       "/etc/ssh/ssh_host_rsa_key"

@@ -24,10 +24,16 @@ in
   # One-time setup (beacon):
   #   sudo chown pi:pi /mnt/btrfs-backup
   #   sudo apt-get install -y btrbk
+  #   # Use upstream ssh_filter_btrbk.sh
+  #   sudo curl -fsSL -o /usr/local/bin/ssh_filter_btrbk.sh \
+  #     https://raw.githubusercontent.com/digint/btrbk/master/ssh_filter_btrbk.sh
+  #   sudo chmod +x /usr/local/bin/ssh_filter_btrbk.sh
   #   echo 'pi ALL=(root) NOPASSWD: /usr/sbin/btrfs, /usr/bin/btrbk, /usr/bin/readlink, /usr/bin/test' \
   #     | sudo tee /etc/sudoers.d/btrbk && sudo chmod 440 /etc/sudoers.d/btrbk
   #   # Append zephyrion's pubkey to /home/pi/.ssh/authorized_keys, prefixed with:
-  #   #   command="/usr/share/doc/btrbk/examples/ssh_filter_btrbk.sh --sudo --target -p /mnt/btrfs-backup",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty
+  #   #   command="/usr/local/bin/ssh_filter_btrbk.sh --sudo --target --delete -p /mnt/btrfs-backup",no-port-forwarding,no-X11-forwarding,no-agent-forwarding,no-pty
+  #   # NOTE: --delete is required for retention pruning of old snapshots on
+  #   # the target. Without it, sends succeed but cleanup silently fails.
   #
   # Run manually: sudo btrbk -c /etc/btrbk/btrbk-btrbk.conf {dryrun|run}
 
