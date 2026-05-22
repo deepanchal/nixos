@@ -7,6 +7,7 @@
     ./swaylock
     ./swaync
     ./thunar
+    ./walker
     ./waybar
     ./wlogout
   ];
