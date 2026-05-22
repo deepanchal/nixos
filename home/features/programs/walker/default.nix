@@ -51,6 +51,10 @@
             prefix = ".";
             provider = "symbols";
           }
+          {
+            prefix = ",";
+            provider = "bluetooth";
+          }
         ];
 
         # pin/unpin rebound to alt+p (ctrl+p is `previous`). Setting an action
@@ -176,6 +180,7 @@
       "websearch"
       "providerlist"
       "symbols"
+      "bluetooth"
     ];
 
     # Catppuccin Mocha vendored from github.com/krymancer/walker (mauve → blue),
