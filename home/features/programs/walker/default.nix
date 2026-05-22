@@ -173,8 +173,17 @@
       "providerlist"
     ];
 
-    # Catppuccin Mocha vendored from github.com/krymancer/walker (mauve → blue).
-    themes.catppuccin.style = builtins.readFile ./themes/catppuccin-mocha/style.css;
+    # Catppuccin Mocha vendored from github.com/krymancer/walker (mauve → blue),
+    # plus local tweaks appended below.
+    themes.catppuccin.style =
+      builtins.readFile ./themes/catppuccin-mocha/style.css
+      + ''
+
+        /* Differentiate pinned clipboard entries. */
+        .clipboard.pinned .item-text {
+          color: @yellow;
+        }
+      '';
 
     # Drop the GenericName subtext so app rows show only the name.
     themes.catppuccin.layouts."item_desktopapplications" = ''
