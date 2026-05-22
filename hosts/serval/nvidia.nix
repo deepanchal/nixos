@@ -5,8 +5,9 @@
   ...
 }: {
   imports = [
-    inputs.nixos-hardware.nixosModules.common-gpu-nvidia # with prime
+    # inputs.nixos-hardware.nixosModules.common-gpu-nvidia # with prime
     # inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
+    inputs.nixos-hardware.nixosModules.common-gpu-nvidia-disable
   ];
 
   # Enable OpenGL
