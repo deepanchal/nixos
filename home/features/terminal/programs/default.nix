@@ -42,4 +42,29 @@
   # programs.awscli.enable = true;
   # programs.cava.enable = true;
   programs.fastfetch.enable = true;
+
+
+  ###################
+  # Services
+  ###################
+
+  systemd.user.services.gpg-import-key = {
+    Unit = {
+      Description = "Import GPG secret key from the sops-deployed file (see hosts/common/optional/sops.nix)";
+      After = [ "gpg-agent.service" ];
+    };
+    Install.WantedBy = [ "default.target" ];
+    Service = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+      ExecStart = "${pkgs.writeShellScript "gpg-import-key" ''
+        set -eu
+        key="$HOME/.secrets/gpg-private.asc"
+        if [ -f "$key" ]; then
+          ${pkgs.gnupg}/bin/gpg --batch --import "$key" || true
+        fi
+      ''}";
+    };
+  };
+
 }
