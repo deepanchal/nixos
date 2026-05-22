@@ -208,7 +208,7 @@ in {
       };
       "custom/launcher" = {
         format = "";
-        on-click = "pkill fuzzel || fuzzel";
+        on-click = "walker";
         tooltip = "false";
       };
       "custom/lock" = {
