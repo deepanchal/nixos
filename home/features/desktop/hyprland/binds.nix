@@ -6,14 +6,11 @@
   ...
 }: let
   swayosd = "${pkgs.swayosd}/bin/swayosd-client";
-  cliphist = "${pkgs.cliphist}/bin/cliphist";
-  wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
   wezterm = "${pkgs.wezterm}/bin/wezterm";
   asusctl = "${pkgs.asusctl}/bin/asusctl";
   rog-control-center = "${pkgs.asusctl}/bin/rog-control-center";
   thunar = "thunar";
   playerctl = "${pkgs.playerctl}/bin/playerctl";
-  clipse = "${pkgs.clipse}/bin/clipse";
 
   # From https://github.com/fufexan/dotfiles/blob/41612095fbebb01a0f2fe0980ec507cf02196392/home/programs/wayland/hyprland/binds.nix
   # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
@@ -36,7 +33,7 @@ in {
     # For uncommon syms/bindings, see https://github.com/xkbcommon/libxkbcommon/blob/master/include/xkbcommon/xkbcommon-keysyms.h
     bind =
       [
-        "$mod2, SPACE, exec, pkill fuzzel || fuzzel"
+        "$mod2, SPACE, exec, walker"
         "$mod, RETURN, exec, alacritty msg create-window || alacritty"
         "$modShift, RETURN, exec, rio"
         # "$mod, B, exec, ${firefox}"
@@ -93,8 +90,8 @@ in {
         "$mod, P, pseudo,"
         "$modShift, R, exec, hyprctl reload && notify-send 'Reloaded hyprland'" # toggle floating for the focused window
         "$modShift, SPACE, togglefloating," # toggle floating for the focused window
-        "$mod2, C, exec, pkill clipse || kitty --class clipse -e '${clipse}'"
-        "$mod2, V, exec, ${cliphist} list | fuzzel --dmenu | ${cliphist} decode | ${wl-copy}"
+        "$mod2, C, exec, walker -m clipboard"
+        "$mod2, V, exec, walker -m clipboard"
         "$mod2, W, exec, wallpaper-chooser"
 
         # https://github.com/altdesktop/playerctl?tab=readme-ov-file#selecting-players-to-control
