@@ -47,6 +47,10 @@
             prefix = ";";
             provider = "providerlist";
           }
+          {
+            prefix = ".";
+            provider = "symbols";
+          }
         ];
 
         # pin/unpin rebound to alt+p (ctrl+p is `previous`). Setting an action
@@ -171,6 +175,7 @@
       "files"
       "websearch"
       "providerlist"
+      "symbols"
     ];
 
     # Catppuccin Mocha vendored from github.com/krymancer/walker (mauve → blue),
