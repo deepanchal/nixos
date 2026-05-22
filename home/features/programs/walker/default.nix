@@ -55,6 +55,10 @@
             prefix = ",";
             provider = "bluetooth";
           }
+          {
+            prefix = "'";
+            provider = "bitwarden";
+          }
         ];
 
         # pin/unpin rebound to alt+p (ctrl+p is `previous`). Setting an action
@@ -167,6 +171,33 @@
             bind = "ctrl l";
           }
         ];
+
+        # Copy-only set (autotype disabled). The default list also binds
+        # "type password" to ctrl+p, which collides with `previous`; dropping
+        # the type actions sidesteps that. Setting the list replaces the default.
+        actions.bitwarden = [
+          {
+            action = "copypassword";
+            label = "copy password";
+            default = true;
+            bind = "Return";
+          }
+          {
+            action = "copyusername";
+            label = "copy username";
+            bind = "shift Return";
+          }
+          {
+            action = "copyotp";
+            label = "copy 2fa";
+            bind = "ctrl Return";
+          }
+          {
+            action = "syncvault";
+            label = "sync";
+            bind = "ctrl s";
+          }
+        ];
       };
     };
 
@@ -181,7 +212,16 @@
       "providerlist"
       "symbols"
       "bluetooth"
+      "bitwarden"
     ];
+
+    # Drop `--sensitive` from the default copy command (it breaks pasting
+    # here), and widen the post-copy auto-clear from 5s to 45s so there's time
+    # to switch apps and paste.
+    elephant.provider.bitwarden.settings = {
+      copy_command = "wl-copy --";
+      clear_after = 45;
+    };
 
     # Catppuccin Mocha vendored from github.com/krymancer/walker (mauve → blue),
     # plus local tweaks appended below.

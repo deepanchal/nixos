@@ -3,6 +3,7 @@
     ./firefox
     ./fuzzel
     ./keybase
+    ./rbw.nix
     ./satty
     ./swaylock
     ./swaync
