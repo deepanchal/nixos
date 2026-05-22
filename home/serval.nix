@@ -172,35 +172,34 @@
 
   # Defined in custom hm module -> monitors.nix
   monitors = let
-    primaryMonitor = {
-      name = "HDMI-A-1"; # or "DP-1"; # external monitor w/ usb-c
+    externalMonitor = name: primary: {
+      inherit name primary;
       enabled = true;
-      primary = true;
       width = 2560;
       height = 1440;
       x = 0;
       y = 0;
-      refreshRate = 143.85;
+      refreshRate = 74.93;
       # NOTE: Using any other than 1, 1.066666, 1.25 scaleFactor shows
       # Invalid scale passed to monitor _, failed to find a clean divisor. Suggested nearest scale: _
       scaleFactor = 1.0;
     };
-    secondaryMonitor = {
-      name = "eDP-1"; # laptop screen — Serval WS 16" QHD+ 240Hz panel
+    laptopMonitor = {
+      name = "eDP-1"; # laptop screen
       enabled = true;
       primary = false;
-      width = 2560;
-      height = 1600;
+      width = 1920;
+      height = 1200;
       x = 0;
-      # center monitor horizontally below primary monitor (not working)
-      # x = builtins.floor (primaryMonitor.width * primaryMonitor.scaleFactor - width * scaleFactor);
-      # stack below primary monitor
-      y = builtins.floor (primaryMonitor.height / primaryMonitor.scaleFactor);
+      # stack below the external monitor (2560x1440 @ scale 1.0)
+      y = 1440;
       refreshRate = 240.0;
       scaleFactor = 1.0;
     };
   in [
-    primaryMonitor
-    secondaryMonitor
+    # (externalMonitor "HDMI-A-1" false)
+    (externalMonitor "DP-1" true)
+    # (externalMonitor "DP-2" false)
+    laptopMonitor
   ];
 }
