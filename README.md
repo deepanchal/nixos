@@ -100,11 +100,37 @@ sudo nix --experimental-features "nix-command flakes" run github:nix-community/d
 # Install nixos
 sudo nixos-install --root /mnt --no-root-password --show-trace --verbose --flake .#zephyrion
 
+# IMPORTANT: Set user passwords BEFORE rebooting.
+# This config uses `users.mutableUsers = false` with
+# `hashedPasswordFile = /persist/etc/shadow/<user>` (see hosts/*/users.nix), so
+# `initialPassword`, `--no-root-password`, and `passwd` are all ignored. If these
+# hash files don't exist, root and your user have NO password and you are locked
+# out. Create them in the persist subvolume (mounted at /mnt/persist during install):
+sudo mkdir -p /mnt/persist/etc/shadow
+mkpasswd -m sha-512 | sudo tee /mnt/persist/etc/shadow/deep   # type deep's password
+mkpasswd -m sha-512 | sudo tee /mnt/persist/etc/shadow/root   # type root's password
+sudo chmod 600 /mnt/persist/etc/shadow/deep /mnt/persist/etc/shadow/root
+
 # (Optional) Move your persist data if you are cloning your nixos to another drive
 # Once installed, make sure /mnt has your desired directory structure
 # Boot into your nixos drive
 # Clone persisted home data and other dirs similary with rsync
 rsync -avh --progress /mnt/@persist/home/deep/ /home/deep/
+```
+
+### Locked out? (no password set)
+
+If you already rebooted without creating the password hash files above, both
+accounts have no password. Recover from the NixOS live USB by mounting the
+`@persist` subvolume (btrfs label `NIXOS`) and creating the files, then reboot:
+
+```bash
+sudo mount -o subvol=@persist /dev/disk/by-label/NIXOS /mnt
+sudo mkdir -p /mnt/etc/shadow
+mkpasswd -m sha-512 | sudo tee /mnt/etc/shadow/deep   # type deep's password
+mkpasswd -m sha-512 | sudo tee /mnt/etc/shadow/root   # type root's password
+sudo chmod 600 /mnt/etc/shadow/deep /mnt/etc/shadow/root
+sudo umount /mnt && sudo reboot
 ```
 
 ## References
