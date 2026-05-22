@@ -9,7 +9,8 @@
     ./eza.nix
     ./bat.nix
     ./btop.nix
-    ./clipse.nix
+    # Unlinked in favour of walker's clipboard provider; config kept for reference.
+    # ./clipse.nix
     ./claude.nix
     ./ripgrep.nix
     ./lazygit.nix
