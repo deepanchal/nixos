@@ -23,6 +23,7 @@
 
     ../common/global
     ../common/optional/pipewire.nix
+    ../common/optional/sops.nix
 
     # Serval WS has a Blackwell RTX 5070 Ti — enable it with PRIME offload
     # (Intel iGPU drives the desktop, NVIDIA runs on demand).
