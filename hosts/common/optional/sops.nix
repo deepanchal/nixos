@@ -48,6 +48,10 @@ in
       aws_credentials = homeSecret "/home/${user}/.aws/credentials";
       age_deep = homeSecret "/home/${user}/.secrets/.age/deep.key";
 
+      # Armored GPG secret key; imported into the keyring by the
+      # gpg-import-key user service (home/features/terminal/programs).
+      gpg_private = homeSecret "/home/${user}/.secrets/gpg-private.asc";
+
       # Also deploy default age identity to the standard sops location so the
       # `sops` CLI finds it automatically (no SOPS_AGE_KEY_FILE needed)
       sops_age_keys = (homeSecret "/home/${user}/.config/sops/age/keys.txt") // {
