@@ -19,6 +19,7 @@
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nix-colors.url = "github:misterio77/nix-colors";
     catppuccin.url = "github:catppuccin/nix";
+
     # rust-overlay.url = "github:oxalica/rust-overlay";
     impermanence.url = "github:nix-community/impermanence";
     disko = {
@@ -59,6 +60,14 @@
     nvim-config = {
       url = "github:deepanchal/nvim";
       flake = false;
+    };
+
+    # Walker (Multi-purpose GTK4 launcher backed by the `elephant` data provider daemon)
+    # See: https://github.com/abenz1267/walker
+    elephant.url = "github:abenz1267/elephant";
+    walker = {
+      url = "github:abenz1267/walker";
+      inputs.elephant.follows = "elephant";
     };
   };
 
