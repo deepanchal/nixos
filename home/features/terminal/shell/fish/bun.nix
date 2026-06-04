@@ -11,6 +11,7 @@
     bls = "bun pm ls";
     bin = "bun install";
     bu = "bun update";
+    bui = "bun update --interactive";
     biny = "bun install --yarn";
 
     # Global dependencies
