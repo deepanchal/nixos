@@ -159,8 +159,6 @@ in {
         font_family = "$fontFamily";
         # Enforce any of the 3 default wallpapers. Setting this to 0 or 1 disables the anime background. -1 means “random”. [-1/0/1/2]
         force_default_wallpaper = 0;
-        # controls the VFR status of Hyprland. Heavily recommended to leave enabled to conserve resources.
-        vfr = true;
         # dpms
         mouse_move_enables_dpms = true; # enable dpms on mouse/touchpad action
         key_press_enables_dpms = true; # enable dpms on keyboard action
@@ -211,6 +209,8 @@ in {
         disable_logs = false;
         disable_time = false;
         enable_stdout_logs = true;
+        # controls the VFR status of Hyprland. Heavily recommended to leave enabled to conserve resources.
+        vfr = true;
       };
 
       # https://wiki.hyprland.org/Configuring/Keywords/#executing
@@ -264,8 +264,8 @@ in {
 
       # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
       dwindle = {
-        # enable pseudotiling. Pseudotiled windows retain their floating size when tiled
-        pseudotile = true;
+        # NOTE: dwindle:pseudotile was removed in Hyprland 0.55 (it was a no-op).
+        # Pseudotiling is now per-window only via the `pseudo` dispatcher / `windowrule = pseudo,...`.
         # 0 -> split follows mouse, 1 -> always split to the left (new = left or top) 2 -> always split to the right (new = right or bottom)
         force_split = 2;
         # if enabled, the split (side/top) will not change regardless of what happens to the container
