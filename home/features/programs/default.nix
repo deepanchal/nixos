@@ -4,7 +4,7 @@
     ./fuzzel
     ./keybase
     ./rbw.nix
-    ./satty
+    ./swappy
     ./swaylock
     ./swaync
     ./thunar

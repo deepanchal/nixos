@@ -102,9 +102,9 @@
       "opaque on, match:class ^(imv)$"
       "opaque on, match:class ^(mpv)$"
       "opaque on, match:class ^(org.gnome.Loupe)$"
-      "opaque on, match:class ^(com.gabm.satty)$"
-      "center on, match:class ^(com.gabm.satty)$"
-      "size 80% 80%, match:class ^(com.gabm.satty)$"
+      "opaque on, match:class ^(swappy)$"
+      "center on, match:class ^(swappy)$"
+      "size 80% 80%, match:class ^(swappy)$"
 
       ##########################################
       # IDLEINHIBIT

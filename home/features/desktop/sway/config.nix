@@ -159,7 +159,7 @@ in {
         "${mod2}+c" = "exec walker -m clipboard";
 
         # Screenshots
-        "F6" = "exec grimblast --notify save area - | satty -f -";
+        "F6" = "exec grimblast --notify save area - | swappy -f -";
 
         # Utilities
         "--locked XF86AudioMute" = "exec swayosd-client --output-volume mute-toggle";

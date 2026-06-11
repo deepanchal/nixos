@@ -112,9 +112,9 @@ in {
         ", F6, exec, screenshot"
         ", Print, exec, screenshot"
         # ", Print, exec, grimblast --freeze copy area"
-        # ", F6, exec, grimblast --notify save area - | satty -f -"
-        # ", Print, exec, grimblast --notify save area - | satty -f -"
-        # "CTRL, F6, exec, grimblast --notify save output - | satty -f -"
+        # ", F6, exec, grimblast --notify save area - | swappy -f -"
+        # ", Print, exec, grimblast --notify save area - | swappy -f -"
+        # "CTRL, F6, exec, grimblast --notify save output - | swappy -f -"
 
         "CTRL_ALT, L, exec, sleep 0.1 && hyprlock"
 
