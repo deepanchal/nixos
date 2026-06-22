@@ -160,6 +160,7 @@
   programs = {
     home-manager.enable = true;
     obs-studio.enable = true;
+    onlyoffice.enable = true;
   };
 
   services = {
