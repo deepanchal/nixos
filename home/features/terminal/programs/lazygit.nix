@@ -11,6 +11,7 @@
         showIcons = true;
         nerdFontsVersion = "3";
       };
+      keybinding.universal.backspaceWord = "<alt+backspace>";
       customCommands = [
         {
           key = "C";

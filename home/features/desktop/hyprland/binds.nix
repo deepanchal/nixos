@@ -111,6 +111,8 @@ in {
         # screenshot
         ", F6, exec, screenshot"
         ", Print, exec, screenshot"
+        # android device screenshot -> clipboard
+        "$modShift, P, exec, adb exec-out screencap -p | wl-copy && notify-send 'Android screenshot copied to clipboard'"
         # ", Print, exec, grimblast --freeze copy area"
         # ", F6, exec, grimblast --notify save area - | swappy -f -"
         # ", Print, exec, grimblast --notify save area - | swappy -f -"
