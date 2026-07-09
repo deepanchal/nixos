@@ -5,7 +5,6 @@ result
 # See: https://github.com/github/gitignore/blob/844333a10b0cc8efc2ae0e2c03da223ca280e49f/Agents.gitignore
 
 # AI Agents / Assistants
-AGENTS.md
 GEMINI.md
 WARP.md
 CRUSH.md
