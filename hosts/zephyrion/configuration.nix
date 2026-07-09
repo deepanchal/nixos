@@ -237,6 +237,9 @@
     hw-probe
     iotop
     libqalculate
+    poppler-utils
+    ghostscript
+    pdftk
 
     # upx
     git
@@ -310,6 +313,7 @@
     jdk11
     ninja
     pkg-config
+    gensio
 
     nodejs
     rustup
@@ -336,6 +340,8 @@
     tcl
     tk
     android-tools # contains adb
+    bundletool
+    inputs.treehouse.packages.${pkgs.system}.default
   ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,

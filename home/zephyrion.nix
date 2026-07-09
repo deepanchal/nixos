@@ -77,7 +77,6 @@
     pkgs.postman
 
     # AI Tools
-    pkgs.aider-chat # AI pair programming in your terminal
     pkgs.code-cursor
     pkgs.ollama
 

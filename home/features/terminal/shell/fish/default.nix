@@ -55,6 +55,7 @@ in
       shell = "nix shell";
 
       # AI
+      cc = "claude";
       ai = "aichat --session";
       aish = "aichat -c -r %shell%";
       aiquick = "aichat --model openai:gpt-5-mini --session";

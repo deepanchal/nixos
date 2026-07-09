@@ -407,6 +407,7 @@
         "nur": "nur",
         "nvim-config": "nvim-config",
         "sops-nix": "sops-nix",
+        "treehouse": "treehouse",
         "walker": "walker",
         "zsh-omz-plugin-bun": "zsh-omz-plugin-bun",
         "zsh-omz-plugin-pnpm": "zsh-omz-plugin-pnpm"
@@ -474,6 +475,26 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default-linux",
+        "type": "github"
+      }
+    },
+    "treehouse": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783366289,
+        "narHash": "sha256-bVFHBbqFgFVgpkrYu1jnWgUSlgZ1p90KH4HpoiMy4Wo=",
+        "owner": "kunchenguid",
+        "repo": "treehouse",
+        "rev": "c76015d914e8ae7068c024c68c58860e10e8ee52",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kunchenguid",
+        "repo": "treehouse",
         "type": "github"
       }
     },
