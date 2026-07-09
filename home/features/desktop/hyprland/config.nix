@@ -201,6 +201,7 @@ in {
       # https://wiki.hyprland.org/Configuring/Variables/#cursor
       cursor = {
         no_hardware_cursors = true;
+        enable_hyprcursor = false;
       };
 
       # https://wiki.hyprland.org/Configuring/Variables/#debug
