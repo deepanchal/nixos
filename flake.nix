@@ -122,12 +122,6 @@
         modules = [./hosts/zephyrion];
         specialArgs = {inherit inputs outputs;};
       };
-
-      # System76 Serval WS (Intel Core Ultra 9 275HX + RTX 5070 Ti)
-      serval = nixpkgs.lib.nixosSystem {
-        modules = [./hosts/serval];
-        specialArgs = {inherit inputs outputs;};
-      };
     };
 
     # Standalone home-manager configuration entrypoint
@@ -140,12 +134,6 @@
       "deep@zephyrion" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home manager requires 'pkgs' instance
         modules = [./home/zephyrion.nix];
-        extraSpecialArgs = {inherit inputs outputs;};
-      };
-
-      "deep@serval" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home manager requires 'pkgs' instance
-        modules = [./home/serval.nix];
         extraSpecialArgs = {inherit inputs outputs;};
       };
 
