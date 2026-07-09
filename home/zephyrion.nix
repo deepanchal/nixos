@@ -14,6 +14,7 @@
     # If you want to use modules your own flake exports (from modules/home-manager):
     # outputs.homeManagerModules.example
     ./global
+    ./features/ai
     ./features/editors
     ./features/terminal
     ./features/desktop
