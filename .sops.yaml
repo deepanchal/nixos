@@ -6,7 +6,6 @@
 keys:
   - &deep age16gtkkvx0hn8gpjtzua535mf293e9amufze8ertplzjq9wm5v7suq6kklef
   - &zephyrion age126skdq485tknusy8uvhjm3rw4k0j40zdecrwsdcpjywj6j2xfvfsupptpn
-  - &serval age1m6pr2rq4vrjkrgk8v8ura8wkcu0aqe5leqphwcrftjpk7d62zd8qd9ct9x
 
 creation_rules:
   - path_regex: secrets/[^/]+\.yaml$
@@ -14,4 +13,3 @@ creation_rules:
       - age:
           - *deep
           - *zephyrion
-          - *serval
