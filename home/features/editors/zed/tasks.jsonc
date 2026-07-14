@@ -67,7 +67,8 @@
   },
   {
     "label": "live_grep",
-    "command": "zeditor \"$(tv text)\"",
+    // --exact = substring matching, like Telescope live_grep's literal ripgrep (not fuzzy).
+    "command": "zeditor \"$(tv text --exact)\"",
     "hide": "always",
     "allow_concurrent_runs": false,
     "use_new_terminal": false,
