@@ -142,6 +142,7 @@
         ".minecraft"
         ".cache"
         ".wakatime"
+        ".treehouse"
 
         ".config/nixpkgs"
         ".config/gh"
