@@ -170,6 +170,8 @@
         ".config/flutter" # firebase cli state
         ".config/sh.cider.genten" # Cider Apple Music Client
 
+        ".config/timewarrior"
+
         # aichat data dirs
         ".config/aichat/roles"
         ".config/aichat/sessions"

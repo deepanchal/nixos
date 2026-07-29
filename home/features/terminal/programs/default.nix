@@ -25,6 +25,7 @@
     ./yazi.nix
     ./dnote.nix
     ./mise.nix
+    ./timewarrior.nix
     # ./vale.nix
   ];
 
