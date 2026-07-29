@@ -1,4 +1,8 @@
-{
+{pkgs, ...}: {
+  home.packages = [
+    (pkgs.writers.writePython3Bin "teamwork2klog" {flakeIgnore = ["E501"];} ./teamwork2klog.py)
+  ];
+
   programs.fish = {
     shellAbbrs = {
       k = "klog";
@@ -13,6 +17,7 @@
       kin = "klog start";
       kout = "klog stop";
       ktr = "klog track";
+      ktw = ''teamwork2klog --project "ArroyoDev Internal Projects" --client ArroyoDev --exclude-from ~/time.klg'';
     };
 
     functions = {
