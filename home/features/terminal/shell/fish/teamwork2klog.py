@@ -75,6 +75,12 @@ def existing_dates(text):
     return frozenset(found)
 
 
+def append_prefix(text):
+    if not text or text.endswith("\n\n"):
+        return ""
+    return "\n" if text.endswith("\n") else "\n\n"
+
+
 def total_minutes(rows):
     return sum(
         int((parse_row(row)[2] - parse_row(row)[1]).total_seconds() // 60) for row in rows
@@ -116,6 +122,11 @@ def selftest():
 
     out, _ = render(rows[:1])
     assert '#project="Acme"' in out and "#client" not in out, out
+
+    assert append_prefix("") == ""
+    assert append_prefix("2026-07-17\n    1h x\n\n") == ""
+    assert append_prefix("2026-07-17\n    1h x\n") == "\n"
+    assert append_prefix("2026-07-17\n    1h x") == "\n\n"
     print("selftest ok", file=sys.stderr)
 
 
@@ -125,6 +136,7 @@ def main():
     parser.add_argument("--project", help="value for #project (default: CSV Project column)")
     parser.add_argument("--client", help="value for #client (default: CSV Company column)")
     parser.add_argument("--exclude-from", metavar="KLG", help="skip dates already present in this .klg file")
+    parser.add_argument("--append", metavar="KLG", help="append to this .klg file instead of stdout, skipping dates it already has")
     parser.add_argument("--selftest", action="store_true")
     args = parser.parse_args()
 
@@ -137,19 +149,28 @@ def main():
     with source as handle:
         rows = list(csv.DictReader(handle))
 
-    exclude = frozenset()
-    if args.exclude_from:
-        with open(args.exclude_from, encoding="utf-8") as handle:
-            exclude = existing_dates(handle.read())
+    target = args.append or args.exclude_from
+    existing = ""
+    if target:
+        with open(target, encoding="utf-8") as handle:
+            existing = handle.read()
 
-    out, skipped = render(rows, args.project, args.client, exclude)
-    if out:
+    out, skipped = render(rows, args.project, args.client, existing_dates(existing))
+
+    if args.append:
+        if out:
+            with open(args.append, "a", encoding="utf-8") as handle:
+                handle.write(append_prefix(existing) + out + "\n")
+    elif out:
         print(out)
 
     minutes = total_minutes(rows)
     print(f"{len(rows)} entries, {minutes // 60}h{minutes % 60:02d}m in CSV", file=sys.stderr)
     for record_date in skipped:
-        print(f"skipped {record_date}: already in {args.exclude_from}", file=sys.stderr)
+        print(f"skipped {record_date}: already in {target}", file=sys.stderr)
+    if args.append:
+        added = len(out.split("\n\n")) if out else 0
+        print(f"appended {added} records to {args.append}", file=sys.stderr)
 
 
 if __name__ == "__main__":
