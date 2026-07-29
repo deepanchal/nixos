@@ -76,6 +76,7 @@
     pkgs.prismlauncher # minecraft launcher
     pkgs.bitwarden-cli
     pkgs.postman
+    pkgs.klog-time-tracker
 
     # AI Tools
     pkgs.code-cursor

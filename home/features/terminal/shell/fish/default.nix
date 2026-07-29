@@ -16,6 +16,7 @@ in
     ./docker.nix
     ./flutter.nix
     ./git.nix
+    ./klog.nix
     ./pnpm.nix
     ./systemd.nix
   ];

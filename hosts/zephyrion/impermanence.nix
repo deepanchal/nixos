@@ -170,6 +170,7 @@
         ".config/flutter" # firebase cli state
         ".config/sh.cider.genten" # Cider Apple Music Client
 
+        ".config/klog"
         ".config/timewarrior"
 
         # aichat data dirs
@@ -199,6 +200,7 @@
         }
       ];
       files = [
+        "time.klg"
         ".bash_history"
         ".wakatime.cfg"
         ".aicommit2"
