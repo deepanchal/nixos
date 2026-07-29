@@ -17,7 +17,7 @@
       kin = "klog start";
       kout = "klog stop";
       ktr = "klog track";
-      ktw = ''teamwork2klog --project "ArroyoDev Internal Projects" --client ArroyoDev --exclude-from ~/time.klg'';
+      ktw = ''teamwork2klog --project "ArroyoDev Internal Projects" --client ArroyoDev --append ~/time.klg'';
     };
 
     functions = {
