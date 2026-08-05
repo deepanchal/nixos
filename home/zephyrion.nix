@@ -72,7 +72,6 @@
     pkgs.scrcpy
     pkgs.kubectl
     pkgs.fastfetch
-    pkgs.google-cloud-sdk
     pkgs.prismlauncher # minecraft launcher
     pkgs.bitwarden-cli
     pkgs.postman

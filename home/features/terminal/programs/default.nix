@@ -17,6 +17,7 @@
     ./tealdeer.nix
     ./git.nix
     ./gh.nix
+    ./gcloud.nix
     ./glow.nix
     ./fd.nix
     ./git-cliff.nix
