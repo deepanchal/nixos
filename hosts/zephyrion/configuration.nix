@@ -79,6 +79,7 @@
       # "amd_pstate=passive"
     ];
     consoleLogLevel = 0;
+    supportedFilesystems.apfs = true;
     initrd = {
       enable = true;
       verbose = true;
