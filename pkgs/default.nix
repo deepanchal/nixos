@@ -11,4 +11,5 @@
   oh-my-tmux = pkgs.callPackage ./oh-my-tmux {};
   mender-cli = pkgs.callPackage ./mender-cli {};
   atuin-export-fish-history = pkgs.callPackage ./atuin-export-fish-history {};
+  no-mistakes = pkgs.callPackage ./no-mistakes {};
 }
