@@ -37,6 +37,7 @@ in
 
       # Other apps
       zj = "zellij";
+      th = "treehouse";
 
       # IP
       myip = "ip addr | grep -m 1 -o '192.*.*.*' | cut -d '/' -f 1";
@@ -97,6 +98,11 @@ in
       '';
 
       build = ''nix build $argv --builders ""'';
+
+      tcd = ''
+        set -l dir (treehouse enter --print-path $argv[1]); or return
+        cd $dir
+      '';
 
       glscommits = ''
         set -l main_branch (git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
