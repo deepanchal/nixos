@@ -40,6 +40,7 @@
             "wheel" # Enable ‘sudo’ for the user.
             "video"
             "audio"
+            "dialout"
             "libvirtd"
             "docker"
           ];
