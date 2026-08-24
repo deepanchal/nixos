@@ -21,15 +21,13 @@
       ${options.maxHeapSize}
       ${options.enableWaylandSupport}
     '';
-    # https://github.com/NixOS/nixpkgs/issues/425328#issuecomment-3073728060
-    alternateJdk = pkgs.jdk;
   in [
     pkgs.android-studio
 
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/jetbrains/default.nix
-    (pkgs.jetbrains.webstorm.override {vmopts = vmopts; jdk = alternateJdk;})
-    (pkgs.jetbrains.rust-rover.override {vmopts = vmopts; jdk = alternateJdk;})
-    (pkgs.jetbrains.datagrip.override {vmopts = vmopts; jdk = alternateJdk;})
-    (pkgs.jetbrains.pycharm.override {vmopts = vmopts; jdk = alternateJdk;})
+    (pkgs.jetbrains.webstorm.override {vmopts = vmopts;})
+    (pkgs.jetbrains.rust-rover.override {vmopts = vmopts;})
+    (pkgs.jetbrains.datagrip.override {vmopts = vmopts;})
+    (pkgs.jetbrains.pycharm.override {vmopts = vmopts;})
   ];
 }
