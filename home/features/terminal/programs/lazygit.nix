@@ -76,11 +76,10 @@
         commit = {
           signOff = true;
         };
-        pagers = [
+        diffRenderers = [
           {
             colorArg = "always";
-            # pager = "diff-so-fancy";
-            pager = "delta --dark --paging=never --tabs 2";
+            command = "delta --dark --paging=never --tabs 2";
           }
         ];
         branchLogCmd = "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --oneline {{branchName}} --";
