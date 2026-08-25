@@ -278,9 +278,6 @@ in {
         # if enabled, resizing direction will be determined by the mouse’s position on the window (nearest to which corner).
         # Else, it is based on the window’s tiling position.
         smart_resizing = false;
-        # if enabled, makes the preselect direction persist until either this mode is turned off,
-        # another direction is specified, or a non-direction is specified (anything other than l,r,u/t,d/b)	
-        permanent_direction_override = true;
       };
 
       # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
