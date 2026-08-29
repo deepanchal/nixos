@@ -57,9 +57,11 @@ in {
     '')
   ];
 
-  # https://github.com/nix-community/home-manager/blob/master/modules/services/window-managers/hyprland.nix
+  # https://github.com/nix-community/home-manager/blob/master/modules/services/window-managers/hyprland/default.nix
   wayland.windowManager.hyprland = {
     enable = true;
+    # https://hypr.land/news/26_lua/ - hyprlang is deprecated since 0.55
+    configType = "lua";
     plugins = [
     ];
     # systemd = {
