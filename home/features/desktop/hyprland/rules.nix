@@ -1,149 +1,214 @@
-{...}: {
+{...}: let
+  blurredLayers = ["^(gtk-layer-shell)$" "^(launcher)$" "notifications"];
+in {
   wayland.windowManager.hyprland.settings = {
-    layerrule = [
-      "blur on, match:namespace ^(gtk-layer-shell)$"
-      "ignore_alpha 0.5, match:namespace ^(gtk-layer-shell)$"
-      "blur on, match:namespace ^(launcher)$"
-      "ignore_alpha 0.5, match:namespace ^(launcher)$"
-      "no_anim on, match:namespace launcher"
-      "blur on, match:namespace notifications"
-      "ignore_alpha 0.5, match:namespace notifications"
-      # "blur on, match:namespace bar"
-      "ignore_alpha 0.5, match:namespace bar"
-      "no_anim on, match:namespace bar"
-    ];
-    windowrule = [
-      # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
+    # https://wiki.hypr.land/Configuring/Basics/Window-Rules/#layer-rules
+    layer_rule =
+      map (namespace: {
+        match = {inherit namespace;};
+        blur = true;
+        ignore_alpha = 0.5;
+      })
+      blurredLayers
+      ++ [
+        {
+          match.namespace = "launcher";
+          no_anim = true;
+        }
+        {
+          match.namespace = "bar";
+          ignore_alpha = 0.5;
+          no_anim = true;
+        }
+      ];
 
+    # https://wiki.hypr.land/Configuring/Basics/Window-Rules/
+    window_rule = [
       ##########################################
       # FLOATING
       ##########################################
-      "float on, match:class udiskie"
-      "float on, match:title (Media viewer)"
-      "float on, match:class ^(imv)$"
-      "float on, match:class ^(mpv)$"
-      "float on, match:class ^(org.gnome.Loupe)$"
-      "no_shadow on, match:float false" # only allow shadows for floating windows
-      "float on, match:class Rofi"
-      "stay_focused on, match:class Rofi"
-      "float on, match:class feh"
-      "float on, match:class wlogout"
-      "float on, match:class file_progress"
-      "float on, match:class confirm"
-      "float on, match:class dialog"
-      "float on, match:class download"
-      "float on, match:class notification"
-      "float on, match:class error"
-      "float on, match:class splash"
-      "float on, match:class confirmreset"
-      "float on, match:class ^(wdisplays)$"
-      "size 70% 70%, match:class ^(wdisplays)$"
+      {match.class = "udiskie"; float = true;}
+      {match.title = "(Media viewer)"; float = true;}
+      {match.class = "^(imv)$"; float = true;}
+      {match.class = "^(mpv)$"; float = true;}
+      {match.class = "^(org.gnome.Loupe)$"; float = true;}
+      {match.float = false; no_shadow = true;} # only allow shadows for floating windows
+      {match.class = "Rofi"; float = true; stay_focused = true;}
+      {match.class = "feh"; float = true;}
+      {match.class = "wlogout"; float = true;}
+      {match.class = "file_progress"; float = true;}
+      {match.class = "confirm"; float = true;}
+      {match.class = "dialog"; float = true;}
+      {match.class = "download"; float = true;}
+      {match.class = "notification"; float = true;}
+      {match.class = "error"; float = true;}
+      {match.class = "splash"; float = true;}
+      {match.class = "confirmreset"; float = true;}
+      {
+        match.class = "^(wdisplays)$";
+        float = true;
+        size = ["monitor_w*0.7" "monitor_h*0.7"];
+      }
       # float blueman-manager
-      "float on, match:class ^(.*blueman-.*)$"
-      "center on, match:class ^(.*blueman-.*)$"
-      "size 50% 60%, match:class ^(.*blueman-.*)$"
-      "dim_around on, match:class ^(.*blueman-.*)$"
+      {
+        match.class = "^(.*blueman-.*)$";
+        float = true;
+        center = true;
+        size = ["monitor_w*0.5" "monitor_h*0.6"];
+        dim_around = true;
+      }
       # float network-manager-editor
-      "float on, match:class ^(nm-connection-editor)$"
-      "center on, match:class ^(nm-connection-editor)$"
+      {
+        match.class = "^(nm-connection-editor)$";
+        float = true;
+        center = true;
+      }
       # float bitwarden
-      "float on, match:title ^(.*Bitwarden.*)$"
-      "center on, match:title ^(.*Bitwarden.*)$"
+      {
+        match.title = "^(.*Bitwarden.*)$";
+        float = true;
+        center = true;
+      }
       # float pavucontrol
-      "float on, match:class ^(.*pavucontrol.*)$"
-      "center on, match:class ^(.*pavucontrol.*)$"
-      "size 50% 60%, match:class ^(.*pavucontrol.*)$"
-      "dim_around on, match:class ^(.*pavucontrol.*)$"
+      {
+        match.class = "^(.*pavucontrol.*)$";
+        float = true;
+        center = true;
+        size = ["monitor_w*0.5" "monitor_h*0.6"];
+        dim_around = true;
+      }
       # make Firefox PiP window floating and sticky
-      "float on, match:title ^(Picture-in-Picture)$"
-      "pin on, match:title ^(Picture-in-Picture)$"
+      {
+        match.title = "^(Picture-in-Picture)$";
+        float = true;
+        pin = true;
+      }
       # thunar
-      "opacity 0.8, match:class ^(thunar)$"
-      "float on, match:class ^(thunar)$, match:title ^(File Operation Progress)$"
-      "center on, match:class ^(thunar)$, match:title ^(File Operation Progress)$"
-      "pin on, match:class ^(thunar)$, match:title ^(File Operation Progress)$"
-      "size 400 100, match:class ^(thunar)$, match:title ^(File Operation Progress)$"
-      "move 100%-w-25 5%, match:class ^(thunar)$, match:title ^(File Operation Progress)$"
-      "center on, match:class ^(thunar)$, match:title ^(Attention|Error)$"
+      {match.class = "^(thunar)$"; opacity = "0.8";}
+      {
+        match = {
+          class = "^(thunar)$";
+          title = "^(File Operation Progress)$";
+        };
+        float = true;
+        center = true;
+        pin = true;
+        size = [400 100];
+        move = ["monitor_w-window_w-25" "monitor_h*0.05"];
+      }
+      {
+        match = {
+          class = "^(thunar)$";
+          title = "^(Attention|Error)$";
+        };
+        center = true;
+      }
       # portal / polkit
-      "float on, match:class ^(xdg-desktop-portal-gtk)$"
-      "center on, match:class ^(xdg-desktop-portal-gtk)$"
-      "size 50% 50%, match:class ^(xdg-desktop-portal-gtk)$"
-      "dim_around on, match:class ^(xdg-desktop-portal-gtk)$"
-      "dim_around on, match:class ^(polkit-gnome-authentication-agent-1)$"
-      "float on, match:class ^(polkit-gnome-authentication-agent-1)$"
+      {
+        match.class = "^(xdg-desktop-portal-gtk)$";
+        float = true;
+        center = true;
+        size = ["monitor_w*0.5" "monitor_h*0.5"];
+        dim_around = true;
+      }
+      {
+        match.class = "^(polkit-gnome-authentication-agent-1)$";
+        float = true;
+        dim_around = true;
+      }
       # hyprland share picker
-      "float on, match:title ^(MainPicker)$"
-      "center on, match:title ^(MainPicker)$"
-      "size 50% 50%, match:class ^(MainPicker)$"
+      {
+        match.title = "^(MainPicker)$";
+        float = true;
+        center = true;
+      }
+      {
+        match.class = "^(MainPicker)$";
+        size = ["monitor_w*0.5" "monitor_h*0.5"];
+      }
       # JetBrains IDEs w/ wayland support. See: jetbrains module
-      "no_anim on, match:class ^(jetbrains-.*)$"
-      "no_blur on, match:class ^(jetbrains-.*)$"
-      "no_shadow on, match:class ^(jetbrains-.*)$"
-      "border_size 0, match:class ^(jetbrains-.*)$"
-      "rounding 0, match:class ^(jetbrains-.*)$"
-      "opacity 1, match:class ^(jetbrains-.*)$"
+      {
+        match.class = "^(jetbrains-.*)$";
+        no_anim = true;
+        no_blur = true;
+        no_shadow = true;
+        border_size = 0;
+        rounding = 0;
+        opacity = "1";
+      }
       # spotify
-      "opacity 0.8, match:initial_title ^(Spotify.*)$"
+      {match.initial_title = "^(Spotify.*)$"; opacity = "0.8";}
       # clipse
-      "float on, match:class (clipse)"
-      "center on, match:class (clipse)"
-      "size 40% 64%, match:class (clipse)"
-      "no_anim on, match:class (clipse)"
+      {
+        match.class = "(clipse)";
+        float = true;
+        center = true;
+        size = ["monitor_w*0.4" "monitor_h*0.64"];
+        no_anim = true;
+      }
 
       ##########################################
       # OPAQUE
       ##########################################
-      "opaque on, match:class ^(brave)$"
-      "opaque on, match:title (Media viewer)"
-      "opaque on, match:title (Firefox)"
-      "opaque on, match:title (Slack)"
-      "opaque on, match:title (telegram)"
-      "opaque on, match:class ^(imv)$"
-      "opaque on, match:class ^(mpv)$"
-      "opaque on, match:class ^(org.gnome.Loupe)$"
-      "opaque on, match:class ^(swappy)$"
-      "center on, match:class ^(swappy)$"
-      "size 80% 80%, match:class ^(swappy)$"
+      {match.class = "^(brave)$"; opaque = true;}
+      {match.title = "(Media viewer)"; opaque = true;}
+      {match.title = "(Firefox)"; opaque = true;}
+      {match.title = "(Slack)"; opaque = true;}
+      {match.title = "(telegram)"; opaque = true;}
+      {match.class = "^(imv)$"; opaque = true;}
+      {match.class = "^(mpv)$"; opaque = true;}
+      {match.class = "^(org.gnome.Loupe)$"; opaque = true;}
+      {
+        match.class = "^(swappy)$";
+        opaque = true;
+        center = true;
+        size = ["monitor_w*0.8" "monitor_h*0.8"];
+      }
 
       ##########################################
       # IDLEINHIBIT
       ##########################################
-      "idle_inhibit focus, match:class ^(mpv)$"
-      "idle_inhibit focus, match:class ^(alacritty)$"
-      "idle_inhibit focus, match:class ^(wezterm)$"
-      "idle_inhibit fullscreen, match:class ^(firefox)$"
+      {match.class = "^(mpv)$"; idle_inhibit = "focus";}
+      {match.class = "^(alacritty)$"; idle_inhibit = "focus";}
+      {match.class = "^(wezterm)$"; idle_inhibit = "focus";}
+      {match.class = "^(firefox)$"; idle_inhibit = "fullscreen";}
 
       ##########################################
       # WORKSPACE CONFIG
       ##########################################
       # throw sharing indicators away
-      "workspace special silent, match:title ^(Firefox — Sharing Indicator)$"
-      "workspace special silent, match:title ^.*(Sharing Indicator)$"
-      "workspace special silent, match:title ^(.*is sharing (your screen|a window)\\.)$"
+      {match.title = "^(Firefox — Sharing Indicator)$"; workspace = "special silent";}
+      {match.title = "^.*(Sharing Indicator)$"; workspace = "special silent";}
+      {match.title = "^(.*is sharing (your screen|a window)\\.)$"; workspace = "special silent";}
 
       # IDE
-      "workspace 1, match:class ^(Code)$"
-      "workspace 1, match:class ^(jetbrains-studio)$" # android studio
-      "workspace 1, match:class ^(jetbrains-studio)$, match:title ^(Conflicts)$" # android studio
+      {match.class = "^(Code)$"; workspace = "1";}
+      {match.class = "^(jetbrains-studio)$"; workspace = "1";} # android studio
+      {
+        match = {
+          class = "^(jetbrains-studio)$";
+          title = "^(Conflicts)$";
+        };
+        workspace = "1";
+      } # android studio
 
       # Browsing
-      # "workspace 2, match:class ^(firefox)$"
-      # "workspace 2, match:class ^(brave)$"
+      # {match.class = "^(firefox)$"; workspace = "2";}
+      # {match.class = "^(brave)$"; workspace = "2";}
 
       # Terminal
-      # "workspace 3, match:class ^(wezterm)$"
-      # "workspace 3, match:class ^(alacritty)$"
-      # "workspace 3, match:class ^(kitty)$"
+      # {match.class = "^(wezterm)$"; workspace = "3";}
+      # {match.class = "^(alacritty)$"; workspace = "3";}
+      # {match.class = "^(kitty)$"; workspace = "3";}
 
       # Messaging
-      # "workspace 5 silent, match:class ^(Slack)$"
-      # "workspace 5 silent, match:class ^(org.telegram.desktop)$"
-      # "workspace 5 silent, match:class ^(discord)$"
-      # "workspace 5 silent, match:class ^(zoom)$"
-      # "workspace 5 silent, match:class ^(teams-for-linux)$"
+      # {match.class = "^(Slack)$"; workspace = "5 silent";}
+      # {match.class = "^(org.telegram.desktop)$"; workspace = "5 silent";}
+      # {match.class = "^(discord)$"; workspace = "5 silent";}
+      # {match.class = "^(zoom)$"; workspace = "5 silent";}
+      # {match.class = "^(teams-for-linux)$"; workspace = "5 silent";}
 
-      # "workspace special silent, match:class ^(.*pavucontrol.*)$"
+      # {match.class = "^(.*pavucontrol.*)$"; workspace = "special silent";}
     ];
   };
 }
