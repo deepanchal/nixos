@@ -259,16 +259,16 @@ in {
     # https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
     workspace_rule =
       map (rule: rule // onMonitor primary) [
-        {workspace = "1"; default_name = "coding";}
-        {workspace = "2"; default_name = "browsing";}
-        {workspace = "3"; default_name = "terminal";}
-        {workspace = "4"; default_name = "misc1";}
-        {workspace = "7"; default_name = "misc3";}
-        {workspace = "8"; default_name = "misc4";}
+        {workspace = "1"; }
+        {workspace = "2"; }
+        {workspace = "3"; }
+        {workspace = "4"; }
+        {workspace = "7"; }
+        {workspace = "8"; }
       ]
       ++ map (rule: rule // onMonitor secondary) [
-        {workspace = "5"; default_name = "slack";}
-        {workspace = "6"; default_name = "misc2";}
+        {workspace = "5"; }
+        {workspace = "6"; }
       ]
       # Workspaces 9 and 10 are not explicitly assigned to allow them to appear on the active monitor
       ++ [
