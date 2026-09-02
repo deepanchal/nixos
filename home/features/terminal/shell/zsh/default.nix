@@ -199,6 +199,7 @@ in
 
         # Other apps
         zj = "zellij";
+        mr = "mise run --quiet";
 
         # IP Aliases
         myip = "ip addr | grep -m 1 -o '192.*.*.*' | cut -d '/' -f 1";

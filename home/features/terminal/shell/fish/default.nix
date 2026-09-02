@@ -38,6 +38,7 @@ in
       # Other apps
       zj = "zellij";
       th = "treehouse";
+      mr = "mise run --quiet";
 
       # IP
       myip = "ip addr | grep -m 1 -o '192.*.*.*' | cut -d '/' -f 1";
