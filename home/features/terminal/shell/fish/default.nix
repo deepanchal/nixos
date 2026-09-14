@@ -30,7 +30,7 @@ in
       ll = "eza -l --icons --color always";
       la = "eza -alughHo --git --icons --color always";
       cat = "bat --pager=never --plain";
-      grep = "rg";
+      # grep = "rg";
       ps = "procs";
 
       fd = lib.mkForce "fd";
