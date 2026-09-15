@@ -163,6 +163,7 @@
         ".config/spotify"
         ".config/Keybase"
         ".config/keybase"
+        ".config/kdeconnect"
         ".config/obs-studio"
         ".config/teamviewer"
         ".config/rog" # asusctl's rog-control-center

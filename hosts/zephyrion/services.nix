@@ -38,6 +38,7 @@
   services.tumbler.enable = true;
   services.fwupd.enable = true;
   programs.localsend.enable = true;
+  programs.kdeconnect.enable = true;
   programs.nh = {
     enable = true;
     clean.enable = true;
