@@ -84,6 +84,7 @@
       enable = true;
       verbose = true;
       systemd.enable = true;
+      systemd.emergencyAccess = true;
       # Enable AMD iGPU early in the boot process
       kernelModules = ["amdgpu"];
     };
