@@ -37,13 +37,26 @@ in
   #
   # Run manually: sudo btrbk -c /etc/btrbk/btrbk-btrbk.conf {dryrun|run}
 
+  services.btrbk.instances."local" = {
+    onCalendar = "*-*-* 03:00:00";
+    settings = {
+      timestamp_format = "long";
+      snapshot_preserve = "7d 4w";
+      snapshot_preserve_min = "2d";
+      volume."/btr_pool".subvolume."@persist" = {
+        snapshot_create = "always";
+        snapshot_dir = "@snapshots";
+      };
+    };
+  };
+
   services.btrbk.instances."btrbk" = {
-    onCalendar = "daily";
+    onCalendar = "*-*-* 03:30:00";
     settings = {
       timestamp_format = "long";
 
       # Local snapshots on zephyrion / remote backups on beacon
-      snapshot_preserve = "14d";
+      snapshot_preserve = "7d 4w";
       snapshot_preserve_min = "2d";
       target_preserve = "3d 2w 3m";
       target_preserve_min = "latest";
@@ -56,7 +69,7 @@ in
       volume."/btr_pool" = {
         target = "ssh://${remote}/mnt/btrfs-backup/${hostname}";
         subvolume."@persist" = {
-          snapshot_create = "always";
+          snapshot_create = "no";
           snapshot_dir = "@snapshots";
         };
       };
