@@ -28,6 +28,7 @@
     ./mise.nix
     ./timewarrior.nix
     ./taskwarrior.nix
+    ./treehouse.nix
     # ./vale.nix
   ];
 
