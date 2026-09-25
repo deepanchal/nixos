@@ -17,7 +17,7 @@
   services.dbus.enable = true;
   services.dbus.packages = with pkgs; [
     xfconf
-    gcr # pinentry-gnome3 prompter (used by rbw)
+    gcr_3 # pinentry-gnome3 prompter (used by rbw)
     # gnome2.GConf
   ];
   services.mpd.enable = true;
