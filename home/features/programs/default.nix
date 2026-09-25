@@ -3,6 +3,7 @@
     ./firefox
     ./fuzzel
     ./keybase
+    ./localsend.nix
     ./rbw.nix
     ./swappy
     ./swaylock
