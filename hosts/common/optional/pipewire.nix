@@ -8,6 +8,11 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     wireplumber.enable = true;
+    wireplumber.extraConfig."10-bluez" = {
+      "monitor.bluez.properties" = {
+        "bluez5.codecs" = ["sbc" "sbc_xq" "aac" "msbc" "cvsd"];
+      };
+    };
     # If you want to use JACK applications, uncomment this
     # jack.enable = true;
 
