@@ -70,6 +70,7 @@
     pkgs.bmaptool
     pkgs.totp-cli
     pkgs.scrcpy
+    pkgs.rustdesk-flutter
     pkgs.kubectl
     pkgs.fastfetch
     pkgs.prismlauncher # minecraft launcher
