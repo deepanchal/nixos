@@ -71,6 +71,7 @@
     enable = true;
     enableSSHSupport = true;
   };
+  services.pcscd.enable = true;
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
