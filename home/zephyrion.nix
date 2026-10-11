@@ -102,6 +102,7 @@
     pkgs.fuego # See: pkgs/fuego/default.nix
     pkgs.atuin-export-fish-history # See: pkgs/atuin-export-fish-history/default.nix
     pkgs.no-mistakes # See: pkgs/no-mistakes/default.nix
+    pkgs.namespace-devbox # See: pkgs/namespace-devbox/default.nix
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
