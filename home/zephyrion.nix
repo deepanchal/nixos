@@ -77,6 +77,7 @@
     pkgs.bitwarden-cli
     pkgs.postman
     pkgs.klog-time-tracker
+    pkgs.namespace-cli
 
     # AI Tools
     pkgs.code-cursor
