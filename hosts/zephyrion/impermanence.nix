@@ -171,6 +171,7 @@
         ".config/flutter" # firebase cli state
         ".config/sh.cider.genten" # Cider Apple Music Client
 
+        ".config/ns"
         ".config/klog"
         ".config/timewarrior"
 
