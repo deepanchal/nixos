@@ -47,6 +47,16 @@
           mods = "Control";
           action = "ClearHistory";
         }
+        {
+          key = "Backslash";
+          mods = "Control";
+          chars = "\\u001c";
+        }
+        {
+          key = "Tab";
+          mods = "Control";
+          chars = "\\u001c";
+        }
       ];
     };
   };
