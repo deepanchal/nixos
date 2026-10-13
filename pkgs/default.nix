@@ -13,4 +13,5 @@
   atuin-export-fish-history = pkgs.callPackage ./atuin-export-fish-history {};
   no-mistakes = pkgs.callPackage ./no-mistakes {};
   namespace-devbox = pkgs.callPackage ./namespace-devbox {};
+  slack-cli = pkgs.callPackage ./slack-cli {};
 }
