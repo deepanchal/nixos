@@ -14,4 +14,5 @@
   no-mistakes = pkgs.callPackage ./no-mistakes {};
   namespace-devbox = pkgs.callPackage ./namespace-devbox {};
   slack-cli = pkgs.callPackage ./slack-cli {};
+  aml-flash-tool = pkgs.callPackage ./aml-flash-tool {};
 }
