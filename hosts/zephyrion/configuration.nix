@@ -4,6 +4,7 @@
 {
   lib,
   inputs,
+  outputs,
   config,
   pkgs,
   ...
@@ -122,6 +123,7 @@
     };
     overlays = [
       inputs.nur.overlays.default
+      outputs.overlays.additions
     ];
   };
 
