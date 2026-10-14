@@ -12,6 +12,9 @@ let
   '';
 in
 {
+  environment.systemPackages = [pkgs.aml-flash-tool]; # See: pkgs/aml-flash-tool/default.nix
+  services.udev.packages = [pkgs.aml-flash-tool];
+
   services.udev.extraRules = ''
     ${keychronUdevRule}
   '';
