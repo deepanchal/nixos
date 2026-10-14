@@ -87,6 +87,7 @@
       "/var/lib/bluetooth"
       "/var/lib/nixos"
       "/var/lib/tailscale"
+      "/var/lib/teamviewer"
       "/var/lib/btrbk"
       # "/var/lib/docker" # handled by ext4 fs mount for docker from /btr_pool/@dumps/docker-volume.img
       "/var/lib/libvirt"
