@@ -47,6 +47,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+
     zsh-omz-plugin-pnpm = {
       url = "github:ntnyq/omz-plugin-pnpm";
       flake = false;
