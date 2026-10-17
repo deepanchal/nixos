@@ -63,7 +63,7 @@
     sleep = {
       computer = "never";
       harddisk = "never";
-      display = 10;
+      display = "never";
     };
     restartAfterPowerFailure = true;
   };
