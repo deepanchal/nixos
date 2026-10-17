@@ -1,8 +1,10 @@
 {
+  config,
   lib,
   pkgs,
   ...
 }: let
+  colors = config.home-manager.users.deep.colorScheme.palette;
   openApp = path: "exec-and-forget open -n '${path}'";
   workspaces = map toString (lib.range 1 9) ++ ["10"];
   workspaceKey = workspace:
@@ -16,6 +18,13 @@
     l = "right";
   };
 in {
+  services.jankyborders = {
+    enable = true;
+    width = 2.0;
+    active_color = "0xff${colors.primary}";
+    inactive_color = "0xff${colors.base02}";
+  };
+
   services.aerospace = {
     enable = true;
     settings = {
