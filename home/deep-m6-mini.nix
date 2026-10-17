@@ -4,6 +4,8 @@
     ./features/ai
     ./features/desktop/theme/catppuccin.nix
     ./features/editors/nvim
+    ./features/editors/vscode
+    ./features/editors/zed
     ./features/terminal/programs
     ./features/terminal/shell
   ];
