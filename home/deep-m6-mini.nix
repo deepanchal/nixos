@@ -31,7 +31,6 @@
     pkgs.bitwarden-cli
     pkgs.namespace-cli
 
-    pkgs.xcodes
     pkgs.aria2
   ];
 }

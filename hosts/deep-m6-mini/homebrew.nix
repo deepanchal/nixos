@@ -15,6 +15,7 @@
     onActivation.cleanup = "uninstall";
     brews = [
       "cocoapods"
+      "xcodes"
     ];
     casks = [
       "android-studio"
