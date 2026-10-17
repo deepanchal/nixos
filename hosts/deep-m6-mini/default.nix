@@ -5,5 +5,6 @@
     ./sops.nix
     ./homebrew.nix
     ./defaults.nix
+    ./aerospace.nix
   ];
 }
