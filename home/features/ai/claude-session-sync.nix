@@ -7,15 +7,6 @@
   claudeDir = "${config.home.homeDirectory}/.claude";
   syncedProjectsDir = "${claudeDir}/synced-projects";
 
-  syncedFolder = path: {
-    inherit path;
-    devices = config.sync.devices;
-    versioning = {
-      type = "trashcan";
-      params.cleanoutDays = "30";
-    };
-  };
-
   linkSessions = pkgs.writeShellApplication {
     name = "claude-session-links";
     runtimeInputs = [pkgs.coreutils];
@@ -55,9 +46,9 @@
     '';
   };
 in {
-  services.syncthing.settings.folders = {
-    claude-projects = syncedFolder syncedProjectsDir;
-    claude-file-history = syncedFolder "${claudeDir}/file-history";
+  sync.folders = {
+    claude-projects = syncedProjectsDir;
+    claude-file-history = "${claudeDir}/file-history";
   };
 
   home.packages = [linkSessions];
