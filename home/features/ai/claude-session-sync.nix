@@ -49,6 +49,8 @@ in {
   sync.folders = {
     claude-projects = syncedProjectsDir;
     claude-file-history = "${claudeDir}/file-history";
+    claude-skills = "${claudeDir}/skills";
+    claude-commands = "${claudeDir}/commands";
   };
 
   home.packages = [linkSessions];
