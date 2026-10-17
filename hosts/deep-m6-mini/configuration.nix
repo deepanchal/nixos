@@ -43,7 +43,7 @@
   services.tailscale.enable = true;
 
   launchd.user.agents.sunshine.serviceConfig = {
-    ProgramArguments = ["${pkgs.sunshine}/bin/sunshine"];
+    ProgramArguments = ["${pkgs.sunshine}/bin/sunshine" "system_tray=disabled"];
     RunAtLoad = true;
     KeepAlive = true;
     ProcessType = "Interactive";
