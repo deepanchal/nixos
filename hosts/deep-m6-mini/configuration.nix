@@ -42,6 +42,15 @@
 
   services.tailscale.enable = true;
 
+  launchd.user.agents.sunshine.serviceConfig = {
+    ProgramArguments = ["${pkgs.sunshine}/bin/sunshine"];
+    RunAtLoad = true;
+    KeepAlive = true;
+    ProcessType = "Interactive";
+    StandardOutPath = "/tmp/sunshine.log";
+    StandardErrorPath = "/tmp/sunshine.log";
+  };
+
   services.openssh = {
     enable = true;
     extraConfig = ''
