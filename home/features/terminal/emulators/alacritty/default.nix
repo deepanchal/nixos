@@ -24,12 +24,13 @@
         };
         startup_mode = "Maximized";
         opacity = 0.85;
+        option_as_alt = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin "Both";
       };
 
       scrolling.history = 32000;
 
       font = {
-        size = 10;
+        size = if pkgs.stdenv.hostPlatform.isDarwin then 13 else 10;
         normal = {
           family = "JetBrainsMono Nerd Font";
           style = "Regular";

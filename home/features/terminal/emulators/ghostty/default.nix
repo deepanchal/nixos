@@ -1,12 +1,16 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }:
 {
   programs.ghostty = {
     enable = true;
+    package = if pkgs.stdenv.hostPlatform.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
     settings = {
+      macos-option-as-alt = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin true;
+
       term = "xterm-256color";
 
       window-decoration = false;
@@ -25,7 +29,7 @@
 
       font-family = "JetBrainsMono Nerd Font";
       font-style = "Regular";
-      font-size = 10;
+      font-size = if pkgs.stdenv.hostPlatform.isDarwin then 13 else 10;
 
       confirm-close-surface = false;
 
