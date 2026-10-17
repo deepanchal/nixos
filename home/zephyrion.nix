@@ -71,6 +71,7 @@
     pkgs.totp-cli
     pkgs.scrcpy
     pkgs.rustdesk-flutter
+    pkgs.remmina
     pkgs.kubectl
     pkgs.fastfetch
     pkgs.prismlauncher # minecraft launcher
