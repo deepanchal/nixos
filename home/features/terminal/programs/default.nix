@@ -39,6 +39,7 @@ in
     ./timewarrior.nix
     ./taskwarrior.nix
     ./treehouse.nix
+    ./klog.nix
     # ./vale.nix
   ];
 

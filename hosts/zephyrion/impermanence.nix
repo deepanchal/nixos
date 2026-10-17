@@ -203,7 +203,6 @@
         }
       ];
       files = [
-        "time.klg"
         ".bash_history"
         ".wakatime.cfg"
         ".aicommit2"
