@@ -9,6 +9,10 @@ let
   isWayland = config.wayland.windowManager.hyprland.enable;
   copy-cmd = if isWayland then "wl-copy" else "xclip -selection clipboard";
   paste-cmd = if isWayland then "wl-paste" else "xclip -selection clipboard -o";
+  chromeExecutable =
+    if pkgs.stdenv.hostPlatform.isDarwin
+    then "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
+    else "/usr/bin/google-chrome-stable";
 in
 {
   config = {
@@ -149,7 +153,7 @@ in
           export PATH=$PATH:$ANDROID_HOME/platform-tools
           export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
           export ANDROID_NDK=$ANDROID_HOME/ndk-bundle
-          export CHROME_EXECUTABLE=/usr/bin/google-chrome-stable
+          export CHROME_EXECUTABLE=${lib.escapeShellArg chromeExecutable}
 
           # PNPM
           export PNPM_HOME="$HOME/.local/share/pnpm"
