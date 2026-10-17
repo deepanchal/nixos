@@ -1,4 +1,4 @@
-{ config, pkgs, ...}: {
+{ config, pkgs, lib, ...}: {
   imports = [
     ./zellij
     ./direnv
@@ -33,9 +33,10 @@
   ];
 
   home.packages = [
+    pkgs.tenere # llm tui
+  ] ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
     pkgs.impala # wifi tui
     pkgs.bluetui # bluetooth tui
-    pkgs.tenere # llm tui
   ];
 
   programs.jq.enable = true;
@@ -51,7 +52,7 @@
   # Services
   ###################
 
-  systemd.user.services.gpg-import-key = {
+  systemd.user.services.gpg-import-key = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     Unit = {
       Description = "Import GPG secret key from the sops-deployed file (see hosts/common/optional/sops.nix)";
       After = [ "gpg-agent.service" ];

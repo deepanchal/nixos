@@ -45,8 +45,8 @@ in
       wanip = "curl -s -X GET https://checkip.amazonaws.com";
 
       # Copy / Paste
-      pbcopy = copy-cmd;
-      pbpaste = paste-cmd;
+      pbcopy = lib.mkIf pkgs.stdenv.hostPlatform.isLinux copy-cmd;
+      pbpaste = lib.mkIf pkgs.stdenv.hostPlatform.isLinux paste-cmd;
 
       # Nix
       cleanup = "sudo nix-collect-garbage --delete-older-than 3d && nix-collect-garbage -d";

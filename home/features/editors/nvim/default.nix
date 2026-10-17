@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   config,
   inputs,
   ...
@@ -107,7 +108,6 @@
       # arduino
       arduino-language-server
       arduino-cli
-      arduino-ide
       avrdude
 
       # CLOUDNATIVE
@@ -135,6 +135,9 @@
       ripgrep
       bottom
       lazygit
+    ]
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+      arduino-ide
     ];
   };
 }
