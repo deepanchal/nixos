@@ -10,7 +10,7 @@ let
   zedSettingsDir = "${nixosRepoDir}/home/features/editors/zed";
 in
 {
-  home.packages = [
+  home.packages = lib.optionals pkgs.stdenv.hostPlatform.isLinux [
     pkgs.zed-editor
   ];
 
