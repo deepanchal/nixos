@@ -6,6 +6,8 @@
     ./features/editors/nvim
     ./features/editors/vscode
     ./features/editors/zed
+    ./features/terminal/emulators/alacritty
+    ./features/terminal/emulators/ghostty
     ./features/terminal/programs
     ./features/terminal/shell
   ];
