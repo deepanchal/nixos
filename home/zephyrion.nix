@@ -72,6 +72,7 @@
     pkgs.scrcpy
     pkgs.rustdesk-flutter
     pkgs.tigervnc
+    pkgs.moonlight-qt
     pkgs.kubectl
     pkgs.fastfetch
     pkgs.prismlauncher # minecraft launcher
