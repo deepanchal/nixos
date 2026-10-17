@@ -81,7 +81,9 @@
   '';
   bindDesktopShortcuts = pkgs.writeShellScript "bind-desktop-shortcuts" ''
     ${lib.concatMapStrings bindSwitchToDesktop desktopKeys}
-    /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+    if [ "$(stat -f %Su /dev/console)" = "$USER" ]; then
+      /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+    fi
   '';
 in {
   services.yabai = {
