@@ -26,6 +26,7 @@
 
     ../common/global
     ../common/optional/pipewire.nix
+    inputs.sops-nix.nixosModules.sops
     ../common/optional/sops.nix
 
     # This import disables nvidia gpu. This runs only intel/amdgpu igpus and nvidia dgpus do not drain power.
