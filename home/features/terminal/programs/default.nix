@@ -1,4 +1,14 @@
-{ config, pkgs, lib, ...}: {
+{ config, pkgs, lib, ...}:
+let
+  gpgImportKey = pkgs.writeShellScript "gpg-import-key" ''
+    set -eu
+    key="$HOME/.secrets/gpg-private.asc"
+    if [ -f "$key" ]; then
+      ${pkgs.gnupg}/bin/gpg --batch --import "$key" || true
+    fi
+  '';
+in
+{
   imports = [
     ./zellij
     ./direnv
@@ -61,13 +71,15 @@
     Service = {
       Type = "oneshot";
       RemainAfterExit = true;
-      ExecStart = "${pkgs.writeShellScript "gpg-import-key" ''
-        set -eu
-        key="$HOME/.secrets/gpg-private.asc"
-        if [ -f "$key" ]; then
-          ${pkgs.gnupg}/bin/gpg --batch --import "$key" || true
-        fi
-      ''}";
+      ExecStart = "${gpgImportKey}";
+    };
+  };
+
+  launchd.agents.gpg-import-key = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
+    enable = true;
+    config = {
+      ProgramArguments = [ "${gpgImportKey}" ];
+      RunAtLoad = true;
     };
   };
 
