@@ -19,6 +19,7 @@
     ./features/terminal
     ./features/desktop
     ./features/scripts
+    ./features/sync
     ./features/programs
   ];
 

@@ -2,6 +2,7 @@
   imports = [
     ./global
     ./features/ai
+    ./features/sync
     ./features/desktop/theme/catppuccin.nix
     ./features/editors/nvim
     ./features/editors/vscode
