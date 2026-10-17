@@ -8,6 +8,11 @@
     ./features/terminal/shell
   ];
 
+  services.gpg-agent = {
+    enable = true;
+    pinentry.package = pkgs.pinentry-curses;
+  };
+
   home.packages = [
     pkgs.jetbrains-mono
     pkgs.nerd-fonts.symbols-only
