@@ -40,6 +40,8 @@
     deep ALL=(ALL) NOPASSWD: ALL
   '';
 
+  services.tailscale.enable = true;
+
   services.openssh = {
     enable = true;
     extraConfig = ''
