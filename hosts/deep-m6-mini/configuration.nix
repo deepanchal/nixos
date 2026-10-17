@@ -26,6 +26,8 @@
 
   time.timeZone = "America/Chicago";
 
+  environment.variables.LANG = "en_US.UTF-8";
+
   users.knownUsers = ["deep"];
   users.users.deep = {
     uid = 501;
