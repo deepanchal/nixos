@@ -346,7 +346,6 @@
     tk
     android-tools # contains adb
     bundletool
-    (inputs.treehouse.packages.${pkgs.system}.default.overrideAttrs {doCheck = false;})
   ];
 
   # This option defines the first version of NixOS you have installed on this particular machine,
