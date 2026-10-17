@@ -3,5 +3,6 @@
     ./configuration.nix
     ./home.nix
     ./sops.nix
+    ./homebrew.nix
   ];
 }
