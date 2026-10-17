@@ -4,11 +4,6 @@
   pkgs,
   ...
 }: {
-  imports = [
-    inputs.sops-nix.darwinModules.sops
-    ../common/optional/sops.nix
-  ];
-
   nixpkgs = {
     hostPlatform = "aarch64-darwin";
     config.allowUnfree = true;
