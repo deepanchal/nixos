@@ -13,7 +13,11 @@
   homebrew = {
     enable = true;
     onActivation.cleanup = "uninstall";
+    brews = [
+      "cocoapods"
+    ];
     casks = [
+      "android-studio"
       "brave-browser"
       "slack"
       "visual-studio-code"
