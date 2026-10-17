@@ -32,5 +32,6 @@
     pkgs.namespace-cli
 
     pkgs.aria2
+    pkgs.rsync
   ];
 }
