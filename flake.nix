@@ -130,6 +130,13 @@
       };
     };
 
+    darwinConfigurations = {
+      deep-m6-mini = nix-darwin.lib.darwinSystem {
+        modules = [./hosts/deep-m6-mini];
+        specialArgs = {inherit inputs outputs;};
+      };
+    };
+
     # Standalone home-manager configuration entrypoint
     # Available through 'home-manager --flake .#your-username@your-hostname'
     homeConfigurations = {
