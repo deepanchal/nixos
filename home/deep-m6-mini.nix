@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./global
     ./features/ai
@@ -13,6 +17,11 @@
     ./features/terminal/programs
     ./features/terminal/shell
   ];
+
+  programs.nh = {
+    enable = true;
+    flake = "${config.home.homeDirectory}/projects/nixos";
+  };
 
   services.gpg-agent = {
     enable = true;
