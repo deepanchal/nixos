@@ -16,8 +16,8 @@
       RunAtLoad = true;
       KeepAlive = true;
       ThrottleInterval = 30;
-      StandardOutPath = "/tmp/claude-remote-control.log";
-      StandardErrorPath = "/tmp/claude-remote-control.log";
+      StandardOutPath = "/dev/null";
+      StandardErrorPath = "/dev/null";
     };
   };
 }
