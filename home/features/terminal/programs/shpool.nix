@@ -1,0 +1,3 @@
+{...}: {
+  services.shpool.enable = true;
+}

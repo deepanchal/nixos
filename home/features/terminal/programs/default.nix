@@ -13,6 +13,7 @@ in
     ./zellij
     ./direnv
     ./tmux
+    ./shpool.nix
     ./television
     ./atuin.nix
     ./aichat.nix
