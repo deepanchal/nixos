@@ -38,6 +38,13 @@
           compact-bar.path = "compact-bar";
         };
       };
+      extraConfig = ''
+        keybinds {
+            shared {
+                bind "Ctrl Shift Space" { EditScrollback; }
+            }
+        }
+      '';
     };
   };
 }
