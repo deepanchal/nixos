@@ -3,6 +3,8 @@
   config,
   ...
 }: {
+  home.sessionPath = ["${config.xdg.dataHome}/mise/shims"];
+
   programs.mise = {
     enable = true;
     enableBashIntegration = config.programs.bash.enable;
