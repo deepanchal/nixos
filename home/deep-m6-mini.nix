@@ -25,7 +25,9 @@
 
   services.gpg-agent = {
     enable = true;
-    pinentry.package = pkgs.pinentry-curses;
+    pinentry.package = pkgs.pinentry_mac;
+    defaultCacheTtl = 86400;
+    maxCacheTtl = 604800;
   };
 
   home.packages = [
