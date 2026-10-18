@@ -39,6 +39,18 @@
 
       keyboard.bindings = [
         {
+          key = "Space";
+          mods = "Control|Shift";
+          mode = "~Alt|~Search";
+          action = "ToggleViMode";
+        }
+        {
+          key = "Space";
+          mods = "Control|Shift";
+          mode = "Alt|~Search";
+          chars = "\\u001b[32;6u";
+        }
+        {
           key = "N";
           mods = "Control|Shift";
           action = "SpawnNewInstance";
