@@ -462,6 +462,7 @@
         "nur": "nur",
         "nvim-config": "nvim-config",
         "sops-nix": "sops-nix",
+        "tether": "tether",
         "treehouse": "treehouse",
         "walker": "walker",
         "zsh-omz-plugin-bun": "zsh-omz-plugin-bun",
@@ -530,6 +531,26 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default-linux",
+        "type": "github"
+      }
+    },
+    "tether": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792366255,
+        "narHash": "sha256-MFTeXBV7woGk0NIStnlsXMOwPr66GfE9mgQntLBlLSY=",
+        "owner": "zackb",
+        "repo": "tether",
+        "rev": "afa966815f1722d3c189081b07f89cd39768bfc9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "zackb",
+        "repo": "tether",
         "type": "github"
       }
     },

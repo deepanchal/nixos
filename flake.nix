@@ -81,6 +81,11 @@
       url = "github:kunchenguid/treehouse";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    tether = {
+      url = "github:zackb/tether";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
