@@ -21,6 +21,10 @@
     checkFlags = [
       "--skip=actor::reactor::tests::"
     ];
+    postPatch = ''
+      substituteInPlace src/actor/input.rs \
+        --replace-fail "CGTapLoc::HIDEventTap," "CGTapLoc::SessionEventTap,"
+    '';
   });
   riftCli = "${rift}/bin/rift-cli";
 
