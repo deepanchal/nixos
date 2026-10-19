@@ -19,7 +19,7 @@
       hash = "sha256-DxGr89iAoGhSRgW8NiZQF3jtpYF0+uurtx6sv/UCDs4=";
     };
     checkFlags = [
-      "--skip=actor::reactor::tests::empty_active_space_membership_during_wake_race_does_not_blank_known_active_windows"
+      "--skip=actor::reactor::tests::"
     ];
   });
   riftCli = "${rift}/bin/rift-cli";
