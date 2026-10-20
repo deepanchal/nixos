@@ -9,41 +9,8 @@
 
   linkSessions = pkgs.writeShellApplication {
     name = "claude-session-links";
-    runtimeInputs = [pkgs.coreutils];
-    text = ''
-      projects="${claudeDir}/projects"
-      synced="${syncedProjectsDir}"
-      merged="${claudeDir}/synced-projects-merged"
-      home_prefix=$(printf '%s' "$HOME" | tr -c '[:alnum:]' '-')
-
-      adopt() {
-        local local_dir=$1 shared_dir=$2
-        if [ -e "$shared_dir" ]; then
-          cp -Rp --update=none "$local_dir/." "$shared_dir/"
-          mkdir -p "$merged"
-          mv "$local_dir" "$merged/$(basename "$local_dir")-$(date +%s)"
-        else
-          mv "$local_dir" "$shared_dir"
-        fi
-        ln -s "$shared_dir" "$local_dir"
-      }
-
-      mkdir -p "$projects" "$synced"
-      shopt -s nullglob
-
-      for local_dir in "$projects/$home_prefix-projects" "$projects/$home_prefix-projects"-*; do
-        if [ -d "$local_dir" ] && [ ! -L "$local_dir" ]; then
-          adopt "$local_dir" "$synced/''${local_dir#"$projects/$home_prefix-"}"
-        fi
-      done
-
-      for shared_dir in "$synced"/*; do
-        local_dir="$projects/$home_prefix-$(basename "$shared_dir")"
-        if [ ! -e "$local_dir" ] && [ ! -L "$local_dir" ]; then
-          ln -s "$shared_dir" "$local_dir"
-        fi
-      done
-    '';
+    runtimeInputs = [pkgs.coreutils pkgs.findutils];
+    text = builtins.readFile ./claude-session-links.sh;
   };
 in {
   sync.folders = {
