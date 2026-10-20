@@ -36,6 +36,7 @@ in {
         lib.mapAttrs (id: path: {
           inherit path;
           devices = lib.attrNames deviceIds;
+          rescanIntervalS = 60;
           versioning = {
             type = "trashcan";
             params.cleanoutDays = "30";
