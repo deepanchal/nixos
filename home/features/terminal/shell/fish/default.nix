@@ -6,7 +6,6 @@
 }:
 let
   isWayland = config.wayland.windowManager.hyprland.enable;
-  copy-cmd = if isWayland then "wl-copy" else "xclip -selection clipboard";
   paste-cmd = if isWayland then "wl-paste" else "xclip -selection clipboard -o";
   chromeExecutable =
     if pkgs.stdenv.hostPlatform.isDarwin
@@ -49,7 +48,6 @@ in
       wanip = "curl -s -X GET https://checkip.amazonaws.com";
 
       # Copy / Paste
-      pbcopy = lib.mkIf pkgs.stdenv.hostPlatform.isLinux copy-cmd;
       pbpaste = lib.mkIf pkgs.stdenv.hostPlatform.isLinux paste-cmd;
 
       # Nix
@@ -94,6 +92,16 @@ in
     };
 
     functions = {
+      pbcopy = lib.mkIf pkgs.stdenv.hostPlatform.isLinux ''
+        if set -q WAYLAND_DISPLAY
+          wl-copy
+        else if set -q DISPLAY
+          xclip -selection clipboard
+        else
+          printf '\e]52;c;%s\a' (base64 -w0)
+        end
+      '';
+
       docker_clean_images = "docker rmi (docker images -a --filter=dangling=true -q)";
       docker_clean_ps = "docker rm (docker ps --filter=status=exited --filter=status=created -q)";
 
