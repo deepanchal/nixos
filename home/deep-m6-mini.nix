@@ -45,6 +45,7 @@
 
     pkgs.aria2
     pkgs.ffmpeg
+    pkgs.imagemagick
     pkgs.rsync
   ];
 }
