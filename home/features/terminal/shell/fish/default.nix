@@ -102,6 +102,24 @@ in
         end
       '';
 
+      __ssh_respawn_root = "echo (path resolve $XDG_RUNTIME_DIR $TMPDIR /tmp)[1]";
+
+      ssh = ''
+        if not status is-interactive; or not isatty stdin
+          command ssh $argv
+          return
+        end
+        set -l origin $PWD
+        set -l respawn (mktemp -d (__ssh_respawn_root)/ssh-respawn.XXXXXX)
+        printf '%s\0' $origin $argv > $respawn/ssh-respawn
+        cd $respawn
+        command ssh $argv
+        set -l code $status
+        cd $origin
+        rm -rf $respawn
+        return $code
+      '';
+
       docker_clean_images = "docker rmi (docker images -a --filter=dangling=true -q)";
       docker_clean_ps = "docker rm (docker ps --filter=status=exited --filter=status=created -q)";
 
@@ -207,6 +225,12 @@ in
 
       # Disable the welcome banner
       set -g fish_greeting
+
+      if string match -q -- (__ssh_respawn_root)"/ssh-respawn.*" $PWD; and test -O ssh-respawn
+        set -l saved (string split0 < ssh-respawn)
+        cd $saved[1]
+        ssh $saved[2..]
+      end
     '';
 
     plugins = [
