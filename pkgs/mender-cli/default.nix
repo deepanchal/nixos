@@ -6,23 +6,28 @@
   lib,
   ...
 }:
-pkgs.stdenv.mkDerivation rec {
+pkgs.buildGoModule rec {
   pname = "mender-cli";
   version = "1.12.0";
-  src = pkgs.fetchurl {
-    url = "https://downloads.mender.io/mender-cli/${version}/linux/mender-cli";
-    sha256 = "sha256-HtUmLMPBw0mMA6Wl6sPCdRBv93ekpxJcDYhlXXR3ar8=";
+
+  src = pkgs.fetchFromGitHub {
+    owner = "mendersoftware";
+    repo = "mender-cli";
+    rev = version;
+    sha256 = "sha256-Pf87wTHXcFlnYsgx7ieiIJ9PWJFPUkFJYTkKJKmMFEQ=";
   };
-  phases = ["installPhase"];
-  installPhase = ''
-    mkdir -p $out/bin
-    cp $src $out/bin/mender-cli
-    chmod +x $out/bin/mender-cli
-  '';
+
+  vendorHash = "sha256-MqyBa+wsbuXqtM4DL/QGBUWuEYlG8BRxIXq7O1LJUyM=";
+
+  env.CGO_ENABLED = 0;
+
+  ldflags = ["-X github.com/mendersoftware/mender-cli/cmd.Version=${version}"];
+
   meta = with lib; {
     homepage = "https://mender.io";
     description = "Command line interface for Mender Server API";
     license = licenses.asl20;
-    platforms = platforms.linux;
+    mainProgram = "mender-cli";
+    platforms = platforms.unix;
   };
 }

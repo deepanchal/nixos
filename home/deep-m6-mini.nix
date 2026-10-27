@@ -42,6 +42,7 @@
     pkgs.kubectl
     pkgs.bitwarden-cli
     pkgs.namespace-cli
+    pkgs.mender-cli
 
     pkgs.aria2
     pkgs.ffmpeg
