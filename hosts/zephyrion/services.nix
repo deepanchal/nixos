@@ -74,7 +74,10 @@
   services.pcscd.enable = true;
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    extraConfig = "AcceptEnv SSH_RESPAWN_ID SSH_RESPAWN_FROM";
+  };
 
   # Stay awake on lid close when on AC
   services.logind.lidSwitchExternalPower = "ignore";

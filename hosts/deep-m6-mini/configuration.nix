@@ -58,6 +58,7 @@
     extraConfig = ''
       PasswordAuthentication no
       KbdInteractiveAuthentication no
+      AcceptEnv SSH_RESPAWN_ID SSH_RESPAWN_FROM
     '';
   };
 
