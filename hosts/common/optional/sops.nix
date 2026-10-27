@@ -42,6 +42,7 @@ in
     secrets = {
       ssh_id_ed25519 = homeSecret ".ssh/id_ed25519";
       aws_credentials = homeSecret ".aws/credentials";
+      aws_config = homeSecret ".aws/config";
       age_deep = homeSecret ".secrets/.age/deep.key";
 
       # Armored GPG secret key; imported into the keyring by the
