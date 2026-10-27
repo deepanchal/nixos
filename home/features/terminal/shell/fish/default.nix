@@ -186,7 +186,8 @@ in
       fish_add_path -ga $DART_PUB_CACHE_BIN
     '';
 
-    interactiveShellInit = ''
+    interactiveShellInit = lib.mkMerge [
+      ''
       # Hybrid vi/emacs key bindings (modal editing + readline shortcuts)
       set -g fish_key_bindings fish_hybrid_key_bindings
 
@@ -225,13 +226,15 @@ in
 
       # Disable the welcome banner
       set -g fish_greeting
-
-      if string match -q -- (__ssh_respawn_root)"/ssh-respawn.*" $PWD; and test -O ssh-respawn
-        set -l saved (string split0 < ssh-respawn)
-        cd $saved[1]
-        ssh $saved[2..]
-      end
-    '';
+    ''
+      (lib.mkAfter ''
+        if string match -q -- (__ssh_respawn_root)"/ssh-respawn.*" $PWD; and test -O ssh-respawn
+          set -l saved (string split0 < ssh-respawn)
+          cd $saved[1]
+          ssh $saved[2..]
+        end
+      '')
+    ];
 
     plugins = [
       # bass: run bash scripts inside fish
