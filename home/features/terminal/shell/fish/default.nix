@@ -104,16 +104,32 @@ in
 
       __ssh_respawn_root = "echo (path resolve $XDG_RUNTIME_DIR $TMPDIR /tmp)[1]";
 
+      __ssh_respawn_dir = ''
+        string match -qr '^ssh-respawn\.\w+$' -- $argv[1]; or return 1
+        echo (__ssh_respawn_root)/$argv[1]
+      '';
+
+      __ssh_respawn_sweep = ''
+        for pid_file in (__ssh_respawn_root)/ssh-respawn.*/pid
+          kill -0 (string collect < $pid_file) 2>/dev/null; or rm -rf (path dirname $pid_file)
+        end
+      '';
+
       ssh = ''
         if not status is-interactive; or not isatty stdin
           command ssh $argv
           return
         end
+        __ssh_respawn_sweep
         set -l origin $PWD
         set -l respawn (mktemp -d (__ssh_respawn_root)/ssh-respawn.XXXXXX)
-        printf '%s\0' $origin $argv > $respawn/ssh-respawn
+        echo $fish_pid > $respawn/pid
+        set -l id (path basename $respawn)
+        printf '%s\0' $origin $id $argv > $respawn/argv
+        set -l remote_env SSH_RESPAWN_ID=$id
+        set -q SSH_RESPAWN_FROM; and set -a remote_env SSH_RESPAWN_FROM=$SSH_RESPAWN_FROM
         cd $respawn
-        command ssh $argv
+        command ssh -o "SetEnv=$remote_env" $argv
         set -l code $status
         cd $origin
         rm -rf $respawn
@@ -228,10 +244,35 @@ in
       set -g fish_greeting
     ''
       (lib.mkAfter ''
-        if string match -q -- (__ssh_respawn_root)"/ssh-respawn.*" $PWD; and test -O ssh-respawn
-          set -l saved (string split0 < ssh-respawn)
+        if string match -q -- (__ssh_respawn_root)"/ssh-respawn.*" $PWD; and test -O argv
+          set -l saved (string split0 < argv)
           cd $saved[1]
-          ssh $saved[2..]
+          SSH_RESPAWN_FROM=$saved[2] ssh $saved[3..]
+        end
+
+        if set -q SSH_RESPAWN_FROM
+          set -l source (__ssh_respawn_dir $SSH_RESPAWN_FROM)
+          and test -O $source/cwd
+          and cd (string collect < $source/cwd)
+          set -e SSH_RESPAWN_FROM
+        end
+
+        if set -q SSH_RESPAWN_ID
+          set -g __ssh_respawn_session (__ssh_respawn_dir $SSH_RESPAWN_ID)
+          set -e SSH_RESPAWN_ID
+        end
+
+        if set -q __ssh_respawn_session[1]
+          __ssh_respawn_sweep
+          mkdir -m 700 -p $__ssh_respawn_session
+          echo $fish_pid > $__ssh_respawn_session/pid
+          function __ssh_respawn_record_cwd --on-variable PWD
+            printf '%s' $PWD > $__ssh_respawn_session/cwd
+          end
+          function __ssh_respawn_forget --on-event fish_exit
+            rm -rf $__ssh_respawn_session
+          end
+          __ssh_respawn_record_cwd
         end
       '')
     ];
