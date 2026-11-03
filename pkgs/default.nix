@@ -15,4 +15,5 @@
   namespace-devbox = pkgs.callPackage ./namespace-devbox {};
   slack-cli = pkgs.callPackage ./slack-cli {};
   aml-flash-tool = pkgs.callPackage ./aml-flash-tool {};
+  claude-squad = pkgs.callPackage ./claude-squad {};
 }
