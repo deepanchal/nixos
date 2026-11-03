@@ -5,6 +5,13 @@
 }: {
   # Enable Services
   programs.direnv.enable = true;
+  programs.fuse.enable = true;
+  security.wrappers.fusermount = {
+    setuid = true;
+    owner = "root";
+    group = "root";
+    source = "${lib.getBin pkgs.fuse3}/bin/fusermount3";
+  };
   services.upower.enable = true;
   services.libinput = {
     enable = true;
