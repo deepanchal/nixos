@@ -15,6 +15,7 @@
     # outputs.homeManagerModules.example
     ./global
     ./features/ai
+    ./features/ai/t3code.nix
     ./features/editors
     ./features/terminal
     ./features/desktop
