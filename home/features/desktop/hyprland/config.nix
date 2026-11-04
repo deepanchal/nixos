@@ -120,6 +120,10 @@ in {
         };
       };
 
+      render = {
+        cm_auto_hdr = 0;
+      };
+
       misc = {
         disable_hyprland_logo = true;
         disable_splash_rendering = false;
