@@ -8,6 +8,7 @@
     ./features/ai
     ./features/ai/claude-remote-control.nix
     ./features/ai/t3code-server.nix
+    ./features/ai/whatsapp-bridge.nix
     ./features/sync
     ./features/desktop/theme/catppuccin.nix
     ./features/editors/nvim
