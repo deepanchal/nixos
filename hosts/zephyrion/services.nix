@@ -36,6 +36,7 @@
     enable = true;
     openFirewall = true;
     capSysAdmin = true; # Needed for Wayland capture
+    settings.capture = "wlr";
   };
   # programs.openvpn3.enable = true;
   programs.nm-applet.enable = true;
