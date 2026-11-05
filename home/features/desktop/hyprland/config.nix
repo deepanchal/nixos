@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  inherit (lib.generators) mkLuaInline;
+  inherit (lib.generators) mkLuaInline toLua;
 
   cursorTheme = config.home.pointerCursor.name;
   cursorSize = toString config.home.pointerCursor.size;
@@ -22,7 +22,17 @@
 
   onMonitor = name: lib.optionalAttrs (name != "") {monitor = name;};
 
-  scratchpadRules = "[float; size monitor_w*0.75 monitor_h*0.75; center]";
+  scratchpadRules = {
+    float = true;
+    size = "monitor_w*0.75 monitor_h*0.75";
+    center = true;
+  };
+  scratchpadCommands = {
+    "special:scratchpad" = "alacritty --working-directory=$HOME/projects/nixos && hyprctl dispatch 'hl.dsp.cursor.move({ x = 800, y = 800 })'";
+    "special:notes" = "alacritty -e dnote-tui";
+    "special:procs" = "alacritty -e btop";
+    "special:magic" = "alacritty -e tmux new -A -s scratchpad";
+  };
 in {
   wayland.windowManager.hyprland.settings = {
     # https://wiki.hypr.land/Configuring/Basics/Variables/
@@ -273,44 +283,40 @@ in {
       ++ map (rule: rule // onMonitor secondary) [
         {workspace = "5"; }
         {workspace = "6"; }
-      ]
-      # Workspaces 9 and 10 are not explicitly assigned to allow them to appear on the active monitor
-      ++ [
-        {
-          workspace = "special:scratchpad";
-          on_created_empty = "${scratchpadRules} alacritty --working-directory=$HOME/projects/nixos && hyprctl dispatch 'hl.dsp.cursor.move({ x = 800, y = 800 })'";
-        }
-        {
-          workspace = "special:notes";
-          on_created_empty = "${scratchpadRules} alacritty -e dnote-tui";
-        }
-        {
-          workspace = "special:procs";
-          on_created_empty = "${scratchpadRules} alacritty -e btop";
-        }
-        {
-          workspace = "special:magic";
-          on_created_empty = "${scratchpadRules} alacritty -e tmux new -A -s scratchpad";
-        }
       ];
 
     # https://wiki.hypr.land/Configuring/Basics/Autostart/
-    on = {
-      _args = [
-        "hyprland.start"
-        (mkLuaInline ''
-          function()
-            -- https://github.com/hyprwm/xdg-desktop-portal-hyprland/issues/251#issuecomment-2357925548
-            hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
-            hl.exec_cmd("dbus-update-activation-environment --systemd --all")
-            hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
+    on = [
+      {
+        _args = [
+          "hyprland.start"
+          (mkLuaInline ''
+            function()
+              -- https://github.com/hyprwm/xdg-desktop-portal-hyprland/issues/251#issuecomment-2357925548
+              hl.exec_cmd("dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
+              hl.exec_cmd("dbus-update-activation-environment --systemd --all")
+              hl.exec_cmd("systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP")
 
-            hl.exec_cmd("hyprctl setcursor ${cursorTheme} ${cursorSize}")
-            hl.exec_cmd("wl-paste --watch cliphist store")
+              hl.exec_cmd("hyprctl setcursor ${cursorTheme} ${cursorSize}")
+              hl.exec_cmd("wl-paste --watch cliphist store")
 
-            hl.exec_cmd("${lib.getExe pkgs.alacritty}", { workspace = "3 silent" })
-          end'')
-      ];
-    };
+              hl.exec_cmd("${lib.getExe pkgs.alacritty}", { workspace = "3 silent" })
+            end'')
+        ];
+      }
+      {
+        _args = [
+          "workspace.created"
+          (mkLuaInline ''
+            function(ws)
+              local command = (${toLua {} scratchpadCommands})[ws.name]
+              if command == nil or not ws.is_empty then return end
+              local rules = ${toLua {} scratchpadRules}
+              rules.workspace = ws.name
+              hl.exec_cmd(command, rules)
+            end'')
+        ];
+      }
+    ];
   };
 }
