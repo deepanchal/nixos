@@ -28,6 +28,27 @@
   });
   riftCli = "${rift}/bin/rift-cli";
 
+  signingIdentity = "deep-m6-mini local codesign";
+  stableRift = pkgs.writeShellScript "rift-stable" ''
+    set -eu
+    source=${rift}/bin/rift
+    target="$HOME/.local/libexec/rift/rift"
+    stamp="$target.source"
+    if [ "$(cat "$stamp" 2>/dev/null)" != "$source" ]; then
+      mkdir -p "$(dirname "$target")"
+      cp "$source" "$target.new"
+      chmod u+w "$target.new"
+      if ! /usr/bin/codesign --force --sign "${signingIdentity}" --identifier rift "$target.new"; then
+        echo "rift-stable: no '${signingIdentity}' identity, running $source unsigned" >&2
+        rm -f "$target.new"
+        exec "$source"
+      fi
+      mv -f "$target.new" "$target"
+      echo "$source" > "$stamp"
+    fi
+    exec "$target"
+  '';
+
   openApp = path: {exec = ["/usr/bin/open" "-n" path];};
   launchApp = name: {exec = ["/bin/sh" "-c" "/usr/bin/open -a '${name}'; ${riftCli} execute binding-mode default"];};
   enterMode = mode: {binding_mode = mode;};
@@ -127,7 +148,7 @@ in {
   home-manager.users.deep.xdg.configFile."rift/config.toml".source = riftConfig;
 
   launchd.user.agents.rift.serviceConfig = {
-    ProgramArguments = ["${rift}/bin/rift"];
+    ProgramArguments = ["${stableRift}"];
     RunAtLoad = true;
     KeepAlive = true;
     ProcessType = "Interactive";
