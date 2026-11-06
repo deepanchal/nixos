@@ -45,6 +45,64 @@
     /bin/launchctl kickstart -k "gui/$(id -u)/org.nixos.rift"
   '';
 
+  alacrittyApp = "${pkgs.alacritty}/Applications/Alacritty.app";
+  arrangeWorkspaces = pkgs.writeShellApplication {
+    name = "arrange-workspaces";
+    runtimeInputs = [pkgs.jq];
+    text = ''
+      state="$HOME/.local/state/arrange-workspaces"
+      boot=$(/usr/sbin/sysctl -n kern.boottime)
+      if [ "''${1:-}" != "--force" ] && [ "$(cat "$state" 2>/dev/null)" = "$boot" ]; then
+        exit 0
+      fi
+
+      rift() { ${riftCli} "$@"; }
+
+      window_ids() {
+        rift query workspaces | jq -r --arg bundle "$1" '.[].windows[] | select(.bundle_id == $bundle) | .window_server_id' | sort
+      }
+
+      new_window_ids() {
+        comm -13 <(echo "$2") <(window_ids "$1")
+      }
+
+      open_on_workspace() {
+        local workspace=$1 bundle=$2 settle=$3
+        shift 3
+        local before
+        before=$(window_ids "$bundle")
+        "$@"
+        for _ in $(seq 60); do
+          if [ -n "$(new_window_ids "$bundle" "$before")" ]; then
+            sleep "$settle"
+            for id in $(new_window_ids "$bundle" "$before"); do
+              rift execute workspace move-window "$workspace" "$id" > /dev/null
+            done
+            return
+          fi
+          sleep 0.5
+        done
+        echo "arrange-workspaces: no new $bundle window appeared" >&2
+      }
+
+      until rift query workspaces > /dev/null 2>&1; do
+        sleep 1
+      done
+
+      open_on_workspace 1 com.brave.Browser 3 /usr/bin/open -a "Brave Browser"
+      open_on_workspace 3 com.brave.Browser 1 /usr/bin/open -na "Brave Browser" --args --incognito
+      open_on_workspace 0 org.alacritty 1 /usr/bin/open -na "${alacrittyApp}"
+      open_on_workspace 0 org.alacritty 1 /usr/bin/open -na "${alacrittyApp}"
+      open_on_workspace 2 org.alacritty 1 /usr/bin/open -na "${alacrittyApp}"
+      open_on_workspace 2 org.alacritty 1 /usr/bin/open -na "${alacrittyApp}"
+      open_on_workspace 6 com.apple.systempreferences 1 /usr/bin/open -a "System Settings"
+      rift execute workspace switch 0 > /dev/null
+
+      mkdir -p "$(dirname "$state")"
+      echo "$boot" > "$state"
+    '';
+  };
+
   openApp = path: {exec = ["/usr/bin/open" "-n" path];};
   launchApp = name: {exec = ["/bin/sh" "-c" "/usr/bin/open -a '${name}'; ${riftCli} execute binding-mode default"];};
   enterMode = mode: {binding_mode = mode;};
@@ -139,7 +197,7 @@
     };
   };
 in {
-  environment.systemPackages = [rift];
+  environment.systemPackages = [rift arrangeWorkspaces];
 
   home-manager.users.deep.xdg.configFile."rift/config.toml".source = riftConfig;
 
@@ -159,6 +217,14 @@ in {
     LimitLoadToSessionType = "Aqua";
     StandardOutPath = "/tmp/rift.log";
     StandardErrorPath = "/tmp/rift.log";
+  };
+
+  launchd.user.agents.arrange-workspaces.serviceConfig = {
+    ProgramArguments = ["${arrangeWorkspaces}/bin/arrange-workspaces"];
+    RunAtLoad = true;
+    LimitLoadToSessionType = "Aqua";
+    StandardOutPath = "/tmp/arrange-workspaces.log";
+    StandardErrorPath = "/tmp/arrange-workspaces.log";
   };
 
   services.jankyborders = {
