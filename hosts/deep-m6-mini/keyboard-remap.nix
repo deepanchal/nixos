@@ -18,9 +18,18 @@
     }
   ];
 
+  cmd = ["left_command"];
+  cmdShift = ["left_command" "left_shift"];
+  cmdOption = ["left_command" "left_option"];
+
   ctrlToCmd = {
     key,
     shift ? false,
+    to ? key,
+    toModifiers ?
+      if shift
+      then cmdShift
+      else cmd,
     conditions,
   }: {
     type = "basic";
@@ -30,12 +39,114 @@
     };
     to = [
       {
-        key_code = key;
-        modifiers = ["left_command"] ++ lib.optional shift "left_shift";
+        key_code = to;
+        modifiers = toModifiers;
       }
     ];
     inherit conditions;
   };
+
+  braveShortcuts = [
+    {key = "t";}
+    {key = "n";}
+    {
+      key = "n";
+      shift = true;
+    }
+    {key = "w";}
+    {
+      key = "w";
+      shift = true;
+    }
+    {
+      key = "t";
+      shift = true;
+    }
+    {
+      key = "q";
+      shift = true;
+      toModifiers = cmd;
+    }
+    {key = "l";}
+    {key = "r";}
+    {
+      key = "r";
+      shift = true;
+    }
+    {key = "f";}
+    {key = "g";}
+    {
+      key = "g";
+      shift = true;
+    }
+    {key = "d";}
+    {
+      key = "b";
+      shift = true;
+    }
+    {
+      key = "o";
+      shift = true;
+      to = "b";
+      toModifiers = cmdOption;
+    }
+    {
+      key = "h";
+      to = "y";
+    }
+    {
+      key = "j";
+      toModifiers = cmdShift;
+    }
+    {
+      key = "delete_or_backspace";
+      shift = true;
+    }
+    {
+      key = "a";
+      shift = true;
+    }
+    {key = "p";}
+    {key = "s";}
+    {key = "o";}
+    {
+      key = "u";
+      toModifiers = cmdOption;
+    }
+    {
+      key = "i";
+      shift = true;
+      toModifiers = cmdOption;
+    }
+    {
+      key = "j";
+      shift = true;
+      toModifiers = cmdOption;
+    }
+    {
+      key = "c";
+      shift = true;
+    }
+    {key = "equal_sign";}
+    {
+      key = "equal_sign";
+      shift = true;
+      toModifiers = cmd;
+    }
+    {key = "hyphen";}
+    {key = "0";}
+    {key = "a";}
+    {key = "z";}
+    {
+      key = "z";
+      shift = true;
+    }
+    {
+      key = "y";
+      to = "z";
+      toModifiers = cmdShift;
+    }
+  ];
 
   ctrlClickToCmdClick = {
     type = "basic";
@@ -46,7 +157,7 @@
     to = [
       {
         pointing_button = "button1";
-        modifiers = ["left_command"];
+        modifiers = cmd;
       }
     ];
   };
@@ -77,19 +188,8 @@
               }) ["c" "x" "v"];
           }
           {
-            description = "Linux tab and window shortcuts with Ctrl in Brave";
-            manipulators =
-              map (key:
-                ctrlToCmd {
-                  inherit key;
-                  conditions = inBrave;
-                }) ["t" "w" "l" "r" "f"]
-              ++ map (key:
-                ctrlToCmd {
-                  inherit key;
-                  shift = true;
-                  conditions = inBrave;
-                }) ["t" "n"];
+            description = "Linux Chrome shortcuts with Ctrl in Brave";
+            manipulators = map (shortcut: ctrlToCmd (shortcut // {conditions = inBrave;})) braveShortcuts;
           }
           {
             description = "Ctrl+click acts as Cmd+click";
