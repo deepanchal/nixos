@@ -30,7 +30,7 @@
 
   signingIdentity = "deep-m6-mini local codesign";
   stableRiftPath = "/Users/deep/.local/libexec/rift/rift";
-  prepareStableRift = pkgs.writeShellScript "prepare-stable-rift" ''
+  prepareStableRift = pkgs.writeShellScriptBin "prepare-stable-rift" ''
     set -eu
     source=${rift}/bin/rift
     target=${stableRiftPath}
@@ -144,7 +144,7 @@ in {
   home-manager.users.deep.xdg.configFile."rift/config.toml".source = riftConfig;
 
   launchd.user.agents.prepare-stable-rift.serviceConfig = {
-    ProgramArguments = ["${prepareStableRift}"];
+    ProgramArguments = ["${prepareStableRift}/bin/prepare-stable-rift"];
     RunAtLoad = true;
     LimitLoadToSessionType = "Aqua";
     StandardOutPath = "/tmp/rift.log";
