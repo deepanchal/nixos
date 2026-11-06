@@ -60,7 +60,10 @@
         {
           key = "N";
           mods = "Control|Shift";
-          action = "SpawnNewInstance";
+          action =
+            if pkgs.stdenv.hostPlatform.isDarwin
+            then "CreateNewWindow"
+            else "SpawnNewInstance";
         }
         {
           key = "K";
