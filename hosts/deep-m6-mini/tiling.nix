@@ -29,24 +29,20 @@
   riftCli = "${rift}/bin/rift-cli";
 
   signingIdentity = "deep-m6-mini local codesign";
-  stableRift = pkgs.writeShellScript "rift-stable" ''
+  stableRiftPath = "/Users/deep/.local/libexec/rift/rift";
+  prepareStableRift = pkgs.writeShellScript "prepare-stable-rift" ''
     set -eu
     source=${rift}/bin/rift
-    target="$HOME/.local/libexec/rift/rift"
+    target=${stableRiftPath}
     stamp="$target.source"
-    if [ "$(cat "$stamp" 2>/dev/null)" != "$source" ]; then
-      mkdir -p "$(dirname "$target")"
-      cp "$source" "$target.new"
-      chmod u+w "$target.new"
-      if ! /usr/bin/codesign --force --sign "${signingIdentity}" --identifier rift "$target.new"; then
-        echo "rift-stable: no '${signingIdentity}' identity, running $source unsigned" >&2
-        rm -f "$target.new"
-        exec "$source"
-      fi
-      mv -f "$target.new" "$target"
-      echo "$source" > "$stamp"
-    fi
-    exec "$target"
+    [ "$(cat "$stamp" 2>/dev/null)" = "$source" ] && exit 0
+    mkdir -p "$(dirname "$target")"
+    cp "$source" "$target.new"
+    chmod u+w "$target.new"
+    /usr/bin/codesign --force --sign "${signingIdentity}" --identifier rift "$target.new"
+    mv -f "$target.new" "$target"
+    echo "$source" > "$stamp"
+    /bin/launchctl kickstart -k "gui/$(id -u)/org.nixos.rift"
   '';
 
   openApp = path: {exec = ["/usr/bin/open" "-n" path];};
@@ -147,8 +143,16 @@ in {
 
   home-manager.users.deep.xdg.configFile."rift/config.toml".source = riftConfig;
 
+  launchd.user.agents.prepare-stable-rift.serviceConfig = {
+    ProgramArguments = ["${prepareStableRift}"];
+    RunAtLoad = true;
+    LimitLoadToSessionType = "Aqua";
+    StandardOutPath = "/tmp/rift.log";
+    StandardErrorPath = "/tmp/rift.log";
+  };
+
   launchd.user.agents.rift.serviceConfig = {
-    ProgramArguments = ["${stableRift}"];
+    ProgramArguments = [stableRiftPath];
     RunAtLoad = true;
     KeepAlive = true;
     ProcessType = "Interactive";
