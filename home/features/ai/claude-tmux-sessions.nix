@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }: let
@@ -33,20 +32,10 @@
 
   restoreSessions = pkgs.writeShellApplication {
     name = "claude-sessions-restore";
-    runtimeInputs = [pkgs.tmux pkgs.coreutils pkgs.flock];
+    runtimeInputs = [pkgs.tmux pkgs.coreutils];
     text = ''
-      parallel=''${PARALLEL:-3}
-      boot_stamp=${stateDir}/restored-boot
-
-      if [ "''${1:-}" = "--once-per-boot" ]; then
-        mkdir -p ${stateDir}
-        exec 9> ${stateDir}/restore.lock
-        flock --nonblock 9 || exit 0
-        boot=$(/usr/sbin/sysctl -n kern.boottime)
-        [ -f "$boot_stamp" ] && [ "$(< "$boot_stamp")" = "$boot" ] && exit 0
-        echo "$boot" > "$boot_stamp"
-        exec > ${stateDir}/restore.log 2>&1
-      fi
+      parallel=''${PARALLEL:-1}
+      wanted=" $* "
 
       [ -f ${manifest} ] || { echo "no manifest at ${manifest}" >&2; exit 1; }
 
@@ -67,6 +56,7 @@
       }
 
       while IFS=$'\t' read -r name dir id _title; do
+        if [ $# -gt 0 ] && [[ "$wanted" != *" $name "* ]]; then continue; fi
         while [ "$(jobs -rp | wc -l)" -ge "$parallel" ]; do wait -n || true; done
         restore_one "$name" "$dir" "$id" > "$log_dir/$name.log" &
       done < ${manifest}
@@ -88,11 +78,4 @@ in {
       StandardErrorPath = "/tmp/claude-sessions-save.log";
     };
   };
-
-  programs.fish.interactiveShellInit = lib.mkAfter ''
-    if isatty stdin
-      claude-sessions-restore --once-per-boot > /dev/null 2>&1 &
-      disown
-    end
-  '';
 }
