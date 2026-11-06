@@ -18,6 +18,7 @@
       inherit (finalAttrs) pname version src;
       hash = "sha256-ZyRcaoNOkUKMqS77tz5ijmJR8lyAujPSpkVNbQ+6/Jo=";
     };
+    patches = [./rift-dwindle.patch];
     checkFlags = [
       "--skip=actor::reactor::tests::"
       "--skip=actor::input::tests::active_mode_replacement_unbinds_default_keys_and_mode_switches_are_immediate"
