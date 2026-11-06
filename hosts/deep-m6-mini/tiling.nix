@@ -140,6 +140,13 @@
       mouse_follows_focus = false;
       mouse_hides_on_focus = false;
       hot_reload = true;
+      ui.menu_bar = {
+        enabled = true;
+        display_style = "label";
+        active_label = "index";
+        mode = "all";
+        show_empty = false;
+      };
       drag_drop = {
         modifier = lib.toLower mod;
         action1 = "move";
