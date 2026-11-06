@@ -7,6 +7,7 @@
     ./defaults.nix
     ./tiling.nix
     ./clipboard.nix
+    ./screenshot.nix
     ./linux-home-paths.nix
   ];
 }

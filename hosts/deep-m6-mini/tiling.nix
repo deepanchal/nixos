@@ -174,6 +174,7 @@
         "Alt + Shift + R" = "reload_config";
         "Alt + R" = enterMode "resize";
         "Alt + O" = enterMode "launch";
+        "F6" = {exec = ["/run/current-system/sw/bin/screenshot"];};
       }
       // directionKeys
       // workspaceKeys;
