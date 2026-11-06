@@ -34,20 +34,56 @@
 
   signingIdentity = "deep-m6-mini local codesign";
   stableRiftPath = "/Users/deep/.local/libexec/rift/rift";
-  prepareStableRift = pkgs.writeShellScriptBin "prepare-stable-rift" ''
-    set -eu
-    source=${rift}/bin/rift
-    target=${stableRiftPath}
-    stamp="$target.source"
-    [ "$(cat "$stamp" 2>/dev/null)" = "$source" ] && exit 0
-    mkdir -p "$(dirname "$target")"
-    cp "$source" "$target.new"
-    chmod u+w "$target.new"
-    /usr/bin/codesign --force --sign "${signingIdentity}" --identifier rift "$target.new"
-    mv -f "$target.new" "$target"
-    echo "$source" > "$stamp"
-    /bin/launchctl kickstart -k "gui/$(id -u)/org.nixos.rift"
-  '';
+  prepareStableRift = pkgs.writeShellApplication {
+    name = "prepare-stable-rift";
+    runtimeInputs = [pkgs.jq pkgs.coreutils];
+    text = ''
+      restore_placement() {
+        local placement=$1 active=$2 expected known
+        [ -s "$placement" ] || return 0
+        for _ in $(seq 60); do
+          if ${riftCli} query workspaces > /dev/null 2>&1; then break; fi
+          sleep 0.5
+        done
+        expected=$(cut -f2 "$placement" | sort)
+        for _ in $(seq 40); do
+          known=$(${riftCli} query windows 2>/dev/null | jq -r '.[].window_server_id' | sort)
+          if [ -z "$(comm -23 <(echo "$expected") <(echo "$known"))" ]; then break; fi
+          sleep 0.5
+        done
+        while IFS=$'\t' read -r workspace id; do
+          ${riftCli} execute workspace move-window "$workspace" "$id" > /dev/null 2>&1 || true
+        done < "$placement"
+        if [ -n "$active" ]; then
+          ${riftCli} execute workspace switch "$active" > /dev/null 2>&1 || true
+        fi
+      }
+
+      source=${rift}/bin/rift
+      target=${stableRiftPath}
+      stamp="$target.source"
+      [ "$(cat "$stamp" 2>/dev/null)" = "$source" ] && exit 0
+
+      placement=$(mktemp)
+      active=""
+      if ${riftCli} query workspaces > "$placement.json" 2>/dev/null; then
+        jq -r '.[] | .index as $i | .windows[] | "\($i)\t\(.window_server_id)"' "$placement.json" > "$placement"
+        active=$(jq -r '.[] | select(.is_active) | .index' "$placement.json")
+      fi
+      rm -f "$placement.json"
+
+      mkdir -p "$(dirname "$target")"
+      cp "$source" "$target.new"
+      chmod u+w "$target.new"
+      /usr/bin/codesign --force --sign "${signingIdentity}" --identifier rift "$target.new"
+      mv -f "$target.new" "$target"
+      echo "$source" > "$stamp"
+      /bin/launchctl kickstart -k "gui/$(id -u)/org.nixos.rift"
+
+      restore_placement "$placement" "$active"
+      rm -f "$placement"
+    '';
+  };
 
   alacrittyApp = "${pkgs.alacritty}/Applications/Alacritty.app";
   arrangeWorkspaces = pkgs.writeShellApplication {
