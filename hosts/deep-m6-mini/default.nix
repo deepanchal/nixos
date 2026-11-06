@@ -9,6 +9,7 @@
     ./clipboard.nix
     ./screenshot.nix
     ./keyboard-remap.nix
+    ./launcher.nix
     ./linux-home-paths.nix
   ];
 }
