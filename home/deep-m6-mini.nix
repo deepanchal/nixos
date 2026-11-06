@@ -34,6 +34,8 @@
     maxCacheTtl = 604800;
   };
 
+  home.file.keybase.source = config.lib.file.mkOutOfStoreSymlink "/Volumes/Keybase (deep)";
+
   home.packages = [
     pkgs.jetbrains-mono
     pkgs.nerd-fonts.symbols-only
