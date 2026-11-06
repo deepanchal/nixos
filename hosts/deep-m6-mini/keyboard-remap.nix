@@ -1,4 +1,4 @@
-{...}: let
+{lib, ...}: let
   terminals = [
     "^org\\.alacritty$"
     "^com\\.mitchellh\\.ghostty$"
@@ -11,19 +11,30 @@
     }
   ];
 
-  ctrlToCmd = key: {
+  inBrave = [
+    {
+      type = "frontmost_application_if";
+      bundle_identifiers = ["^com\\.brave\\.Browser$"];
+    }
+  ];
+
+  ctrlToCmd = {
+    key,
+    shift ? false,
+    conditions,
+  }: {
     type = "basic";
     from = {
       key_code = key;
-      modifiers.mandatory = ["control"];
+      modifiers.mandatory = ["control"] ++ lib.optional shift "shift";
     };
     to = [
       {
         key_code = key;
-        modifiers = ["left_command"];
+        modifiers = ["left_command"] ++ lib.optional shift "left_shift";
       }
     ];
-    conditions = outsideTerminals;
+    inherit conditions;
   };
 
   ctrlClickToCmdClick = {
@@ -59,7 +70,25 @@
         complex_modifications.rules = [
           {
             description = "Ctrl+C, Ctrl+X and Ctrl+V copy, cut and paste outside terminals";
-            manipulators = map ctrlToCmd ["c" "x" "v"];
+            manipulators = map (key:
+              ctrlToCmd {
+                inherit key;
+                conditions = outsideTerminals;
+              }) ["c" "x" "v"];
+          }
+          {
+            description = "Ctrl+T opens a tab and Ctrl+Shift+N a private window in Brave";
+            manipulators = [
+              (ctrlToCmd {
+                key = "t";
+                conditions = inBrave;
+              })
+              (ctrlToCmd {
+                key = "n";
+                shift = true;
+                conditions = inBrave;
+              })
+            ];
           }
           {
             description = "Ctrl+click acts as Cmd+click";
