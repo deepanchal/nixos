@@ -52,5 +52,8 @@
     pkgs.ffmpeg
     pkgs.imagemagick
     pkgs.rsync
+
+    pkgs.mpv
+    pkgs.scrcpy
   ];
 }

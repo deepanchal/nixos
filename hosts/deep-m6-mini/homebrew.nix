@@ -23,9 +23,13 @@
     casks = [
       "android-studio"
       "brave-browser"
+      "keybase"
+      "localsend"
+      "raspberry-pi-imager"
       "saffsanity/sill/sill"
       "slack"
       "visual-studio-code"
+      "whatsapp"
       "zed"
     ];
   };
