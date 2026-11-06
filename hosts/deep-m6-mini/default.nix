@@ -6,6 +6,7 @@
     ./homebrew.nix
     ./defaults.nix
     ./tiling.nix
+    ./clipboard.nix
     ./linux-home-paths.nix
   ];
 }
