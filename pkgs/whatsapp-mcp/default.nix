@@ -37,6 +37,7 @@
     substituteInPlace $out/whatsapp.py \
       --replace-fail "os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'whatsapp-bridge', 'store', 'messages.db')" \
                      "os.path.expanduser('~/.local/share/whatsapp-bridge/store/messages.db')"
+    patch -p1 -d $out < ${./server-fixes.patch}
   '';
 
   python = pkgs.python3.withPackages (ps: [

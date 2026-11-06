@@ -1,0 +1,252 @@
+diff -ru a/main.py b/main.py
+--- a/main.py
++++ b/main.py
+@@ -1,4 +1,5 @@
+ from typing import List, Dict, Any, Optional
++from whatsapp import Chat, Contact, MessageContext
+ from mcp.server.mcpserver import MCPServer as FastMCP
+ from whatsapp import (
+     search_contacts as whatsapp_search_contacts,
+@@ -19,7 +20,7 @@
+ mcp = FastMCP("whatsapp")
+ 
+ @mcp.tool()
+-def search_contacts(query: str) -> List[Dict[str, Any]]:
++def search_contacts(query: str) -> List[Contact]:
+     """Search WhatsApp contacts by name or phone number.
+     
+     Args:
+@@ -40,7 +41,7 @@
+     include_context: bool = True,
+     context_before: int = 1,
+     context_after: int = 1
+-) -> List[Dict[str, Any]]:
++) -> str:
+     """Get WhatsApp messages matching specified criteria with optional context.
+     
+     Args:
+@@ -76,7 +77,7 @@
+     page: int = 0,
+     include_last_message: bool = True,
+     sort_by: str = "last_active"
+-) -> List[Dict[str, Any]]:
++) -> List[Chat]:
+     """Get WhatsApp chats matching specified criteria.
+     
+     Args:
+@@ -96,7 +97,7 @@
+     return chats
+ 
+ @mcp.tool()
+-def get_chat(chat_jid: str, include_last_message: bool = True) -> Dict[str, Any]:
++def get_chat(chat_jid: str, include_last_message: bool = True) -> Optional[Chat]:
+     """Get WhatsApp chat metadata by JID.
+     
+     Args:
+@@ -107,7 +108,7 @@
+     return chat
+ 
+ @mcp.tool()
+-def get_direct_chat_by_contact(sender_phone_number: str) -> Dict[str, Any]:
++def get_direct_chat_by_contact(sender_phone_number: str) -> Optional[Chat]:
+     """Get WhatsApp chat metadata by sender phone number.
+     
+     Args:
+@@ -117,7 +118,7 @@
+     return chat
+ 
+ @mcp.tool()
+-def get_contact_chats(jid: str, limit: int = 20, page: int = 0) -> List[Dict[str, Any]]:
++def get_contact_chats(jid: str, limit: int = 20, page: int = 0) -> List[Chat]:
+     """Get all WhatsApp chats involving the contact.
+     
+     Args:
+@@ -129,7 +130,7 @@
+     return chats
+ 
+ @mcp.tool()
+-def get_last_interaction(jid: str) -> str:
++def get_last_interaction(jid: str) -> Optional[str]:
+     """Get most recent WhatsApp message involving the contact.
+     
+     Args:
+@@ -143,7 +144,7 @@
+     message_id: str,
+     before: int = 5,
+     after: int = 5
+-) -> Dict[str, Any]:
++) -> MessageContext:
+     """Get context around a specific WhatsApp message.
+     
+     Args:
+diff -ru a/whatsapp.py b/whatsapp.py
+--- a/whatsapp.py
++++ b/whatsapp.py
+@@ -21,6 +21,9 @@
+     chat_name: Optional[str] = None
+     media_type: Optional[str] = None
+ 
++    def __post_init__(self):
++        self.is_from_me = bool(self.is_from_me)
++
+ @dataclass
+ class Chat:
+     jid: str
+@@ -30,6 +33,10 @@
+     last_sender: Optional[str] = None
+     last_is_from_me: Optional[bool] = None
+ 
++    def __post_init__(self):
++        if self.last_is_from_me is not None:
++            self.last_is_from_me = bool(self.last_is_from_me)
++
+     @property
+     def is_group(self) -> bool:
+         """Determine if chat is a group based on JID pattern."""
+@@ -47,6 +54,12 @@
+     before: List[Message]
+     after: List[Message]
+ 
++def selected_last_message_columns(messages_table: str) -> str:
++    return f"{messages_table}.content as last_message, {messages_table}.sender as last_sender, {messages_table}.is_from_me as last_is_from_me"
++
++def absent_last_message_columns(messages_table: str) -> str:
++    return "NULL as last_message, NULL as last_sender, NULL as last_is_from_me"
++
+ def get_sender_name(sender_jid: str) -> str:
+     try:
+         conn = sqlite3.connect(MESSAGES_DB_PATH)
+@@ -84,8 +97,7 @@
+         else:
+             return sender_jid
+         
+-    except sqlite3.Error as e:
+-        print(f"Database error while getting sender name: {e}")
++    except sqlite3.Error:
+         return sender_jid
+     finally:
+         if 'conn' in locals():
+@@ -215,9 +227,6 @@
+         # Format and display messages without context
+         return format_messages_list(result, show_chat_info=True)    
+         
+-    except sqlite3.Error as e:
+-        print(f"Database error: {e}")
+-        return []
+     finally:
+         if 'conn' in locals():
+             conn.close()
+@@ -308,9 +317,6 @@
+             after=after_messages
+         )
+         
+-    except sqlite3.Error as e:
+-        print(f"Database error: {e}")
+-        raise
+     finally:
+         if 'conn' in locals():
+             conn.close()
+@@ -324,6 +330,7 @@
+     sort_by: str = "last_active"
+ ) -> List[Chat]:
+     """Get chats matching the specified criteria."""
++    last_message_columns = selected_last_message_columns if include_last_message else absent_last_message_columns
+     try:
+         conn = sqlite3.connect(MESSAGES_DB_PATH)
+         cursor = conn.cursor()
+@@ -334,11 +341,9 @@
+                 chats.jid,
+                 chats.name,
+                 chats.last_message_time,
+-                messages.content as last_message,
+-                messages.sender as last_sender,
+-                messages.is_from_me as last_is_from_me
++                {last_message_columns}
+             FROM chats
+-        """]
++        """.format(last_message_columns=last_message_columns("messages"))]
+         
+         if include_last_message:
+             query_parts.append("""
+@@ -382,9 +387,6 @@
+             
+         return result
+         
+-    except sqlite3.Error as e:
+-        print(f"Database error: {e}")
+-        return []
+     finally:
+         if 'conn' in locals():
+             conn.close()
+@@ -424,9 +426,6 @@
+             
+         return result
+         
+-    except sqlite3.Error as e:
+-        print(f"Database error: {e}")
+-        return []
+     finally:
+         if 'conn' in locals():
+             conn.close()
+@@ -475,9 +474,6 @@
+             
+         return result
+         
+-    except sqlite3.Error as e:
+-        print(f"Database error: {e}")
+-        return []
+     finally:
+         if 'conn' in locals():
+             conn.close()
+@@ -524,9 +520,6 @@
+         
+         return format_message(message)
+         
+-    except sqlite3.Error as e:
+-        print(f"Database error: {e}")
+-        return None
+     finally:
+         if 'conn' in locals():
+             conn.close()
+@@ -534,6 +527,7 @@
+ 
+ def get_chat(chat_jid: str, include_last_message: bool = True) -> Optional[Chat]:
+     """Get chat metadata by JID."""
++    last_message_columns = selected_last_message_columns if include_last_message else absent_last_message_columns
+     try:
+         conn = sqlite3.connect(MESSAGES_DB_PATH)
+         cursor = conn.cursor()
+@@ -543,11 +537,9 @@
+                 c.jid,
+                 c.name,
+                 c.last_message_time,
+-                m.content as last_message,
+-                m.sender as last_sender,
+-                m.is_from_me as last_is_from_me
++                {last_message_columns}
+             FROM chats c
+-        """
++        """.format(last_message_columns=last_message_columns("m"))
+         
+         if include_last_message:
+             query += """
+@@ -572,9 +564,6 @@
+             last_is_from_me=chat_data[5]
+         )
+         
+-    except sqlite3.Error as e:
+-        print(f"Database error: {e}")
+-        return None
+     finally:
+         if 'conn' in locals():
+             conn.close()
+@@ -615,9 +604,6 @@
+             last_is_from_me=chat_data[5]
+         )
+         
+-    except sqlite3.Error as e:
+-        print(f"Database error: {e}")
+-        return None
+     finally:
+         if 'conn' in locals():
+             conn.close()
