@@ -53,6 +53,14 @@
     StandardErrorPath = "/tmp/sunshine.log";
   };
 
+  launchd.user.agents.sill.serviceConfig = {
+    ProgramArguments = ["${pkgs.writeShellScriptBin "sill" "exec /usr/bin/open -W -g -a Sill"}/bin/sill"];
+    RunAtLoad = true;
+    KeepAlive = true;
+    ProcessType = "Interactive";
+    LimitLoadToSessionType = "Aqua";
+  };
+
   services.openssh = {
     enable = true;
     extraConfig = ''
