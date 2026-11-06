@@ -1,5 +1,5 @@
 diff --git a/src/layout_engine/systems/bsp.rs b/src/layout_engine/systems/bsp.rs
-index c3a4fce..51897c9 100644
+index c3a4fce..d24ccbb 100644
 --- a/src/layout_engine/systems/bsp.rs
 +++ b/src/layout_engine/systems/bsp.rs
 @@ -1,3 +1,5 @@
@@ -25,38 +25,71 @@ index c3a4fce..51897c9 100644
          }
      }
  }
-@@ -301,6 +306,99 @@ impl BspLayoutSystem {
+@@ -301,6 +306,132 @@ impl BspLayoutSystem {
          }
      }
  
-+    fn node_size(&self, layout: LayoutId, node: NodeId) -> Option<CGSize> {
-+        let mut size = self.tiling_sizes.borrow().get(&layout).copied()?;
++    fn relative_rect(&self, node: NodeId) -> CGRect {
 +        let mut path = vec![node];
 +        let mut current = node;
 +        while let Some(parent) = current.parent(&self.tree.map) {
 +            path.push(parent);
 +            current = parent;
 +        }
-+        if self.layouts.get(layout).map(|state| state.root) != Some(current) {
-+            return None;
-+        }
++        let mut rect = CGRect::new(CGPoint::new(0.0, 0.0), CGSize::new(1.0, 1.0));
 +        for pair in path.windows(2).rev() {
 +            let [child, parent] = pair else { continue };
 +            let Some(NodeKind::Split { orientation, ratio }) = self.kind.get(*parent) else {
 +                continue;
 +            };
 +            let ratio = f64::from(*ratio);
-+            let share = if parent.first_child(&self.tree.map) == Some(*child) {
-+                ratio
-+            } else {
-+                1.0 - ratio
-+            };
++            let is_first = parent.first_child(&self.tree.map) == Some(*child);
 +            match orientation {
-+                Orientation::Horizontal => size.width *= share,
-+                Orientation::Vertical => size.height *= share,
++                Orientation::Horizontal => {
++                    let first_width = rect.size.width * ratio;
++                    if is_first {
++                        rect.size.width = first_width;
++                    } else {
++                        rect.origin.x += first_width;
++                        rect.size.width -= first_width;
++                    }
++                }
++                Orientation::Vertical => {
++                    let first_height = rect.size.height * ratio;
++                    if is_first {
++                        rect.size.height = first_height;
++                    } else {
++                        rect.origin.y += first_height;
++                        rect.size.height -= first_height;
++                    }
++                }
 +            }
 +        }
-+        Some(size)
++        rect
++    }
++
++    fn node_size(&self, layout: LayoutId, node: NodeId) -> Option<CGSize> {
++        let tiling = self.tiling_sizes.borrow().get(&layout).copied()?;
++        let root = self.layouts.get(layout)?.root;
++        if !node.ancestors(&self.tree.map).any(|ancestor| ancestor == root) {
++            return None;
++        }
++        let relative = self.relative_rect(node).size;
++        Some(CGSize::new(
++            tiling.width * relative.width,
++            tiling.height * relative.height,
++        ))
++    }
++
++    fn edge_point(&self, node: NodeId, direction: Direction) -> CGPoint {
++        let rect = self.relative_rect(node);
++        let (x, y, width, height) = (rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
++        match direction {
++            Direction::Left => CGPoint::new(x, y + height / 2.0),
++            Direction::Right => CGPoint::new(x + width, y + height / 2.0),
++            Direction::Up => CGPoint::new(x + width / 2.0, y),
++            Direction::Down => CGPoint::new(x + width / 2.0, y + height),
++        }
 +    }
 +
 +    fn orientation_for_shape(&self, layout: LayoutId, node: NodeId) -> Option<Orientation> {
@@ -125,7 +158,7 @@ index c3a4fce..51897c9 100644
      fn collect_windows_under(&self, node: NodeId, out: &mut Vec<WindowId>) {
          match self.kind.get(node) {
              Some(NodeKind::Leaf { window, .. }) => {
-@@ -452,9 +550,9 @@ impl BspLayoutSystem {
+@@ -452,9 +583,9 @@ impl BspLayoutSystem {
                          self.stacks.insert(left, stack);
                      }
  
@@ -138,7 +171,27 @@ index c3a4fce..51897c9 100644
                      self.kind.insert(sel, NodeKind::Split { orientation, ratio: 0.5 });
                      left.detach(&mut self.tree).push_back(sel);
                      right.detach(&mut self.tree).push_back(sel);
-@@ -1341,6 +1439,94 @@ mod tests {
+@@ -1312,9 +1443,9 @@ mod tests {
+ 
+             let expected = if backwards {
+                 [
+-                    (250.0, 0.0, 250.0, 1000.0),
+-                    (500.0, 0.0, 500.0, 1000.0),
+                     (0.0, 0.0, 250.0, 1000.0),
++                    (500.0, 0.0, 500.0, 1000.0),
++                    (250.0, 0.0, 250.0, 1000.0),
+                 ]
+             } else {
+                 [
+@@ -1336,11 +1467,141 @@ mod tests {
+                     },
+                 );
+             }
++            if backwards {
++                assert!(system.move_selection(layout, direction));
++            }
+             assert!(!system.move_selection(layout, direction));
+             assert_eq!(system.selected_window(layout), Some(moving));
          }
      }
  
@@ -179,7 +232,7 @@ index c3a4fce..51897c9 100644
 +    }
 +
 +    #[test]
-+    fn moving_along_a_wide_neighbor_keeps_the_direction_order() {
++    fn moving_into_a_wide_neighbor_lands_on_its_near_side() {
 +        let (mut system, layout) = tiled(&[1, 2, 3]);
 +        calculate_frames(&system, layout, CGSize::new(2000.0, 500.0), &Default::default());
 +        assert!(system.select_window(layout, w(3)));
@@ -187,9 +240,48 @@ index c3a4fce..51897c9 100644
 +
 +        let frames =
 +            calculate_frames(&system, layout, CGSize::new(2000.0, 500.0), &Default::default());
-+        assert_frame(&frames, w(3), (0.0, 0.0, 500.0, 500.0));
-+        assert_frame(&frames, w(1), (500.0, 0.0, 500.0, 500.0));
++        assert_frame(&frames, w(1), (0.0, 0.0, 500.0, 500.0));
++        assert_frame(&frames, w(3), (500.0, 0.0, 500.0, 500.0));
 +        assert_frame(&frames, w(2), (1000.0, 0.0, 1000.0, 500.0));
++    }
++
++    fn grid(size: CGSize) -> (BspLayoutSystem, LayoutId) {
++        let (mut system, layout) = tiled(&[1, 2]);
++        assert!(system.select_window(layout, w(1)));
++        system.add_window_after_selection(layout, w(3));
++        assert!(system.select_window(layout, w(2)));
++        system.add_window_after_selection(layout, w(4));
++        calculate_frames(&system, layout, size, &Default::default());
++        (system, layout)
++    }
++
++    #[test]
++    fn moving_right_out_of_a_grid_lands_on_the_near_side_of_the_neighbor() {
++        let size = CGSize::new(2000.0, 1000.0);
++        let (mut system, layout) = grid(size);
++        assert!(system.select_window(layout, w(3)));
++        assert!(system.move_selection(layout, Direction::Right));
++        assert_eq!(system.selected_window(layout), Some(w(3)));
++
++        let frames = calculate_frames(&system, layout, size, &Default::default());
++        assert_frame(&frames, w(1), (0.0, 0.0, 1000.0, 1000.0));
++        assert_frame(&frames, w(2), (1000.0, 0.0, 1000.0, 500.0));
++        assert_frame(&frames, w(3), (1000.0, 500.0, 500.0, 500.0));
++        assert_frame(&frames, w(4), (1500.0, 500.0, 500.0, 500.0));
++    }
++
++    #[test]
++    fn moving_left_out_of_a_grid_lands_on_the_near_side_of_the_neighbor() {
++        let size = CGSize::new(2000.0, 1000.0);
++        let (mut system, layout) = grid(size);
++        assert!(system.select_window(layout, w(4)));
++        assert!(system.move_selection(layout, Direction::Left));
++
++        let frames = calculate_frames(&system, layout, size, &Default::default());
++        assert_frame(&frames, w(1), (0.0, 0.0, 1000.0, 500.0));
++        assert_frame(&frames, w(3), (0.0, 500.0, 500.0, 500.0));
++        assert_frame(&frames, w(4), (500.0, 500.0, 500.0, 500.0));
++        assert_frame(&frames, w(2), (1000.0, 0.0, 1000.0, 1000.0));
 +    }
 +
 +    #[test]
@@ -233,7 +325,7 @@ index c3a4fce..51897c9 100644
      #[test]
      fn directional_move_fills_an_empty_slot_and_collapses_the_old_split() {
          let (mut system, layout) = tiled(&[1, 2, 3]);
-@@ -1487,6 +1673,7 @@ impl LayoutSystem for BspLayoutSystem {
+@@ -1487,6 +1748,7 @@ impl LayoutSystem for BspLayoutSystem {
      }
  
      fn remove_layout(&mut self, layout: LayoutId) {
@@ -241,7 +333,7 @@ index c3a4fce..51897c9 100644
          if let Some(state) = self.layouts.remove(layout) {
              let ids: Vec<_> = state.root.traverse_preorder(&self.tree.map).collect();
              for id in ids {
-@@ -1637,6 +1824,7 @@ impl LayoutSystem for BspLayoutSystem {
+@@ -1637,6 +1899,7 @@ impl LayoutSystem for BspLayoutSystem {
          let mut out = Vec::new();
          if let Some(state) = self.layouts.get(layout).copied() {
              let rect = compute_tiling_area(screen, gaps);
@@ -249,7 +341,7 @@ index c3a4fce..51897c9 100644
              self.calculate_layout_recursive(state.root, rect, screen, constraints, gaps, &mut out);
              if let (Some(ratio), [(_, frame)]) =
                  (self.single_window_aspect_ratio, out.as_mut_slice())
-@@ -1991,6 +2179,23 @@ impl LayoutSystem for BspLayoutSystem {
+@@ -1991,6 +2254,23 @@ impl LayoutSystem for BspLayoutSystem {
          }
      }
  
@@ -273,7 +365,7 @@ index c3a4fce..51897c9 100644
      fn move_selection(&mut self, layout: LayoutId, direction: Direction) -> bool {
          let Some(sel) = self.selection_of_layout(layout) else {
              return false;
-@@ -2003,7 +2208,11 @@ impl LayoutSystem for BspLayoutSystem {
+@@ -2003,7 +2283,11 @@ impl LayoutSystem for BspLayoutSystem {
              return false;
          }
          let Some(target) = self.find_neighbor_leaf(moving, direction) else {
@@ -286,29 +378,37 @@ index c3a4fce..51897c9 100644
          };
          let Some(old_parent) = moving.parent(&self.tree.map) else {
              return false;
-@@ -2031,18 +2240,19 @@ impl LayoutSystem for BspLayoutSystem {
+@@ -2030,19 +2314,28 @@ impl LayoutSystem for BspLayoutSystem {
+             // Transfer the entire leaf (including stacks and fullscreen state)
              // onto a new split at the directional neighbor, then reclaim its
              // old region for the sibling left behind.
++            let focal_point = self.edge_point(moving, direction);
              let split = self.tree.mk_node().into_id();
 -            self.kind.insert(split, NodeKind::Split {
 -                orientation: direction.orientation(),
 -                ratio: 0.5,
 -            });
--            split.detach(&mut self.tree).insert_before(target);
--            let (first, second) = match direction {
--                Direction::Left | Direction::Up => (moving, target),
--                Direction::Right | Direction::Down => (target, moving),
--            };
--            first.detach(&mut self.tree).push_back(split);
--            second.detach(&mut self.tree).push_back(split);
 +            moving.detach(&mut self.tree).push_back(split);
-             self.collapse_split(old_parent);
++            self.collapse_split(old_parent);
 +            let orientation =
 +                self.orientation_for_shape(layout, target).unwrap_or(direction.orientation());
 +            self.kind.insert(split, NodeKind::Split { orientation, ratio: 0.5 });
-+            split.detach(&mut self.tree).insert_before(target);
-+            let moving_goes_first = orientation == direction.orientation()
-+                && matches!(direction, Direction::Left | Direction::Up);
++            let target_rect = self.relative_rect(target);
+             split.detach(&mut self.tree).insert_before(target);
+-            let (first, second) = match direction {
+-                Direction::Left | Direction::Up => (moving, target),
+-                Direction::Right | Direction::Down => (target, moving),
++            let moving_goes_first = match orientation {
++                Orientation::Horizontal => {
++                    focal_point.x < target_rect.origin.x + target_rect.size.width / 2.0
++                }
++                Orientation::Vertical => {
++                    focal_point.y < target_rect.origin.y + target_rect.size.height / 2.0
++                }
+             };
+-            first.detach(&mut self.tree).push_back(split);
+-            second.detach(&mut self.tree).push_back(split);
+-            self.collapse_split(old_parent);
 +            if moving_goes_first {
 +                target.detach(&mut self.tree).push_back(split);
 +            } else {
