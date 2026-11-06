@@ -144,6 +144,33 @@
   };
 
   mod = "LCmd";
+  mediaKey = pkgs.writeShellApplication {
+    name = "media-key";
+    text = ''
+      /usr/bin/osascript -l JavaScript - "$@" <<'JXA'
+      ObjC.import("Cocoa");
+      ObjC.import("CoreGraphics");
+      function run(argv) {
+        const codes = { play: 16, next: 17, previous: 18 };
+        const code = codes[argv[0]];
+        if (code === undefined) throw new Error("usage: media-key play|next|previous [--dry-run]");
+        for (const state of [0xa, 0xb]) {
+          const flags = state << 8;
+          const event = $.NSEvent.otherEventWithTypeLocationModifierFlagsTimestampWindowNumberContextSubtypeData1Data2(
+            14, $.NSMakePoint(0, 0), flags, 0, 0, null, 8, (code << 16) | flags, -1);
+          if (argv[1] !== "--dry-run") $.CGEventPost(0, event.CGEvent);
+        }
+      }
+      JXA
+    '';
+  };
+  lockScreen = pkgs.writeShellApplication {
+    name = "lock-screen";
+    text = ''
+      /usr/bin/osascript -e 'tell application "System Events" to keystroke "q" using {control down, command down}'
+    '';
+  };
+
   openApp = path: {exec = ["/usr/bin/open" "-n" path];};
   launchApp = name: {exec = ["/bin/sh" "-c" "/usr/bin/open -a '${name}'; ${riftCli} execute binding-mode default"];};
   enterMode = mode: {binding_mode = mode;};
@@ -223,6 +250,14 @@
         "${mod} + R" = enterMode "resize";
         "${mod} + O" = enterMode "launch";
         "F6" = {exec = ["/run/current-system/sw/bin/screenshot"];};
+        "Ctrl + Alt + L" = {exec = ["${lockScreen}/bin/lock-screen"];};
+        "${mod} + Shift + M" = {exec = ["${mediaKey}/bin/media-key" "play"];};
+        "${mod} + Shift + N" = {exec = ["${mediaKey}/bin/media-key" "next"];};
+        "${mod} + Shift + B" = {exec = ["${mediaKey}/bin/media-key" "previous"];};
+        "${mod} + Alt + H" = {resize_window_shrink = "horizontal";};
+        "${mod} + Alt + L" = {resize_window_grow = "horizontal";};
+        "${mod} + Alt + K" = {resize_window_shrink = "vertical";};
+        "${mod} + Alt + J" = {resize_window_grow = "vertical";};
       }
       // directionKeys
       // workspaceKeys;
@@ -246,7 +281,7 @@
     };
   };
 in {
-  environment.systemPackages = [rift arrangeWorkspaces];
+  environment.systemPackages = [rift arrangeWorkspaces mediaKey lockScreen];
 
   home-manager.users.deep.xdg.configFile."rift/config.toml".source = riftConfig;
 
