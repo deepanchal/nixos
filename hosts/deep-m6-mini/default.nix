@@ -8,6 +8,7 @@
     ./tiling.nix
     ./clipboard.nix
     ./screenshot.nix
+    ./keyboard-remap.nix
     ./linux-home-paths.nix
   ];
 }
