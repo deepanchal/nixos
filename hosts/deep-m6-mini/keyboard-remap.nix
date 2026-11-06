@@ -18,9 +18,9 @@
     }
   ];
 
-  cmd = ["left_command"];
-  cmdShift = ["left_command" "left_shift"];
-  cmdOption = ["left_command" "left_option"];
+  cmd = ["right_command"];
+  cmdShift = ["right_command" "left_shift"];
+  cmdOption = ["right_command" "left_option"];
 
   ctrlToCmd = {
     key,
@@ -46,107 +46,109 @@
     inherit conditions;
   };
 
-  braveShortcuts = [
-    {key = "t";}
-    {key = "n";}
-    {
-      key = "n";
-      shift = true;
-    }
-    {key = "w";}
-    {
-      key = "w";
-      shift = true;
-    }
-    {
-      key = "t";
-      shift = true;
-    }
-    {
-      key = "q";
-      shift = true;
-      toModifiers = cmd;
-    }
-    {key = "l";}
-    {key = "r";}
-    {
-      key = "r";
-      shift = true;
-    }
-    {key = "f";}
-    {key = "g";}
-    {
-      key = "g";
-      shift = true;
-    }
-    {key = "d";}
-    {
-      key = "b";
-      shift = true;
-    }
-    {
-      key = "o";
-      shift = true;
-      to = "b";
-      toModifiers = cmdOption;
-    }
-    {
-      key = "h";
-      to = "y";
-    }
-    {
-      key = "j";
-      toModifiers = cmdShift;
-    }
-    {
-      key = "delete_or_backspace";
-      shift = true;
-    }
-    {
-      key = "a";
-      shift = true;
-    }
-    {key = "p";}
-    {key = "s";}
-    {key = "o";}
-    {
-      key = "u";
-      toModifiers = cmdOption;
-    }
-    {
-      key = "i";
-      shift = true;
-      toModifiers = cmdOption;
-    }
-    {
-      key = "j";
-      shift = true;
-      toModifiers = cmdOption;
-    }
-    {
-      key = "c";
-      shift = true;
-    }
-    {key = "equal_sign";}
-    {
-      key = "equal_sign";
-      shift = true;
-      toModifiers = cmd;
-    }
-    {key = "hyphen";}
-    {key = "0";}
-    {key = "a";}
-    {key = "z";}
-    {
-      key = "z";
-      shift = true;
-    }
-    {
-      key = "y";
-      to = "z";
-      toModifiers = cmdShift;
-    }
-  ];
+  braveShortcuts =
+    [
+      {key = "t";}
+      {key = "n";}
+      {
+        key = "n";
+        shift = true;
+      }
+      {key = "w";}
+      {
+        key = "w";
+        shift = true;
+      }
+      {
+        key = "t";
+        shift = true;
+      }
+      {
+        key = "q";
+        shift = true;
+        toModifiers = cmd;
+      }
+      {key = "l";}
+      {key = "r";}
+      {
+        key = "r";
+        shift = true;
+      }
+      {key = "f";}
+      {key = "g";}
+      {
+        key = "g";
+        shift = true;
+      }
+      {key = "d";}
+      {
+        key = "b";
+        shift = true;
+      }
+      {
+        key = "o";
+        shift = true;
+        to = "b";
+        toModifiers = cmdOption;
+      }
+      {
+        key = "h";
+        to = "y";
+      }
+      {
+        key = "j";
+        toModifiers = cmdShift;
+      }
+      {
+        key = "delete_or_backspace";
+        shift = true;
+      }
+      {
+        key = "a";
+        shift = true;
+      }
+      {key = "p";}
+      {key = "s";}
+      {key = "o";}
+      {
+        key = "u";
+        toModifiers = cmdOption;
+      }
+      {
+        key = "i";
+        shift = true;
+        toModifiers = cmdOption;
+      }
+      {
+        key = "j";
+        shift = true;
+        toModifiers = cmdOption;
+      }
+      {
+        key = "c";
+        shift = true;
+      }
+      {key = "equal_sign";}
+      {
+        key = "equal_sign";
+        shift = true;
+        toModifiers = cmd;
+      }
+      {key = "hyphen";}
+      {key = "0";}
+      {key = "a";}
+      {key = "z";}
+      {
+        key = "z";
+        shift = true;
+      }
+      {
+        key = "y";
+        to = "z";
+        toModifiers = cmdShift;
+      }
+    ]
+    ++ map (number: {key = toString number;}) (lib.range 1 9);
 
   ctrlClickToCmdClick = {
     type = "basic";
