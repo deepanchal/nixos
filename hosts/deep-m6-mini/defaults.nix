@@ -11,12 +11,15 @@
       NSAutomaticPeriodSubstitutionEnabled = false;
       NSAutomaticQuoteSubstitutionEnabled = false;
       NSAutomaticSpellingCorrectionEnabled = false;
+      NSAutomaticWindowAnimationsEnabled = false;
+      NSWindowResizeTime = 0.001;
     };
 
     dock = {
       autohide = true;
       show-recents = false;
       mru-spaces = false;
+      launchanim = false;
     };
 
     finder = {
