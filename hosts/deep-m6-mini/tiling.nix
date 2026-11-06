@@ -163,7 +163,7 @@ in {
 
   services.jankyborders = {
     enable = true;
-    width = 2.0;
+    width = 5.0;
     active_color = "0xff${colors.primary}";
     inactive_color = "0xff${colors.base02}";
   };
