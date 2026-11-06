@@ -12,7 +12,7 @@
         TERM = "xterm-256color";
       };
       window = {
-        decorations = "none";
+        decorations = if pkgs.stdenv.hostPlatform.isDarwin then "Buttonless" else "none";
         dynamic_padding = true;
         dimensions = {
           columns = 100;
