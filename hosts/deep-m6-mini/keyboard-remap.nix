@@ -77,18 +77,19 @@
               }) ["c" "x" "v"];
           }
           {
-            description = "Ctrl+T opens a tab and Ctrl+Shift+N a private window in Brave";
-            manipulators = [
-              (ctrlToCmd {
-                key = "t";
-                conditions = inBrave;
-              })
-              (ctrlToCmd {
-                key = "n";
-                shift = true;
-                conditions = inBrave;
-              })
-            ];
+            description = "Linux tab and window shortcuts with Ctrl in Brave";
+            manipulators =
+              map (key:
+                ctrlToCmd {
+                  inherit key;
+                  conditions = inBrave;
+                }) ["t" "w" "l" "r" "f"]
+              ++ map (key:
+                ctrlToCmd {
+                  inherit key;
+                  shift = true;
+                  conditions = inBrave;
+                }) ["t" "n"];
           }
           {
             description = "Ctrl+click acts as Cmd+click";
