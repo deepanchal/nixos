@@ -103,6 +103,7 @@
     '';
   };
 
+  mod = "Cmd";
   openApp = path: {exec = ["/usr/bin/open" "-n" path];};
   launchApp = name: {exec = ["/bin/sh" "-c" "/usr/bin/open -a '${name}'; ${riftCli} execute binding-mode default"];};
   enterMode = mode: {binding_mode = mode;};
@@ -115,16 +116,16 @@
   };
   directionKeys =
     lib.concatMapAttrs (key: direction: {
-      "Alt + ${key}" = {move_focus = direction;};
-      "Alt + Shift + ${key}" = {move_node = direction;};
+      "${mod} + ${key}" = {move_focus = direction;};
+      "${mod} + Shift + ${key}" = {move_node = direction;};
     })
     directions;
 
   workspaceCount = 10;
   workspaceKey = index: toString (lib.mod (index + 1) 10);
   workspaceKeys = lib.mergeAttrsList (lib.genList (index: {
-      "Alt + ${workspaceKey index}" = {switch_to_workspace = index;};
-      "Alt + Shift + ${workspaceKey index}" = {move_window_to_workspace = index;};
+      "${mod} + ${workspaceKey index}" = {switch_to_workspace = index;};
+      "${mod} + Shift + ${workspaceKey index}" = {move_window_to_workspace = index;};
     })
     workspaceCount);
 
@@ -136,7 +137,7 @@
       mouse_hides_on_focus = false;
       hot_reload = true;
       drag_drop = {
-        modifier = "alt";
+        modifier = lib.toLower mod;
         action1 = "move";
       };
       layout = {
@@ -163,17 +164,17 @@
 
     keys =
       {
-        "Alt + Enter" = openApp "${pkgs.alacritty}/Applications/Alacritty.app";
-        "Alt + Shift + Enter" = openApp "${pkgs.ghostty-bin}/Applications/Ghostty.app";
-        "Alt + Shift + Q" = "close_window";
-        "Alt + F" = "toggle_fullscreen_within_gaps";
-        "Alt + Shift + Space" = {toggle_window_floating = {center = true;};};
-        "Alt + G" = "toggle_stack";
-        "Alt + Tab" = "next_window";
-        "Alt + Shift + Tab" = "prev_window";
-        "Alt + Shift + R" = "reload_config";
-        "Alt + R" = enterMode "resize";
-        "Alt + O" = enterMode "launch";
+        "${mod} + Enter" = openApp "${pkgs.alacritty}/Applications/Alacritty.app";
+        "${mod} + Shift + Enter" = openApp "${pkgs.ghostty-bin}/Applications/Ghostty.app";
+        "${mod} + Shift + Q" = "close_window";
+        "${mod} + F" = "toggle_fullscreen_within_gaps";
+        "${mod} + Shift + Space" = {toggle_window_floating = {center = true;};};
+        "${mod} + G" = "toggle_stack";
+        "${mod} + Tab" = "next_window";
+        "${mod} + Shift + Tab" = "prev_window";
+        "${mod} + Shift + R" = "reload_config";
+        "${mod} + R" = enterMode "resize";
+        "${mod} + O" = enterMode "launch";
         "F6" = {exec = ["/run/current-system/sw/bin/screenshot"];};
       }
       // directionKeys
