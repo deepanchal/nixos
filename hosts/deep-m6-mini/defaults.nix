@@ -36,6 +36,11 @@
     };
 
     screensaver.askForPassword = false;
+
+    CustomUserPreferences."com.apple.loginwindow" = {
+      TALLogoutSavesState = false;
+      LoginwindowLaunchesRelaunchApps = false;
+    };
   };
 
   system.activationScripts.postActivation.text = ''
