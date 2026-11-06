@@ -48,6 +48,10 @@ in {
   home.packages = [unlockKeys];
 
   programs.fish.interactiveShellInit = lib.mkBefore ''
-    isatty stdin; and unlock-keys
+    if isatty stdin
+      if not set -q TMUX; or test (tmux display-message -p '#{session_attached}' 2>/dev/null; or echo 0) -gt 0
+        unlock-keys
+      end
+    end
   '';
 }
