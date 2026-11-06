@@ -46,15 +46,36 @@
     inherit conditions;
   };
 
+  appShortcuts = [
+    {key = "c";}
+    {key = "x";}
+    {key = "v";}
+    {key = "a";}
+    {key = "z";}
+    {
+      key = "z";
+      shift = true;
+    }
+    {
+      key = "y";
+      to = "z";
+      toModifiers = cmdShift;
+    }
+    {key = "s";}
+    {key = "f";}
+    {key = "p";}
+    {key = "o";}
+    {key = "n";}
+    {key = "w";}
+    {key = "t";}
+  ];
+
   braveShortcuts =
     [
-      {key = "t";}
-      {key = "n";}
       {
         key = "n";
         shift = true;
       }
-      {key = "w";}
       {
         key = "w";
         shift = true;
@@ -74,7 +95,6 @@
         key = "r";
         shift = true;
       }
-      {key = "f";}
       {key = "g";}
       {
         key = "g";
@@ -107,9 +127,6 @@
         key = "a";
         shift = true;
       }
-      {key = "p";}
-      {key = "s";}
-      {key = "o";}
       {
         key = "u";
         toModifiers = cmdOption;
@@ -136,17 +153,6 @@
       }
       {key = "hyphen";}
       {key = "0";}
-      {key = "a";}
-      {key = "z";}
-      {
-        key = "z";
-        shift = true;
-      }
-      {
-        key = "y";
-        to = "z";
-        toModifiers = cmdShift;
-      }
     ]
     ++ map (number: {key = toString number;}) (lib.range 1 9);
 
@@ -182,12 +188,8 @@
         devices = [hpUsbMouse];
         complex_modifications.rules = [
           {
-            description = "Ctrl+C, Ctrl+X and Ctrl+V copy, cut and paste outside terminals";
-            manipulators = map (key:
-              ctrlToCmd {
-                inherit key;
-                conditions = outsideTerminals;
-              }) ["c" "x" "v"];
+            description = "Linux Ctrl shortcuts in every app except terminals";
+            manipulators = map (shortcut: ctrlToCmd (shortcut // {conditions = outsideTerminals;})) appShortcuts;
           }
           {
             description = "Linux Chrome shortcuts with Ctrl in Brave";
