@@ -77,6 +77,18 @@
           mods = "Control";
           chars = "\\u001c";
         }
+      ]
+      ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
+        {
+          key = "C";
+          mods = "Control|Shift";
+          action = "Copy";
+        }
+        {
+          key = "V";
+          mods = "Control|Shift";
+          action = "Paste";
+        }
       ];
     };
   };

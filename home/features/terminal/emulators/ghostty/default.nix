@@ -37,6 +37,10 @@
         "ctrl+shift+n=new_window"
         "ctrl+k=clear_screen"
         "ctrl+shift+space=write_screen_file:open"
+      ]
+      ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
+        "ctrl+shift+c=copy_to_clipboard"
+        "ctrl+shift+v=paste_from_clipboard"
       ];
     };
   };
