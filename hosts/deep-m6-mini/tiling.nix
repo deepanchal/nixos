@@ -107,7 +107,7 @@
     '';
   };
 
-  mod = "Cmd";
+  mod = "LCmd";
   openApp = path: {exec = ["/usr/bin/open" "-n" path];};
   launchApp = name: {exec = ["/bin/sh" "-c" "/usr/bin/open -a '${name}'; ${riftCli} execute binding-mode default"];};
   enterMode = mode: {binding_mode = mode;};
@@ -148,7 +148,7 @@
         show_empty = false;
       };
       drag_drop = {
-        modifier = lib.toLower mod;
+        modifier = "alt";
         action1 = "move";
       };
       layout = {
