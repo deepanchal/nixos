@@ -17,7 +17,7 @@
     ./features/terminal/emulators/alacritty
     ./features/terminal/emulators/ghostty
     ./features/terminal/programs
-    ./features/terminal/programs/gpg-unlock.nix
+    ./features/terminal/programs/unlock-keys.nix
     ./features/terminal/shell
   ];
 
