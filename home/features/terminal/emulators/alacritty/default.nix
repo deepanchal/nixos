@@ -26,10 +26,7 @@
           y = 0;
         };
         startup_mode = "Maximized";
-        opacity =
-          if pkgs.stdenv.hostPlatform.isDarwin
-          then 0.94
-          else 0.85;
+        opacity = 0.85;
         blur = pkgs.stdenv.hostPlatform.isDarwin;
         option_as_alt = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin "Both";
       };
