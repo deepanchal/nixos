@@ -18,7 +18,10 @@
       for f in "$HOME"/.claude/sessions/*.json; do
         pid=$(basename "$f" .json)
         kill -0 "$pid" 2>/dev/null || continue
-        jq -r 'select(.tmux) | [(.tmux | split(":")[0]), .cwd, .sessionId, .name // ""] | @tsv' "$f"
+        shpool_name=$(ps -wwE -p "$pid" -o command= 2>/dev/null | tr ' ' '\n' | sed -n 's/^SHPOOL_SESSION_NAME=//p' | head -1)
+        jq -r --arg shpool "$shpool_name" '
+          (if $shpool != "" then $shpool elif .tmux then (.tmux | split(":")[0]) else empty end) as $session
+          | [$session, .cwd, .sessionId, .name // ""] | @tsv' "$f"
       done | sort -t$'\t' -k1,1 | awk -F'\t' -v OFS='\t' '{ n = $1; if (seen[n]++) n = n "-" seen[n]; $1 = n; print }' > "$live"
 
       touch ${manifest}
@@ -37,20 +40,19 @@
 
   restoreSessions = pkgs.writeShellApplication {
     name = "claude-sessions-restore";
-    runtimeInputs = [pkgs.tmux pkgs.coreutils];
+    runtimeInputs = [pkgs.shpool pkgs.tmux pkgs.coreutils];
     text = ''
       parallel=''${PARALLEL:-1}
       wanted=" $* "
 
       [ -f ${manifest} ] || { echo "no manifest at ${manifest}" >&2; exit 1; }
 
-      tmux start-server
       log_dir=$(mktemp -d)
 
       restore_one() {
         local name=$1 dir=$2 id=$3
-        if tmux has-session -t "=$name" 2>/dev/null; then
-          echo "skip $name: tmux session already exists"
+        if shpool list 2>/dev/null | awk 'NR > 1 { print $1 }' | grep -qx "$name" || tmux has-session -t "=$name" 2>/dev/null; then
+          echo "skip $name: session already running"
           return
         fi
         if [ ! -d "$dir" ]; then
