@@ -18,6 +18,25 @@
     trusted-users = ["root" "deep"];
   };
 
+  nix.gc = {
+    automatic = true;
+    interval = {
+      Weekday = 0;
+      Hour = 4;
+      Minute = 0;
+    };
+    options = "--delete-older-than 7d";
+  };
+
+  nix.optimise = {
+    automatic = true;
+    interval = {
+      Weekday = 0;
+      Hour = 5;
+      Minute = 0;
+    };
+  };
+
   networking = {
     hostName = "deep-m6-mini";
     computerName = "deep-m6-mini";
