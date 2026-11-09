@@ -98,7 +98,14 @@
 
       # JAVASCRIPT/TYPESCRIPT
       typescript
-      typescript-language-server
+      (symlinkJoin {
+        name = "typescript-language-server";
+        paths = [ typescript-language-server ];
+        nativeBuildInputs = [ makeWrapper ];
+        postBuild = ''
+          wrapProgram $out/bin/typescript-language-server --set-default NODE_OPTIONS --max-old-space-size=2048
+        '';
+      })
       tailwindcss-language-server
 
       # SCALA
