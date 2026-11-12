@@ -11,6 +11,7 @@
     ./features/ai/mcp-hub.nix
     ./features/ai/t3code-server.nix
     ./features/ai/whatsapp-bridge.nix
+    ./features/drive-access
     ./features/sync
     ./features/desktop/theme/catppuccin.nix
     ./features/editors/nvim
