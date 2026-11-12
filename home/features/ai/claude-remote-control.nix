@@ -6,7 +6,7 @@
   launchd.agents.claude-remote-control = {
     enable = true;
     config = {
-      ProgramArguments = [
+      ProgramArguments = config.driveAccess.wrap [
         "${pkgs.fish}/bin/fish"
         "--login"
         "--command"

@@ -48,7 +48,7 @@ in {
   launchd.agents.mcp-hub = {
     enable = true;
     config = {
-      ProgramArguments = ["${mcpHub}/bin/mcp-hub"];
+      ProgramArguments = config.driveAccess.wrap ["${mcpHub}/bin/mcp-hub"];
       WorkingDirectory = home;
       RunAtLoad = true;
       KeepAlive = true;
