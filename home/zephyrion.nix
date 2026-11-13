@@ -15,7 +15,6 @@
     # outputs.homeManagerModules.example
     ./global
     ./features/ai
-    ./features/ai/t3code.nix
     ./features/ai/whatsapp-bridge-remote.nix
     ./features/editors
     ./features/terminal
