@@ -130,7 +130,6 @@
         ".vscode"
         ".cursor"
         ".claude" # for claude code
-        ".t3"
         ".claude-squad"
         "go"
         ".keychain"
