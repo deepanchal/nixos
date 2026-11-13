@@ -18,6 +18,12 @@
           "--skip=a_session_gone_on_with_elsewhere_catches_up_where_it_came_from::agent_3_Agent__Pi"
         ];
     });
+    tenere = prev.tenere.overrideAttrs (oldAttrs: {
+      nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [prev.pkg-config];
+      buildInputs = (oldAttrs.buildInputs or []) ++ [prev.oniguruma];
+      preBuild = (oldAttrs.preBuild or "") + "export LIBGIT2_NO_VENDOR=0\n";
+      preCheck = (oldAttrs.preCheck or "") + "export LIBGIT2_NO_VENDOR=0\n";
+    });
   };
 
   # When applied, the unstable nixpkgs set (declared in the flake inputs) will
