@@ -30,9 +30,10 @@
 
   mcpHub = pkgs.writeShellApplication {
     name = "mcp-hub";
-    runtimeInputs = [pkgs.mcp-proxy];
+    runtimeInputs = [pkgs.mcp-proxy pkgs.nodejs];
     text = ''
-      export PATH="${home}/.local/share/mise/shims:${home}/.nix-profile/bin:/etc/profiles/per-user/${config.home.username}/bin:/run/current-system/sw/bin:$PATH"
+      export PATH="$PATH:${home}/.nix-profile/bin:/etc/profiles/per-user/${config.home.username}/bin:/run/current-system/sw/bin"
+      export npm_config_cache="${home}/Library/Caches/mcp-hub/npm"
       if [ -f ${secrets} ]; then
         set -a
         # shellcheck source=/dev/null
@@ -48,7 +49,7 @@ in {
   launchd.agents.mcp-hub = {
     enable = true;
     config = {
-      ProgramArguments = config.driveAccess.wrap ["${mcpHub}/bin/mcp-hub"];
+      ProgramArguments = ["${mcpHub}/bin/mcp-hub"];
       WorkingDirectory = home;
       RunAtLoad = true;
       KeepAlive = true;
