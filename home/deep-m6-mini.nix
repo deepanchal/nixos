@@ -7,7 +7,6 @@
     ./global
     ./features/ai
     ./features/ai/claude-remote-control.nix
-    ./features/ai/claude-tmux-sessions.nix
     ./features/ai/mcp-hub.nix
     ./features/ai/t3code-server.nix
     ./features/ai/whatsapp-bridge.nix
