@@ -12,7 +12,7 @@
         "${pkgs.fish}/bin/fish"
         "--login"
         "--command"
-        "exec t3 serve --host 127.0.0.1 --tailscale-serve"
+        "${config.keychainAgent.attachFish}; exec t3 serve --host 127.0.0.1 --tailscale-serve"
       ];
       WorkingDirectory = "${config.home.homeDirectory}/projects";
       RunAtLoad = true;
