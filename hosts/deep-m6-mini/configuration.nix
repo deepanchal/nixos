@@ -70,15 +70,6 @@
 
   services.tailscale.enable = true;
 
-  launchd.user.agents.sunshine.serviceConfig = {
-    ProgramArguments = ["${pkgs.sunshine}/bin/sunshine" "system_tray=disabled"];
-    RunAtLoad = true;
-    KeepAlive = true;
-    ProcessType = "Interactive";
-    StandardOutPath = "/tmp/sunshine.log";
-    StandardErrorPath = "/tmp/sunshine.log";
-  };
-
   launchd.user.agents.sill.serviceConfig = {
     ProgramArguments = ["${pkgs.writeShellScriptBin "sill" "exec /usr/bin/open -W -g -a Sill"}/bin/sill"];
     RunAtLoad = true;
