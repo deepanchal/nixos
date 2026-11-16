@@ -1,8 +1,18 @@
 diff --git a/main.go b/main.go
-index d1e0270..743411a 100644
+index d1e0270..5ae45fa 100644
 --- a/main.go
 +++ b/main.go
-@@ -591,7 +591,7 @@ func downloadMedia(client *whatsmeow.Client, messageStore *MessageStore, message
+@@ -346,7 +346,8 @@ func sendWhatsAppMessage(client *whatsmeow.Client, recipient string, message str
+ 			}
+ 		case whatsmeow.MediaDocument:
+ 			msg.DocumentMessage = &waProto.DocumentMessage{
+-				Title:         proto.String(mediaPath[strings.LastIndex(mediaPath, "/")+1:]),
++				Title:         proto.String(filepath.Base(mediaPath)),
++				FileName:      proto.String(filepath.Base(mediaPath)),
+ 				Caption:       proto.String(message),
+ 				Mimetype:      proto.String(mimeType),
+ 				URL:           &resp.URL,
+@@ -591,7 +592,7 @@ func downloadMedia(client *whatsmeow.Client, messageStore *MessageStore, message
  	}
  
  	// Generate a local path for the file
@@ -11,7 +21,7 @@ index d1e0270..743411a 100644
  
  	// Get absolute path
  	absPath, err := filepath.Abs(localPath)
-@@ -641,7 +641,7 @@ func downloadMedia(client *whatsmeow.Client, messageStore *MessageStore, message
+@@ -641,7 +642,7 @@ func downloadMedia(client *whatsmeow.Client, messageStore *MessageStore, message
  	}
  
  	// Download the media using whatsmeow client
@@ -20,7 +30,7 @@ index d1e0270..743411a 100644
  	if err != nil {
  		return false, "", "", "", fmt.Errorf("failed to download media: %v", err)
  	}
-@@ -666,13 +666,7 @@ func extractDirectPathFromURL(url string) string {
+@@ -666,13 +667,7 @@ func extractDirectPathFromURL(url string) string {
  		return url // Return original URL if parsing fails
  	}
  
@@ -35,7 +45,7 @@ index d1e0270..743411a 100644
  }
  
  // Start a REST API server to expose the WhatsApp client functionality
-@@ -800,14 +794,14 @@ func main() {
+@@ -800,14 +795,14 @@ func main() {
  		return
  	}
  
@@ -52,7 +62,7 @@ index d1e0270..743411a 100644
  	if err != nil {
  		if err == sql.ErrNoRows {
  			// No device exists, create one
-@@ -973,7 +967,7 @@ func GetChatName(client *whatsmeow.Client, messageStore *MessageStore, jid types
+@@ -973,7 +968,7 @@ func GetChatName(client *whatsmeow.Client, messageStore *MessageStore, jid types
  
  		// If we didn't get a name, try group info
  		if name == "" {
@@ -61,7 +71,7 @@ index d1e0270..743411a 100644
  			if err == nil && groupInfo.Name != "" {
  				name = groupInfo.Name
  			} else {
-@@ -988,7 +982,7 @@ func GetChatName(client *whatsmeow.Client, messageStore *MessageStore, jid types
+@@ -988,7 +983,7 @@ func GetChatName(client *whatsmeow.Client, messageStore *MessageStore, jid types
  		logger.Infof("Getting name for contact: %s", chatJID)
  
  		// Just use contact info (full name)
