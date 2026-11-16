@@ -140,7 +140,7 @@
 
   riftConfig = (pkgs.formats.toml {}).generate "rift-config.toml" {
     settings = {
-      default_disable = false;
+      default_disable = true;
       focus_follows_mouse = true;
       mouse_follows_focus = false;
       mouse_hides_on_focus = false;
