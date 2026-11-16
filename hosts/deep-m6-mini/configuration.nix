@@ -52,6 +52,13 @@
     uid = 501;
     home = "/Users/deep";
     shell = pkgs.fish;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDF9Xw0MHAmDbFHnc+Nj6ACK9RxsdRUaUyjbP8nZNXYE deep302001@gmail.com"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPCjehNU5s62WhaLuvClgO7v2nuKRueBtto+wshVpJnU #ssh.id - @deepanchal"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP5D8YcLi2RpIV5qvzZg6PqcaBV7pIkMCEymrSQch1ls #ssh.id - @deepanchal"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINojSvrhuw7iD8kI8Hh/Hqb18hj13jMnWlpbuqieIqmy #SSH ID - @deepanchal"
+      "from=\"127.0.0.1,::1,100.115.177.63\" ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILl4KEhAGQEGM43XmRrlQimi0levtDbTlVnmF1s/T0+G loopback@deep-m6-mini"
+    ];
   };
 
   programs.fish.enable = true;
