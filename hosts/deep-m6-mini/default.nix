@@ -11,5 +11,6 @@
     ./keyboard-remap.nix
     ./launcher.nix
     ./linux-home-paths.nix
+    ./home-volume.nix
   ];
 }
