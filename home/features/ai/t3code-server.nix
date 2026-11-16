@@ -8,7 +8,7 @@
   launchd.agents.t3code = {
     enable = true;
     config = {
-      ProgramArguments = config.driveAccess.wrap [
+      ProgramArguments = [
         "${pkgs.fish}/bin/fish"
         "--login"
         "--command"
