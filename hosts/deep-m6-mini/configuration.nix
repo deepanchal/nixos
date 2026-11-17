@@ -103,6 +103,7 @@
   };
 
   environment.systemPackages = [
+    pkgs.aml-flash-tool
     pkgs.git
   ];
 }

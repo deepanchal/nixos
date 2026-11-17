@@ -29,6 +29,7 @@
       "saffsanity/sill/sill"
       "slack"
       "visual-studio-code"
+      "wch-ch34x-usb-serial-driver"
       "whatsapp"
       "zed"
     ];
