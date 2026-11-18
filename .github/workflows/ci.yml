@@ -1,0 +1,78 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name != 'push' }}
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: checks (${{ matrix.system }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - system: x86_64-linux
+            runner: ubuntu-latest
+          - system: aarch64-darwin
+            runner: macos-latest
+    runs-on: ${{ matrix.runner }}
+    env:
+      SYSTEM: ${{ matrix.system }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: cachix/install-nix-action@v31
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build flake checks
+        run: |
+          nix eval --json ".#checks.$SYSTEM" --apply builtins.attrNames \
+            | jq -r --arg system "$SYSTEM" '.[] | ".#checks.\($system).\(.)"' \
+            | xargs nix build --print-build-logs --no-link --keep-going
+
+  eval:
+    name: eval (${{ matrix.name }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: zephyrion
+            runner: ubuntu-latest
+            attr: nixosConfigurations.zephyrion.config.system.build.toplevel
+          - name: deep@zephyrion
+            runner: ubuntu-latest
+            attr: homeConfigurations."deep@zephyrion".activationPackage
+          - name: deep-m6-mini
+            runner: macos-latest
+            attr: darwinConfigurations.deep-m6-mini.system
+    runs-on: ${{ matrix.runner }}
+    env:
+      ATTR: ${{ matrix.attr }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: cachix/install-nix-action@v31
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Evaluate configuration
+        run: nix eval --raw ".#$ATTR.drvPath"
+
+  secrets:
+    name: secret scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: cachix/install-nix-action@v31
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Scan full git history with gitleaks
+        run: nix run --inputs-from . nixpkgs#gitleaks -- git --redact --no-banner --verbose .
