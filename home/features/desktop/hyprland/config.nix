@@ -210,16 +210,55 @@ in {
 
     # https://wiki.hypr.land/Configuring/Advanced-and-Cool/Animations/
     curve = [
-      {_args = ["overshot" {type = "bezier"; points = [[0.05 0.9] [0.1 1.05]];}];}
+      {
+        _args = [
+          "overshot"
+          {
+            type = "bezier";
+            points = [[0.05 0.9] [0.1 1.05]];
+          }
+        ];
+      }
     ];
 
     animation = [
-      {leaf = "windows"; enabled = true; speed = 7; bezier = "overshot";}
-      {leaf = "windowsOut"; enabled = true; speed = 7; bezier = "default"; style = "popin 80%";}
-      {leaf = "border"; enabled = true; speed = 10; bezier = "default";}
-      {leaf = "borderangle"; enabled = true; speed = 8; bezier = "default";}
-      {leaf = "fade"; enabled = true; speed = 7; bezier = "default";}
-      {leaf = "workspaces"; enabled = true; speed = 6; bezier = "default";}
+      {
+        leaf = "windows";
+        enabled = true;
+        speed = 7;
+        bezier = "overshot";
+      }
+      {
+        leaf = "windowsOut";
+        enabled = true;
+        speed = 7;
+        bezier = "default";
+        style = "popin 80%";
+      }
+      {
+        leaf = "border";
+        enabled = true;
+        speed = 10;
+        bezier = "default";
+      }
+      {
+        leaf = "borderangle";
+        enabled = true;
+        speed = 8;
+        bezier = "default";
+      }
+      {
+        leaf = "fade";
+        enabled = true;
+        speed = 7;
+        bezier = "default";
+      }
+      {
+        leaf = "workspaces";
+        enabled = true;
+        speed = 6;
+        bezier = "default";
+      }
     ];
 
     # https://wiki.hypr.land/Configuring/Advanced-and-Cool/Devices/
@@ -273,16 +312,16 @@ in {
     # https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
     workspace_rule =
       map (rule: rule // onMonitor primary) [
-        {workspace = "1"; }
-        {workspace = "2"; }
-        {workspace = "3"; }
-        {workspace = "4"; }
-        {workspace = "7"; }
-        {workspace = "8"; }
+        {workspace = "1";}
+        {workspace = "2";}
+        {workspace = "3";}
+        {workspace = "4";}
+        {workspace = "7";}
+        {workspace = "8";}
       ]
       ++ map (rule: rule // onMonitor secondary) [
-        {workspace = "5"; }
-        {workspace = "6"; }
+        {workspace = "5";}
+        {workspace = "6";}
       ];
 
     # https://wiki.hypr.land/Configuring/Basics/Autostart/

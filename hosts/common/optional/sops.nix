@@ -15,18 +15,19 @@
   config,
   pkgs,
   ...
-}:
-let
+}: let
   user = "deep";
   home = config.users.users.${user}.home;
   homeSecret = path: {
     path = "${home}/${path}";
     owner = user;
-    group = if pkgs.stdenv.hostPlatform.isDarwin then "staff" else "users";
+    group =
+      if pkgs.stdenv.hostPlatform.isDarwin
+      then "staff"
+      else "users";
     mode = "0600";
   };
-in
-{
+in {
   environment.systemPackages = [
     pkgs.sops
     pkgs.age
@@ -37,7 +38,7 @@ in
     defaultSopsFormat = "yaml";
 
     # Use the machine's host SSH key as the age decryption identity.
-    age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+    age.sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
 
     secrets = {
       ssh_id_ed25519 = homeSecret ".ssh/id_ed25519";
@@ -51,9 +52,11 @@ in
 
       # Also deploy default age identity to the standard sops location so the
       # `sops` CLI finds it automatically (no SOPS_AGE_KEY_FILE needed)
-      sops_age_keys = (homeSecret ".config/sops/age/keys.txt") // {
-        key = "age_deep";
-      };
+      sops_age_keys =
+        (homeSecret ".config/sops/age/keys.txt")
+        // {
+          key = "age_deep";
+        };
     };
   };
 }

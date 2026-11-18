@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ...}:
-let
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: let
   gpgImportKey = pkgs.writeShellScript "gpg-import-key" ''
     set -eu
     key="$HOME/.secrets/gpg-private.asc"
@@ -7,8 +11,7 @@ let
       ${pkgs.gnupg}/bin/gpg --batch --import "$key" || true
     fi
   '';
-in
-{
+in {
   imports = [
     ./zellij
     ./direnv
@@ -44,12 +47,14 @@ in
     # ./vale.nix
   ];
 
-  home.packages = [
-    pkgs.tenere # llm tui
-  ] ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
-    pkgs.impala # wifi tui
-    pkgs.bluetui # bluetooth tui
-  ];
+  home.packages =
+    [
+      pkgs.tenere # llm tui
+    ]
+    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+      pkgs.impala # wifi tui
+      pkgs.bluetui # bluetooth tui
+    ];
 
   programs.jq.enable = true;
   programs.fzf.enable = true;
@@ -59,7 +64,6 @@ in
   # programs.cava.enable = true;
   programs.fastfetch.enable = true;
 
-
   ###################
   # Services
   ###################
@@ -67,9 +71,9 @@ in
   systemd.user.services.gpg-import-key = lib.mkIf pkgs.stdenv.hostPlatform.isLinux {
     Unit = {
       Description = "Import GPG secret key from the sops-deployed file (see hosts/common/optional/sops.nix)";
-      After = [ "gpg-agent.service" ];
+      After = ["gpg-agent.service"];
     };
-    Install.WantedBy = [ "default.target" ];
+    Install.WantedBy = ["default.target"];
     Service = {
       Type = "oneshot";
       RemainAfterExit = true;
@@ -80,9 +84,8 @@ in
   launchd.agents.gpg-import-key = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin {
     enable = true;
     config = {
-      ProgramArguments = [ "${gpgImportKey}" ];
+      ProgramArguments = ["${gpgImportKey}"];
       RunAtLoad = true;
     };
   };
-
 }

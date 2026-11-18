@@ -3,11 +3,9 @@
   pkgs,
   config,
   ...
-}:
-let
+}: let
   colors = config.colorScheme.palette;
-in
-{
+in {
   programs.fuzzel = {
     enable = true;
     settings = {

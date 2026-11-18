@@ -4,8 +4,7 @@
   config,
   inputs,
   ...
-}:
-{
+}: {
   # https://github.com/Mic92/envfs
   # A fuse filesystem that dynamically populates contents of /bin and /usr/bin/ so that it contains all executables from the PATH of the requesting process.
   # This allows executing FHS based programs on a non-FHS system.
@@ -69,8 +68,7 @@
   # Set LD_LIBRARY_PATH env var for compatibility
   environment.variables = {
     LD_LIBRARY_PATH = lib.makeLibraryPath (
-      with pkgs;
-      [
+      with pkgs; [
         stdenv.cc.cc.lib # To fix: libstdc++.so.6: cannot open shared object file: No such file or directory
         zlib
         glib

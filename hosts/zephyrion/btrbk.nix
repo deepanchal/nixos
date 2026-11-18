@@ -4,14 +4,12 @@
   pkgs,
   lib,
   ...
-}:
-let
+}: let
   hostname = config.networking.hostName;
   # NOTE: btrbk's ssh:// URL form does NOT accept user@host — the user goes in
   # ssh_user below. Keep this as host-only.
   remote = "beacon.allosaurus-dojo.ts.net";
-in
-{
+in {
   # btrbk: daily snapshot of @persist on /btr_pool, then incremental btrfs-send
   # over SSH to pi@beacon:/mnt/btrfs-backup/zephyrion.
   # Docs: https://digint.ch/btrbk/doc/btrbk.conf.5.html

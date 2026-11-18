@@ -5,8 +5,8 @@
   # See: https://nixos-and-flakes.thiscute.world/nix-store/add-binary-cache-servers
   nixConfig = {
     # substituers will be appended to the default substituters when fetching packages
-    extra-substituters = [ ];
-    extra-trusted-public-keys = [ ];
+    extra-substituters = [];
+    extra-trusted-public-keys = [];
   };
 
   inputs = {

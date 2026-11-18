@@ -3,10 +3,8 @@
   pkgs,
   inputs,
   ...
-}:
-let
-in
-{
+}: let
+in {
   nixpkgs.overlays = [
     inputs.claude-code-nix.overlays.default
   ];

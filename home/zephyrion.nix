@@ -52,7 +52,7 @@
     '')
 
     # Cider - Paid Apple Music Client
-    # 1. Get AppImage from 
+    # 1. Get AppImage from
     #    - https://taproom.cider.sh/downloads
     #    - https://cidercollective.itch.io/cider
     # 2. Make it executable

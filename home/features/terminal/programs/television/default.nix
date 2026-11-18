@@ -3,11 +3,9 @@
   config,
   lib,
   ...
-}:
-let
+}: let
   c = config.colorScheme.palette;
-in
-{
+in {
   home.packages = with pkgs; [
     bat
     fd

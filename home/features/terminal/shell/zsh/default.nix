@@ -4,17 +4,21 @@
   lib,
   inputs,
   ...
-}:
-let
+}: let
   isWayland = config.wayland.windowManager.hyprland.enable;
-  copy-cmd = if isWayland then "wl-copy" else "xclip -selection clipboard";
-  paste-cmd = if isWayland then "wl-paste" else "xclip -selection clipboard -o";
+  copy-cmd =
+    if isWayland
+    then "wl-copy"
+    else "xclip -selection clipboard";
+  paste-cmd =
+    if isWayland
+    then "wl-paste"
+    else "xclip -selection clipboard -o";
   chromeExecutable =
     if pkgs.stdenv.hostPlatform.isDarwin
     then "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
     else "/usr/bin/google-chrome-stable";
-in
-{
+in {
   config = {
     home.packages = [
       (pkgs.writeShellScriptBin "glsc" ''

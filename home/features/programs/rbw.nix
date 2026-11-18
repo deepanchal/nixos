@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   # rbw is the Bitwarden CLI that walker's `bitwarden` provider drives
   # (distinct from the official `bitwarden-cli`/`bw`).
   programs.rbw = {

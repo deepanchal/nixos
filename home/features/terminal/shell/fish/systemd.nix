@@ -1,7 +1,6 @@
 # Fish port of the oh-my-zsh `systemd` plugin.
 # Source: https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/systemd/systemd.plugin.zsh
-{ lib, ... }:
-let
+{lib, ...}: let
   user_commands = [
     "cat"
     "get-default"
@@ -74,25 +73,24 @@ let
     builtins.listToAttrs (
       map (c: lib.nameValuePair "${prefix}${c}" (build c)) cmds
     );
-in
-{
+in {
   programs.fish.shellAbbrs =
-    (mkAliases "sc-"  (c: "systemctl ${c}")        user_commands)
+    (mkAliases "sc-" (c: "systemctl ${c}") user_commands)
     // (mkAliases "scu-" (c: "systemctl --user ${c}") user_commands)
-    // (mkAliases "sc-"  (c: "sudo systemctl ${c}")   sudo_commands)
+    // (mkAliases "sc-" (c: "sudo systemctl ${c}") sudo_commands)
     // (mkAliases "scu-" (c: "systemctl --user ${c}") sudo_commands)
-    // (mkAliases "sc-"  (c: "systemctl ${c}")        power_commands)
+    // (mkAliases "sc-" (c: "systemctl ${c}") power_commands)
     // {
       # --now variants (sc- prefix references sudo_commands → keep sudo)
-      "sc-enable-now"   = "sudo systemctl enable --now";
-      "sc-disable-now"  = "sudo systemctl disable --now";
-      "sc-mask-now"     = "sudo systemctl mask --now";
-      "scu-enable-now"  = "systemctl --user enable --now";
+      "sc-enable-now" = "sudo systemctl enable --now";
+      "sc-disable-now" = "sudo systemctl disable --now";
+      "sc-mask-now" = "sudo systemctl mask --now";
+      "scu-enable-now" = "systemctl --user enable --now";
       "scu-disable-now" = "systemctl --user disable --now";
-      "scu-mask-now"    = "systemctl --user mask --now";
+      "scu-mask-now" = "systemctl --user mask --now";
 
       # --failed variants
-      "sc-failed"  = "systemctl --failed";
+      "sc-failed" = "systemctl --failed";
       "scu-failed" = "systemctl --user --failed";
     };
 }
