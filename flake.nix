@@ -86,6 +86,11 @@
       url = "github:zackb/tether";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    git-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -114,6 +119,17 @@
       };
     packagesAvailableOn = pkgs:
       lib.filterAttrs (_: lib.meta.availableOn pkgs.stdenv.hostPlatform) (import ./pkgs {inherit pkgs;});
+    gitHooksFor = system:
+      inputs.git-hooks.lib.${system}.run {
+        src = ./.;
+        hooks = {
+          alejandra.enable = true;
+          statix.enable = true;
+          deadnix.enable = true;
+          gitleaks.enable = true;
+          pre-commit-hook-ensure-sops.enable = true;
+        };
+      };
   in {
     # Your custom packages
     # Accessible through 'nix build', 'nix shell', etc
@@ -121,6 +137,17 @@
     # Formatter for your nix files, available through 'nix fmt'
     # Other options beside 'alejandra' include 'nixpkgs-fmt'
     formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+
+    checks = forAllSystems (system: self.packages.${system} // {git-hooks = gitHooksFor system;});
+
+    devShells = forAllSystems (system: let
+      gitHooks = self.checks.${system}.git-hooks;
+    in {
+      default = nixpkgs.legacyPackages.${system}.mkShell {
+        inherit (gitHooks) shellHook;
+        packages = gitHooks.enabledPackages;
+      };
+    });
 
     # Your custom packages and modifications, exported as overlays
     overlays = import ./overlays {inherit inputs;};
