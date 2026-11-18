@@ -1,4 +1,4 @@
-{...}: {
+_: {
   config = {
     programs.zellij = {
       enable = true;

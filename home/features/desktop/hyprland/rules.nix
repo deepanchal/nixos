@@ -1,4 +1,4 @@
-{...}: let
+_: let
   blurredLayers = ["^(gtk-layer-shell)$" "^(launcher)$" "notifications"];
 in {
   wayland.windowManager.hyprland.settings = {

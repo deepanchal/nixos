@@ -220,8 +220,7 @@ in {
           packages = extensions;
         };
         containers = {};
-        search = search;
-        settings = settings;
+        inherit search settings;
       };
       work = {
         id = 1;
@@ -234,8 +233,7 @@ in {
           packages = extensions;
         };
         containers = {};
-        search = search;
-        settings = settings;
+        inherit search settings;
       };
     };
   };

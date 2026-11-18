@@ -307,7 +307,8 @@ in {
             }
             else {disabled = true;}
           )
-      ) (config.monitors);
+      )
+      config.monitors;
 
     # https://wiki.hypr.land/Configuring/Basics/Workspace-Rules/
     workspace_rule =

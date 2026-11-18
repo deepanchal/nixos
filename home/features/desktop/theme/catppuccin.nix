@@ -16,8 +16,7 @@
   in {
     # enable for all programs
     enable = true;
-    flavor = flavor;
-    accent = accent;
+    inherit flavor accent;
     cursors.enable = false;
 
     sway.enable = false;
