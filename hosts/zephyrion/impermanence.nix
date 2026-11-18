@@ -130,6 +130,7 @@
         ".vscode"
         ".cursor"
         ".claude" # for claude code
+        ".t3"
         ".claude-squad"
         "go"
         ".keychain"
@@ -156,6 +157,7 @@
         ".config/JetBrains"
         ".config/Slack"
         ".config/mozilla" # firefox
+        ".config/t3code-v2"
         ".config/Cursor"
         ".config/Code"
         ".config/clipse" # preserve clipse history & tmp_files which contains images
