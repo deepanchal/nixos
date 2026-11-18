@@ -1,4 +1,4 @@
-{...}: {
+_: {
   programs.rio = {
     enable = false;
     settings = {

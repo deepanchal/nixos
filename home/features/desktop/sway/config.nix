@@ -80,10 +80,7 @@ in {
         cfg = config.wayland.windowManager.sway.config;
         mod = cfg.modifier;
         mod2 = "Alt";
-        left = cfg.left;
-        right = cfg.right;
-        up = cfg.up;
-        down = cfg.down;
+        inherit (cfg) left right up down;
       in {
         "${mod}+Return" = "exec ${cfg.terminal}";
         "${mod}+Shift+q" = "kill";
@@ -304,7 +301,7 @@ in {
       };
 
       output = builtins.listToAttrs (map (monitor: {
-          name = monitor.name;
+          inherit (monitor) name;
           value = {
             pos = "${toString monitor.x} ${toString monitor.y}";
             resolution = "${toString monitor.width}x${toString monitor.height}@${toString monitor.refreshRate}Hz";
@@ -330,10 +327,7 @@ in {
         secondaryAssignments = createWorkspaceAssignments secondary secondaryWorkspaces;
       in
         primaryAssignments
-        ++ secondaryAssignments
-        ++ [
-          # Workspaces 9 and 10 are not explicitly assigned to allow them to appear on the active monitor
-        ];
+        ++ secondaryAssignments;
 
       startup = [
         {command = "dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY";}

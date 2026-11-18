@@ -19,9 +19,9 @@
     pkgs.android-studio
 
     # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/jetbrains/default.nix
-    (pkgs.jetbrains.webstorm.override {vmopts = vmopts;})
-    (pkgs.jetbrains.rust-rover.override {vmopts = vmopts;})
-    (pkgs.jetbrains.datagrip.override {vmopts = vmopts;})
-    (pkgs.jetbrains.pycharm.override {vmopts = vmopts;})
+    (pkgs.jetbrains.webstorm.override {inherit vmopts;})
+    (pkgs.jetbrains.rust-rover.override {inherit vmopts;})
+    (pkgs.jetbrains.datagrip.override {inherit vmopts;})
+    (pkgs.jetbrains.pycharm.override {inherit vmopts;})
   ];
 }
