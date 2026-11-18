@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   # Catppuccin Nix is setting bat theme and we
   # are simply setting aichat theme to bat's theme
   # since they are both using `thTheme` files
@@ -14,8 +10,8 @@
     sha256 = "sha256:1algv6hb3sz02cy6y3hnxpa61qi3nanqg39gsgmjys62yc3xngj6";
   };
 
-  aichatOverlay = final: prev: {
-    aichat = prev.aichat.overrideAttrs (old: {
+  aichatOverlay = _final: prev: {
+    aichat = prev.aichat.overrideAttrs (_old: {
       src = prev.fetchFromGitHub {
         owner = "sigoden";
         repo = "aichat";

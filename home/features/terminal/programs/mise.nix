@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
+{config, ...}: {
   home.sessionPath = ["${config.xdg.dataHome}/mise/shims"];
 
   programs.mise = {

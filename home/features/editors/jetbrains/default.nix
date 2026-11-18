@@ -1,10 +1,4 @@
-{
-  config,
-  lib,
-  pkgs,
-  flake,
-  ...
-}: {
+{pkgs, ...}: {
   home.file = {
     ".ideavimrc".source = ./.ideavimrc;
   };

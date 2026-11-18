@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{config, ...}: {
   programs.wezterm = {
     enable = true;
     extraConfig =

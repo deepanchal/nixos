@@ -2,7 +2,6 @@
   pkgs,
   lib,
   config,
-  inputs,
   ...
 }: let
   nixosRepoDir = "${config.home.homeDirectory}/projects/nixos";

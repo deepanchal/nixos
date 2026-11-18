@@ -1,8 +1,6 @@
 {
   lib,
   pkgs,
-  inputs,
-  config,
   ...
 }: {
   # Originally from https://github.com/iynaix/dotfiles/blob/9a837d2505cf5ad2189d20194aa52bbb9a752b77/nixos/users.nix

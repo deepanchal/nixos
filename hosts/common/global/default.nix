@@ -1,8 +1,4 @@
-{
-  inputs,
-  outputs,
-  ...
-}: {
+{outputs, ...}: {
   imports =
     [
       ./locale.nix

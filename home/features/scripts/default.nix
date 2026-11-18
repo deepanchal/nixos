@@ -1,9 +1,4 @@
-{
-  inputs,
-  pkgs,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./sound.nix
     ./utils.nix

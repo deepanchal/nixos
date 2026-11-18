@@ -1,10 +1,4 @@
-{
-  config,
-  lib,
-  inputs,
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   swayosd = "${pkgs.swayosd}/bin/swayosd-client";
   asusctl = "${pkgs.asusctl}/bin/asusctl";
   rog-control-center = "${pkgs.asusctl}/bin/rog-control-center";

@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{config, ...}: let
   colors = config.colorScheme.palette;
 in {
   services.clipse = {

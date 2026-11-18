@@ -1,8 +1,4 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
+{lib, ...}: {
   # Screen recording/sharing with pipewire
   # Portal is installed with hyprland | sway
   # See: `man 5 xdg-desktop-portal-wlr`

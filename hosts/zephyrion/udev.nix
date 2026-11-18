@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   keychronUdevRule = ''
     # Udev rules for Keychron keyboards (in my case, it's for Keychron K2 HE)
     # Entry under lsusb (Bus 001 Device 013: ID 3434:0e20)

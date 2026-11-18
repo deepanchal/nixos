@@ -1,8 +1,4 @@
-{
-  lib,
-  pkgs,
-  ...
-}: {
+{...}: {
   imports = [
     ./xdpw.nix # xdg-desktop-portal-wlr
     ./xdph.nix # xdg-desktop-portal-hyprland

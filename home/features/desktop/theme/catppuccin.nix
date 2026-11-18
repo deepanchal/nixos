@@ -1,9 +1,4 @@
-{
-  pkgs,
-  inputs,
-  config,
-  ...
-}: {
+{inputs, ...}: {
   # NOTE: Using a mix of nix-colors (https://github.com/Misterio77/nix-colors)
   # and catppucin nix (https://github.com/catppuccin/nix)
   # I plan on migrating away from catppuccin nix to nix-colors
