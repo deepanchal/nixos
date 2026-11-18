@@ -13,7 +13,7 @@ _: {
   programs.git = {
     enable = true;
     signing = {
-      key = "45FE8F325F0C658648AD56AFC0C2511B2C7608F4";
+      key = "45FE8F325F0C658648AD56AFC0C2511B2C7608F4"; # gitleaks:allow
       signByDefault = true;
       format = "openpgp";
     };
