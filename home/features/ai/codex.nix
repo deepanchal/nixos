@@ -3,10 +3,8 @@
   pkgs,
   inputs,
   ...
-}:
-let
-in
-{
+}: let
+in {
   home.packages = [
     pkgs.codex
   ];
@@ -15,4 +13,3 @@ in
   home.file.".codex/AGENTS.md".source =
     config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/AGENTS.md";
 }
-

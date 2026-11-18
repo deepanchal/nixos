@@ -1,3 +1,3 @@
-{ pkgs, ... }: {
-  home.packages = [ pkgs.timewarrior ];
+{pkgs, ...}: {
+  home.packages = [pkgs.timewarrior];
 }

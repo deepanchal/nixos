@@ -2,8 +2,7 @@
   config,
   lib,
   ...
-}:
-let
+}: let
   inherit (lib.strings) concatStrings;
 
   # 8-color palette mapping (matches p10k lean_8colors):
@@ -36,12 +35,11 @@ let
   toRef = s: "\${${s}}";
   format = concatStrings (
     (map toRef leftSegments)
-    ++ [ "\${fill}" ]
+    ++ ["\${fill}"]
     ++ (map toRef rightSegments)
-    ++ [ "\${line_break}\${character}" ]
+    ++ ["\${line_break}\${character}"]
   );
-in
-{
+in {
   home.sessionVariables = {
     STARSHIP_CACHE = "${config.xdg.cacheHome}/starship";
   };

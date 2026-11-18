@@ -34,62 +34,66 @@
       scrolling.history = 32000;
 
       font = {
-        size = if pkgs.stdenv.hostPlatform.isDarwin then 13 else 10;
+        size =
+          if pkgs.stdenv.hostPlatform.isDarwin
+          then 13
+          else 10;
         normal = {
           family = "JetBrainsMono Nerd Font";
           style = "Regular";
         };
       };
 
-      keyboard.bindings = [
-        {
-          key = "Space";
-          mods = "Control|Shift";
-          mode = "~Alt|~Search";
-          action = "ToggleViMode";
-        }
-        {
-          key = "Space";
-          mods = "Control|Shift";
-          mode = "Alt|~Search";
-          chars = "\\u001b[32;6u";
-        }
-        {
-          key = "N";
-          mods = "Control|Shift";
-          action =
-            if pkgs.stdenv.hostPlatform.isDarwin
-            then "CreateNewWindow"
-            else "SpawnNewInstance";
-        }
-        {
-          key = "K";
-          mods = "Control";
-          action = "ClearHistory";
-        }
-        {
-          key = "Backslash";
-          mods = "Control";
-          chars = "\\u001c";
-        }
-        {
-          key = "Tab";
-          mods = "Control";
-          chars = "\\u001c";
-        }
-      ]
-      ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
-        {
-          key = "C";
-          mods = "Control|Shift";
-          action = "Copy";
-        }
-        {
-          key = "V";
-          mods = "Control|Shift";
-          action = "Paste";
-        }
-      ];
+      keyboard.bindings =
+        [
+          {
+            key = "Space";
+            mods = "Control|Shift";
+            mode = "~Alt|~Search";
+            action = "ToggleViMode";
+          }
+          {
+            key = "Space";
+            mods = "Control|Shift";
+            mode = "Alt|~Search";
+            chars = "\\u001b[32;6u";
+          }
+          {
+            key = "N";
+            mods = "Control|Shift";
+            action =
+              if pkgs.stdenv.hostPlatform.isDarwin
+              then "CreateNewWindow"
+              else "SpawnNewInstance";
+          }
+          {
+            key = "K";
+            mods = "Control";
+            action = "ClearHistory";
+          }
+          {
+            key = "Backslash";
+            mods = "Control";
+            chars = "\\u001c";
+          }
+          {
+            key = "Tab";
+            mods = "Control";
+            chars = "\\u001c";
+          }
+        ]
+        ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
+          {
+            key = "C";
+            mods = "Control|Shift";
+            action = "Copy";
+          }
+          {
+            key = "V";
+            mods = "Control|Shift";
+            action = "Paste";
+          }
+        ];
     };
   };
 }

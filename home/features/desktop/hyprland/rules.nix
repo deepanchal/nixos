@@ -27,23 +27,75 @@ in {
       ##########################################
       # FLOATING
       ##########################################
-      {match.class = "udiskie"; float = true;}
-      {match.title = "(Media viewer)"; float = true;}
-      {match.class = "^(imv)$"; float = true;}
-      {match.class = "^(mpv)$"; float = true;}
-      {match.class = "^(org.gnome.Loupe)$"; float = true;}
-      {match.float = false; no_shadow = true;} # only allow shadows for floating windows
-      {match.class = "Rofi"; float = true; stay_focused = true;}
-      {match.class = "feh"; float = true;}
-      {match.class = "wlogout"; float = true;}
-      {match.class = "file_progress"; float = true;}
-      {match.class = "confirm"; float = true;}
-      {match.class = "dialog"; float = true;}
-      {match.class = "download"; float = true;}
-      {match.class = "notification"; float = true;}
-      {match.class = "error"; float = true;}
-      {match.class = "splash"; float = true;}
-      {match.class = "confirmreset"; float = true;}
+      {
+        match.class = "udiskie";
+        float = true;
+      }
+      {
+        match.title = "(Media viewer)";
+        float = true;
+      }
+      {
+        match.class = "^(imv)$";
+        float = true;
+      }
+      {
+        match.class = "^(mpv)$";
+        float = true;
+      }
+      {
+        match.class = "^(org.gnome.Loupe)$";
+        float = true;
+      }
+      {
+        match.float = false;
+        no_shadow = true;
+      } # only allow shadows for floating windows
+      {
+        match.class = "Rofi";
+        float = true;
+        stay_focused = true;
+      }
+      {
+        match.class = "feh";
+        float = true;
+      }
+      {
+        match.class = "wlogout";
+        float = true;
+      }
+      {
+        match.class = "file_progress";
+        float = true;
+      }
+      {
+        match.class = "confirm";
+        float = true;
+      }
+      {
+        match.class = "dialog";
+        float = true;
+      }
+      {
+        match.class = "download";
+        float = true;
+      }
+      {
+        match.class = "notification";
+        float = true;
+      }
+      {
+        match.class = "error";
+        float = true;
+      }
+      {
+        match.class = "splash";
+        float = true;
+      }
+      {
+        match.class = "confirmreset";
+        float = true;
+      }
       {
         match.class = "^(wdisplays)$";
         float = true;
@@ -84,7 +136,10 @@ in {
         pin = true;
       }
       # thunar
-      {match.class = "^(thunar)$"; opacity = "0.8";}
+      {
+        match.class = "^(thunar)$";
+        opacity = "0.8";
+      }
       {
         match = {
           class = "^(thunar)$";
@@ -137,7 +192,10 @@ in {
         opacity = "1";
       }
       # spotify
-      {match.initial_title = "^(Spotify.*)$"; opacity = "0.8";}
+      {
+        match.initial_title = "^(Spotify.*)$";
+        opacity = "0.8";
+      }
       # clipse
       {
         match.class = "(clipse)";
@@ -150,14 +208,38 @@ in {
       ##########################################
       # OPAQUE
       ##########################################
-      {match.class = "^(brave)$"; opaque = true;}
-      {match.title = "(Media viewer)"; opaque = true;}
-      {match.title = "(Firefox)"; opaque = true;}
-      {match.title = "(Slack)"; opaque = true;}
-      {match.title = "(telegram)"; opaque = true;}
-      {match.class = "^(imv)$"; opaque = true;}
-      {match.class = "^(mpv)$"; opaque = true;}
-      {match.class = "^(org.gnome.Loupe)$"; opaque = true;}
+      {
+        match.class = "^(brave)$";
+        opaque = true;
+      }
+      {
+        match.title = "(Media viewer)";
+        opaque = true;
+      }
+      {
+        match.title = "(Firefox)";
+        opaque = true;
+      }
+      {
+        match.title = "(Slack)";
+        opaque = true;
+      }
+      {
+        match.title = "(telegram)";
+        opaque = true;
+      }
+      {
+        match.class = "^(imv)$";
+        opaque = true;
+      }
+      {
+        match.class = "^(mpv)$";
+        opaque = true;
+      }
+      {
+        match.class = "^(org.gnome.Loupe)$";
+        opaque = true;
+      }
       {
         match.class = "^(swappy)$";
         opaque = true;
@@ -168,22 +250,49 @@ in {
       ##########################################
       # IDLEINHIBIT
       ##########################################
-      {match.class = "^(mpv)$"; idle_inhibit = "focus";}
-      {match.class = "^(alacritty)$"; idle_inhibit = "focus";}
-      {match.class = "^(wezterm)$"; idle_inhibit = "focus";}
-      {match.class = "^(firefox)$"; idle_inhibit = "fullscreen";}
+      {
+        match.class = "^(mpv)$";
+        idle_inhibit = "focus";
+      }
+      {
+        match.class = "^(alacritty)$";
+        idle_inhibit = "focus";
+      }
+      {
+        match.class = "^(wezterm)$";
+        idle_inhibit = "focus";
+      }
+      {
+        match.class = "^(firefox)$";
+        idle_inhibit = "fullscreen";
+      }
 
       ##########################################
       # WORKSPACE CONFIG
       ##########################################
       # throw sharing indicators away
-      {match.title = "^(Firefox — Sharing Indicator)$"; workspace = "special silent";}
-      {match.title = "^.*(Sharing Indicator)$"; workspace = "special silent";}
-      {match.title = "^(.*is sharing (your screen|a window)\\.)$"; workspace = "special silent";}
+      {
+        match.title = "^(Firefox — Sharing Indicator)$";
+        workspace = "special silent";
+      }
+      {
+        match.title = "^.*(Sharing Indicator)$";
+        workspace = "special silent";
+      }
+      {
+        match.title = "^(.*is sharing (your screen|a window)\\.)$";
+        workspace = "special silent";
+      }
 
       # IDE
-      {match.class = "^(Code)$"; workspace = "1";}
-      {match.class = "^(jetbrains-studio)$"; workspace = "1";} # android studio
+      {
+        match.class = "^(Code)$";
+        workspace = "1";
+      }
+      {
+        match.class = "^(jetbrains-studio)$";
+        workspace = "1";
+      } # android studio
       {
         match = {
           class = "^(jetbrains-studio)$";

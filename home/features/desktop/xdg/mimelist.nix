@@ -6,8 +6,7 @@ let
   image-viewer = "org.gnome.Loupe.desktop";
   audio-player = "mpv.desktop";
   video-player = "mpv.desktop";
-in
-{
+in {
   xdg.mimeApps = rec {
     enable = true;
     associations.added = defaultApplications;
@@ -62,7 +61,7 @@ in
       "video/mpeg" = video-player;
       "video/x-msvideo" = video-player;
 
-      "x-scheme-handler/tg" = [ "telegramdesktop.desktop" ];
+      "x-scheme-handler/tg" = ["telegramdesktop.desktop"];
     };
   };
 }

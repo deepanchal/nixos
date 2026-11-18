@@ -26,4 +26,3 @@ pkgs.buildGoModule rec {
     platforms = platforms.all;
   };
 }
-

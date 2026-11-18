@@ -23,19 +23,19 @@ pkgs.buildGoModule rec {
   # on NixOS. Patched here rather than wrapped because the binary records
   # os.Executable() into that unit and into the managed git hooks.
   postPatch = ''
-    substituteInPlace \
-      internal/gatecontext/process_unix.go \
-      internal/update/daemon.go \
-      internal/cli/lifecycle_log.go \
-      internal/daemon/proc_unix.go \
-      --replace-fail '"ps"' '"${pkgs.procps}/bin/ps"'
+        substituteInPlace \
+          internal/gatecontext/process_unix.go \
+          internal/update/daemon.go \
+          internal/cli/lifecycle_log.go \
+          internal/daemon/proc_unix.go \
+          --replace-fail '"ps"' '"${pkgs.procps}/bin/ps"'
 
-    substituteInPlace internal/shellenv/shellenv.go \
-      --replace-fail 'filepath.Join(home, ".local", "bin"),' 'filepath.Join(home, ".nix-profile", "bin"),
-			filepath.Join(home, ".local", "bin"),' \
-      --replace-fail '"/opt/homebrew/bin",' '"/run/current-system/sw/bin",
-		"/nix/var/nix/profiles/default/bin",
-		"/opt/homebrew/bin",'
+        substituteInPlace internal/shellenv/shellenv.go \
+          --replace-fail 'filepath.Join(home, ".local", "bin"),' 'filepath.Join(home, ".nix-profile", "bin"),
+    			filepath.Join(home, ".local", "bin"),' \
+          --replace-fail '"/opt/homebrew/bin",' '"/run/current-system/sw/bin",
+    		"/nix/var/nix/profiles/default/bin",
+    		"/opt/homebrew/bin",'
   '';
 
   ldflags = [

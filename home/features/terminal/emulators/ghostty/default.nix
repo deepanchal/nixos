@@ -3,11 +3,13 @@
   pkgs,
   lib,
   ...
-}:
-{
+}: {
   programs.ghostty = {
     enable = true;
-    package = if pkgs.stdenv.hostPlatform.isDarwin then pkgs.ghostty-bin else pkgs.ghostty;
+    package =
+      if pkgs.stdenv.hostPlatform.isDarwin
+      then pkgs.ghostty-bin
+      else pkgs.ghostty;
     settings = {
       macos-option-as-alt = lib.mkIf pkgs.stdenv.hostPlatform.isDarwin true;
 
@@ -29,19 +31,23 @@
 
       font-family = "JetBrainsMono Nerd Font";
       font-style = "Regular";
-      font-size = if pkgs.stdenv.hostPlatform.isDarwin then 13 else 10;
+      font-size =
+        if pkgs.stdenv.hostPlatform.isDarwin
+        then 13
+        else 10;
 
       confirm-close-surface = false;
 
-      keybind = [
-        "ctrl+shift+n=new_window"
-        "ctrl+k=clear_screen"
-        "ctrl+shift+space=write_screen_file:open"
-      ]
-      ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
-        "ctrl+shift+c=copy_to_clipboard"
-        "ctrl+shift+v=paste_from_clipboard"
-      ];
+      keybind =
+        [
+          "ctrl+shift+n=new_window"
+          "ctrl+k=clear_screen"
+          "ctrl+shift+space=write_screen_file:open"
+        ]
+        ++ lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
+          "ctrl+shift+c=copy_to_clipboard"
+          "ctrl+shift+v=paste_from_clipboard"
+        ];
     };
   };
 }

@@ -2,8 +2,7 @@
   config,
   pkgs,
   ...
-}:
-let
+}: let
   # Catppuccin Nix is setting bat theme and we
   # are simply setting aichat theme to bat's theme
   # since they are both using `thTheme` files
@@ -25,9 +24,8 @@ let
       };
     });
   };
-in
-{
-  nixpkgs.overlays = [ aichatOverlay ];
+in {
+  nixpkgs.overlays = [aichatOverlay];
   home.packages = [
     pkgs.aichat
   ];

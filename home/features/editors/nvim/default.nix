@@ -4,8 +4,7 @@
   config,
   inputs,
   ...
-}:
-{
+}: {
   programs = {
     neovim = {
       enable = true;
@@ -33,118 +32,119 @@
   };
 
   home = {
-    packages = with pkgs; [
-      # C/C++
-      cmake
-      # cmake-language-server
-      gnumake
-      checkmake
-      gcc # c/c++ compiler, required by nvim-treesitter!
-      llvmPackages.clang-unwrapped # c/c++ tools with clang-tools such as clangd
-      lldb
+    packages = with pkgs;
+      [
+        # C/C++
+        cmake
+        # cmake-language-server
+        gnumake
+        checkmake
+        gcc # c/c++ compiler, required by nvim-treesitter!
+        llvmPackages.clang-unwrapped # c/c++ tools with clang-tools such as clangd
+        lldb
 
-      # PYTHON
-      python3
-      pyright
-      ruff
-      black
-      # poetry
-      uv
+        # PYTHON
+        python3
+        pyright
+        ruff
+        black
+        # poetry
+        uv
 
-      # node
-      nodejs
-      deno
-      bun
+        # node
+        nodejs
+        deno
+        bun
 
-      # RUST
-      rustup
+        # RUST
+        rustup
 
-      # ZIG
-      # zls
+        # ZIG
+        # zls
 
-      # NIX
-      nixd
-      # nil
-      statix # Lints and suggestions for the nix programming language
-      deadnix # Find and remove unused code in .nix source files
-      nixfmt # Nix code formatter
-      nixfmt-tree # Nix code formatter using treefmt
-      alejandra # Nix Code Formatter
+        # NIX
+        nixd
+        # nil
+        statix # Lints and suggestions for the nix programming language
+        deadnix # Find and remove unused code in .nix source files
+        nixfmt # Nix code formatter
+        nixfmt-tree # Nix code formatter using treefmt
+        alejandra # Nix Code Formatter
 
-      # GOLANG
-      go
-      # gomodifytags
-      # iferr # generate error handling code for go
-      # impl # generate function implementation for go
-      # gotools # contains tools like: godoc, goimports, etc.
-      # gopls # go language server
-      # delve # go debugger
+        # GOLANG
+        go
+        # gomodifytags
+        # iferr # generate error handling code for go
+        # impl # generate function implementation for go
+        # gotools # contains tools like: godoc, goimports, etc.
+        # gopls # go language server
+        # delve # go debugger
 
-      # LUA
-      lua
-      luarocks
-      stylua
-      lua-language-server
+        # LUA
+        lua
+        luarocks
+        stylua
+        lua-language-server
 
-      # csharp
-      dotnet-sdk
-      csharp-ls
-      csharpier
+        # csharp
+        dotnet-sdk
+        csharp-ls
+        csharpier
 
-      # BASH
-      bash-language-server
-      shellcheck
-      shfmt
+        # BASH
+        bash-language-server
+        shellcheck
+        shfmt
 
-      # JAVASCRIPT/TYPESCRIPT
-      typescript
-      (symlinkJoin {
-        name = "typescript-language-server";
-        paths = [ typescript-language-server ];
-        nativeBuildInputs = [ makeWrapper ];
-        postBuild = ''
-          wrapProgram $out/bin/typescript-language-server --set-default NODE_OPTIONS --max-old-space-size=2048
-        '';
-      })
-      tailwindcss-language-server
+        # JAVASCRIPT/TYPESCRIPT
+        typescript
+        (symlinkJoin {
+          name = "typescript-language-server";
+          paths = [typescript-language-server];
+          nativeBuildInputs = [makeWrapper];
+          postBuild = ''
+            wrapProgram $out/bin/typescript-language-server --set-default NODE_OPTIONS --max-old-space-size=2048
+          '';
+        })
+        tailwindcss-language-server
 
-      # SCALA
-      # coursier
-      # metals
+        # SCALA
+        # coursier
+        # metals
 
-      # arduino
-      arduino-language-server
-      arduino-cli
-      avrdude
+        # arduino
+        arduino-language-server
+        arduino-cli
+        avrdude
 
-      # CLOUDNATIVE
-      dockerfile-language-server
-      # terraform
-      # terraform-ls
-      # hadolint # Dockerfile linter
+        # CLOUDNATIVE
+        dockerfile-language-server
+        # terraform
+        # terraform-ls
+        # hadolint # Dockerfile linter
 
-      # OTHERS
-      taplo # TOML language server / formatter / validator
-      yaml-language-server
-      # sqlfluff # SQL linter
-      actionlint # GitHub Actions linter
-      # buf # protoc plugin for linting and formatting
-      # proselint # English prose linter
+        # OTHERS
+        taplo # TOML language server / formatter / validator
+        yaml-language-server
+        # sqlfluff # SQL linter
+        actionlint # GitHub Actions linter
+        # buf # protoc plugin for linting and formatting
+        # proselint # English prose linter
 
-      # MISC
-      tree-sitter # common language parser/highlighter
-      prettier # common code formatter
-      # marksman # language server for markdown
-      # glow # markdown previewer
+        # MISC
+        tree-sitter # common language parser/highlighter
+        prettier # common code formatter
+        # marksman # language server for markdown
+        # glow # markdown previewer
 
-      # OPTIONAL REQUIREMENTS:
-      gdu # disk usage analyzer, required by AstroNvim
-      ripgrep
-      bottom
-      lazygit
-    ]
-    ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
-      arduino-ide
-    ];
+        # OPTIONAL REQUIREMENTS:
+        gdu # disk usage analyzer, required by AstroNvim
+        ripgrep
+        bottom
+        lazygit
+      ]
+      ++ lib.optionals pkgs.stdenv.hostPlatform.isLinux [
+        arduino-ide
+      ];
   };
 }

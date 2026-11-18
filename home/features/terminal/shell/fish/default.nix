@@ -3,16 +3,17 @@
   pkgs,
   lib,
   ...
-}:
-let
+}: let
   isWayland = config.wayland.windowManager.hyprland.enable;
-  paste-cmd = if isWayland then "wl-paste" else "xclip -selection clipboard -o";
+  paste-cmd =
+    if isWayland
+    then "wl-paste"
+    else "xclip -selection clipboard -o";
   chromeExecutable =
     if pkgs.stdenv.hostPlatform.isDarwin
     then "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
     else "/usr/bin/google-chrome-stable";
-in
-{
+in {
   imports = [
     ./bun.nix
     ./docker-compose.nix
@@ -204,45 +205,45 @@ in
 
     interactiveShellInit = lib.mkMerge [
       ''
-      # Hybrid vi/emacs key bindings (modal editing + readline shortcuts)
-      set -g fish_key_bindings fish_hybrid_key_bindings
+        # Hybrid vi/emacs key bindings (modal editing + readline shortcuts)
+        set -g fish_key_bindings fish_hybrid_key_bindings
 
-      # Cursor shape per mode
-      set -g fish_cursor_default block
-      set -g fish_cursor_insert line
-      set -g fish_cursor_replace_one underscore
-      set -g fish_cursor_visual block
+        # Cursor shape per mode
+        set -g fish_cursor_default block
+        set -g fish_cursor_insert line
+        set -g fish_cursor_replace_one underscore
+        set -g fish_cursor_visual block
 
-      # vi mode: jk to exit insert mode (alongside Esc and Ctrl+[)
-      bind -M insert -m default jk cancel repaint-mode
+        # vi mode: jk to exit insert mode (alongside Esc and Ctrl+[)
+        bind -M insert -m default jk cancel repaint-mode
 
-      # Ctrl+C preserves the typed command above the new prompt (zsh-like).
-      # fish_hybrid_key_bindings binds this to clear-commandline, which wipes
-      # the line entirely; cancel-commandline keeps it visible as reference.
-      bind -M default ctrl-c cancel-commandline
-      bind -M insert ctrl-c cancel-commandline
+        # Ctrl+C preserves the typed command above the new prompt (zsh-like).
+        # fish_hybrid_key_bindings binds this to clear-commandline, which wipes
+        # the line entirely; cancel-commandline keeps it visible as reference.
+        bind -M default ctrl-c cancel-commandline
+        bind -M insert ctrl-c cancel-commandline
 
-      # vi mode: route yank/paste through the system clipboard.
-      # See: https://github.com/fish-shell/fish-shell/issues/4028
-      bind -M default Y fish_clipboard_copy
-      bind -M default yy fish_clipboard_copy
-      bind -M visual -m default y 'fish_clipboard_copy; commandline -f end-selection repaint-mode'
-      bind -M default p fish_vi_paste
-      bind -M default P 'fish_vi_paste; commandline -f backward-char'
-      bind -M visual -m default p fish_vi_visual_paste
-      bind -M visual -m default P fish_vi_visual_paste
+        # vi mode: route yank/paste through the system clipboard.
+        # See: https://github.com/fish-shell/fish-shell/issues/4028
+        bind -M default Y fish_clipboard_copy
+        bind -M default yy fish_clipboard_copy
+        bind -M visual -m default y 'fish_clipboard_copy; commandline -f end-selection repaint-mode'
+        bind -M default p fish_vi_paste
+        bind -M default P 'fish_vi_paste; commandline -f backward-char'
+        bind -M visual -m default p fish_vi_visual_paste
+        bind -M visual -m default P fish_vi_visual_paste
 
-      # Ctrl + Space to accept auto-suggestion
-      bind -M insert ctrl-space accept-autosuggestion
-      bind ctrl-space accept-autosuggestion
+        # Ctrl + Space to accept auto-suggestion
+        bind -M insert ctrl-space accept-autosuggestion
+        bind ctrl-space accept-autosuggestion
 
-      # Ctrl + O to copy current command line to clipboard
-      bind -M insert ctrl-o fish_clipboard_copy
-      bind ctrl-o fish_clipboard_copy
+        # Ctrl + O to copy current command line to clipboard
+        bind -M insert ctrl-o fish_clipboard_copy
+        bind ctrl-o fish_clipboard_copy
 
-      # Disable the welcome banner
-      set -g fish_greeting
-    ''
+        # Disable the welcome banner
+        set -g fish_greeting
+      ''
       (lib.mkAfter ''
         if string match -q -- (__ssh_respawn_root)"/ssh-respawn.*" $PWD; and test -O argv
           set -l saved (string split0 < argv)

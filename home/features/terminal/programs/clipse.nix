@@ -1,8 +1,10 @@
-{ config, pkgs, ... }:
-let
-  colors = config.colorScheme.palette;
-in
 {
+  config,
+  pkgs,
+  ...
+}: let
+  colors = config.colorScheme.palette;
+in {
   services.clipse = {
     enable = true;
     allowDuplicates = false;
