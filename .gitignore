@@ -56,3 +56,5 @@ cline.json
 # .replit
 # replit.nix
 
+
+.pre-commit-config.yaml
