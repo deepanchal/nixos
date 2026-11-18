@@ -1,11 +1,5 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}: let
+{pkgs, ...}: let
   airpodsProMac = "BC:80:4E:89:10:B0";
-  airpodsMaxMac = "F8:73:DF:1F:D9:92";
   headphonesMac = airpodsProMac;
 in {
   home.packages = [

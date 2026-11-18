@@ -1,9 +1,4 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = [
     (pkgs.writeShellScriptBin "restart-xdph" ''
       delay=2

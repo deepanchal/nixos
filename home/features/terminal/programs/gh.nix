@@ -1,11 +1,4 @@
-{
-  pkgs,
-  config,
-  inputs,
-  lib,
-  ...
-}: let
-in {
+{...}: {
   programs.gh = {
     enable = true;
     settings = {

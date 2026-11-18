@@ -2,7 +2,6 @@
 {
   config,
   pkgs,
-  lib,
   ...
 }: let
   hostname = config.networking.hostName;

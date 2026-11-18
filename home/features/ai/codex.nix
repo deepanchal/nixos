@@ -1,10 +1,8 @@
 {
   config,
   pkgs,
-  inputs,
   ...
-}: let
-in {
+}: {
   home.packages = [
     pkgs.codex
   ];

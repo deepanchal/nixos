@@ -33,7 +33,7 @@ in {
         })
         deviceIds;
       folders =
-        lib.mapAttrs (id: path: {
+        lib.mapAttrs (_id: path: {
           inherit path;
           devices = lib.attrNames deviceIds;
           rescanIntervalS = 60;
