@@ -1,0 +1,32 @@
+name: Update flake.lock
+
+on:
+  schedule:
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: cachix/install-nix-action@v31
+        with:
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Update flake.lock and open a pull request
+        id: update
+        uses: DeterminateSystems/update-flake-lock@v29
+        with:
+          branch: update-flake-lock
+          commit-msg: "chore(flake): update flake.lock"
+          pr-title: "chore(flake): update flake.lock"
+      - name: Run CI on the pull request branch
+        if: steps.update.outputs.pull-request-number != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run ci.yml --repo "$GITHUB_REPOSITORY" --ref update-flake-lock
