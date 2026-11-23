@@ -10,6 +10,27 @@
     # example = prev.example.overrideAttrs (oldAttrs: rec {
     # ...
     # });
+    t3code =
+      if prev.lib.versionOlder prev.t3code.version "0.1.11"
+      then
+        prev.t3code.override {
+          t3code-unwrapped = prev.t3code.unwrapped.overrideAttrs (finalAttrs: _: {
+            version = "0.1.11";
+            src = prev.fetchFromGitHub {
+              owner = "pingdotgg";
+              repo = "t3code";
+              tag = "v${finalAttrs.version}";
+              hash = "sha256-oI8gyTWFgtTmVK+0cVQaEcfO8EzxUUOW5s8JFG/z/U8=";
+            };
+            pnpmDeps = prev.fetchPnpmDeps {
+              inherit (finalAttrs) pname version src pnpmWorkspaces;
+              pnpm = prev.pnpm_12;
+              fetcherVersion = 5;
+              hash = "sha256-s/vm8Ox4o/AYpNC/amYP1KFWwh7SY5bCmVBuIJn9f/c=";
+            };
+          });
+        }
+      else prev.t3code;
     atuin = prev.atuin.overrideAttrs (oldAttrs: {
       checkFlags =
         oldAttrs.checkFlags
