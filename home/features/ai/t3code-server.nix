@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }: {
@@ -12,7 +13,7 @@
         "${pkgs.fish}/bin/fish"
         "--login"
         "--command"
-        "${config.keychainAgent.attachFish}; exec t3 serve --host 127.0.0.1 --tailscale-serve"
+        "${config.keychainAgent.attachFish}; exec ${lib.getExe' config.t3code.package "t3"} serve --host 127.0.0.1 --tailscale-serve"
       ];
       WorkingDirectory = "${config.home.homeDirectory}/projects";
       RunAtLoad = true;
